@@ -1,0 +1,44 @@
+.notion-header,
+.notion-header .notion-nav-header,
+.notion-collection-row {
+  @apply hidden;
+}
+
+.notion-frame {
+  @apply w-[90vw];
+}
+
+.notion {
+  @apply !bg-transparent;
+}
+
+.notion-aside-table-of-contents {
+  @apply w-full bg-transparent px-4 pb-4;
+}
+
+.notion-aside-table-of-contents-header {
+  @apply hidden;
+}
+
+.notion-table-of-contents-item-body {
+  @apply truncate py-[1px];
+}
+
+.notion-table-of-contents-active-item span {
+  @apply !text-red-600;
+}
+
+.notion-page-content img {
+  position: static !important;
+}
+
+.notion-text,
+.notion-list {
+  @apply my-2;
+  font-size: 18px;
+}
+
+pre.notion-code {
+  max-height: 300px;
+  overflow: scroll;
+}
