@@ -47,15 +47,15 @@ export default async function PostPage({
     <>
       <article
         data-revalidated-at={new Date().getTime()}
-        className="mt-4 flex flex-col items-center md:mt-20"
+        className="flex flex-col items-center"
       >
-        <div className="relative aspect-[16/9] w-[90vw] max-w-[900px]">
+        <div className="relative aspect-video w-full max-w-[900px]">
           <Image
             src={post.cover}
-            alt="cover"
+            alt={post.title}
             fill
-            quality={80}
-            style={{ objectFit: 'contain' }}
+            quality={70}
+            className='object-contain w-full h-full'
           />
         </div>
         <NotionPage post={post} recordMap={recordMap} />

@@ -16,10 +16,10 @@ export default function PostCard({
         <div className="relative h-60 overflow-hidden mb-4">
           <Image
             src={cover}
-            alt="cover image"
+            alt={title}
             fill
-            quality={80}
-            style={{ objectFit: 'cover' }}
+           quality={70}
+           className='object-cover aspect-video'
           />
           <div className="absolute bottom-0 left-2 bg-red-600 px-2 py-1 text-white text-sm uppercase font-semibold">
             {categories[0]}
