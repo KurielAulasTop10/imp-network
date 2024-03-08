@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 
-import Paginate from '../Paginate';
+import Paginate from '@/components/Paginate';
 import PostCard from '@/components/posts/PostCard';
 import usePosts from '@/hooks/use-posts';
 import { Post } from '@/types/post';
