@@ -26,7 +26,7 @@
     "react-notion-x": "^6.16.0",
     "react-paginate": "^8.1.4",
     "recoil": "^0.7.7",
-    "sharp": "^0.32.1"
+    "sharp": "^0.33.2"
   },
   "resolutions": {
     "react": "18.2.0",
@@ -37,17 +37,17 @@
     "@gravity-ui/uikit": "^6.2.0",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/jsdom": "^21.1.1",
-    "@types/node": "18.15.5",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
+    "@types/node": "20.11.25",
+    "@types/react": "18.2.64",
+    "@types/react-dom": "18.2.21",
     "autoprefixer": "^10.4.14",
     "jsdom": "^22.0.0",
     "postcss": "^8.4.21",
-    "prettier": "^2.8.6",
-    "prettier-plugin-tailwindcss": "^0.2.5",
-    "tailwindcss": "3.3",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.12",
+    "tailwindcss": "3.4.1",
     "tsx": "^3.12.7",
-    "typescript": "5.0.2",
+    "typescript": "5.4.2",
     "webpack": "^5.90.3"
   }
 }
