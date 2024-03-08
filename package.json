@@ -28,6 +28,11 @@
     "recoil": "^0.7.7",
     "sharp": "^0.32.1"
   },
+  "resolutions": {
+    "react": "18.2.0",
+    "@types/react": "18.0.28",
+    "react-dom": "18.2.0"
+  },
   "devDependencies": {
     "@gravity-ui/uikit": "^6.2.0",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
