@@ -1,20 +1,17 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
-import { categoriesState } from '@/states/categories';
 import { pageState } from '@/states/page';
 import { queryState } from '@/states/query';
 import { Post } from '@/types/post';
 import { search } from '@/utils/search';
-import { toUniqueArray } from '@/utils/to-unique-array';
 
 const POST_PER_PAGE = 12;
 
 export default function usePosts(allPosts: Post[]) {
   const page = useRecoilValue(pageState);
   const query = useRecoilValue(queryState);
-  const [categories, setCategories] = useRecoilState(categoriesState);
 
   const allPostsFiltered = useMemo(
     () =>
@@ -27,18 +24,9 @@ export default function usePosts(allPosts: Post[]) {
           return false;
         }
 
-        if (categories.selected.length) {
-          const isCategoryMatch = categories.selected.every((cat) =>
-            post.categories.includes(cat)
-          );
-          if (!isCategoryMatch) {
-            return false;
-          }
-        }
-
         return true;
       }),
-    [allPosts, categories.selected, query]
+    [allPosts, query]
   );
   allPostsFiltered.sort((postA, postB) => (postA.date > postB.date ? -1 : 1));
 
@@ -48,15 +36,6 @@ export default function usePosts(allPosts: Post[]) {
     offset,
     offset + POST_PER_PAGE
   );
-
-  useEffect(() => {
-    setCategories((prevCategories) => ({
-      ...prevCategories,
-      active: toUniqueArray(
-        allPostsFiltered.map((post) => post.categories).flat()
-      ),
-    }));
-  }, [allPostsFiltered, setCategories]);
 
   return {
     posts: postsForCurrentPage,

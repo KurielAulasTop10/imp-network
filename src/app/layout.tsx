@@ -4,12 +4,12 @@ import 'react-notion-x/src/styles.css';
 import '@gravity-ui/uikit/styles/fonts.css';
 import '@gravity-ui/uikit/styles/styles.css';
 
-import Header from '@/components/header/header';
-import Provider from '@/components/provider';
-import ScrollUpButton from '@/components/scroll-up-button';
+import Header from '@/components/Header';
+import Provider from '@/components/Provider';
+import ScrollUpButton from '@/components/ScrollUpButton';
 import '@/styles/globals.css';
 import '@/styles/paginate.css';
-import Footer from '@/components/footer';
+import Footer from '@/components/Footer';
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata = {

@@ -9,15 +9,15 @@ export default function SyncPage() {
   const [slugs, setSlugs] = useState<string[]>([]);
 
   const sync = async (password: string) => {
-    setMessage('Detecting changes');
+    setMessage('Detetando mudanças');
     const postsRes = await fetch(`/api/posts?password=${password}`);
 
     if (postsRes.status === 403) {
-      setMessage('Wrong password');
+      setMessage('Password incorreta');
       return false;
     }
     if (postsRes.status === 500) {
-      setMessage('Notion api error, try again later');
+      setMessage('Erro na API do Notion, tente novamente mais tarde');
       return false;
     }
 
@@ -41,10 +41,10 @@ export default function SyncPage() {
     });
 
     if (slugsToRevalidate.length === 0) {
-      setMessage('No posts changed');
+      setMessage('Nenhuma publicação mudou');
       return false;
     } else {
-      setMessage('Revalidating...');
+      setMessage('Revalidando...');
       setSlugs(slugsToRevalidate);
 
       const promises: Promise<Response>[] = [];
@@ -54,10 +54,10 @@ export default function SyncPage() {
       promises.push(
         fetch(`/api/revalidate?path=/sitemap.xml&password=${password}`)
       );
-      promises.push(fetch(`/api/revalidate?path=/blog&password=${password}`));
+      promises.push(fetch(`/api/revalidate?path=/post&password=${password}`));
       slugsToRevalidate.forEach((slug) => {
         promises.push(
-          fetch(`/api/revalidate?path=/blog/${slug}&password=${password}`)
+          fetch(`/api/revalidate?path=/post/${slug}&password=${password}`)
         );
       });
       await Promise.all(promises);
@@ -68,12 +68,12 @@ export default function SyncPage() {
   useEffect(() => {
     let password;
     while (!password) {
-      password = prompt('Enter password');
+      password = prompt('Insira a password');
     }
 
     sync(password).then((revalidated) => {
       if (revalidated) {
-        setMessage('Sync Finished!');
+        setMessage('Sincronização Terminada!');
       }
     });
   }, []);

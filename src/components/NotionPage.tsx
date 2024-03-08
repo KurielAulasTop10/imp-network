@@ -6,9 +6,10 @@ import Image from 'next/image';
 import { Block, ExtendedRecordMap } from 'notion-types';
 import { NotionRenderer } from 'react-notion-x';
 
-import CategoryList from '@/components/category-list';
+import CategoryList from '@/components/CategoryList';
 import '@/styles/notion.css';
 import { Post } from '@/types/post';
+import AuthorBox from './posts/AuthorBox';
 
 export default function NotionPage({
   post,
@@ -32,9 +33,7 @@ export default function NotionPage({
         </div>
       }
       pageFooter={
-        <div>
-          {post.author}
-        </div>
+        <AuthorBox post={post} />
       }
       mapImageUrl={(url, block) => mapImageUrl(url, block) || ''}
       components={{
@@ -42,7 +41,6 @@ export default function NotionPage({
         Collection,
         Equation,
         Modal,
-        Pdf,
         nextImage: Image,
       }}
     />
@@ -60,12 +58,7 @@ const Collection = dynamic(() =>
 const Equation = dynamic(() =>
   import('react-notion-x/build/third-party/equation').then((m) => m.Equation)
 );
-const Pdf = dynamic(
-  () => import('react-notion-x/build/third-party/pdf').then((m) => m.Pdf),
-  {
-    ssr: false,
-  }
-);
+
 const Modal = dynamic(
   () => import('react-notion-x/build/third-party/modal').then((m) => m.Modal),
   {

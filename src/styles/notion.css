@@ -1,11 +1,11 @@
 .notion-header,
 .notion-header .notion-nav-header,
-.notion-collection-row {
+.notion-collection-row, .notion-aside-table-of-contents-header {
   @apply hidden;
 }
 
-.notion-frame {
-  @apply w-[90vw];
+.notion-frame, .notion-page {
+  @apply !w-screen flex flex-col md:max-w-[60vw];
 }
 
 .notion {
@@ -14,10 +14,6 @@
 
 .notion-aside-table-of-contents {
   @apply w-full bg-transparent px-4 pb-4;
-}
-
-.notion-aside-table-of-contents-header {
-  @apply hidden;
 }
 
 .notion-table-of-contents-item-body {
@@ -29,16 +25,14 @@
 }
 
 .notion-page-content img {
-  position: static !important;
+  @apply !static w-full;
 }
 
 .notion-text,
 .notion-list {
-  @apply my-2;
-  font-size: 18px;
+  @apply my-2 text-lg !max-w-fit;
 }
 
 pre.notion-code {
-  max-height: 300px;
-  overflow: scroll;
+  @apply overflow-scroll max-h-80;
 }

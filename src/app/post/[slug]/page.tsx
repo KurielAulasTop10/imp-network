@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import NotionPage from '@/components/notion-page';
-import RelatedPosts from '@/components/posts/related-posts';
+import NotionPage from '@/components/NotionPage';
+import RelatedPosts from '@/components/posts/RelatedPosts';
 import { getRecordMap } from '@/libs/notion';
 import { getAllPostsFromNotion } from '@/services/posts';
 import { Post } from '@/types/post';
@@ -49,7 +49,7 @@ export default async function PostPage({
         data-revalidated-at={new Date().getTime()}
         className="mt-4 flex flex-col items-center md:mt-20"
       >
-        <div className="relative aspect-[3/2] w-[90vw] max-w-[900px]">
+        <div className="relative aspect-[16/9] w-[90vw] max-w-[900px]">
           <Image
             src={post.cover}
             alt="cover"

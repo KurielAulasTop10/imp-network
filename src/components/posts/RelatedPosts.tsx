@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import PostCard from '@/components/posts/post-card';
+import PostCard from '@/components/posts/PostCard';
 import { Post } from '@/types/post';
 
 const INITIAL_NUM_POSTS = 6;
@@ -20,8 +20,8 @@ export default function RelatedPosts({ posts }: { posts: Post[] }) {
   }
 
   return (
-    <section className="mt-10 flex flex-col">
-      <h1 className="text-3xl font-bold drop-shadow-xl drop-shadow-gray-400">Bài viết liên quan</h1>
+    <section className="mt-10 flex flex-col px-3 md:px-20">
+      <h1 className="text-3xl font-bold drop-shadow-xl drop-shadow-gray-400">Recomendados</h1>
       <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mt-10">
         {posts.slice(0, numPosts).map((post) => (
           <li key={post.slug}>

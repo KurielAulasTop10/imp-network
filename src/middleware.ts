@@ -5,7 +5,7 @@ export function middleware(request: NextRequest) {
   const password = request.nextUrl.searchParams.get('password');
 
   if (password !== process.env.API_SECRET) {
-    return NextResponse.json({ message: 'Wrong password' }, { status: 403 });
+    return NextResponse.json({ message: 'Password incorreta' }, { status: 403 });
   }
 
   return NextResponse.next();

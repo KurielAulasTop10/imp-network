@@ -1,4 +1,4 @@
-import PostsGrid from '@/components/posts/posts-grid';
+import PostsGrid from '@/components/posts/PostsGrid';
 import { getAllPostsFromNotion } from '@/services/posts';
 import { toUniqueArray } from '@/utils/to-unique-array';
 

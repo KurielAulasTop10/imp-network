@@ -2,8 +2,8 @@
 
 import { useRef } from 'react';
 
-import Paginate from '@/components/paginate';
-import PostCard from '@/components/posts/post-card';
+import Paginate from '@/components/Paginate';
+import PostCard from '@/components/posts/PostCard';
 import usePosts from '@/hooks/use-posts';
 import { Post } from '@/types/post';
 
@@ -19,7 +19,7 @@ export default function PostsGrid({ allPosts }: { allPosts: Post[] }) {
       {posts.length ? (
         <ul
           id="posts-grid"
-          className="grid w-full grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10 md:gap-y-20"
+          className="grid w-full grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10 md:gap-y-20"
         >
           {posts.map((post) => (
             <li key={post.slug}>
