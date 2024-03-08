@@ -5,7 +5,7 @@ import '@gravity-ui/uikit/styles/fonts.css';
 import '@gravity-ui/uikit/styles/styles.css';
 
 import Header from '@/components/Header';
-import Provider from '@/components/Provider';
+import Provider from '../components/Provider';
 import ScrollUpButton from '@/components/ScrollUpButton';
 import '@/styles/globals.css';
 import '@/styles/paginate.css';
