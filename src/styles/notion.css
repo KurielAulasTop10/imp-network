@@ -1,39 +1,42 @@
 .notion-header,
 .notion-header .notion-nav-header,
-.notion-collection-row, .notion-aside-table-of-contents-header, .notion-title {
-  @apply hidden;
+.notion-collection-row,
+.notion-aside-table-of-contents-header,
+.notion-title {
+	@apply hidden;
 }
 
-.notion-frame, .notion-page {
-  @apply !w-screen flex flex-col md:max-w-[60vw];
+.notion-frame,
+.notion-page {
+	@apply !w-screen flex flex-col md:max-w-[60vw];
 }
 
 .notion {
-  @apply !bg-transparent;
-  font-family: var(--font-rubik);
+	@apply !bg-transparent;
+	font-family: var(--font-rubik);
 }
 
 .notion-aside-table-of-contents {
-  @apply w-full bg-transparent px-4 pb-4;
+	@apply w-full bg-transparent px-4 pb-4;
 }
 
 .notion-table-of-contents-item-body {
-  @apply truncate py-[1px];
+	@apply truncate py-[1px];
 }
 
 .notion-table-of-contents-active-item span {
-  @apply !text-red-600;
+	@apply !text-red-600;
 }
 
 .notion-page-content img {
-  @apply !static w-full;
+	@apply !static w-full;
 }
 
 .notion-text,
 .notion-list {
-  @apply my-2 text-lg !max-w-fit;
+	@apply my-2 text-lg !max-w-fit;
 }
 
 pre.notion-code {
-  @apply overflow-scroll max-h-80;
+	@apply overflow-scroll max-h-80;
 }

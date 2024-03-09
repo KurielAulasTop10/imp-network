@@ -9,80 +9,82 @@ import { getAllPostsFromNotion } from '@/services/posts';
 import { Post } from '@/types/post';
 
 export default async function PostPage({
-  params: { slug },
+	params: { slug },
 }: {
-  params: { slug: string };
+	params: { slug: string };
 }) {
-  const allPosts = await getAllPostsFromNotion();
+	const allPosts = await getAllPostsFromNotion();
 
-  const post = allPosts.find((p) => p.slug === slug);
-  if (!post) {
-    return notFound();
-  }
+	const post = allPosts.find(p => p.slug === slug);
+	if (!post) {
+		return notFound();
+	}
 
-  if (!post.published) {
-    return (
-      <article
-        data-revalidated-at={new Date().getTime()}
-        className="mx-auto mt-40 text-center"
-      >
-        <h2 className="mb-4 text-3xl font-bold">Publicação não encontrada</h2>
-        <Link href="/">
-          <span className="mr-2">&larr;</span>
-          <span>Voltar á página inicial</span>
-        </Link>
-      </article>
-    );
-  }
+	if (!post.published) {
+		return (
+			<article
+				data-revalidated-at={new Date().getTime()}
+				className="mx-auto mt-40 text-center"
+			>
+				<h2 className="mb-4 text-3xl font-bold">
+					Publicação não encontrada
+				</h2>
+				<Link href="/">
+					<span className="mr-2">&larr;</span>
+					<span>Voltar á página inicial</span>
+				</Link>
+			</article>
+		);
+	}
 
-  const relatedPosts: Post[] = allPosts.filter(
-    (p) =>
-      p.slug !== slug && p.categories.some((v) => post.categories.includes(v))
-  );
+	const relatedPosts: Post[] = allPosts.filter(
+		p =>
+			p.slug !== slug &&
+			p.categories.some(v => post.categories.includes(v)),
+	);
 
-  const recordMap = await getRecordMap(post.id);
+	const recordMap = await getRecordMap(post.id);
 
-  return (
-    <>
-      <article
-        data-revalidated-at={new Date().getTime()}
-        className="flex flex-col items-center"
-      >
-        <NotionPage post={post} recordMap={recordMap} />
-      </article>
-      <RelatedPosts posts={relatedPosts} />
-    </>
-  );
+	return (
+		<article
+			data-revalidated-at={new Date().getTime()}
+			className="flex flex-col items-center"
+		>
+			<NotionPage post={post} recordMap={recordMap} />
+			<RelatedPosts posts={relatedPosts} />
+		</article>
+	);
 }
 
 export async function generateStaticParams() {
-  const allPosts = await getAllPostsFromNotion();
+	const allPosts = await getAllPostsFromNotion();
 
-  return allPosts.map((post) => ({
-    slug: post.slug,
-  }));
+	return allPosts.map(post => ({
+		slug: post.slug,
+	}));
 }
 
 export async function generateMetadata({
-  params: { slug },
+	params: { slug },
 }: {
-  params: { slug: string };
+	params: { slug: string };
 }): Promise<Metadata> {
-  const allPosts = await getAllPostsFromNotion();
-  const post = allPosts.find((p) => p.slug === slug);
+	const allPosts = await getAllPostsFromNotion();
+	const post = allPosts.find(p => p.slug === slug);
 
-  return post
-    ? {
-        title: post.title,
-        openGraph: {
-          images: [
-            {
-              url: post.cover,
-              width: 400,
-              height: 300,
-            },
-          ],
-        },
-      }
-    : {};
+	return post
+		? {
+				title: post.title,
+				description: '',
+				openGraph: {
+					images: [
+						{
+							url: post.cover,
+							width: 1280,
+							height: 720,
+						},
+					],
+				},
+		  }
+		: {};
 }
