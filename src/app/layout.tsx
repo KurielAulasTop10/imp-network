@@ -12,12 +12,30 @@ import '@/styles/paginate.css';
 import Footer from '@/components/Footer';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Rubik } from 'next/font/google';
+import { Metadata, Viewport } from 'next';
 
-export const metadata = {
+export const viewport: Viewport = {
+	themeColor: '#dd3333',
+	colorScheme: 'dark'
+};
+
+export const metadata: Metadata = {
+	authors: [{ name: 'Império Network' }],
 	title: {
 		default: 'Império Network',
 		template: '%s | Império Network',
 	},
+	description:
+		'A Império Network é o seu portal de notícias em português para notícias de tecnologia, gaming ou animes! Tornamos a sua leitura simples.',
+	keywords: [
+		'império',
+		'network',
+		'gaming',
+		'animes',
+		'notícias',
+		'tecnologia',
+		'tech',
+	],
 };
 
 const rubik = Rubik({
