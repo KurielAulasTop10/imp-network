@@ -17,6 +17,8 @@ export default async function CategoryPage({
   ).sort();
 
   return (
+    <div className='mt-10 px-5 md:px-20'>
       <PostsGrid allPosts={filteredPosts} />
+      </div>
   );
 }

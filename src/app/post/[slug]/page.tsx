@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -49,15 +48,6 @@ export default async function PostPage({
         data-revalidated-at={new Date().getTime()}
         className="flex flex-col items-center"
       >
-        <div className="relative aspect-video w-full max-w-[900px]">
-          <Image
-            src={post.cover}
-            alt={post.title}
-            fill
-            quality={70}
-            className='object-contain w-full h-full'
-          />
-        </div>
         <NotionPage post={post} recordMap={recordMap} />
       </article>
       <RelatedPosts posts={relatedPosts} />

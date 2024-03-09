@@ -28,9 +28,22 @@ export default function NotionPage({
       showTableOfContents
       disableHeader
       pageHeader={
-        <div className="mb-4">
-          <CategoryList categories={post.categories} />
+        <div className='mx-auto mb-5 w-full'>
+        <div className="mb-1 flex flex-col items-start gap-3">
+            <CategoryList categories={post.categories} />
+            <h1 className='text-4xl font-bold'>{post.title}</h1>
+            <p className='text-md uppercase text-gray-700'>{new Date(post.date.replace(/-/g, "/") + " 00:00:00").toLocaleDateString("pt-BR", { day: '2-digit', month: 'long', year: 'numeric' })}</p>
         </div>
+        <div className="relative aspect-video w-full">
+                  <Image
+                    src={post.cover}
+                    alt={post.title}
+                    fill
+                    quality={70}
+                    className='object-contain w-full h-full'
+                  />
+          </div>
+          </div>
       }
       pageFooter={
         <AuthorBox post={post} />

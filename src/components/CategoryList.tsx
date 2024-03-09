@@ -4,7 +4,7 @@ export default function CategoryList({ categories }: { categories: string[] }) {
       {categories.map((category) => (
         <span
           key={category}
-          className="bg-secondary rounded-full px-4 py-2 md:px-3 md:py-[6px] text-xs capitalize"
+          className="bg-red-600 rounded-sm px-4 py-2 md:px-3 md:py-[6px] text-xs uppercase font-semibold"
         >
           {category}
         </span>

@@ -11,6 +11,7 @@ import '@/styles/globals.css';
 import '@/styles/paginate.css';
 import Footer from '@/components/Footer';
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Rubik } from 'next/font/google';
 
 export const metadata = {
   title: {
@@ -18,6 +19,11 @@ export const metadata = {
     template: '%s | Império Network',
   },
 };
+
+const rubik = Rubik({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900']
+})
 
 export default function RootLayout({
   children,
@@ -28,14 +34,16 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
         <body className="bg-primary text-primary relative mx-auto flex w-full flex-col">
           <Provider>
+          <main className={rubik.className}>
             <Header />
-            <main>{children}</main>
+            {children}
             <div className="fixed bottom-12 right-10">
               <ScrollUpButton />
             </div>
             <div className='mt-[4rem] md:mt[6rem]'>
               <Footer />
             </div>
+          </main>
           </Provider>
           <GoogleAnalytics gaId="G-J6SG0SJLHG" />
         </body>

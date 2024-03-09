@@ -1,6 +1,6 @@
 .notion-header,
 .notion-header .notion-nav-header,
-.notion-collection-row, .notion-aside-table-of-contents-header {
+.notion-collection-row, .notion-aside-table-of-contents-header, .notion-title {
   @apply hidden;
 }
 
@@ -10,6 +10,7 @@
 
 .notion {
   @apply !bg-transparent;
+  font-family: var(--font-rubik);
 }
 
 .notion-aside-table-of-contents {

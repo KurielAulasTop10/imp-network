@@ -40,11 +40,11 @@ export default function AuthorBox({
     const authorInfo = authors[author as keyof Authors];
 
     return (
-        <div className="border-gray-700 border-2 p-3 flex w-full items-center justify-start gap-5 mt-10 px-10">
-            <img src={authorInfo.imgURL} alt={authorInfo.name} width={100} height={100} className='rounded-full' />
+        <div className="border-red-600 bg-black border-2 p-3 flex w-full items-center justify-start gap-5 mt-10 px-10">
+            <img src={authorInfo.imgURL} alt={authorInfo.name} width={100} height={100} />
             <div className='flex flex-col'>
                 <h3 className='text-xl text-white font-bold'>{authorInfo.name}</h3>
-                <p className='text-white text-md'>{authorInfo.description}</p>
+                <p className='text-gray-800 text-md'>{authorInfo.description}</p>
             </div>
         </div>
     );
