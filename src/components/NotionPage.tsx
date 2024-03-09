@@ -32,7 +32,7 @@ export default function NotionPage({
 					<div className="mb-1 flex flex-col items-start gap-3">
 						<CategoryList categories={post.categories} />
 						<h1 className="text-4xl font-bold">{post.title}</h1>
-						<p className="text-base uppercase text-gray-700">
+						<p className="text-base uppercase text-gray-400">
 							{new Date(
 								post.date.replace(/-/g, "/") + " 00:00:00",
 							).toLocaleDateString("pt-BR", {

@@ -47,7 +47,7 @@ export default function AuthorBox({ post: { author } }: { post: Post }) {
 				<h3 className="text-xl text-white font-bold">
 					{authorInfo.name}
 				</h3>
-				<p className="text-gray-800 text-base">
+				<p className="text-gray-400 text-base">
 					{authorInfo.description}
 				</p>
 			</div>
