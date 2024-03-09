@@ -16,7 +16,7 @@ import { Metadata, Viewport } from 'next';
 
 export const viewport: Viewport = {
 	themeColor: '#dd3333',
-	colorScheme: 'dark'
+	colorScheme: 'dark',
 };
 
 export const metadata: Metadata = {
@@ -36,6 +36,29 @@ export const metadata: Metadata = {
 		'tecnologia',
 		'tech',
 	],
+	openGraph: {
+		type: 'website',
+		title: {
+			default: 'Império Network',
+			template: '%s | Império Network',
+		},
+		siteName: 'Império Network',
+		images: [
+			{
+				url: '/logo.png',
+			},
+		],
+	},
+	twitter: {
+		title: {
+			default: 'Império Network',
+			template: '%s | Império Network',
+		},
+		description:
+			'A Império Network é o seu portal de notícias de tecnologia, gaming ou animes em português! Tornamos a sua leitura simples.',
+		images: ['/logo.png'],
+		card: 'summary',
+	},
 };
 
 const rubik = Rubik({
@@ -49,20 +72,18 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="pt-BR" suppressHydrationWarning>
+		<html lang="pt-BR">
 			<body className="bg-primary text-primary relative mx-auto flex w-full flex-col">
-				<Provider>
-					<main className={rubik.className}>
-						<Header />
-						{children}
-						<div className="fixed bottom-12 right-10">
-							<ScrollUpButton />
-						</div>
-						<div className="mt-[4rem] md:mt[6rem]">
-							<Footer />
-						</div>
-					</main>
-				</Provider>
+				<main className={rubik.className} suppressHydrationWarning>
+					<Header />
+					<Provider>{children}</Provider>
+					<div className="fixed bottom-12 right-10">
+						<ScrollUpButton />
+					</div>
+					<div className="mt-[4rem] md:mt[6rem]">
+						<Footer />
+					</div>
+				</main>
 				<GoogleAnalytics gaId="G-FWY182VERW" />
 			</body>
 		</html>

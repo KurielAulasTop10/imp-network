@@ -21,6 +21,10 @@
 	}
 }
 
+#disqus_thread {
+	color-scheme: none;
+}
+
 html {
 	scroll-behavior: smooth;
 }

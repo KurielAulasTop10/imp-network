@@ -76,16 +76,23 @@ export async function generateMetadata({
 		? {
 				title: post.title,
 				authors: [{ name: post.author }],
-				description: `Leia ${post.title} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
+				description: `Leia ${post.title} de ${post.author} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
+				creator: post.author,
+				publisher: post.author,
 				openGraph: {
+					type: 'article',
 					authors: [post.author],
 					images: [
 						{
 							url: post.cover,
-							width: 1280,
-							height: 720,
 						},
 					],
+				},
+				twitter: {
+					title: post.title,
+					description: `Leia ${post.title} de ${post.author} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
+					images: [post.cover],
+					card: 'summary_large_image',
 				},
 		  }
 		: {};
