@@ -78,6 +78,7 @@ export async function generateMetadata({
 				authors: [{ name: post.author }],
 				description: `Leia ${post.title} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
 				openGraph: {
+					authors: [post.author],
 					images: [
 						{
 							url: post.cover,

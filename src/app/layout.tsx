@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 		template: '%s | Império Network',
 	},
 	description:
-		'A Império Network é o seu portal de notícias em português para notícias de tecnologia, gaming ou animes! Tornamos a sua leitura simples.',
+		'A Império Network é o seu portal de notícias de tecnologia, gaming ou animes em português! Tornamos a sua leitura simples.',
 	keywords: [
 		'império',
 		'network',
