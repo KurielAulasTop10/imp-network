@@ -1,5 +1,3 @@
-export const revalidate = 60;
-
 import SearchBar from '@/components/SearchBar';
 import PostsGrid from '@/components/posts/PostsGrid';
 import { getAllPostsFromNotion } from '@/services/posts';
