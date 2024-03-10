@@ -59,9 +59,7 @@ export default function NotionPage({
 					<DiscussionEmbed
 						shortname="imperionetwork"
 						config={{
-							url:
-								'https://imperionetwork.netlify.app/post/' +
-								post.slug,
+							url: 'https://imperionetwork.me/post/' + post.slug,
 							identifier: post.slug,
 							title: post.title,
 							language: 'pt_PT',

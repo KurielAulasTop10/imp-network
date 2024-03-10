@@ -77,10 +77,10 @@ export default function PrivacyPage() {
 				<li>
 					<b>Website</b> refers to Império Network, accessible from{' '}
 					<Link
-						href="https://imperionetwork.netlify.app"
+						href="https://imperionetwork.me"
 						className="text-red-600 hover:text-red-400"
 					>
-						https://imperionetwork.netlify.app
+						https://imperionetwork.me
 					</Link>
 				</li>
 				<li>
