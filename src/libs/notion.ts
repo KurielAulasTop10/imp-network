@@ -1,6 +1,7 @@
 import { NotionAPI } from 'notion-client';
 import { Block } from 'notion-types';
 import redis from './redis';
+import { ExtendedRecordMap } from 'notion-types';
 
 const notion = new NotionAPI({
 	authToken: process.env.NOTION_AUTH_TOKEN,
@@ -9,10 +10,10 @@ const notion = new NotionAPI({
 export async function getRecordMap(id: string) {
 	const cachedData = await redis.get(`recordMap:${id}`);
 	if (cachedData) {
-		return JSON.parse(cachedData);
+		return JSON.parse(cachedData) as ExtendedRecordMap;
 	}
 
-	const data = await notion.getPage(id);
+	const data = (await notion.getPage(id)) as ExtendedRecordMap;
 
 	await redis.set(`recordMap:${id}`, JSON.stringify(data), 'EX', 3600);
 

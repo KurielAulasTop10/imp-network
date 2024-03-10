@@ -1,19 +1,17 @@
 import { getRecordMap, mapImageUrl } from '@/libs/notion';
 import redis from '@/libs/redis';
 import { Post } from '@/types/post';
-import { CollectionViewProps } from 'react-notion-x';
 
 export async function getAllPostsFromNotion() {
 	const cachedPosts = await redis.get('allPosts');
 	if (cachedPosts) {
-		return JSON.parse(cachedPosts);
+		return JSON.parse(cachedPosts) as Post[];
 	}
 
 	const allPosts: Post[] = [];
 	const recordMap = await getRecordMap(process.env.NOTION_DATABASE_ID!);
 	const { block, collection } = recordMap;
-	const schema = Object.values(collection as CollectionViewProps)[0].value
-		.schema;
+	const schema = Object.values(collection)[0].value.schema;
 	const propertyMap: Record<string, string> = {};
 
 	Object.keys(schema).forEach(key => {
