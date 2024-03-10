@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@next/third-parties": "^14.1.0",
+    "@types/rss": "^0.0.32",
     "axios": "^1.4.0",
     "disqus-react": "^1.1.5",
     "hangul-chosung-search": "^1.0.2",
@@ -24,7 +25,8 @@
     "react-icons": "^5.0.1",
     "react-notion-x": "^6.16.0",
     "react-paginate": "^8.1.4",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "rss": "^1.2.2"
   },
   "resolutions": {
     "react": "18.2.0",

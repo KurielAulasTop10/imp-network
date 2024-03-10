@@ -21,11 +21,8 @@
 	}
 }
 
-#disqus_thread {
-	color-scheme: none;
-}
-
 html {
+	color-scheme: none!important;
 	scroll-behavior: smooth;
 }
 
