@@ -24,7 +24,7 @@ export default function AuthorBox({ post: { author } }: { post: Post }) {
 		Kazezinhu: {
 			name: 'Kazezinhu',
 			description:
-				'Um amante de jogos, animes e tecnologia. Seja bem vindo e espero que tenha gostado!',
+				'Amante de jogos, animes e tecnologia. Seja bem vindo e espero que tenha gostado!',
 			imgURL: 'https://i.imgur.com/p4tkDIo.png',
 		},
 		Império: {
