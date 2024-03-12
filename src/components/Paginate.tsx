@@ -6,6 +6,8 @@ import ReactPaginate from 'react-paginate';
 import { useRecoilState } from 'recoil';
 
 import { pageState } from '@/states/page';
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Paginate({
 	totalPages,
@@ -15,6 +17,11 @@ export default function Paginate({
 	elementToScroll: HTMLElement | null;
 }) {
 	const [page, setPage] = useRecoilState(pageState);
+	const pathname = usePathname();
+
+	useEffect(() => {
+		setPage(1);
+	}, [pathname]);
 
 	const handlePageChange = ({ selected }: { selected: number }) => {
 		setPage(selected + 1);
