@@ -1,6 +1,5 @@
 import 'katex/dist/katex.min.css';
 import 'prismjs/themes/prism-tomorrow.css';
-import 'react-notion-x/src/styles.css';
 import '@gravity-ui/uikit/styles/fonts.css';
 import '@gravity-ui/uikit/styles/styles.css';
 

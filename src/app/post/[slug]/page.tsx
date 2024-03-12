@@ -48,7 +48,7 @@ export default async function PostPage({
 	return (
 		<article
 			data-revalidated-at={new Date().getTime()}
-			className="flex flex-col items-center"
+			className="flex flex-col max-w-full md:max-w-[60vw] mx-auto"
 		>
 			<NotionPage post={post} recordMap={recordMap} />
 			<RelatedPosts posts={relatedPosts} />
