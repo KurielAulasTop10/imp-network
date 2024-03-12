@@ -4,9 +4,7 @@ import { Post } from '@/types/post';
 
 export async function getAllPostsFromNotion() {
 	const cachedPosts = await redis.get('allPosts');
-	if (cachedPosts) {
-		return JSON.parse(cachedPosts) as Post[];
-	}
+	if (cachedPosts) return JSON.parse(cachedPosts) as Post[];
 
 	const allPosts: Post[] = [];
 	const recordMap = await getRecordMap(process.env.NOTION_DATABASE_ID!);
@@ -74,6 +72,6 @@ export async function getAllPostsFromNotion() {
 			}
 		}
 	});
-	await redis.set('allPosts', JSON.stringify(allPosts));
+	await redis.set('allPosts', JSON.stringify(allPosts), 'EX', 300);
 	return allPosts;
 }

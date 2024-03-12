@@ -8,6 +8,8 @@ import { getRecordMap } from '@/libs/notion';
 import { getAllPostsFromNotion } from '@/services/posts';
 import { Post } from '@/types/post';
 
+export const revalidate = 3600;
+
 export default async function PostPage({
 	params: { slug },
 }: {

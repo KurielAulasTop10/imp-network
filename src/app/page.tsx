@@ -4,6 +4,8 @@ import { getAllPostsFromNotion } from '@/services/posts';
 import Link from 'next/link';
 import { BsInstagram, BsTiktok, BsTwitch, BsYoutube } from 'react-icons/bs';
 
+export const revalidate = 60;
+
 export default async function BlogPage() {
 	const allPosts = await getAllPostsFromNotion();
 

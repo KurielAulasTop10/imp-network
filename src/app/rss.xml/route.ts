@@ -6,8 +6,8 @@ export async function GET() {
 		title: 'Império Network',
 		description: "Feed oficial da Império Network",
 		generator: 'RSS for Node and Next.js',
-		feed_url: 'https://imperionetwork.me/rss.xml',
-		site_url: 'https://imperionetwork.me/',
+		feed_url:  process.env.SITE_URL + 'rss.xml',
+		site_url: process.env.SITE_URL as string,
 		managingEditor: 'aventuraland23@gmail.com (Bruno Ramos)',
 		webMaster: 'aventuraland23@gmail.com (Bruno Ramos)',
 		copyright: `Copyright ${new Date()
@@ -28,7 +28,7 @@ export async function GET() {
 				feed.item({
 					title: post.title,
 					description: post.title,
-					url: `https://imperionetwork.me/posts/${post.id}`,
+					url: `${process.env.SITE_URL}posts/${post.id}`,
 					categories: post.categories || [],
 					author: post.author,
 					date: post.date,
