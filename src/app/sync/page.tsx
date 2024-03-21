@@ -30,7 +30,7 @@ export default function SyncPage() {
 
 		const slugsToRevalidate: string[] = [];
 
-		posts.forEach((post, index) => {
+		posts.forEach(post => {
 			const prevPost = prevPosts.find(p => p.slug === post.slug);
 			if (!prevPost || post.lastEditedAt > prevPost.lastEditedAt) {
 				slugsToRevalidate.push(post.slug);
@@ -58,6 +58,9 @@ export default function SyncPage() {
 			);
 			promises.push(
 				fetch(`/api/revalidate?path=/sitemap.xml&password=${password}`),
+			);
+			promises.push(
+				fetch(`/api/revalidate?path=/rss.xml&password=${password}`),
 			);
 			promises.push(
 				fetch(`/api/revalidate?path=/post&password=${password}`),
