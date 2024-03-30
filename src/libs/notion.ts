@@ -7,8 +7,11 @@ const notion = new NotionAPI({
 	authToken: process.env.NOTION_AUTH_TOKEN,
 });
 
-export async function getRecordMap(id: string) {
-	const cachedData = await redis.get(`recordMap:${id}`);
+export async function getRecordMap() {
+	const id = process.env.NOTION_DATABASE_ID!;
+	const cachedData = await redis.get(
+		`recordMap:${id}`,
+	);
 	if (cachedData) {
 		return JSON.parse(cachedData) as ExtendedRecordMap;
 	}

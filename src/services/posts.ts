@@ -7,7 +7,7 @@ export async function getAllPostsFromNotion() {
 	if (cachedPosts) return JSON.parse(cachedPosts) as Post[];
 
 	const allPosts: Post[] = [];
-	const recordMap = await getRecordMap(process.env.NOTION_DATABASE_ID!);
+	const recordMap = await getRecordMap();
 	const { block, collection } = recordMap;
 	const schema = Object.values(collection)[0].value.schema;
 	const propertyMap: Record<string, string> = {};
