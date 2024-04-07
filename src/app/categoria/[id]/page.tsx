@@ -12,7 +12,7 @@ export default async function CategoryPage({
 	const filteredPosts = toUniqueArray(
 		allPosts
 			.filter(post => post.published)
-			.filter(post => post.categories.includes(id))
+			.filter(post => post.categories.includes(decodeURI(id)))
 			.map(post => post),
 	).sort();
 
