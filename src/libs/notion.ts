@@ -15,7 +15,7 @@ export async function getRecordMap(id: string) {
 
 	const data = (await notion.getPage(id)) as ExtendedRecordMap;
 
-	await redis.set(`recordMap:${id}`, JSON.stringify(data), 'EX', 3600);
+	await redis.setex(`recordMap:${id}`, 3600, JSON.stringify(data));
 
 	return data;
 }

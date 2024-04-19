@@ -72,6 +72,6 @@ export async function getAllPostsFromNotion() {
 			}
 		}
 	});
-	await redis.set('allPosts', JSON.stringify(allPosts), 'EX', 300);
+	await redis.setex('allPosts', 300, JSON.stringify(allPosts));
 	return allPosts;
 }
