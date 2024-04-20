@@ -43,16 +43,20 @@ export default function AuthorBox({ post: { author } }: { post: Post }) {
 	const authorInfo = authors[author as keyof Authors];
 
 	return (
-		<div className="border-red-600 bg-black border-2 p-3 flex flex-col md:flex-row w-full items-center justify-start gap-5 mt-5 px-10">
+		<div className="border-red-600 bg-black border-[1px] rounded-[3px] p-3 flex flex-col md:flex-row w-full items-center justify-start gap-5 mt-5 px-10">
 			<img
 				src={authorInfo.imgURL}
 				alt={authorInfo.name}
 				width={100}
 				height={100}
+				className="rounded-[3px]"
 			/>
 			<div className="flex flex-col max-md:items-center max-md:text-center">
-				<h3 className="text-xl text-white font-bold">
+				<h3 className="text-xl text-white font-bold flex gap-2 w-fit items-center">
 					{authorInfo.name}
+					<span className="text-xs text-white bg-red-600 w-fit p-1 rounded-[3px] font-medium">
+						Autor
+					</span>
 				</h3>
 				<p className="text-gray-400 text-base">
 					{authorInfo.description}
