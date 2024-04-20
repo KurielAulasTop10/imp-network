@@ -28,8 +28,8 @@ export default function NotionPage({
 			showTableOfContents
 			disableHeader
 			pageHeader={
-				<div className="mx-auto mb-5 w-full">
-					<div className="mb-1 flex flex-col items-start gap-3">
+				<div className="mx-auto mb-10 w-full">
+					<div className="flex flex-col items-start gap-3">
 						<CategoryList categories={post.categories} />
 						<h1 className="text-4xl font-bold">{post.title}</h1>
 						<p className="text-base uppercase text-gray-400">
@@ -41,15 +41,15 @@ export default function NotionPage({
 								year: 'numeric',
 							})}
 						</p>
-					</div>
-					<div className="relative aspect-video w-full">
-						<Image
-							src={post.cover}
-							alt={post.title}
-							fill
-							quality={70}
-							className="object-contain w-full h-full"
-						/>
+						<div className="relative aspect-video w-full">
+							<Image
+								src={post.cover}
+								alt={post.title}
+								fill
+								quality={70}
+								className="object-cover w-full h-full"
+							/>
+						</div>
 					</div>
 				</div>
 			}
@@ -107,7 +107,6 @@ export function mapImageUrl(url: string, block: Block): string | null {
 		return url;
 	}
 
-	// more recent versions of notion don't proxy unsplash images
 	if (url.startsWith('https://images.unsplash.com')) {
 		return url;
 	}
