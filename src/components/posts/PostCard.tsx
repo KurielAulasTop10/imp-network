@@ -28,7 +28,6 @@ export default function PostCard({
 			}
 		}
 
-		// Caso não encontre a expressão, retorna GOG como padrão
 		return 'GOG';
 	}
 
