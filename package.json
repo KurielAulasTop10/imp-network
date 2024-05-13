@@ -12,13 +12,13 @@
     "inspect": "npm run lint && npm run ts"
   },
   "dependencies": {
-    "@next/third-parties": "^14.2.2",
+    "@next/third-parties": "^14.2.3",
     "@types/rss": "^0.0.32",
     "axios": "^1.6.8",
     "disqus-react": "^1.1.5",
     "hangul-chosung-search": "^1.0.2",
     "ioredis": "^5.4.1",
-    "next": "14.2.2",
+    "next": "14.2.3",
     "notion-client": "^6.16.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -34,7 +34,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@gravity-ui/uikit": "^6.12.0",
+    "@gravity-ui/uikit": "^6.13.0",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/node": "20.12.7",
     "@types/react": "18.2.79",
