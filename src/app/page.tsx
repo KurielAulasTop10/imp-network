@@ -1,8 +1,8 @@
-import SearchBar from '@/components/SearchBar';
-import PostsGrid from '@/components/posts/PostsGrid';
-import { getAllPostsFromNotion } from '@/services/posts';
-import Link from 'next/link';
-import { BsInstagram, BsTiktok, BsTwitch, BsYoutube } from 'react-icons/bs';
+import SearchBar from "@/components/SearchBar";
+import PostsGrid from "@/components/posts/PostsGrid";
+import { getAllPostsFromNotion } from "@/services/posts";
+import Link from "next/link";
+import { BsInstagram, BsTiktok, BsTwitch, BsYoutube } from "react-icons/bs";
 
 export const revalidate = 60;
 
@@ -24,6 +24,7 @@ export default async function BlogPage() {
 					target="_blank"
 				>
 					<img
+						alt="Discord Server"
 						src="https://discordapp.com/api/guilds/856873114926972929/embed.png?style=banner2&cachebypass=1608373082.412"
 						className="w-full"
 					/>

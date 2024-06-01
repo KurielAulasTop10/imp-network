@@ -1,6 +1,6 @@
-import PostsGrid from '@/components/posts/PostsGrid';
-import { getAllPostsFromNotion } from '@/services/posts';
-import { toUniqueArray } from '@/utils/to-unique-array';
+import PostsGrid from "@/components/posts/PostsGrid";
+import { getAllPostsFromNotion } from "@/services/posts";
+import { toUniqueArray } from "@/utils/to-unique-array";
 
 export default async function CategoryPage({
 	params: { id },
@@ -11,9 +11,9 @@ export default async function CategoryPage({
 
 	const filteredPosts = toUniqueArray(
 		allPosts
-			.filter(post => post.published)
-			.filter(post => post.categories.includes(decodeURI(id)))
-			.map(post => post),
+			.filter((post) => post.published)
+			.filter((post) => post.categories.includes(decodeURI(id)))
+			.map((post) => post),
 	).sort();
 
 	return (

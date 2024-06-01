@@ -1,7 +1,6 @@
 export function getErrorMessage(e: unknown) {
-  if (e instanceof Error) {
-    return e.message;
-  } else {
-    return 'Unknown error';
-  }
+	if (e instanceof Error) {
+		return e.message;
+	}
+		return "Unknown error";
 }

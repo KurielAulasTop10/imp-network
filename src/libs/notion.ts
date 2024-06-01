@@ -1,7 +1,7 @@
 import { NotionAPI } from 'notion-client';
-import { Block } from 'notion-types';
+import type { Block } from 'notion-types';
 import redis from './redis';
-import { ExtendedRecordMap } from 'notion-types';
+import type { ExtendedRecordMap } from 'notion-types';
 
 const notion = new NotionAPI({
 	authToken: process.env.NOTION_AUTH_TOKEN,

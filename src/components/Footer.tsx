@@ -1,19 +1,19 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 export default function Footer() {
 	const links = [
 		{
-			title: 'Sobre Nós',
-			href: '/sobre',
+			title: "Sobre Nós",
+			href: "/sobre",
 		},
 		{
-			title: 'Privacy Policy',
-			href: '/privacy',
+			title: "Privacy Policy",
+			href: "/privacy",
 		},
 		{
-			title: 'Contato',
-			href: '/contato',
+			title: "Contato",
+			href: "/contato",
 		},
 	];
 

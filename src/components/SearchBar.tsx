@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { ChangeEvent } from 'react';
+import type { ChangeEvent } from "react";
 
-import { BsSearch } from 'react-icons/bs';
-import { IoMdClose } from 'react-icons/io';
-import { useRecoilState } from 'recoil';
+import { BsSearch } from "react-icons/bs";
+import { IoMdClose } from "react-icons/io";
+import { useRecoilState } from "recoil";
 
-import useFocus from '@/hooks/use-focus';
-import useHover from '@/hooks/use-hover';
-import { queryState } from '@/states/query';
+import useFocus from "@/hooks/use-focus";
+import useHover from "@/hooks/use-hover";
+import { queryState } from "@/states/query";
 
 export default function SearchBar() {
 	const [query, setQuery] = useRecoilState(queryState);
@@ -16,7 +16,7 @@ export default function SearchBar() {
 	const { ref: focusRef, isFocusing } = useFocus<HTMLInputElement>();
 
 	const handleInputClear = () => {
-		setQuery('');
+		setQuery("");
 	};
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +39,7 @@ export default function SearchBar() {
 				onChange={handleInputChange}
 				value={query}
 				className={`w-full rounded-sm border-[2px] border-black py-2 px-12 text-lg font-medium hover:border-red-600 focus:border-red-600 focus:outline-none bg-black focus:bg-zinc-950 ${
-					isHovering && 'border-red-600'
+					isHovering && "border-red-600"
 				}`}
 			/>
 		</div>

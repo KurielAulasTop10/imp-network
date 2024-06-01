@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
+import dynamic from "next/dynamic";
+import Image from "next/image";
 
-import { Block, ExtendedRecordMap } from 'notion-types';
-import { NotionRenderer } from 'react-notion-x';
+import { Block, ExtendedRecordMap } from "notion-types";
+import { NotionRenderer } from "react-notion-x";
 
-import CategoryList from '@/components/CategoryList';
-import '@/styles/notion.css';
-import { Post } from '@/types/post';
-import AuthorBox from './posts/AuthorBox';
-import { DiscussionEmbed } from 'disqus-react';
+import CategoryList from "@/components/CategoryList";
+import "@/styles/notion.css";
+import type { Post } from "@/types/post";
+import AuthorBox from "./posts/AuthorBox";
+import { DiscussionEmbed } from "disqus-react";
 
 export default function NotionPage({
 	post,
@@ -34,11 +34,11 @@ export default function NotionPage({
 						<h1 className="text-4xl font-bold">{post.title}</h1>
 						<p className="text-base uppercase text-gray-400">
 							{new Date(
-								post.date.replace(/-/g, "/") + " 00:00:00",
+								`${post.date.replace(/-/g, "/")} 00:00:00`,
 							).toLocaleDateString("pt-BR", {
-								day: '2-digit',
-								month: 'long',
-								year: 'numeric',
+								day: "2-digit",
+								month: "long",
+								year: "numeric",
 							})}
 						</p>
 						<div className="relative aspect-video w-full">
@@ -59,15 +59,15 @@ export default function NotionPage({
 					<DiscussionEmbed
 						shortname="imperionetwork"
 						config={{
-							url: 'https://imperionetwork.me/post/' + post.slug,
+							url: `https://imperionetwork.me/post/${post.slug}`,
 							identifier: post.slug,
 							title: post.title,
-							language: 'pt_PT',
+							language: "pt_PT",
 						}}
 					/>
 				</div>
 			}
-			mapImageUrl={(url, block) => mapImageUrl(url, block) || ''}
+			mapImageUrl={(url, block) => mapImageUrl(url, block) || ""}
 			components={{
 				Code,
 				Collection,
@@ -80,19 +80,19 @@ export default function NotionPage({
 }
 
 const Code = dynamic(() =>
-	import('react-notion-x/build/third-party/code').then(m => m.Code),
+	import("react-notion-x/build/third-party/code").then((m) => m.Code),
 );
 const Collection = dynamic(() =>
-	import('react-notion-x/build/third-party/collection').then(
-		m => m.Collection,
+	import("react-notion-x/build/third-party/collection").then(
+		(m) => m.Collection,
 	),
 );
 const Equation = dynamic(() =>
-	import('react-notion-x/build/third-party/equation').then(m => m.Equation),
+	import("react-notion-x/build/third-party/equation").then((m) => m.Equation),
 );
 
 const Modal = dynamic(
-	() => import('react-notion-x/build/third-party/modal').then(m => m.Modal),
+	() => import("react-notion-x/build/third-party/modal").then((m) => m.Modal),
 	{
 		ssr: false,
 	},
@@ -103,11 +103,11 @@ export function mapImageUrl(url: string, block: Block): string | null {
 		return null;
 	}
 
-	if (url.startsWith('data:')) {
+	if (url.startsWith("data:")) {
 		return url;
 	}
 
-	if (url.startsWith('https://images.unsplash.com')) {
+	if (url.startsWith("https://images.unsplash.com")) {
 		return url;
 	}
 
@@ -115,13 +115,13 @@ export function mapImageUrl(url: string, block: Block): string | null {
 		const u = new URL(url);
 
 		if (
-			u.pathname.startsWith('/secure.notion-static.com') &&
-			u.hostname.endsWith('.amazonaws.com')
+			u.pathname.startsWith("/secure.notion-static.com") &&
+			u.hostname.endsWith(".amazonaws.com")
 		) {
 			if (
-				u.searchParams.has('X-Amz-Credential') &&
-				u.searchParams.has('X-Amz-Signature') &&
-				u.searchParams.has('X-Amz-Algorithm')
+				u.searchParams.has("X-Amz-Credential") &&
+				u.searchParams.has("X-Amz-Signature") &&
+				u.searchParams.has("X-Amz-Algorithm")
 			) {
 				// if the URL is already signed, then use it as-is
 				return url;
@@ -131,22 +131,22 @@ export function mapImageUrl(url: string, block: Block): string | null {
 		// ignore invalid urls
 	}
 
-	if (url.startsWith('/images')) {
+	if (url.startsWith("/images")) {
 		url = `https://www.notion.so${url}`;
 	}
 
 	url = `https://www.notion.so${
-		url.startsWith('/image') ? url : `/image/${encodeURIComponent(url)}`
+		url.startsWith("/image") ? url : `/image/${encodeURIComponent(url)}`
 	}`;
 
 	const notionImageUrlV2 = new URL(url);
-	let table = block.parent_table === 'space' ? 'block' : block.parent_table;
-	if (table === 'collection' || table === 'team') {
-		table = 'block';
+	let table = block.parent_table === "space" ? "block" : block.parent_table;
+	if (table === "collection" || table === "team") {
+		table = "block";
 	}
-	notionImageUrlV2.searchParams.set('table', table);
-	notionImageUrlV2.searchParams.set('id', block.id);
-	notionImageUrlV2.searchParams.set('cache', 'v2');
+	notionImageUrlV2.searchParams.set("table", table);
+	notionImageUrlV2.searchParams.set("id", block.id);
+	notionImageUrlV2.searchParams.set("cache", "v2");
 
 	url = notionImageUrlV2.toString();
 

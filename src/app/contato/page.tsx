@@ -7,18 +7,17 @@ export default function PrivacyPage() {
 				<div className="w-1 h-6 bg-red-600" /> Contato
 			</h3>
 			<p className="text-lg">
-				Se você deseja entrar em contato com a Império Network para
-				assuntos de imprensa, basta enviar um e-mail para{' '}
+				Se você deseja entrar em contato com a Império Network para assuntos de
+				imprensa, basta enviar um e-mail para{" "}
 				<Link
 					href="mailto:imperiogames2019@gmail.com"
 					target="_blank"
 					className="text-red-600 hover:text-red-400"
 				>
 					imperiogames2019@gmail.com
-				</Link>{' '}
-				ou entrar em contato com a equipe através de mensagem privada
-				(ou criando um ticket de Dúvida na aba Suporte no canal ajuda)
-				no{' '}
+				</Link>{" "}
+				ou entrar em contato com a equipe através de mensagem privada (ou
+				criando um ticket de Dúvida na aba Suporte no canal ajuda) no{" "}
 				<Link
 					href="https://discord.gg/for-you-856873114926972929"
 					target="_blank"
@@ -29,9 +28,8 @@ export default function PrivacyPage() {
 				.
 			</p>
 			<p className="text-lg">
-				Para outros tipos de contato, como sugestões, dúvidas, problemas
-				com o site ou bugs, você também pode entrar em contato com a
-				equipe através do{' '}
+				Para outros tipos de contato, como sugestões, dúvidas, problemas com o
+				site ou bugs, você também pode entrar em contato com a equipe através do{" "}
 				<Link
 					href="https://discord.gg/for-you-856873114926972929"
 					target="_blank"
@@ -39,10 +37,10 @@ export default function PrivacyPage() {
 				>
 					Discord
 				</Link>
-				, onde geralmente respondemos rapidamente. A Império Network
-				está sempre disposta a ouvir os comentários e sugestões de seus
-				leitores e faz o possível para resolver quaisquer problemas ou
-				questões o mais rápido possível.
+				, onde geralmente respondemos rapidamente. A Império Network está sempre
+				disposta a ouvir os comentários e sugestões de seus leitores e faz o
+				possível para resolver quaisquer problemas ou questões o mais rápido
+				possível.
 			</p>
 		</div>
 	);

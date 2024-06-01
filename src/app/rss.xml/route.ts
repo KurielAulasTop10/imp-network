@@ -3,17 +3,17 @@ import { getAllPostsFromNotion } from "@/services/posts";
 
 export async function GET() {
 	const feed = new RSS({
-		title: 'Império Network',
+		title: "Império Network",
 		description: "Feed oficial da Império Network",
-		generator: 'RSS for Node and Next.js',
-		feed_url:  process.env.SITE_URL + 'rss.xml',
+		generator: "RSS for Node and Next.js",
+		feed_url: `${process.env.SITE_URL}rss.xml`,
 		site_url: process.env.SITE_URL as string,
-		managingEditor: 'aventuraland23@gmail.com (Bruno Ramos)',
-		webMaster: 'aventuraland23@gmail.com (Bruno Ramos)',
+		managingEditor: "aventuraland23@gmail.com (Bruno Ramos)",
+		webMaster: "aventuraland23@gmail.com (Bruno Ramos)",
 		copyright: `Copyright ${new Date()
 			.getFullYear()
 			.toString()}, Império Network`,
-		language: 'pt-BR',
+		language: "pt-BR",
 		pubDate: new Date().toUTCString(),
 		ttl: 60,
 	});
@@ -24,7 +24,7 @@ export async function GET() {
 		allPosts
 			.sort((postA, postB) => (postA.date > postB.date ? -1 : 1))
 			.splice(0, 12)
-			.map(post => {
+			.map((post) => {
 				feed.item({
 					title: post.title,
 					description: post.title,
@@ -38,7 +38,7 @@ export async function GET() {
 
 	return new Response(feed.xml({ indent: true }), {
 		headers: {
-			'Content-Type': 'application/xml; charset=utf-8',
+			"Content-Type": "application/xml; charset=utf-8",
 		},
 	});
 }

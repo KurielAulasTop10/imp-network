@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
+import { useRef } from "react";
 
-import Paginate from '@/components/Paginate';
-import PostCard from '@/components/posts/PostCard';
-import usePosts from '@/hooks/use-posts';
-import { Post } from '@/types/post';
+import Paginate from "@/components/Paginate";
+import PostCard from "@/components/posts/PostCard";
+import usePosts from "@/hooks/use-posts";
+import type { Post } from "@/types/post";
 
 export default function PostsGrid({ allPosts }: { allPosts: Post[] }) {
 	const { posts, totalPages } = usePosts(allPosts);
@@ -21,7 +21,7 @@ export default function PostsGrid({ allPosts }: { allPosts: Post[] }) {
 					id="posts-grid"
 					className="grid w-full grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10 md:gap-y-20"
 				>
-					{posts.map(post => (
+					{posts.map((post) => (
 						<li key={post.slug}>
 							<PostCard post={post} />
 						</li>
@@ -30,10 +30,7 @@ export default function PostsGrid({ allPosts }: { allPosts: Post[] }) {
 			) : (
 				<p className="mt-10 text-center text-lg">Sem resultados</p>
 			)}
-			<Paginate
-				totalPages={totalPages}
-				elementToScroll={rootRef.current}
-			/>
+			<Paginate totalPages={totalPages} elementToScroll={rootRef.current} />
 		</section>
 	);
 }

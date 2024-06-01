@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const queryState = atom<string>({
-  key: 'queryState',
-  default: '',
+	key: "queryState",
+	default: "",
 });
