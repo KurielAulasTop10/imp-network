@@ -10,11 +10,11 @@ export default async function BlogPage() {
 	const allPosts = await getAllPostsFromNotion();
 
 	return (
-		<div className="flex flex-col md:flex-row justify-between items-start mt-5 md:mt-10 mx-auto px-2 md:px-20 w-full gap-10">
+		<div className="flex flex-col xl:flex-row justify-between items-start md:items-center xl:items-start mt-5 md:mt-10 mx-auto px-2 md:px-5 w-full gap-10">
 			<div className="w-full">
 				<PostsGrid allPosts={allPosts} />
 			</div>
-			<div className="w-full md:w-1/4 flex flex-col sticky top-10">
+			<div className="w-full md:w-1/4 flex flex-col xl:sticky xl:top-10">
 				<SearchBar />
 				<h3 className="w-full p-3 uppercase my-4 bg-black text-white font-semibold">
 					ENTRE NO NOSSO DISCORD
