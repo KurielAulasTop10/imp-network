@@ -28,7 +28,7 @@ export default function NotionPage({
 			showTableOfContents
 			disableHeader
 			pageHeader={
-				<div className="mx-auto mb-10 w-full">
+				<div className="mx-auto w-full !mb-5">
 					<div className="flex flex-col items-start gap-3">
 						<CategoryList categories={post.categories} />
 						<h1 className="text-4xl font-bold">{post.title}</h1>
@@ -54,7 +54,7 @@ export default function NotionPage({
 				</div>
 			}
 			pageFooter={
-				<div className="w-full flex flex-col gap-10">
+				<div className="w-full flex flex-col gap-10 !mt-5">
 					<AuthorBox post={post} />
 					<DiscussionEmbed
 						shortname="imperionetwork"
