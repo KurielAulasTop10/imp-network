@@ -28,6 +28,7 @@ export default function usePosts(allPosts: Post[]) {
 			}),
 		[allPosts, query],
 	);
+	allPostsFiltered.sort((postA, postB) => (postA.lastEditedAt > postB.lastEditedAt ? -1 : 1));
 	allPostsFiltered.sort((postA, postB) => (postA.date > postB.date ? -1 : 1));
 
 	const totalPages = Math.ceil(allPostsFiltered.length / POST_PER_PAGE);
