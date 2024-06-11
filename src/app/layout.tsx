@@ -12,6 +12,8 @@ import Footer from "@/components/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Rubik } from "next/font/google";
 import type { Metadata, Viewport } from "next";
+import { clarity } from 'react-microsoft-clarity';
+import Script from "next/script";
 
 export const viewport: Viewport = {
 	themeColor: "#dd3333",
@@ -65,11 +67,12 @@ const rubik = Rubik({
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
+
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
-}) {
+	}) {
 	return (
 		<html lang="pt-BR">
 			<body className="bg-primary text-primary relative mx-auto flex w-full flex-col">
@@ -82,6 +85,15 @@ export default function RootLayout({
 					<div className="mt-[4rem] md:mt[6rem]">
 						<Footer />
 					</div>
+					<Script id="clarity-script" strategy="afterInteractive">
+						{`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "mqctv9wnae");
+          `}
+					</Script>
 				</main>
 				<GoogleAnalytics gaId="G-FWY182VERW" />
 			</body>
