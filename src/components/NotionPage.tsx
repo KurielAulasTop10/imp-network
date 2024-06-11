@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
-import { Block, ExtendedRecordMap } from "notion-types";
+import type { Block, ExtendedRecordMap } from "notion-types";
 import { NotionRenderer } from "react-notion-x";
 
 import CategoryList from "@/components/CategoryList";
@@ -31,8 +31,8 @@ export default function NotionPage({
 				<div className="mx-auto w-full !mb-5">
 					<div className="flex flex-col items-start gap-3">
 						<CategoryList categories={post.categories} />
-						<h1 className="text-4xl font-bold">{post.title}</h1>
-						<p className="text-base uppercase text-gray-400">
+						<h1 className="text-2xl font-normal">{post.title}</h1>
+						<p className="text-base font-thin text-gray-400">
 							{new Date(
 								`${post.date.replace(/-/g, "/")} 00:00:00`,
 							).toLocaleDateString("pt-BR", {
@@ -41,13 +41,13 @@ export default function NotionPage({
 								year: "numeric",
 							})}
 						</p>
-						<div className="relative aspect-video w-full">
+						<div className="relative aspect-video w-full rounded-md">
 							<Image
 								src={post.cover}
 								alt={post.title}
 								fill
 								quality={70}
-								className="object-cover w-full h-full"
+								className="object-cover w-full h-full rounded-md"
 							/>
 						</div>
 					</div>

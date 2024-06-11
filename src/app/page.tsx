@@ -2,7 +2,7 @@ import SearchBar from "@/components/SearchBar";
 import PostsGrid from "@/components/posts/PostsGrid";
 import { getAllPostsFromNotion } from "@/services/posts";
 import Link from "next/link";
-import { BsInstagram, BsTiktok, BsTwitch, BsYoutube } from "react-icons/bs";
+import { BsInstagram, BsThreads, BsTiktok, BsTwitch, BsWhatsapp, BsYoutube } from "react-icons/bs";
 
 export const revalidate = 60;
 
@@ -14,10 +14,10 @@ export default async function BlogPage() {
 			<div className="w-full">
 				<PostsGrid allPosts={allPosts} />
 			</div>
-			<div className="w-full md:w-1/4 flex flex-col xl:sticky xl:top-10">
+			<div className="w-full md:w-1/4 flex gap-4 flex-col xl:sticky xl:top-10">
 				<SearchBar />
-				<h3 className="w-full p-3 uppercase my-4 bg-black text-white font-semibold">
-					ENTRE NO NOSSO DISCORD
+				<h3 className="w-full p-2 uppercase bg-black text-white font-normal rounded-md">
+					Entre no nosso Discord
 				</h3>
 				<Link
 					href="https://discord.gg/for-you-856873114926972929"
@@ -29,41 +29,51 @@ export default async function BlogPage() {
 						className="w-full"
 					/>
 				</Link>
-				<h3 className="w-full p-3 uppercase my-4 bg-black text-white font-semibold">
+				<h3 className="w-full p-2 bg-black text-white font-normal rounded-md">
 					SIGA-NOS NAS REDES SOCIAIS
 				</h3>
-				<div className="grid grid-cols-2 gap-3">
+				<div className="grid grid-cols-3 gap-3">
 					<Link
-						href="https://www.youtube.com/@imperionetwork"
-						className="w-full flex bg-[#FF0000] hover:opacity-80 p-2 items-center justify-center font-semibold text-lg gap-2 rounded-sm"
+						href="https://www.threads.net/@imperionetwork6"
+						className="w-full flex bg-black hover:invert p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
 						target="_blank"
 					>
-						<BsYoutube />
-						<p>Youtube</p>
-					</Link>
-					<Link
-						href="https://www.twitch.tv/imp3rionetwork"
-						className="w-full flex bg-gradient-to-r hover:opacity-80 from-[#772CE8] to-[#9146FF] p-2 items-center justify-center font-semibold text-lg gap-2 rounded-sm"
-						target="_blank"
-					>
-						<BsTwitch />
-						<p>Twitch</p>
+						<BsThreads />
 					</Link>
 					<Link
 						href="https://www.instagram.com/imperionetwork6"
-						className="w-full flex bg-gradient-to-r hover:opacity-80 from-[#ee2a7b] to-[#6228d7] p-2 items-center justify-center font-semibold text-lg gap-2 rounded-sm"
+						className="w-full flex bg-gradient-to-r hover:invert from-[#ee2a7b] to-[#6228d7] p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
 						target="_blank"
 					>
 						<BsInstagram />
-						<p>Instagram</p>
 					</Link>
 					<Link
-						href="https://discord.gg/for-you-856873114926972929"
-						className="w-full flex bg-black hover:opacity-80 p-2 items-center justify-center font-semibold text-lg gap-2 rounded-sm"
+						href="https://whatsapp.com/channel/0029VagzzeBBqbr3DWorwm1i"
+						className="w-full flex bg-green-600 hover:text-black p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+						target="_blank"
+					>
+						<BsWhatsapp />
+					</Link>
+					<Link
+						href="https://www.youtube.com/@imperionetwork"
+						className="w-full flex bg-[#FF0000] hover:text-black p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+						target="_blank"
+					>
+						<BsYoutube />
+					</Link>
+					<Link
+						href="https://www.twitch.tv/imp3rionetwork"
+						className="w-full flex bg-gradient-to-r hover:text-black from-[#772CE8] to-[#9146FF] p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+						target="_blank"
+					>
+						<BsTwitch />
+					</Link>
+					<Link
+						href="https://www.tiktok.com/@kurieldev"
+						className="w-full flex bg-black hover:invert p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
 						target="_blank"
 					>
 						<BsTiktok />
-						<p>Tiktok</p>
 					</Link>
 				</div>
 			</div>

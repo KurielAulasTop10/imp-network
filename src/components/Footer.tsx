@@ -18,8 +18,8 @@ export default function Footer() {
 	];
 
 	return (
-		<footer className="bg-black flex flex-col gap-5 w-full p-3 py-10 justify-center text-center">
-			<div className="uppercase font-bold flex flex-row gap-7 w-full text-center justify-center">
+		<footer className="bg-black flex flex-col gap-3 w-full p-5 justify-center text-center rounded-t-md">
+			<div className="uppercase font-normal flex flex-row gap-7 w-full text-center justify-center">
 				{links.map(({ title, href }) => (
 					<Link
 						href={href}
@@ -30,7 +30,7 @@ export default function Footer() {
 					</Link>
 				))}
 			</div>
-			<div className="text-gray-300 w-full text-center">
+			<div className="text-gray-300 w-full font-thin text-sm text-center">
 				<p>©️ {new Date().getFullYear()} Império Network.</p>
 				<p className="flex gap-1 w-full justify-center">
 					Desenvolvido com ❤️ e ☕ por

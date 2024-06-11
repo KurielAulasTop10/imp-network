@@ -19,7 +19,7 @@ export default function PostsGrid({ allPosts }: { allPosts: Post[] }) {
 			{posts.length ? (
 				<ul
 					id="posts-grid"
-					className="grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-10 md:gap-y-20"
+					className={`grid w-full grid-cols-1 ${posts.length < 3 ? `md:grid-cols-${posts.length}` : "md:grid-cols-2 xl:grid-cols-3"} gap-x-4 gap-y-5`}
 				>
 					{posts.map((post) => (
 						<li key={post.slug}>
@@ -28,7 +28,7 @@ export default function PostsGrid({ allPosts }: { allPosts: Post[] }) {
 					))}
 				</ul>
 			) : (
-				<p className="mt-10 text-center text-lg">Sem resultados</p>
+				<p className="text-center text-lg">Sem resultados</p>
 			)}
 			<Paginate totalPages={totalPages} elementToScroll={rootRef.current} />
 		</section>

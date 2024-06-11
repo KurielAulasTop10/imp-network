@@ -225,7 +225,7 @@
 }
 
 .medium-zoom-image {
-	@apply rounded-none;
+	@apply rounded-md;
 }
 
 .medium-zoom-image--opened {
@@ -282,57 +282,75 @@
 }
 .notion-red_background {
 	background-color: var(--notion-red_background);
+	width: 100%;
 }
 .notion-pink_background {
 	background-color: var(--notion-pink_background);
+	width: 100%;
 }
 .notion-blue_background {
 	background-color: var(--notion-blue_background);
+	width: 100%;
 }
 .notion-purple_background {
 	background-color: var(--notion-purple_background);
+	width: 100%;
 }
 .notion-teal_background {
 	background-color: var(--notion-teal_background);
+	width: 100%;
 }
 .notion-yellow_background {
 	background-color: var(--notion-yellow_background);
+	width: 100%;
 }
 .notion-orange_background {
 	background-color: var(--notion-orange_background);
+	width: 100%;
 }
 .notion-brown_background {
 	background-color: var(--notion-brown_background);
+	width: 100%;
 }
 .notion-gray_background {
 	background-color: var(--notion-gray_background);
+	width: 100%;
 }
 .notion-red_background_co {
 	background-color: var(--notion-red_background_co);
+	width: 100%;
 }
 .notion-pink_background_co {
 	background-color: var(--notion-pink_background_co);
+	width: 100%;
 }
 .notion-blue_background_co {
 	background-color: var(--notion-blue_background_co);
+	width: 100%;
 }
 .notion-purple_background_co {
 	background-color: var(--notion-purple_background_co);
+	width: 100%;
 }
 .notion-teal_background_co {
 	background-color: var(--notion-teal_background_co);
+	width: 100%;
 }
 .notion-yellow_background_co {
 	background-color: var(--notion-yellow_background_co);
+	width: 100%;
 }
 .notion-orange_background_co {
 	background-color: var(--notion-orange_background_co);
+	width: 100%;
 }
 .notion-brown_background_co {
 	background-color: var(--notion-brown_background_co);
+	width: 100%;
 }
 .notion-gray_background_co {
 	background-color: var(--notion-gray_background_co);
+	width: 100%;
 }
 
 .notion-item-blue {
@@ -642,7 +660,7 @@ svg.notion-page-icon {
 }
 
 .notion-asset-wrapper {
-	@apply min-w-full self-center flex flex-col max-w-[100vw];
+	@apply min-w-full self-center flex flex-col max-w-[100vw] rounded-md;
 	margin: 0.5rem 0;
 }
 
@@ -663,7 +681,7 @@ svg.notion-page-icon {
 }
 
 .notion-text {
-	@apply w-full first:mt-0.5;
+	@apply w-full first:mt-0.5 font-normal;
 	white-space: pre-wrap;
 	word-break: break-word;
 	padding: 3px 2px;
@@ -1265,7 +1283,7 @@ svg.notion-page-icon {
 }
 
 .notion-table-of-contents-item {
-	@apply opacity-70 select-none cursor-pointer w-full p-[6px] text-sm flex items-center whitespace-nowrap overflow-hidden text-ellipsis text-[var(--fg-color)] hover:opacity-100 hover:bg-[var(--bg-color-0)];
+	@apply opacity-70 select-none cursor-pointer w-full p-[6px] text-sm flex items-center whitespace-nowrap overflow-hidden text-ellipsis text-[var(--fg-color)] hover:opacity-100 hover:bg-[var(--bg-color-0)] rounded-md;
 	transition:
 		background 100ms ease-in,
 		opacity 100ms ease-in;
@@ -1751,13 +1769,13 @@ svg.notion-page-icon {
 }
 
 .notion-yt-lite {
-	@apply bg-black absolute w-full h-full block bg-cover cursor-pointer;
+	@apply absolute w-full h-full block bg-cover cursor-pointer;
 	contain: content;
 	background-position: center center;
 }
 
 .notion-yt-lite::before {
-	@apply block absolute top-0 bg-top bg-repeat-x w-full h-[60px] pb-[50px];
+	@apply hidden absolute top-0 bg-top bg-repeat-x w-full h-[60px] pb-[50px];
 	content: '';
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==);
 	transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
@@ -1788,7 +1806,7 @@ svg.notion-page-icon {
 }
 
 .notion-yt-thumbnail {
-	@apply absolute top-0 left-0 w-full h-full object-cover;
+	@apply absolute top-0 left-0 w-full h-full object-cover rounded-md;
 }
 
 .notion-collection-view-dropdown-content {
@@ -1881,7 +1899,7 @@ svg.notion-page-icon {
 }
 
 .notion-table-of-contents-active-item span {
-	@apply !text-red-600;
+	@apply !text-red-500;
 }
 
 .notion-page-content img {

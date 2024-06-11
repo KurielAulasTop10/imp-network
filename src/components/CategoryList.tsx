@@ -7,7 +7,7 @@ export default function CategoryList({ categories }: { categories: string[] }) {
 				<Link
 					href={`/categoria/${category}`}
 					key={category}
-					className="bg-red-600 rounded-sm px-4 py-2 md:px-3 md:py-[6px] text-xs uppercase font-semibold"
+					className="bg-red-600 rounded-md px-2 py-1 text-sm capitalize font-normal"
 				>
 					{category}
 				</Link>

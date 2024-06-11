@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { Post } from "@/types/post";
+import { authors } from "@/app/data/authors";
+import type { Authors } from "@/types/authors";
 
 export default function PostCard({
 	post: { slug, title, date, cover, categories, author },
@@ -33,49 +35,69 @@ export default function PostCard({
 
 	return (
 		<Link href={`/post/${slug}`}>
-			<article className="mx-auto flex flex-col overflow-hidden transition-all duration-300 hover:scale-[1.05]">
-				<div className="relative h-60 overflow-hidden mb-4">
-					<Image
-						src={cover}
-						alt={title}
-						fill
-						quality={70}
-						className="object-cover aspect-video"
-					/>
-					<div className="absolute bottom-0 left-2 bg-red-600 px-2 py-1 text-white text-sm uppercase font-semibold">
-						{categories[0]}
-					</div>
-					{categories.includes("grátis") && (
-						<img
-							alt={`${title} Logo`}
-							src={frees[getFreeSource(title)]}
-							className="absolute top-2 left-2 px-2 py-1 w-14"
+			<article
+				style={{
+					backgroundImage: `url(${cover})`,
+				}}
+				className="rounded-md bg-center bg-cover w-full h-full hover:scale-[1.05] transition-all duration-300"
+			>
+				<div className="mx-auto w-full h-full flex flex-col overflow-hidden bg-clip-padding backdrop-filter bg-black backdrop-blur-sm bg-opacity-30 rounded-md p-2">
+					<div className="relative h-60 overflow-hidden mb-2">
+						<Image
+							src={cover}
+							alt={title}
+							fill
+							quality={70}
+							className="object-cover aspect-video"
 						/>
-					)}
-				</div>
-				<div className="flex flex-col">
-					<h3 className="text-lg md:text-lg font-bold mb-2 flex gap-3 items-start justify-start">
-						<div className="w-1 h-6 bg-red-600" />
-						{title}
-					</h3>
-					<p className="mb-4 text-sm text-gray-400 flex gap-1 uppercase font-semibold">
-						<span className="text-red-600">{author}</span> -{" "}
-						{new Date(`${date.replace(/-/g, "/")} 00:00:00`).toLocaleDateString(
-							"pt-BR",
-							{
-								day: "2-digit",
-								month: "long",
-								year: "numeric",
-							},
-						)}{" "}
-						-{" "}
 						<Link
 							href={`/categoria/${categories[0]}`}
-							className="text-red-600 hover:text-red-400"
+							className="absolute top-0 left-0 bg-red-600 px-2 py-1 text-white text-sm capitalize font-normal rounded-b-md"
 						>
 							{categories[0]}
 						</Link>
-					</p>
+						{categories.includes("grátis") && (
+							<img
+								alt={`${title} Logo`}
+								src={frees[getFreeSource(title)]}
+								className="absolute bottom-2 left-1 w-10"
+							/>
+						)}
+					</div>
+					<div className="flex flex-col gap-2">
+						<h3 className="text-lg font-normal flex gap-2 items-center justify-start text-white">
+							<div className="w-1 h-5 bg-red-600 rounded-t-md rounded-b-md" />
+							{title}
+						</h3>
+						<div
+							style={{
+								background: `url(${authors[author as keyof Authors].bannerURL})`,
+							}}
+							className="rounded-md bg-center bg-cover"
+						>
+							<div className="flex gap-3 items-center h-full w-full bg-red-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
+								<img
+									src={authors[author as keyof Authors].imgURL}
+									className="h-12 w-12 rounded-md"
+									alt="author avatar"
+								/>
+								<div className="flex flex-col">
+									<span className="text-gray-200 text-lg font-light">
+										{author}
+									</span>
+									<p className="text-sm text-gray-400 flex font-thin">
+										{new Date(
+											`${date.replace(/-/g, "/")} 00:00:00`,
+										).toLocaleDateString("pt-BR", {
+											day: "2-digit",
+											month: "long",
+											year: "numeric",
+										})}
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</article>
 		</Link>

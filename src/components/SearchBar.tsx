@@ -29,7 +29,7 @@ export default function SearchBar() {
 			{query && (isHovering || isFocusing) && (
 				<IoMdClose
 					onClick={handleInputClear}
-					className="absolute right-6 flex h-full items-center text-xl"
+					className="absolute right-6 flex h-full items-center"
 				/>
 			)}
 			<input
@@ -38,7 +38,7 @@ export default function SearchBar() {
 				placeholder="Pesquisar"
 				onChange={handleInputChange}
 				value={query}
-				className={`w-full rounded-sm border-[2px] border-black py-2 px-12 text-lg font-medium hover:border-red-600 focus:border-red-600 focus:outline-none bg-black focus:bg-zinc-950 ${
+				className={`w-full rounded-md border-[1px] border-black py-2 px-12 text-lg font-normal hover:border-red-600 focus:border-red-600 focus:outline-none bg-black focus:bg-zinc-950 ${
 					isHovering && "border-red-600"
 				}`}
 			/>

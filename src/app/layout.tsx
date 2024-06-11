@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Rubik } from "next/font/google";
 import type { Metadata, Viewport } from "next";
-import { clarity } from 'react-microsoft-clarity';
+import { clarity } from "react-microsoft-clarity";
 import Script from "next/script";
 
 export const viewport: Viewport = {
@@ -67,12 +67,11 @@ const rubik = Rubik({
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
-	}) {
+}) {
 	return (
 		<html lang="pt-BR">
 			<body className="bg-primary text-primary relative mx-auto flex w-full flex-col">

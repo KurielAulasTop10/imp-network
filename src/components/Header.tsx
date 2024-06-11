@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { DropdownMenu, ThemeProvider } from "@gravity-ui/uikit";
-import { IoMdArrowDropdown, IoMdPause, IoMdPlayCircle } from "react-icons/io";
+import { RiArrowDropDownLine, RiPauseLargeLine, RiPlayLargeLine } from "react-icons/ri";
 import { useState } from "react";
 
 export default function Header() {
@@ -18,8 +18,8 @@ export default function Header() {
 						className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3 h-40 md:h-32 xl:h-52 p-3"
 					/>
 				</Link>
-				<div className="h-14 bg-black w-full text-white flex justify-between items-center px-5">
-					<div className="w-full text-white font-semibold uppercase flex gap-3 items-center justify-center text-base">
+				<div className="h-12 bg-black w-full text-white flex justify-between items-center px-5 rounded-b-md">
+					<div className="w-full text-white font-normal uppercase flex gap-3 items-center justify-center text-sm">
 						<Link href={"/categoria/anime"} className="hover:text-red-600">
 							Animes
 						</Link>
@@ -27,9 +27,9 @@ export default function Header() {
 							renderSwitcher={(props) => (
 								<p
 									{...props}
-									className="hover:text-red-600 flex gap-1 items-center"
+									className="hover:text-red-600 flex items-center"
 								>
-									Games <IoMdArrowDropdown />
+									Games <RiArrowDropDownLine className="w-7 h-7" />
 								</p>
 							)}
 							items={[
@@ -55,14 +55,14 @@ export default function Header() {
 						</Link>
 					</div>
 					{muted ? (
-						<IoMdPlayCircle
+						<RiPlayLargeLine
 							onClick={() => setMuted(!muted)}
-							className="cursor-pointer hover:text-red-600 w-8 h-8"
+							className="cursor-pointer hover:text-red-600 w-7 h-7"
 						/>
 					) : (
-						<IoMdPause
+						<RiPauseLargeLine
 							onClick={() => setMuted(!muted)}
-							className="cursor-pointer hover:text-red-600 w-8 h-8"
+							className="cursor-pointer hover:text-red-600 w-7 h-7"
 						/>
 					)}
 					<audio autoPlay muted={muted}>
