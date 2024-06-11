@@ -12,7 +12,6 @@ import Footer from "@/components/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Rubik } from "next/font/google";
 import type { Metadata, Viewport } from "next";
-import { clarity } from "react-microsoft-clarity";
 import Script from "next/script";
 
 export const viewport: Viewport = {
