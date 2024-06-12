@@ -1,7 +1,7 @@
 export type Authors = {
 	Kuriel: AuthorInfo;
 	Kazezinhu: AuthorInfo;
-	Império: AuthorInfo;
+	Imprensa: AuthorInfo;
 	Taipan: AuthorInfo;
 };
 
