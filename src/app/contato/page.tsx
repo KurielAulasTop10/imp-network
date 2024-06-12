@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function PrivacyPage() {
 	return (
-		<div className="flex flex-col gap-5 mt-5 px-10 md:px-20">
-			<h3 className="text-2xl font-bold mb-2 flex gap-3 items-center justify-start">
-				<div className="w-1 h-6 bg-red-600" /> Contato
+		<div className="flex flex-col gap-5 mt-5 px-10 md:px-20 font-light">
+			<h3 className="text-2xl font-normal mb-2 flex gap-3 items-center justify-start">
+				<div className="w-1 h-4 bg-red-600 rounded-r-md" /> Contato
 			</h3>
 			<p className="text-lg">
 				Se você deseja entrar em contato com a Império Network para assuntos de
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
 				ou entrar em contato com a equipe através de mensagem privada (ou
 				criando um ticket de Dúvida na aba Suporte no canal ajuda) no{" "}
 				<Link
-					href="https://discord.gg/for-you-856873114926972929"
+					href="https://dsc.gg/fybr"
 					target="_blank"
 					className="text-red-600 hover:text-red-400"
 				>
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
 				Para outros tipos de contato, como sugestões, dúvidas, problemas com o
 				site ou bugs, você também pode entrar em contato com a equipe através do{" "}
 				<Link
-					href="https://discord.gg/for-you-856873114926972929"
+					href="https://dsc.gg/fybr"
 					target="_blank"
 					className="text-red-600 hover:text-red-400"
 				>

@@ -69,7 +69,7 @@ export default function PostCard({
 					</div>
 					<div className="flex flex-col gap-2">
 						<h3 className="text-lg font-normal flex gap-2 items-center justify-start text-white">
-							<div className="w-1 h-5 bg-red-600 rounded-t-md rounded-b-md" />
+							<div className="w-1 h-5 bg-red-600 rounded-r-md" />
 							{title}
 						</h3>
 						<div
