@@ -26,7 +26,7 @@ export default async function BlogPage() {
 					<img
 						alt="Discord Server"
 						src="https://discordapp.com/api/guilds/856873114926972929/embed.png?style=banner2&cachebypass=1608373082.412"
-						className="w-full"
+						className="w-full rounded-md"
 					/>
 				</Link>
 				<h3 className="w-full p-2 bg-black text-white font-normal rounded-md">

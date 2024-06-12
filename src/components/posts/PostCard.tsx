@@ -47,7 +47,7 @@ export default function PostCard({
 							src={cover}
 							alt={title}
 							fill
-							quality={70}
+							quality={50}
 							className="object-cover aspect-video"
 						/>
 						<Link
