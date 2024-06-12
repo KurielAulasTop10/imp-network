@@ -45,7 +45,7 @@ export default function PostCard({
 					<div className="relative h-60 overflow-hidden mb-2">
 						<Image
 							src={cover}
-							alt={title}
+							alt={`Thumbnail de ${title}`}
 							fill
 							quality={50}
 							className="object-cover aspect-video"
@@ -57,9 +57,12 @@ export default function PostCard({
 							{categories[0]}
 						</Link>
 						{categories.includes("grátis") && (
-							<img
+							<Image
 								alt={`${title} Logo`}
 								src={frees[getFreeSource(title)]}
+								width={60}
+								height={60}
+								quality={30}
 								className="absolute bottom-2 left-1 w-10"
 							/>
 						)}
@@ -76,10 +79,13 @@ export default function PostCard({
 							className="rounded-md bg-center bg-cover"
 						>
 							<div className="flex gap-3 items-center h-full w-full bg-red-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
-								<img
+								<Image
 									src={authors[author as keyof Authors].imgURL}
-									className="h-12 w-12 rounded-md"
-									alt="author avatar"
+									className="rounded-md w-12 h-12"
+									quality={50}
+									width={128}
+									height={128}
+									alt={`${author} avatar`}
 								/>
 								<div className="flex flex-col">
 									<span className="text-gray-200 text-lg font-light">
