@@ -10,7 +10,7 @@ export default function Header() {
 	return (
 		<ThemeProvider theme="dark">
 			<nav className="w-full relative">
-				<div className="blur-sm bg-[url(https://i.imgur.com/XTAAuLY.jpeg)] bg-cover bg-center w-full h-60 z-10" />
+				<div className="blur-sm bg-[url(https://i.ibb.co/XSMYhNc/XTAAuLY.webp)] bg-cover bg-center w-full h-60 z-10" />
 				<Link href="/">
 					<img
 						src="/logo.png"
@@ -25,10 +25,7 @@ export default function Header() {
 						</Link>
 						<DropdownMenu
 							renderSwitcher={(props) => (
-								<p
-									{...props}
-									className="hover:text-red-600 flex items-center"
-								>
+								<p {...props} className="hover:text-red-600 flex items-center">
 									Games <RiArrowDropDownLine className="w-7 h-7" />
 								</p>
 							)}
