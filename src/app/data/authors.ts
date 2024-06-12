@@ -13,7 +13,7 @@ export const authors = {
 		imgURL: "https://i.imgur.com/p4tkDIo.png",
 		bannerURL: "https://i.imgur.com/UrNoiOD.jpeg",
 	},
-	Império: {
+	Imprensa: {
 		name: "Imprensa Império Network",
 		description: "Somos Império! Somos simples!",
 		imgURL: "https://i.imgur.com/2r6fdnK.jpeg",
