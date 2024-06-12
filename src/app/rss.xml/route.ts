@@ -8,7 +8,7 @@ export async function GET() {
 		generator: "RSS for Node and Next.js",
 		feed_url: `${process.env.SITE_URL}rss.xml`,
 		site_url: process.env.SITE_URL as string,
-		managingEditor: "aventuraland23@gmail.com (Bruno Ramos)",
+		managingEditor: "imperiogames2019@gmail.com (Bruno Ramos)",
 		webMaster: "aventuraland23@gmail.com (Bruno Ramos)",
 		copyright: `Copyright ${new Date()
 			.getFullYear()
