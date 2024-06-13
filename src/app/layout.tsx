@@ -92,6 +92,7 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "mqctv9wnae");
           `}
 					</Script>
+					<Script src="https://website-widgets.pages.dev/dist/sienna.min.js" defer />
 				</main>
 				<GoogleAnalytics gaId="G-FWY182VERW" />
 			</body>
