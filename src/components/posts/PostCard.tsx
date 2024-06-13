@@ -39,9 +39,9 @@ export default function PostCard({
 				style={{
 					backgroundImage: `url(${cover})`,
 				}}
-				className="rounded-md bg-center bg-cover w-full h-full hover:scale-[1.05] transition-all duration-300"
+				className="rounded-md md:bg-center md:bg-cover max-sm:!bg-black w-full h-full hover:scale-[1.05] transition-all duration-300"
 			>
-				<div className="mx-auto w-full h-full flex flex-col overflow-hidden bg-clip-padding backdrop-filter bg-black backdrop-blur-sm bg-opacity-30 rounded-md p-2">
+				<div className="mx-auto w-full h-full flex flex-col overflow-hidden md:bg-clip-padding md:backdrop-filter bg-black md:backdrop-blur-sm md:bg-opacity-30 rounded-md p-2">
 					<div className="relative h-60 overflow-hidden mb-2">
 						<Image
 							src={cover}
