@@ -2,12 +2,18 @@ import { getRecordMap, mapImageUrl } from "@/libs/notion";
 import redis from "@/libs/redis";
 import type { Post } from "@/types/post";
 
+interface PropertyValues {
+	[key: string]: unknown;
+}
+
 export async function getAllPostsFromNotion() {
 	const cachedPosts = await redis.get("allPosts");
 	if (cachedPosts) return JSON.parse(cachedPosts) as Post[];
 
 	const allPosts: Post[] = [];
-	const recordMap = await getRecordMap(process.env.NOTION_DATABASE_ID!);
+	const recordMap = await getRecordMap(
+		process.env.NOTION_DATABASE_ID as string,
+	);
 	const { block, collection } = recordMap;
 	const schema = Object.values(collection)[0].value.schema;
 	const propertyMap: Record<string, string> = {};
@@ -17,12 +23,15 @@ export async function getAllPostsFromNotion() {
 	}
 
 	Object.keys(block).forEach((pageId) => {
+		const pageValue = block[pageId].value;
 		if (
-			block[pageId].value.type === "page" &&
-			block[pageId].value.properties[propertyMap.Slug]
+			pageValue &&
+			pageValue.type === "page" &&
+			(pageValue.properties as PropertyValues) &&
+			(pageValue.properties as PropertyValues)[propertyMap.Slug]
 		) {
 			try {
-				const { properties, last_edited_time } = block[pageId].value;
+				const { properties, last_edited_time } = pageValue;
 
 				const published =
 					properties[propertyMap.Published][0][0] === "Yes" || false;

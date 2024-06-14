@@ -10,6 +10,11 @@ import { search } from "@/utils/search";
 const POST_PER_PAGE = 12;
 
 export default function usePosts(allPosts: Post[]) {
+	if (!Array.isArray(allPosts)) {
+		console.error("allPosts is undefined or not an array");
+		return { posts: [], totalPages: 0 };
+	}
+
 	const page = useRecoilValue(pageState);
 	const query = useRecoilValue(queryState);
 
@@ -28,7 +33,9 @@ export default function usePosts(allPosts: Post[]) {
 			}),
 		[allPosts, query],
 	);
-	allPostsFiltered.sort((postA, postB) => (postA.lastEditedAt > postB.lastEditedAt ? -1 : 1));
+	allPostsFiltered.sort((postA, postB) =>
+		postA.lastEditedAt > postB.lastEditedAt ? -1 : 1,
+	);
 	allPostsFiltered.sort((postA, postB) => (postA.date > postB.date ? -1 : 1));
 
 	const totalPages = Math.ceil(allPostsFiltered.length / POST_PER_PAGE);

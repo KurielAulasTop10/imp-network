@@ -12,16 +12,16 @@
     "inspect": "npm run lint && npm run ts"
   },
   "dependencies": {
-    "@next/third-parties": "^14.2.3",
+    "@next/third-parties": "^14.2.4",
     "@types/rss": "^0.0.32",
     "axios": "^1.7.2",
     "disqus-react": "^1.1.5",
     "hangul-chosung-search": "^1.0.2",
     "ioredis": "^5.4.1",
-    "next": "14.2.3",
+    "next": "14.2.4",
     "notion-client": "^6.16.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-icons": "^5.2.1",
     "react-notion-x": "^6.16.0",
     "react-paginate": "^8.1.4",
@@ -34,7 +34,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@gravity-ui/uikit": "^6.16.0",
+    "@gravity-ui/uikit": "^6.17.0",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/node": "20.14.2",
     "@types/react": "18.3.3",
