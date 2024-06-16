@@ -11,9 +11,8 @@ export async function getAllPostsFromNotion() {
 	if (cachedPosts) return JSON.parse(cachedPosts) as Post[];
 
 	const allPosts: Post[] = [];
-	const recordMap = await getRecordMap(
-		process.env.NOTION_DATABASE_ID as string,
-	);
+	// biome-ignore lint/style/noNonNullAssertion: <explanation>
+	const recordMap = await getRecordMap(process.env.NOTION_DATABASE_ID!);
 	const { block, collection } = recordMap;
 	const schema = Object.values(collection)[0].value.schema;
 	const propertyMap: Record<string, string> = {};
@@ -22,16 +21,14 @@ export async function getAllPostsFromNotion() {
 		propertyMap[schema[key].name] = key;
 	}
 
+	// biome-ignore lint/complexity/noForEach: <explanation>
 	Object.keys(block).forEach((pageId) => {
-		const pageValue = block[pageId].value;
 		if (
-			pageValue &&
-			pageValue.type === "page" &&
-			(pageValue.properties as PropertyValues) &&
-			(pageValue.properties as PropertyValues)[propertyMap.Slug]
+			block[pageId].value.type === "page" &&
+			block[pageId].value.properties[propertyMap.Slug]
 		) {
 			try {
-				const { properties, last_edited_time } = pageValue;
+				const { properties, last_edited_time } = block[pageId].value;
 
 				const published =
 					properties[propertyMap.Published][0][0] === "Yes" || false;
