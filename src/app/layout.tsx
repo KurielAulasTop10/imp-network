@@ -83,7 +83,7 @@ export default function RootLayout({
 					<div className="mt-[4rem] md:mt[6rem]">
 						<Footer />
 					</div>
-					<Script id="clarity-script" strategy="afterInteractive">
+					{/* <Script id="clarity-script" strategy="afterInteractive">
 						{`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -91,7 +91,7 @@ export default function RootLayout({
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
             })(window, document, "clarity", "script", "mqctv9wnae");
           `}
-					</Script>
+					</Script> */}
 					<Script
 						src="https://website-widgets.pages.dev/dist/sienna.min.js"
 						defer
