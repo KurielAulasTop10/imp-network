@@ -15,56 +15,6 @@ import {
 } from "react-icons/ri";
 import Link from "next/link";
 
-export const richTextComponents: JSXMapSerializer = {
-	heading1: ({ children }) => (
-		<h1 className="my-3 text-2xl font-semibold">{children}</h1>
-	),
-	heading2: ({ children }) => (
-		<h2 className="my-3 text-xl font-semibold">{children}</h2>
-	),
-	heading3: ({ children }) => (
-		<h3 className="my-3 text-lg font-semibold">{children}</h3>
-	),
-	heading4: ({ children }) => (
-		<h4 className="my-3 text-lg font-semibold">{children}</h4>
-	),
-	paragraph: ({ children }) => <p className="my-3 text-lg">{children}</p>,
-	preformatted: ({ children }) => (
-		<p className="my-3 text-lg bg-black px-2 py-1 rounded-md">{children}</p>
-	),
-	embed: ({ node }) => (
-		<iframe
-			src={node.oembed.embed_url
-				.replace("watch?v=", "embed/")
-				.replace("youtu.be", "youtube.com/embed")}
-			width="100%"
-			height="100%"
-			title={node.oembed.title as string}
-			className="rounded-md aspect-video"
-		/>
-	),
-	image: ({ node }) => {
-		return (
-			<img
-				src={node.url}
-				alt={node.alt as string}
-				width={"100%"}
-				height={"100%"}
-				className="aspect-video rounded-md"
-			/>
-		);
-	},
-	hyperlink: ({ node, children }) => (
-		<Link
-			href={node.data.url as string}
-			target="_blank"
-			className="hover:text-red-600"
-		>
-			{children}
-		</Link>
-	),
-};
-
 export default async function PostPage({
 	params: { slug },
 }: {
@@ -93,6 +43,56 @@ export default async function PostPage({
 	const reviewWithSteamPage = article.data
 		.review[0] as PostDocumentDataReviewItem & {
 		steam_page?: SteamPage;
+	};
+
+	const richTextComponents: JSXMapSerializer = {
+		heading1: ({ children }) => (
+			<h1 className="my-3 text-2xl font-semibold">{children}</h1>
+		),
+		heading2: ({ children }) => (
+			<h2 className="my-3 text-xl font-semibold">{children}</h2>
+		),
+		heading3: ({ children }) => (
+			<h3 className="my-3 text-lg font-semibold">{children}</h3>
+		),
+		heading4: ({ children }) => (
+			<h4 className="my-3 text-lg font-semibold">{children}</h4>
+		),
+		paragraph: ({ children }) => <p className="my-3 text-lg">{children}</p>,
+		preformatted: ({ children }) => (
+			<p className="my-3 text-lg bg-black px-2 py-1 rounded-md">{children}</p>
+		),
+		embed: ({ node }) => (
+			<iframe
+				src={node.oembed.embed_url
+					.replace("watch?v=", "embed/")
+					.replace("youtu.be", "youtube.com/embed")}
+				width="100%"
+				height="100%"
+				title={node.oembed.title as string}
+				className="rounded-md aspect-video"
+			/>
+		),
+		image: ({ node }) => {
+			return (
+				<img
+					src={node.url}
+					alt={node.alt as string}
+					width={"100%"}
+					height={"100%"}
+					className="aspect-video rounded-md"
+				/>
+			);
+		},
+		hyperlink: ({ node, children }) => (
+			<Link
+				href={node.data.url as string}
+				target="_blank"
+				className="hover:text-red-600"
+			>
+				{children}
+			</Link>
+		),
 	};
 
 	return (
