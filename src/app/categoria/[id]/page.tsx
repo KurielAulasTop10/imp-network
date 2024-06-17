@@ -1,24 +1,31 @@
+import { createClient } from "@/prismicio";
+import type { PostDocument } from "../../../../prismicio-types";
 import PostsGrid from "@/components/posts/PostsGrid";
-import { getAllPostsFromNotion } from "@/services/posts";
-import { toUniqueArray } from "@/utils/to-unique-array";
 
 export default async function CategoryPage({
 	params: { id },
 }: {
 	params: { id: string };
 }) {
-	const allPosts = await getAllPostsFromNotion();
+	const client = createClient();
 
-	const filteredPosts = toUniqueArray(
-		allPosts
-			.filter((post) => post.published)
-			.filter((post) => post.categories.includes(decodeURI(id)))
-			.map((post) => post),
-	).sort();
+	function capitalizeFirstLetter(string: string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
+	const allPosts = await client.getAllByTag(
+		capitalizeFirstLetter(decodeURI(id)),
+		{
+			orderings: {
+				field: "my.post.data",
+				direction: "desc",
+			},
+		},
+	);
 
 	return (
 		<div className="mt-10 px-5 md:px-5">
-			<PostsGrid allPosts={filteredPosts} />
+			<PostsGrid allPosts={allPosts as PostDocument[]} />
 		</div>
 	);
 }

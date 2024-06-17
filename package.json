@@ -9,21 +9,22 @@
     "format": "prettier --write src/",
     "lint": "next lint",
     "ts": "tsc --noEmit",
-    "inspect": "npm run lint && npm run ts"
+    "inspect": "npm run lint && npm run ts",
+    "slicemachine": "start-slicemachine"
   },
   "dependencies": {
     "@next/third-parties": "^14.2.4",
+    "@prismicio/client": "^7.5.0",
+    "@prismicio/next": "^1.6.0",
+    "@prismicio/react": "^2.8.0",
+    "@prismicio/richtext": "^2.1.5",
     "@types/rss": "^0.0.32",
     "axios": "^1.7.2",
-    "disqus-react": "^1.1.5",
     "hangul-chosung-search": "^1.0.2",
-    "ioredis": "^5.4.1",
     "next": "14.2.4",
-    "notion-client": "^6.16.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-icons": "^5.2.1",
-    "react-notion-x": "^6.16.0",
     "react-paginate": "^8.1.4",
     "recoil": "^0.7.7",
     "rss": "^1.2.2",
@@ -36,12 +37,13 @@
   },
   "devDependencies": {
     "@gravity-ui/uikit": "^6.17.0",
-    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@slicemachine/adapter-next": "^0.3.41",
     "@types/node": "20.14.2",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
+    "slice-machine-ui": "^2.2.0",
     "tailwindcss": "3.4.4",
     "typescript": "5.4.5"
   }

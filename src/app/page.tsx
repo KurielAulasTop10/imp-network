@@ -1,6 +1,6 @@
 import SearchBar from "@/components/SearchBar";
 import PostsGrid from "@/components/posts/PostsGrid";
-import { getAllPostsFromNotion } from "@/services/posts";
+import { createClient } from "@/prismicio";
 import type { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
 import {
@@ -16,7 +16,13 @@ import { fields, igdb, twitchAccessToken, where } from "ts-igdb-client";
 export const revalidate = 60;
 
 export default async function BlogPage() {
-	const allPosts = await getAllPostsFromNotion();
+	const clientPrismic = createClient();
+	const allPosts = await clientPrismic.getAllByType("post", {
+		orderings: {
+			field: "my.post.data",
+			direction: "desc",
+		},
+	});
 
 	const accessToken = await twitchAccessToken({
 		client_id: process.env.IGDB_ID as string,
@@ -33,9 +39,7 @@ export default async function BlogPage() {
 			where(
 				"first_release_date",
 				"=",
-				new Date(
-					new Date().toISOString().split("T")[0],
-				).getTime() / 1000,
+				new Date(new Date().toISOString().split("T")[0]).getTime() / 1000,
 			),
 		)
 		.execute();
@@ -120,7 +124,9 @@ export default async function BlogPage() {
 				<h3 className="w-full p-2 uppercase bg-black text-white font-normal rounded-md">
 					QUE JOGOS LANÇAM HOJE?
 				</h3>
-				<div className="grid grid-cols-3 gap-3">
+				<div
+					className={`grid ${gamesData.data.length < 3 ? `grid-cols-${gamesData.data.length}` : "grid-cols-3"} gap-3`}
+				>
 					{gamesData.data.map((game, index) => (
 						<Link
 							target="_blank"

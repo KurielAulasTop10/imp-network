@@ -1,36 +1,28 @@
-"use client";
-
-import { useRef } from "react";
-
 import Paginate from "@/components/Paginate";
-import PostCard from "@/components/posts/PostCard";
-import usePosts from "@/hooks/use-posts";
-import type { Post } from "@/types/post";
+import type { PostDocument } from "../../../prismicio-types";
+import PostCard from "./PostCard";
 
-export default function PostsGrid({ allPosts }: { allPosts: Post[] }) {
-	const { posts, totalPages } = usePosts(allPosts);
-	const rootRef = useRef<HTMLDivElement>(null);
-
+export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 	return (
-		<section
-			ref={rootRef}
-			className="flex scroll-mt-12 flex-col items-center space-y-16"
-		>
-			{posts.length ? (
+		<section className="flex scroll-mt-12 flex-col items-center space-y-16">
+			{allPosts.length ? (
 				<ul
 					id="posts-grid"
-					className={`grid w-full grid-cols-1 ${posts.length < 3 ? `md:grid-cols-${posts.length}` : "md:grid-cols-2 xl:grid-cols-3"} gap-x-4 gap-y-5`}
+					className={`grid w-full grid-cols-1 ${allPosts.length < 3 ? `md:grid-cols-${allPosts.length}` : "md:grid-cols-2 xl:grid-cols-3"} gap-x-4 gap-y-5`}
 				>
-					{posts.map((post) => (
-						<li key={post.slug}>
-							<PostCard post={post} />
-						</li>
-					))}
+					{allPosts.map(
+						(post) =>
+							post && (
+								<li key={post.uid}>
+									<PostCard post={post} />
+								</li>
+							),
+					)}
 				</ul>
 			) : (
 				<p className="text-center text-lg">Sem resultados</p>
 			)}
-			<Paginate totalPages={totalPages} elementToScroll={rootRef.current} />
+			{/* <Paginate totalPages={totalPages} elementToScroll={rootRef.current} /> */}
 		</section>
 	);
 }

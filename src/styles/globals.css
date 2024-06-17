@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap')
 	@layer components {
 	.bg-primary {
-		background-color: #151516;
+		@apply bg-[#151516];
 	}
 
 	.bg-secondary {
@@ -61,12 +61,4 @@ a,
 div,
 button {
 	-webkit-tap-highlight-color: transparent;
-}
-
-.notion-page-content-has-aside {
-	width: 100%;
-}
-
-.notion-page {
-	max-width: 1088px;
 }
