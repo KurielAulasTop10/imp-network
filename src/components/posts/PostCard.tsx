@@ -20,10 +20,10 @@ export default async function PostCard({ post }: { post: PostDocument }) {
 		return null;
 	}
 
-	const authorData = await client.getByUID(
+	const authorData = (await client.getByUID(
 		"author",
-		myAuthorData.uid
-	) as unknown as AuthorDocument;
+		myAuthorData.uid,
+	)) as unknown as AuthorDocument;
 
 	const frees = {
 		"Epic Games": "https://i.imgur.com/JsAPPOC.png",
@@ -47,76 +47,69 @@ export default async function PostCard({ post }: { post: PostDocument }) {
 	}
 
 	return (
-		<Link href={`/post/${post.uid}`}>
-			<article
-				style={{
-					backgroundImage: `url(${post.data.cover.url})`,
-				}}
-				className="rounded-md md:bg-center md:bg-cover max-sm:!bg-black w-full h-full hover:scale-[1.05] transition-all duration-300"
-			>
-				<div className="mx-auto w-full h-full flex flex-col overflow-hidden md:bg-clip-padding md:backdrop-filter bg-black md:backdrop-blur-sm md:bg-opacity-30 rounded-md p-2">
-					<div className="relative h-60 overflow-hidden mb-2">
+		<article className="rounded-md bg-black w-full h-full hover:opacity-70 transition-all duration-300 p-2 mx-auto flex flex-col">
+			<Link href={`/post/${post.uid}`}>
+				<div className="relative h-60 overflow-hidden mb-2">
+					<Image
+						src={post.data.cover.url || ""}
+						alt={post.data.cover.alt || ""}
+						fill
+						quality={50}
+						className="object-cover aspect-video"
+					/>
+					<Link
+						href={`/categoria/${post.tags[0]}`}
+						className="absolute top-0 left-0 bg-red-600 px-2 py-1 text-white text-sm capitalize font-normal rounded-b-md"
+					>
+						{post.tags[0]}
+					</Link>
+					{post.tags.includes("grátis") && (
 						<Image
-							src={post.data.cover.url || ""}
-							alt={post.data.cover.alt || ""}
-							fill
-							quality={50}
-							className="object-cover aspect-video"
+							alt={`${post.data.titulo} Logo`}
+							src={frees[getFreeSource(post.data.titulo as string)]}
+							width={60}
+							height={60}
+							quality={30}
+							className="absolute bottom-2 left-1 w-10"
 						/>
-						<Link
-							href={`/categoria/${post.tags[0]}`}
-							className="absolute top-0 left-0 bg-red-600 px-2 py-1 text-white text-sm capitalize font-normal rounded-b-md"
-						>
-							{post.tags[0]}
-						</Link>
-						{post.tags.includes("grátis") && (
+					)}
+				</div>
+				<div className="flex flex-col gap-2">
+					<h3 className="text-lg font-normal flex gap-2 items-center justify-start text-white">
+						<div className="w-1 h-5 bg-red-600 rounded-r-md" />
+						{post.data.titulo}
+					</h3>
+					<div
+						style={{
+							background: `url(${authorData?.data.banner.url})`,
+						}}
+						className="rounded-md bg-center bg-cover"
+					>
+						<div className="flex gap-3 items-center h-full w-full bg-red-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
 							<Image
-								alt={`${post.data.titulo} Logo`}
-								src={frees[getFreeSource(post.data.titulo as string)]}
-								width={60}
-								height={60}
-								quality={30}
-								className="absolute bottom-2 left-1 w-10"
+								src={authorData?.data.avatar.url || ""}
+								className="rounded-md w-12 h-12"
+								quality={50}
+								width={128}
+								height={128}
+								alt={authorData?.data.avatar.alt || ""}
 							/>
-						)}
-					</div>
-					<div className="flex flex-col gap-2">
-						<h3 className="text-lg font-normal flex gap-2 items-center justify-start text-white">
-							<div className="w-1 h-5 bg-red-600 rounded-r-md" />
-							{post.data.titulo}
-						</h3>
-						<div
-							style={{
-								background: `url(${authorData?.data.banner.url})`,
-							}}
-							className="rounded-md bg-center bg-cover"
-						>
-							<div className="flex gap-3 items-center h-full w-full bg-red-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
-								<Image
-									src={authorData?.data.avatar.url || ""}
-									className="rounded-md w-12 h-12"
-									quality={50}
-									width={128}
-									height={128}
-									alt={authorData?.data.avatar.alt || ""}
-								/>
-								<div className="flex flex-col">
-									<span className="text-gray-200 text-lg font-light capitalize">
-										{authorData?.uid.replaceAll("-", " ")}
-									</span>
-									<p className="text-sm text-gray-400 flex font-thin">
-										{new Date(`${post.data.data}`).toLocaleDateString("pt-BR", {
-											day: "2-digit",
-											month: "long",
-											year: "numeric",
-										})}
-									</p>
-								</div>
+							<div className="flex flex-col">
+								<span className="text-gray-200 text-lg font-light capitalize">
+									{authorData?.uid.replaceAll("-", " ")}
+								</span>
+								<p className="text-sm text-gray-400 flex font-thin">
+									{new Date(`${post.data.data}`).toLocaleDateString("pt-BR", {
+										day: "2-digit",
+										month: "long",
+										year: "numeric",
+									})}
+								</p>
 							</div>
 						</div>
 					</div>
 				</div>
-			</article>
-		</Link>
+			</Link>
+		</article>
 	);
 }
