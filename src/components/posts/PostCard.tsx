@@ -1,24 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import type { PostDocument } from "../../../prismicio-types";
+import type { AuthorDocument, PostDocument } from "../../../prismicio-types";
 import { createClient } from "@/prismicio";
+import { useEffect, useState } from "react";
 
-export default async function PostCard({
-	post,
-}: {
-	post: PostDocument;
-}) {
+export default function PostCard({ post }: { post: PostDocument }) {
 	const client = createClient();
+
 	interface MyAuthorData {
 		uid?: string;
 	}
 
 	const myAuthorData = post.data.author as unknown as MyAuthorData;
+
 	if (!myAuthorData.uid) {
-		return console.error("Author UID not found");
+		console.error("Author UID not found");
+		return null;
 	}
-	const author = await client.getByUID("author", myAuthorData.uid);
+
+	const author = client.getByUID("author", myAuthorData.uid);
+
 	const frees = {
 		"Epic Games": "https://i.imgur.com/JsAPPOC.png",
 		Steam: "https://i.imgur.com/oEhWYim.png",
@@ -39,6 +41,16 @@ export default async function PostCard({
 
 		return "GOG";
 	}
+
+	const [authorData, setAuthorData] = useState<AuthorDocument>();
+
+	useEffect(() => {
+		const fetchAuthor = async () => {
+			const data = await client.getByUID("author", myAuthorData.uid as string);
+			setAuthorData(data);
+		};
+		fetchAuthor();
+	}, [client, myAuthorData.uid]);
 
 	return (
 		<Link href={`/post/${post.uid}`}>
@@ -81,22 +93,22 @@ export default async function PostCard({
 						</h3>
 						<div
 							style={{
-								background: `url(${author.data.banner.url})`,
+								background: `url(${authorData?.data.banner.url})`,
 							}}
 							className="rounded-md bg-center bg-cover"
 						>
 							<div className="flex gap-3 items-center h-full w-full bg-red-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
 								<Image
-									src={author.data.avatar.url || ""}
+									src={authorData?.data.avatar.url || ""}
 									className="rounded-md w-12 h-12"
 									quality={50}
 									width={128}
 									height={128}
-									alt={author.data.avatar.alt || ""}
+									alt={authorData?.data.avatar.alt || ""}
 								/>
 								<div className="flex flex-col">
 									<span className="text-gray-200 text-lg font-light capitalize">
-										{author.uid.replaceAll("-", " ")}
+										{authorData?.uid.replaceAll("-", " ")}
 									</span>
 									<p className="text-sm text-gray-400 flex font-thin">
 										{new Date(`${post.data.data}`).toLocaleDateString("pt-BR", {

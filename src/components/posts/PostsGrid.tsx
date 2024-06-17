@@ -1,6 +1,6 @@
 import Paginate from "@/components/Paginate";
 import type { PostDocument } from "../../../prismicio-types";
-import PostCard from "./PostCard";
+import PostCard from "@/components/posts/PostCard";
 
 export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 	return (
