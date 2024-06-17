@@ -5,9 +5,8 @@ import Link from "next/link";
 
 import type { AuthorDocument, PostDocument } from "../../../prismicio-types";
 import { createClient } from "@/prismicio";
-import { useEffect, useState } from "react";
 
-export default function PostCard({ post }: { post: PostDocument }) {
+export default async function PostCard({ post }: { post: PostDocument }) {
 	const client = createClient();
 
 	interface MyAuthorData {
@@ -21,7 +20,10 @@ export default function PostCard({ post }: { post: PostDocument }) {
 		return null;
 	}
 
-	const author = client.getByUID("author", myAuthorData.uid);
+	const authorData = await client.getByUID(
+		"author",
+		myAuthorData.uid
+	) as unknown as AuthorDocument;
 
 	const frees = {
 		"Epic Games": "https://i.imgur.com/JsAPPOC.png",
@@ -43,16 +45,6 @@ export default function PostCard({ post }: { post: PostDocument }) {
 
 		return "GOG";
 	}
-
-	const [authorData, setAuthorData] = useState<AuthorDocument>();
-
-	useEffect(() => {
-		const fetchAuthor = async () => {
-			const data = await client.getByUID("author", myAuthorData.uid as string);
-			setAuthorData(data);
-		};
-		fetchAuthor();
-	}, [client, myAuthorData.uid]);
 
 	return (
 		<Link href={`/post/${post.uid}`}>

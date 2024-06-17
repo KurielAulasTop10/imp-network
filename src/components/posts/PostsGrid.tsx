@@ -1,4 +1,3 @@
-import Paginate from "@/components/Paginate";
 import type { PostDocument } from "../../../prismicio-types";
 import PostCard from "@/components/posts/PostCard";
 
@@ -22,7 +21,6 @@ export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 			) : (
 				<p className="text-center text-lg">Sem resultados</p>
 			)}
-			{/* <Paginate totalPages={totalPages} elementToScroll={rootRef.current} /> */}
 		</section>
 	);
 }
