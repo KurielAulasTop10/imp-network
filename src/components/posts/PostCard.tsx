@@ -5,25 +5,32 @@ import Link from "next/link";
 
 import type { AuthorDocument, PostDocument } from "../../../prismicio-types";
 import { createClient } from "@/prismicio";
+import { useEffect, useState } from "react";
 
-export default async function PostCard({ post }: { post: PostDocument }) {
+export default function PostCard({ post }: { post: PostDocument }) {
 	const client = createClient();
+	const [authorData, setAuthorData] = useState<AuthorDocument | null>(null);
+	const [loading, setLoading] = useState(true);
 
-	interface MyAuthorData {
-		uid?: string;
-	}
+	useEffect(() => {
+		const fetchAuthorData = async () => {
+			interface MyAuthorData {
+				uid?: string;
+			}
 
-	const myAuthorData = post.data.author as unknown as MyAuthorData;
+			const myAuthorData = post.data.author as unknown as MyAuthorData;
+			if (!myAuthorData?.uid) {
+				console.error("Author UID not found");
+				return;
+			}
 
-	if (!myAuthorData.uid) {
-		console.error("Author UID not found");
-		return null;
-	}
+			const data = await client.getByUID("author", myAuthorData.uid);
+			setAuthorData(data as AuthorDocument);
+			setLoading(false);
+		};
 
-	const authorData = (await client.getByUID(
-		"author",
-		myAuthorData.uid,
-	)) as unknown as AuthorDocument;
+		fetchAuthorData();
+	}, [client, post]);
 
 	const frees = {
 		"Epic Games": "https://i.imgur.com/JsAPPOC.png",
@@ -46,7 +53,9 @@ export default async function PostCard({ post }: { post: PostDocument }) {
 		return "GOG";
 	}
 
-	return (
+	return loading ? (
+		<article className="rounded-md bg-stone-900 w-full h-80 animate-pulse p-2 mx-auto" />
+	) : (
 		<article className="rounded-md bg-black w-full h-full hover:opacity-70 transition-all duration-300 p-2 mx-auto flex flex-col">
 			<Link href={`/post/${post.uid}`}>
 				<div className="relative h-60 overflow-hidden mb-2">
