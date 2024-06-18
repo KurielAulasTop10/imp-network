@@ -88,7 +88,7 @@ export default async function PostPage({
 			<Link
 				href={node.data.url as string}
 				target="_blank"
-				className="hover:text-red-600"
+				className="text-red-500 hover:text-red-600"
 			>
 				{children}
 			</Link>
