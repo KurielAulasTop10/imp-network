@@ -103,7 +103,7 @@ export default async function PostPage({
 			<div className="mx-auto w-full">
 				<div className="flex flex-col items-start gap-3">
 					<CategoryList categories={article.tags} />
-					<h1 className="text-2xl font-normal">{article.data.titulo}</h1>
+					<h1 className="text-2xl font-bold">{article.data.titulo}</h1>
 					<p className="text-base font-thin text-gray-400">
 						{new Date(`${article.data?.data}`).toLocaleDateString("pt-BR", {
 							day: "2-digit",
