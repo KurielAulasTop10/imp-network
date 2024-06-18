@@ -26,9 +26,7 @@ export default function SearchBar() {
 					router.push(`/?q=${encodeURIComponent(e.target.value)}`);
 				}}
 				value={query}
-				className={`w-full rounded-md border-[1px] border-black py-2 px-12 text-lg font-normal hover:border-red-600 focus:border-red-600 focus:outline-none bg-black focus:bg-zinc-950 ${
-					query && "border-red-600"
-				}`}
+				className={"w-full rounded-md border-[1px] border-black py-2 px-12 text-lg font-normal hover:border-red-600 focus:border-red-600 focus:outline-none bg-black focus:bg-zinc-950"}
 			/>
 		</div>
 	);

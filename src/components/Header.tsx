@@ -2,11 +2,9 @@
 
 import Link from "next/link";
 import { DropdownMenu, ThemeProvider } from "@gravity-ui/uikit";
-import { RiArrowDropDownLine, RiPauseLargeLine, RiPlayLargeLine } from "react-icons/ri";
-import { useState } from "react";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 export default function Header() {
-	const [muted, setMuted] = useState(false);
 	return (
 		<ThemeProvider theme="dark">
 			<nav className="w-full relative">
@@ -51,23 +49,6 @@ export default function Header() {
 							Tech
 						</Link>
 					</div>
-					{muted ? (
-						<RiPlayLargeLine
-							onClick={() => setMuted(!muted)}
-							className="cursor-pointer hover:text-red-600 w-7 h-7"
-						/>
-					) : (
-						<RiPauseLargeLine
-							onClick={() => setMuted(!muted)}
-							className="cursor-pointer hover:text-red-600 w-7 h-7"
-						/>
-					)}
-					<audio autoPlay muted={muted}>
-						<source
-							src="https://relay.rainwave.cc/all.ogg?1:WkRwYC6eDV"
-							type="audio/ogg"
-						/>
-					</audio>
 				</div>
 			</nav>
 		</ThemeProvider>
