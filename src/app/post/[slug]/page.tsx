@@ -93,6 +93,12 @@ export default async function PostPage({
 				{children}
 			</Link>
 		),
+		list: ({ children }) => (
+			<ul className="my-3 text-lg list-disc ml-5">{children}</ul>
+		),
+		oList: ({ children }) => (
+			<ol className="my-3 text-lg list-decimal">{children}</ol>
+		),
 	};
 
 	return (
