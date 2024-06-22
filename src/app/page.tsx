@@ -13,8 +13,6 @@ import {
 } from "react-icons/bs";
 import { fields, igdb, twitchAccessToken, where } from "ts-igdb-client";
 
-export const revalidate = 60;
-
 export default async function BlogPage() {
 	const clientPrismic = createClient();
 	const allPosts = await clientPrismic.getAllByType("post", {
