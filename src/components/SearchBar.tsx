@@ -14,7 +14,10 @@ export default function SearchBar() {
 			<BsSearch className="absolute left-4 flex h-full items-center text-xl text-gray-400" />
 			{query && (
 				<IoMdClose
-					onClick={() => setQuery("")}
+					onClick={() => {
+						router.push("/");
+						setQuery("");
+					}}
 					className="absolute right-6 flex h-full items-center"
 				/>
 			)}
@@ -22,11 +25,13 @@ export default function SearchBar() {
 				type="text"
 				placeholder="Pesquisar"
 				onChange={(e) => {
-					setQuery(e.target.value);
 					router.push(`/?q=${encodeURIComponent(e.target.value)}`);
+					setQuery(e.target.value);
 				}}
 				value={query}
-				className={"w-full rounded-md border-[1px] border-black py-2 px-12 text-lg font-normal hover:border-red-600 focus:border-red-600 focus:outline-none bg-black focus:bg-zinc-950"}
+				className={
+					"w-full rounded-md border-[1px] border-black py-2 px-12 text-lg font-normal hover:border-red-600 focus:border-red-600 focus:outline-none bg-black focus:bg-zinc-950"
+				}
 			/>
 		</div>
 	);

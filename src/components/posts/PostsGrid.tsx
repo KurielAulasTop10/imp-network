@@ -1,55 +1,88 @@
-// "use client";
+"use client";
 
 import type { PostDocument } from "../../../prismicio-types";
 import PostCard from "@/components/posts/PostCard";
-// import { useSearchParams } from "next/navigation";
-// import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import {
+	RiArrowLeftCircleFill,
+	RiArrowLeftDoubleLine,
+	RiArrowRightCircleFill,
+	RiArrowRightDoubleLine,
+} from "react-icons/ri";
 
 export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
-	// const [q, setQ] = useState<string>("");
-	// const searchParams = useSearchParams();
+	const [q, setQ] = useState<string>("");
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [postsPerPage] = useState<number>(12);
+	const searchParams = useSearchParams();
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-	// useEffect(() => {
-	// 	const query = searchParams?.get("q");
+	useEffect(() => {
+		const query = searchParams?.get("q");
 
-	// 	if (query !== undefined && query !== null) {
-	// 		setQ(query);
-	// 	}
-	// }, []);
+		if (query !== undefined && query !== null) {
+			setQ(query);
+		}
+	}, [searchParams]);
+
+	const totalPages = Math.ceil(
+		allPosts.filter((post) =>
+			post.data?.titulo
+				?.toLowerCase()
+				.includes(Array.isArray(q) ? q.join("") : (q || "").toLowerCase()),
+		).length / postsPerPage,
+	);
+
+	const filteredPosts = allPosts
+		.filter((post) =>
+			post.data?.titulo
+				?.toLowerCase()
+				.includes(Array.isArray(q) ? q.join("") : (q || "").toLowerCase()),
+		)
+		.filter((post, index) => {
+			const start = (currentPage - 1) * postsPerPage;
+			const end = start + postsPerPage;
+			return index >= start && index < end;
+		});
+
 	return (
 		<section className="flex scroll-mt-12 flex-col items-center space-y-16">
-			{allPosts
-			// .filter((post) =>
-			// 	post.data?.titulo
-			// 		?.toLowerCase()
-			// 		.includes(Array.isArray(q) ? q.join("") : (q || "").toLowerCase()),
-			// )
-			.length ? (
+			{filteredPosts.length ? (
 				<ul
 					id="posts-grid"
 					className={`grid w-full grid-cols-1 ${allPosts.length < 3 ? `md:grid-cols-${allPosts.length}` : "md:grid-cols-2 xl:grid-cols-3"} gap-x-4 gap-y-5`}
 				>
-					{allPosts
-						// .filter((post) =>
-						// 	post.data?.titulo
-						// 		?.toLowerCase()
-						// 		.includes(
-						// 			Array.isArray(q) ? q.join("") : (q || "").toLowerCase(),
-						// 		),
-						// )
-						.map(
-							(post) =>
-								post && (
-									<li key={post.uid}>
-										<PostCard post={post} />
-									</li>
-								),
-						)}
+					{filteredPosts.map(
+						(post) =>
+							post && (
+								<li key={post.uid}>
+									<PostCard post={post} />
+								</li>
+							),
+					)}
 				</ul>
 			) : (
 				<p className="text-center text-lg">Sem resultados</p>
 			)}
+			<div className="gap-3 flex items-center">
+				<button
+					type="button"
+					onClick={() => setCurrentPage(currentPage - 1)}
+					disabled={currentPage === 1}
+					className="bg-red-600 rounded-md hover:bg-red-500 cursor-pointer disabled:hidden"
+				>
+					<RiArrowLeftDoubleLine size={32} />
+				</button>
+				<span className="text-lg">{currentPage}</span>
+				<button
+					type="button"
+					onClick={() => setCurrentPage(currentPage + 1)}
+					disabled={currentPage === totalPages}
+					className="bg-red-600 rounded-md hover:bg-red-500 cursor-pointer disabled:hidden"
+				>
+					<RiArrowRightDoubleLine size={32} />
+				</button>
+			</div>
 		</section>
 	);
 }
