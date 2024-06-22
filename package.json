@@ -14,19 +14,15 @@
   },
   "dependencies": {
     "@next/third-parties": "^14.2.4",
-    "@prismicio/client": "^7.5.0",
+    "@prismicio/client": "^7.6.0",
     "@prismicio/next": "^1.6.0",
     "@prismicio/react": "^2.8.0",
     "@prismicio/richtext": "^2.1.5",
     "@types/rss": "^0.0.32",
     "axios": "^1.7.2",
-    "hangul-chosung-search": "^1.0.2",
     "next": "14.2.4",
     "react": "18.3.1",
-    "react-dom": "18.3.1",
     "react-icons": "^5.2.1",
-    "react-paginate": "^8.1.4",
-    "recoil": "^0.7.7",
     "rss": "^1.2.2",
     "ts-igdb-client": "^0.4.2"
   },
@@ -36,15 +32,15 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@gravity-ui/uikit": "^6.17.0",
-    "@slicemachine/adapter-next": "^0.3.41",
-    "@types/node": "20.14.2",
+    "@gravity-ui/uikit": "^6.19.0",
+    "@slicemachine/adapter-next": "^0.3.42",
+    "@types/node": "20.14.8",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
-    "slice-machine-ui": "^2.2.0",
+    "slice-machine-ui": "^2.2.1",
     "tailwindcss": "3.4.4",
-    "typescript": "5.4.5"
+    "typescript": "5.5.2"
   }
 }

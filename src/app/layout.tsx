@@ -2,7 +2,6 @@ import "@gravity-ui/uikit/styles/fonts.css";
 import "@gravity-ui/uikit/styles/styles.css";
 
 import Header from "@/components/Header";
-import Provider from "../components/Provider";
 import ScrollUpButton from "@/components/ScrollUpButton";
 import "@/styles/globals.css";
 import "@/styles/paginate.css";
@@ -74,7 +73,7 @@ export default function RootLayout({
 			<body className="bg-primary text-primary relative mx-auto flex w-full flex-col">
 				<main className={rubik.className} suppressHydrationWarning>
 					<Header />
-					<Provider>{children}</Provider>
+					{children}
 					<div className="fixed bottom-12 right-10">
 						<ScrollUpButton />
 					</div>
