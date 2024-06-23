@@ -1,6 +1,3 @@
-import "@gravity-ui/uikit/styles/fonts.css";
-import "@gravity-ui/uikit/styles/styles.css";
-
 import Header from "@/components/Header";
 import ScrollUpButton from "@/components/ScrollUpButton";
 import "@/styles/globals.css";

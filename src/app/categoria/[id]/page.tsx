@@ -14,7 +14,9 @@ export default async function CategoryPage({
 	}
 
 	const allPosts = await client.getAllByTag(
-		capitalizeFirstLetter(decodeURI(id)),
+		capitalizeFirstLetter(decodeURI(id))
+			.replace("Pc", "PC")
+			.replace("Playstation", "PlayStation"),
 		{
 			orderings: {
 				field: "my.post.data",
