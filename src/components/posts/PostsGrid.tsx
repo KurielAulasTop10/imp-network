@@ -5,9 +5,7 @@ import PostCard from "@/components/posts/PostCard";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
-	RiArrowLeftCircleFill,
 	RiArrowLeftDoubleLine,
-	RiArrowRightCircleFill,
 	RiArrowRightDoubleLine,
 } from "react-icons/ri";
 
