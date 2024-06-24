@@ -1,5 +1,5 @@
 import RSS from "rss";
-import { getAllPostsFromNotion } from "@/services/posts";
+import { createClient } from "@/prismicio";
 
 export async function GET() {
 	const feed = new RSS({
@@ -18,22 +18,26 @@ export async function GET() {
 		ttl: 60,
 	});
 
-	const allPosts = await getAllPostsFromNotion();
+	const client = createClient();
+
+	const allPosts = await client.getAllByType("post", {
+		limit: 12,
+		orderings: {
+			field: "my.post.data",
+			direction: "desc",
+		},
+	});
 
 	if (allPosts) {
-		allPosts
-			.sort((postA, postB) => (postA.date > postB.date ? -1 : 1))
-			.splice(0, 12)
-			.map((post) => {
-				feed.item({
-					title: post.title,
-					description: post.title,
-					url: `${process.env.SITE_URL}posts/${post.id}`,
-					categories: post.categories || [],
-					author: post.author,
-					date: post.date,
-				});
+		allPosts.splice(0, 12).map((post) => {
+			feed.item({
+				title: post.data.titulo as string,
+				description: post.data.titulo as string,
+				url: `${process.env.SITE_URL}posts/${post.uid}`,
+				categories: post.tags || [],
+				date: post.data.data as string,
 			});
+		});
 	}
 
 	return new Response(feed.xml({ indent: true }), {

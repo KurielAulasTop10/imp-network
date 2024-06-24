@@ -1,10 +1,4 @@
-import "katex/dist/katex.min.css";
-import "prismjs/themes/prism-tomorrow.css";
-import "@gravity-ui/uikit/styles/fonts.css";
-import "@gravity-ui/uikit/styles/styles.css";
-
 import Header from "@/components/Header";
-import Provider from "../components/Provider";
 import ScrollUpButton from "@/components/ScrollUpButton";
 import "@/styles/globals.css";
 import "@/styles/paginate.css";
@@ -76,14 +70,14 @@ export default function RootLayout({
 			<body className="bg-primary text-primary relative mx-auto flex w-full flex-col">
 				<main className={rubik.className} suppressHydrationWarning>
 					<Header />
-					<Provider>{children}</Provider>
+					{children}
 					<div className="fixed bottom-12 right-10">
 						<ScrollUpButton />
 					</div>
 					<div className="mt-[4rem] md:mt[6rem]">
 						<Footer />
 					</div>
-					{/* <Script id="clarity-script" strategy="afterInteractive">
+					<Script id="clarity-script" strategy="afterInteractive">
 						{`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -91,7 +85,7 @@ export default function RootLayout({
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
             })(window, document, "clarity", "script", "mqctv9wnae");
           `}
-					</Script> */}
+					</Script>
 					<Script
 						src="https://website-widgets.pages.dev/dist/sienna.min.js"
 						defer

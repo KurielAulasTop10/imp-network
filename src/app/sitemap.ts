@@ -1,15 +1,15 @@
+import { createClient } from "@/prismicio";
 import type { MetadataRoute } from "next";
 
-import { getAllPostsFromNotion } from "@/services/posts";
-
 export default async function sitemap() {
-	const allPosts = await getAllPostsFromNotion();
+	const client = createClient();
+	const allPosts = await client.getAllByType("post");
 	const sitemap: MetadataRoute.Sitemap = [];
 
 	for (const post of allPosts) {
 		sitemap.push({
-			url: `${process.env.SITE_URL}post/${post.slug}`,
-			lastModified: new Date(post.lastEditedAt),
+			url: `${process.env.SITE_URL}post/${post.uid}`,
+			lastModified: new Date(post.last_publication_date),
 		});
 	}
 

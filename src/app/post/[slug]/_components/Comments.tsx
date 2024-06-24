@@ -1,0 +1,43 @@
+import Script from "next/script";
+
+interface CommentProps {
+	uid: string;
+}
+
+export default async function Comments({ uid }: CommentProps) {
+	return (
+		<>
+			<div id="graphcomment" className="bg-transparent" />
+			<Script type="text/javascript">
+				{`
+  /* - - - CONFIGURATION VARIABLES - - - */
+
+  var __semio__params = {
+    graphcommentId: "imperionetwork", // make sure the id is yours
+
+    behaviour: {
+      // HIGHLY RECOMMENDED
+      //  uid: ${uid},
+    },
+
+    // configure your variables here
+
+  }
+
+  /* - - - DON'T EDIT BELOW THIS LINE - - - */
+
+  function __semio__onload() {
+    __semio__gc_graphlogin(__semio__params)
+  }
+
+
+  (function() {
+    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+    gc.onload = __semio__onload; gc.defer = true; gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+  })();
+  `}
+			</Script>
+		</>
+	);
+}

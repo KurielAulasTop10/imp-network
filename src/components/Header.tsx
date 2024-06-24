@@ -1,75 +1,134 @@
 "use client";
 
 import Link from "next/link";
-import { DropdownMenu, ThemeProvider } from "@gravity-ui/uikit";
-import { RiArrowDropDownLine, RiPauseLargeLine, RiPlayLargeLine } from "react-icons/ri";
-import { useState } from "react";
+import {
+	RiArrowDropDownLine,
+	RiComputerFill,
+	RiFileList3Fill,
+	RiGameFill,
+	RiGamepadFill,
+	RiLockUnlockFill,
+	RiMacFill,
+	RiMenuFill,
+	RiNewspaperFill,
+	RiPlaystationFill,
+	RiStarSmileFill,
+	RiTv2Fill,
+	RiTvFill,
+	RiXboxFill,
+} from "react-icons/ri";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { BsNintendoSwitch } from "react-icons/bs";
 
 export default function Header() {
-	const [muted, setMuted] = useState(false);
 	return (
-		<ThemeProvider theme="dark">
-			<nav className="w-full relative">
-				<div className="blur-sm bg-[url(https://i.ibb.co/XSMYhNc/XTAAuLY.webp)] bg-cover bg-center w-full h-60 z-10" />
-				<Link href="/">
-					<img
-						src="/logo.png"
-						alt="Império Network Logo"
-						className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3 h-40 md:h-32 xl:h-52 p-3"
-					/>
-				</Link>
-				<div className="h-12 bg-black w-full text-white flex justify-between items-center px-5 rounded-b-md">
-					<div className="w-full text-white font-normal uppercase flex gap-3 items-center justify-center text-sm">
-						<Link href={"/categoria/anime"} className="hover:text-red-600">
-							Animes
-						</Link>
-						<DropdownMenu
-							renderSwitcher={(props) => (
-								<p {...props} className="hover:text-red-600 flex items-center">
-									Games <RiArrowDropDownLine className="w-7 h-7" />
-								</p>
-							)}
-							items={[
-								{
-									href: "/categoria/grátis",
-									text: "Grátis",
-								},
-								{
-									href: "/categoria/notícia",
-									text: "Notícias",
-								},
-								{
-									href: "/categoria/guia",
-									text: "Guias",
-								},
-							]}
-						/>
-						<Link href={"/categoria/review"} className="hover:text-red-600">
-							Reviews
-						</Link>
-						<Link href={"/categoria/tech"} className="hover:text-red-600">
-							Tech
-						</Link>
-					</div>
-					{muted ? (
-						<RiPlayLargeLine
-							onClick={() => setMuted(!muted)}
-							className="cursor-pointer hover:text-red-600 w-7 h-7"
-						/>
-					) : (
-						<RiPauseLargeLine
-							onClick={() => setMuted(!muted)}
-							className="cursor-pointer hover:text-red-600 w-7 h-7"
-						/>
-					)}
-					<audio autoPlay muted={muted}>
-						<source
-							src="https://relay.rainwave.cc/all.ogg?1:WkRwYC6eDV"
-							type="audio/ogg"
-						/>
-					</audio>
+		<nav className="w-full relative">
+			<div className="blur-sm bg-[url(https://i.ibb.co/XSMYhNc/XTAAuLY.webp)] bg-cover bg-center w-full h-60 z-10" />
+			<Link href="/">
+				<img
+					src="/logo.png"
+					alt="Império Network Logo"
+					className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-52 p-3 object-fill"
+				/>
+			</Link>
+			<div className="w-full flex items-center px-5 rounded-b-md">
+				<div className="w-full text-white font-normal uppercase flex gap-2.5 items-center justify-start text-sm">
+					<DropdownMenu.Root>
+						<DropdownMenu.Trigger className="absolute top-5 left-5 hover:text-red-600">
+							<RiMenuFill size={28} />
+						</DropdownMenu.Trigger>
+						<DropdownMenu.Portal>
+							<DropdownMenu.Content className="bg-black rounded-md text-white mt-1.5 font-normal text-md p-2">
+								<Link href={"/categoria/anime"}>
+									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+										<RiTvFill /> Animes
+									</DropdownMenu.Item>
+								</Link>
+								<Link href={"/categoria/cinema"}>
+									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+										<RiTv2Fill /> Cinema
+									</DropdownMenu.Item>
+								</Link>
+								<DropdownMenu.Sub>
+									<DropdownMenu.SubTrigger className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+										<div className="flex items-center gap-1">
+											<RiGameFill />
+											Games
+											<RiArrowDropDownLine size={28} />
+										</div>
+									</DropdownMenu.SubTrigger>
+
+									<DropdownMenu.Portal>
+										<DropdownMenu.SubContent className="bg-black rounded-md text-white ml-2 font-normal text-md p-2">
+											<Link href={"/categoria/grátis"}>
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+													<RiLockUnlockFill />
+													Grátis
+												</DropdownMenu.Item>
+											</Link>
+											<Link href={"/categoria/notícia"}>
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+													<RiNewspaperFill /> Notícias
+												</DropdownMenu.Item>
+											</Link>
+											<Link href={"/categoria/guia"}>
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+													<RiFileList3Fill /> Guias
+												</DropdownMenu.Item>
+											</Link>
+										</DropdownMenu.SubContent>
+									</DropdownMenu.Portal>
+								</DropdownMenu.Sub>
+								<DropdownMenu.Sub>
+									<DropdownMenu.SubTrigger className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+										<div className="flex items-center gap-1">
+											<RiGamepadFill />
+											Plataformas
+											<RiArrowDropDownLine size={28} />
+										</div>
+									</DropdownMenu.SubTrigger>
+
+									<DropdownMenu.Portal>
+										<DropdownMenu.SubContent className="bg-black rounded-md text-white ml-2 font-normal text-md p-2">
+											<Link href={"/categoria/nintendo"}>
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+													<BsNintendoSwitch />
+													Nintendo
+												</DropdownMenu.Item>
+											</Link>
+											<Link href={"/categoria/pc"}>
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+													<RiComputerFill /> PC
+												</DropdownMenu.Item>
+											</Link>
+											<Link href={"/categoria/playstation"}>
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+													<RiPlaystationFill /> PlayStation
+												</DropdownMenu.Item>
+											</Link>
+											<Link href={"/categoria/xbox"}>
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+													<RiXboxFill /> Xbox
+												</DropdownMenu.Item>
+											</Link>
+										</DropdownMenu.SubContent>
+									</DropdownMenu.Portal>
+								</DropdownMenu.Sub>
+								<Link href={"/categoria/review"}>
+									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+										<RiStarSmileFill /> Reviews
+									</DropdownMenu.Item>
+								</Link>
+								<Link href={"/categoria/tech"}>
+									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+										<RiMacFill /> Tech
+									</DropdownMenu.Item>
+								</Link>
+							</DropdownMenu.Content>
+						</DropdownMenu.Portal>
+					</DropdownMenu.Root>
 				</div>
-			</nav>
-		</ThemeProvider>
+			</div>
+		</nav>
 	);
 }
