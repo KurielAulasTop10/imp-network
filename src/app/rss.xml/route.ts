@@ -1,3 +1,5 @@
+"use server";
+
 import RSS from "rss";
 import { createClient } from "@/prismicio";
 

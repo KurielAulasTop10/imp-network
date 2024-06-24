@@ -1,3 +1,5 @@
+"use server";
+
 import PostsGrid from "@/components/posts/PostsGrid";
 import { createClient } from "@/prismicio";
 import Sidebar from "./_components/Sidebar";

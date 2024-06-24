@@ -1,3 +1,5 @@
+"use server";
+
 import { createClient } from "@/prismicio";
 import type { MetadataRoute } from "next";
 
