@@ -4,7 +4,11 @@ import { createClient } from "@/prismicio";
 import type { MetadataRoute } from "next";
 
 export default async function sitemap() {
-	const client = createClient();
+	const client = createClient({
+		fetchOptions: {
+			cache: "no-cache",
+		},
+	});
 	const allPosts = await client.getAllByType("post");
 	const sitemap: MetadataRoute.Sitemap = [];
 
