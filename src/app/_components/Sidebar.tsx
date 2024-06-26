@@ -12,8 +12,6 @@ import {
 } from "react-icons/bs";
 import { fields, igdb, twitchAccessToken, where } from "ts-igdb-client";
 
-export const revalidate = 3600;
-
 export default async function Sidebar() {
 
 	const accessToken = await twitchAccessToken({

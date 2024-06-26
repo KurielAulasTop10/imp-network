@@ -20,7 +20,10 @@ export default async function PostPage({
 }: {
 	params: { slug: string };
 }) {
-	const client = createClient();
+	const client = createClient({
+		accessToken:
+			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
+	});
 
 	const article = await client.getByUID("post", slug).catch(() => notFound());
 	interface MyAuthorData {
@@ -212,7 +215,10 @@ export async function generateMetadata({
 }: {
 	params: { slug: string };
 }): Promise<Metadata> {
-	const client = createClient();
+	const client = createClient({
+		accessToken:
+			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
+	});
 	const post = await client.getByUID("post", slug);
 	interface MyAuthorData {
 		uid?: string;
