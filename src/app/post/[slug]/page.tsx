@@ -83,7 +83,7 @@ export default async function PostPage({
 					alt={node.alt as string}
 					width={"100%"}
 					height={"100%"}
-					className="aspect-video rounded-md"
+					className="w-full rounded-md"
 				/>
 			);
 		},
