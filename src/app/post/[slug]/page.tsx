@@ -139,7 +139,7 @@ export default async function PostPage({
 					field={article.data.editor}
 					components={richTextComponents}
 				/>
-				{reviewWithSteamPage.steam_page.url && (
+				{reviewWithSteamPage?.steam_page?.url && (
 					// biome-ignore lint/style/useSelfClosingElements: <explanation>
 					<iframe
 						src={reviewWithSteamPage.steam_page.url as string}
