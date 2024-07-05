@@ -175,7 +175,10 @@ export default async function PostPage({
 								</p>
 								<p className="text-xs text-gray-300 font-thin flex">
 									Descobre como funciona o nosso sistema de notas, lendo a nossa{" "}
-									<Link href={"/review-policy"} className="text-red-600 ml-1 font-normal">
+									<Link
+										href={"/review-policy"}
+										className="text-red-600 ml-1 font-normal"
+									>
 										política de análises
 									</Link>
 									.
@@ -238,13 +241,26 @@ export async function generateMetadata({
 	return post
 		? {
 				title: post.data.titulo,
-				authors: [{ name: myAuthorData.uid }],
-				description: `Leia "${post.data.titulo}" de ${myAuthorData.uid} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
-				creator: myAuthorData.uid,
-				publisher: myAuthorData.uid,
+				authors: [
+					{
+						name:
+							myAuthorData.uid.charAt(0).toUpperCase() +
+							myAuthorData.uid.slice(1),
+					},
+				],
+				description: `Leia "${post.data.titulo}" de ${
+					myAuthorData.uid.charAt(0).toUpperCase() + myAuthorData.uid.slice(1)
+				} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
+				creator:
+					myAuthorData.uid.charAt(0).toUpperCase() + myAuthorData.uid.slice(1),
+				publisher:
+					myAuthorData.uid.charAt(0).toUpperCase() + myAuthorData.uid.slice(1),
 				openGraph: {
 					type: "article",
-					authors: [myAuthorData.uid],
+					authors: [
+						myAuthorData.uid.charAt(0).toUpperCase() +
+							myAuthorData.uid.slice(1),
+					],
 					images: [
 						{
 							url: post.data.cover.url as string,
@@ -253,7 +269,9 @@ export async function generateMetadata({
 				},
 				twitter: {
 					title: post.data.titulo as string,
-					description: `Leia "${post.data.titulo}" de ${myAuthorData.uid} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
+					description: `Leia "${post.data.titulo}" de ${
+						myAuthorData.uid.charAt(0).toUpperCase() + myAuthorData.uid.slice(1)
+					} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
 					images: [post.data.cover.url as string],
 					card: "summary_large_image",
 				},
