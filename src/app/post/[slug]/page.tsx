@@ -146,7 +146,6 @@ export default async function PostPage({
 						title="Steam page"
 						height="190"
 						className="w-full aspect-video rounded-md"
-						allowTransparency
 					></iframe>
 				)}
 			</div>
@@ -162,7 +161,7 @@ export default async function PostPage({
 							<Image
 								src={article.data.cover.url || ""}
 								className="rounded-md aspect-video max-md:w-full"
-								width={100}
+								width={150}
 								height={0}
 								quality={70}
 								alt={article.data.cover.alt || ""}
@@ -173,6 +172,13 @@ export default async function PostPage({
 								</h1>
 								<p className="text-sm text-gray-200 flex font-thin">
 									<PrismicRichText field={article.data.review[0]?.descricao} />
+								</p>
+								<p className="text-xs text-gray-300 font-thin flex">
+									Descobre como funciona o nosso sistema de notas, lendo a nossa{" "}
+									<Link href={"/review-policy"} className="text-red-600 ml-1 font-normal">
+										política de análises
+									</Link>
+									.
 								</p>
 							</div>
 							<div className="flex items-center mx-auto">

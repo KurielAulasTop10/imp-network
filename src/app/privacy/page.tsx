@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function PrivacyPage() {
 	return (
-		<div className="flex flex-col gap-5 mt-5 px-10 md:px-20 font-light">
-			<h3 className="text-2xl font-normal mb-2 flex gap-3 items-center justify-start">
+		<div className="flex flex-col gap-5 mt-5 px-10 md:px-20 font-light text-justify">
+			<h1 className="text-2xl font-normal mb-2 flex gap-3 items-center justify-start">
 				<div className="w-1 h-4 bg-red-600 rounded-r-md" /> Privacy Policy
-			</h3>
+			</h1>
 			<p className="text-lg">Last updated: March 09, 2024</p>
 			<p className="text-lg">
 				This Privacy Policy describes Our policies and procedures on the
@@ -324,7 +324,9 @@ export default function PrivacyPage() {
 				functionality of Our Service, or We are legally obligated to retain this
 				data for longer time periods.
 			</p>
-			<h3 className="text-xl font-normal mb-2">Transfer of Your Personal Data</h3>
+			<h3 className="text-xl font-normal mb-2">
+				Transfer of Your Personal Data
+			</h3>
 			<p className="text-lg">
 				Your information, including Personal Data, is processed at the Company's
 				operating offices and in any other places where the parties involved in
@@ -397,7 +399,9 @@ export default function PrivacyPage() {
 				</li>
 				<li>Protect against legal liability</li>
 			</ul>
-			<h3 className="text-xl font-normal mb-2">Security of Your Personal Data</h3>
+			<h3 className="text-xl font-normal mb-2">
+				Security of Your Personal Data
+			</h3>
 			<p className="text-lg">
 				The security of Your Personal Data is important to Us, but remember that
 				no method of transmission over the Internet, or method of electronic
@@ -432,7 +436,9 @@ export default function PrivacyPage() {
 				We have no control over and assume no responsibility for the content,
 				privacy policies or practices of any third party sites or services.
 			</p>
-			<h3 className="text-xl font-normal mb-2">Changes to this Privacy Policy</h3>
+			<h3 className="text-xl font-normal mb-2">
+				Changes to this Privacy Policy
+			</h3>
 			<p className="text-lg">
 				We may update Our Privacy Policy from time to time. We will notify You
 				of any changes by posting the new Privacy Policy on this page.

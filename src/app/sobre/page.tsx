@@ -1,9 +1,9 @@
 export default function AboutPage() {
 	return (
-		<div className="flex flex-col gap-5 mt-5 px-10 md:px-20 font-light">
-			<h3 className="text-2xl font-normal mb-2 flex gap-2 items-center justify-start">
+		<div className="flex flex-col gap-5 mt-5 px-10 md:px-20 font-light text-justify">
+			<h1 className="text-2xl font-normal mb-2 flex gap-2 items-center justify-start">
 				<div className="w-1 h-4 bg-red-600 rounded-r-md" /> Sobre Nós
-			</h3>
+			</h1>
 			<p className="text-lg">
 				A Império Network foi fundada originalmente em 2018 como um servidor na
 				plataforma Discord. No entanto, com o tempo, a Império Network evoluiu

@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function PrivacyPage() {
 	return (
-		<div className="flex flex-col gap-5 mt-5 px-10 md:px-20 font-light">
-			<h3 className="text-2xl font-normal mb-2 flex gap-3 items-center justify-start">
+		<div className="flex flex-col gap-5 mt-5 px-10 md:px-20 font-light text-justify">
+			<h1 className="text-2xl font-normal mb-2 flex gap-3 items-center justify-start">
 				<div className="w-1 h-4 bg-red-600 rounded-r-md" /> Contato
-			</h3>
+			</h1>
 			<p className="text-lg">
 				Se você deseja entrar em contato com a Império Network para assuntos de
 				imprensa, basta enviar um e-mail para{" "}
