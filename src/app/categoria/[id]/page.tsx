@@ -29,7 +29,7 @@ export default async function CategoryPage({
 	);
 
 	return (
-		<div className="mt-10 px-5 md:px-5">
+		<div className="mt-10 px-5">
 			<PostsGrid allPosts={allPosts as PostDocument[]} />
 		</div>
 	);
