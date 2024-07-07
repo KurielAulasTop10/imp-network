@@ -8,7 +8,7 @@ export default async function sitemap() {
 		accessToken:
 			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
 		fetchOptions: {
-			cache: "no-cache",
+			cache: "no-store",
 		},
 	});
 	const allPosts = await client.getAllByType("post");
