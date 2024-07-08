@@ -41,7 +41,7 @@ export async function GET() {
 			feed.item({
 				title: post.data.titulo as string,
 				description: post.data.titulo as string,
-				url: `${process.env.SITE_URL}posts/${post.uid}`,
+				url: `${process.env.SITE_URL}post/${post.uid}`,
 				categories: post.tags || [],
 				date: post.data.data as string,
 			});
