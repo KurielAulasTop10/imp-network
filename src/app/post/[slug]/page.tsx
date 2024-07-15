@@ -14,6 +14,7 @@ import {
 	RiEmotionUnhappyFill,
 } from "react-icons/ri";
 import Link from "next/link";
+import Script from "next/script";
 
 export default async function PostPage({
 	params: { slug },
@@ -68,17 +69,25 @@ export default async function PostPage({
 		preformatted: ({ children }) => (
 			<p className="my-3 text-lg bg-black px-2 py-1 rounded-md">{children}</p>
 		),
-		embed: ({ node }) => (
-			<iframe
-				src={node.oembed.embed_url
-					.replace("watch?v=", "embed/")
-					.replace("youtu.be", "youtube.com/embed")}
-				width="100%"
-				height="100%"
-				title={node.oembed.title as string}
-				className="rounded-md aspect-video"
-			/>
-		),
+		embed: ({ node }) =>
+			node.oembed.embed_url.includes("youtube.com") ||
+			node.oembed.embed_url.includes("youtu.be") ? (
+				<iframe
+					src={node.oembed.embed_url
+						.replace("watch?v=", "embed/")
+						.replace("youtu.be", "youtube.com/embed")}
+					width="100%"
+					height="100%"
+					title={node.oembed.title as string}
+					className="rounded-md aspect-video"
+				/>
+			) : (
+				<div
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+					dangerouslySetInnerHTML={{ __html: node.oembed.html as TrustedHTML }}
+					className="w-full flex items-center justify-center"
+				/>
+			),
 		image: ({ node }) => {
 			return (
 				<img
@@ -217,6 +226,7 @@ export default async function PostPage({
 					alternate_languages={author.alternate_languages}
 				/>
 				<Comments uid={article.uid} />
+				<Script src="https://platform.twitter.com/widgets.js" async />
 			</div>
 		</article>
 	);
