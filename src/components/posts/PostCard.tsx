@@ -87,7 +87,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 					)}
 				</div>
 				<div className="flex flex-col gap-2">
-					<h3 className="text-lg font-normal flex gap-1.5 items-stretch justify-start text-white h-auto">
+					<h3 className="text-lg font-normal flex gap-1.5 items-stretch justify-start text-white h-auto text-justify">
 						<span className="w-1 min-h-full bg-red-600 rounded-r-md" />
 						{post.data.titulo}
 					</h3>
