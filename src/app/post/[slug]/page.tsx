@@ -9,6 +9,7 @@ import { type JSXMapSerializer, PrismicRichText } from "@prismicio/react";
 import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
 import Comments from "./_components/Comments";
 import {
+	RiDoubleQuotesR,
 	RiEmotionHappyFill,
 	RiEmotionNormalFill,
 	RiEmotionUnhappyFill,
@@ -67,7 +68,10 @@ export default async function PostPage({
 		),
 		paragraph: ({ children }) => <p className="my-3 text-lg">{children}</p>,
 		preformatted: ({ children }) => (
-			<p className="my-3 text-lg bg-black px-2 py-1 rounded-md">{children}</p>
+			<div className="relative bg-black px-3 py-1 rounded-md my-3 text-lg overflow-hidden">
+				<RiDoubleQuotesR className="absolute top-0 left-1 w-14 h-auto text-zinc-800" />
+				<p className="relative z-10">{children}</p>
+			</div>
 		),
 		embed: ({ node }) =>
 			node.oembed.embed_url.includes("youtube.com") ||

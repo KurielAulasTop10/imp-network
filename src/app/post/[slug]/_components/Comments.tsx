@@ -7,7 +7,7 @@ interface CommentProps {
 export default async function Comments({ uid }: CommentProps) {
 	return (
 		<>
-			<div id="graphcomment" className="bg-transparent md:w-[60vw]"/>
+			<div id="graphcomment" className="bg-transparent md:w-[60vw]" />
 			<Script type="text/javascript">
 				{`
   /* - - - CONFIGURATION VARIABLES - - - */
