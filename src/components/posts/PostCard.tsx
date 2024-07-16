@@ -59,8 +59,8 @@ export default function PostCard({ post }: { post: PostDocument }) {
 	return loading ? (
 		<article className="rounded-md bg-stone-900 w-full h-80 animate-pulse p-2 mx-auto" />
 	) : (
-		<article className="rounded-md bg-black w-full h-full hover:opacity-70 transition-all duration-300 p-2 mx-auto flex flex-col">
-			<Link href={`/post/${post.uid}`}>
+		<Link href={`/post/${post.uid}`}>
+			<article className="rounded-md bg-black w-full h-full hover:opacity-70 transition-all duration-300 p-2 mx-auto flex flex-col">
 				<div className="relative h-60 overflow-hidden mb-2">
 					<Image
 						src={post.data.cover.url || ""}
@@ -87,8 +87,8 @@ export default function PostCard({ post }: { post: PostDocument }) {
 					)}
 				</div>
 				<div className="flex flex-col gap-2">
-					<h3 className="text-lg font-normal flex gap-2 items-center justify-start text-white">
-						<div className="w-1 h-5 bg-red-600 rounded-r-md" />
+					<h3 className="text-lg font-normal flex gap-1.5 items-stretch justify-start text-white h-auto">
+						<span className="w-1 min-h-full bg-red-600 rounded-r-md" />
 						{post.data.titulo}
 					</h3>
 					<div
@@ -121,7 +121,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 						</div>
 					</div>
 				</div>
-			</Link>
-		</article>
+			</article>
+		</Link>
 	);
 }
