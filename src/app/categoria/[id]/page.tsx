@@ -1,7 +1,7 @@
 import { createClient } from "@/prismicio";
 import type { PostDocument } from "../../../../prismicio-types";
 import PostsGrid from "@/components/posts/PostsGrid";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export default async function CategoryPage({
 	params: { id },
