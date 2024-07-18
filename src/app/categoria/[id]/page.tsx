@@ -1,6 +1,7 @@
 import { createClient } from "@/prismicio";
 import type { PostDocument } from "../../../../prismicio-types";
 import PostsGrid from "@/components/posts/PostsGrid";
+import { Metadata } from "next";
 
 export default async function CategoryPage({
 	params: { id },
@@ -36,4 +37,20 @@ export default async function CategoryPage({
 			<PostsGrid allPosts={allPosts as PostDocument[]} />
 		</div>
 	);
+}
+
+export async function generateMetadata({
+	params: { slug },
+}: {
+	params: { slug: string };
+}): Promise<Metadata> {
+
+	return {
+		title: `Categoria de ${slug} - Império Network`,
+		description: `Artigos filtrados pela categoria ${slug}, acompanhe as novidades da Império em questão a ${slug} com uma lista completa de artigos.`,
+		twitter: {
+			title: `Categoria de ${slug} - Império Network`,
+			description: `Artigos filtrados pela categoria ${slug}, acompanhe as novidades da Império em questão a ${slug} com uma lista completa de artigos.`
+		},
+	};
 }
