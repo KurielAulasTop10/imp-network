@@ -40,17 +40,17 @@ export default async function CategoryPage({
 }
 
 export async function generateMetadata({
-	params: { slug },
+	params: { id },
 }: {
-	params: { slug: string };
+	params: { id: string };
 }): Promise<Metadata> {
 
 	return {
-		title: `Categoria de ${slug} - Império Network`,
-		description: `Artigos filtrados pela categoria ${slug}, acompanhe as novidades da Império em questão a ${slug} com uma lista completa de artigos.`,
+		title: `Categoria de ${id} - Império Network`,
+		description: `Artigos filtrados pela categoria ${id}, acompanhe as novidades da Império em questão a ${id} com uma lista completa de artigos.`,
 		twitter: {
-			title: `Categoria de ${slug} - Império Network`,
-			description: `Artigos filtrados pela categoria ${slug}, acompanhe as novidades da Império em questão a ${slug} com uma lista completa de artigos.`
+			title: `Categoria de ${id} - Império Network`,
+			description: `Artigos filtrados pela categoria ${id}, acompanhe as novidades da Império em questão a ${id} com uma lista completa de artigos.`
 		},
 	};
 }
