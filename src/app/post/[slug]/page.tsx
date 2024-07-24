@@ -177,7 +177,7 @@ export default async function PostPage({
 							<Image
 								src={article.data.cover.url || ""}
 								className="rounded-md aspect-video max-md:w-full"
-								width={150}
+								width={768}
 								height={0}
 								quality={70}
 								alt={article.data.cover.alt || ""}
@@ -189,11 +189,11 @@ export default async function PostPage({
 								<p className="text-sm text-gray-200 flex font-thin">
 									<PrismicRichText field={article.data.review[0]?.descricao} />
 								</p>
-								<p className="text-xs text-gray-300 font-thin flex">
+								<p className="text-xs text-gray-300 font-thin">
 									Descobre como funciona o nosso sistema de notas, lendo a nossa{" "}
 									<Link
 										href={"/review-policy"}
-										className="text-red-600 ml-1 font-normal"
+										className="text-red-600 font-normal"
 									>
 										política de análises
 									</Link>
