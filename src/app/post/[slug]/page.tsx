@@ -176,7 +176,7 @@ export default async function PostPage({
 						<div className="flex max-md:flex-col gap-3 items-center h-full w-full bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
 							<Image
 								src={article.data.cover.url || ""}
-								className="rounded-md aspect-video max-md:w-full"
+								className="rounded-md aspect-video w-full md:w-40"
 								width={768}
 								height={0}
 								quality={70}
