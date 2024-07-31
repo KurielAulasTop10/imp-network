@@ -44,13 +44,13 @@ export async function generateMetadata({
 }: {
 	params: { id: string };
 }): Promise<Metadata> {
-
+	id = decodeURIComponent(id);
 	return {
 		title: `Categoria de ${id} - Império Network`,
 		description: `Artigos filtrados pela categoria ${id}, acompanhe as novidades da Império em questão a ${id} com uma lista completa de artigos.`,
 		twitter: {
 			title: `Categoria de ${id} - Império Network`,
-			description: `Artigos filtrados pela categoria ${id}, acompanhe as novidades da Império em questão a ${id} com uma lista completa de artigos.`
+			description: `Artigos filtrados pela categoria ${id}, acompanhe as novidades da Império em questão a ${id} com uma lista completa de artigos.`,
 		},
 	};
 }
