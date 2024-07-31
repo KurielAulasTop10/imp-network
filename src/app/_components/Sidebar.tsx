@@ -153,7 +153,7 @@ export default async function Sidebar() {
 				QUE JOGOS LANÇAM HOJE?
 			</h3>
 			<div
-				className={`grid ${gamesData.data.length < 3 ? `grid-cols-${gamesData.data.length}` : "grid-cols-3"} gap-3`}
+				className={`grid ${gamesData.data.length <= 3 ? `grid-cols-${gamesData.data.length}` : "grid-cols-3"} gap-3`}
 			>
 				{gamesData.data.map((game, index) => (
 					<Link
