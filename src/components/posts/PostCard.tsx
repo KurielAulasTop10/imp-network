@@ -87,10 +87,12 @@ export default function PostCard({ post }: { post: PostDocument }) {
 					)}
 				</div>
 				<div className="flex flex-col gap-2">
-					<h3 className="text-lg font-normal flex gap-1.5 items-stretch justify-start text-white h-auto text-justify">
-						<span className="w-1 min-h-full bg-red-600 rounded-r-md" />
-						{post.data.titulo}
-					</h3>
+					<div className="flex gap-1.5 justify-start h-auto w-full">
+						<span className="min-w-1 w-1 min-h-full bg-red-600 rounded-r-md" />
+						<h3 className="text-lg font-normal text-white text-justify line-clamp-2">
+							{post.data.titulo}
+						</h3>
+					</div>
 					<div
 						style={{
 							background: `url(${authorData?.data.banner.url})`,
