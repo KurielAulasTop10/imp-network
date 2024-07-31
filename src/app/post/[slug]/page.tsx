@@ -106,7 +106,9 @@ export default async function PostPage({
 		hyperlink: ({ node, children }) => (
 			<Link
 				href={node.data.url as string}
-				target="_blank"
+				target={
+					node.data.url?.includes("imperionetwork.me") ? undefined : "_blank"
+				}
 				className="text-red-500 hover:text-red-600"
 			>
 				{children}
