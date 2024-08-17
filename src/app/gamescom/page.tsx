@@ -53,11 +53,17 @@ export default function AboutPage() {
 					start: "2024-08-20",
 					end: "2024-08-26",
 				}}
-				headerToolbar={{
-					left: "",
-					right: "",
-					center: "",
-				}}
+				headerToolbar={
+					isMobile
+						? {
+								right: "prev,next",
+							}
+						: {
+								left: "",
+								right: "",
+								center: "",
+							}
+				}
 				timeZone="America/Sao_Paulo"
 				slotEventOverlap
 				hiddenDays={[1]}
