@@ -10,6 +10,7 @@ import {
 	BsWhatsapp,
 	BsYoutube,
 } from "react-icons/bs";
+import { RiBlueskyFill } from "react-icons/ri";
 import { fields, igdb, twitchAccessToken, where } from "ts-igdb-client";
 
 export default async function Sidebar() {
@@ -142,11 +143,11 @@ export default async function Sidebar() {
 					<BsTwitch />
 				</Link>
 				<Link
-					href="https://www.tiktok.com/@kurieldev"
-					className="w-full flex bg-black hover:invert p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+					href="https://bsky.app/profile/imperionetwork.me"
+					className="w-full flex bg-blue-600 hover:invert p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
 					target="_blank"
 				>
-					<BsTiktok />
+					<RiBlueskyFill />
 				</Link>
 			</div>
 			<h3 className="w-full p-2 uppercase bg-black text-white font-normal rounded-md">
