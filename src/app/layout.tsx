@@ -87,6 +87,19 @@ export default function RootLayout({
           `}
 					</Script>
 					<Script
+						src="https://cookieinfoscript.com/js/cookieinfo.min.js"
+						type="text/javascript"
+						id="cookieinfo"
+						data-linkmsg="Mais informação"
+						data-message="Nós usamos cookies para aprimorar sua experiência. Ao continuar visitando nosso site você concorda com o uso de cookies."
+						data-bg="#000"
+						data-fg="#fff"
+						data-divlink="#fff"
+						data-divlinkbg="#dd3333"
+						data-link="#dd3333"
+					/>
+
+					<Script
 						src="https://website-widgets.pages.dev/dist/sienna.min.js"
 						defer
 					/>
