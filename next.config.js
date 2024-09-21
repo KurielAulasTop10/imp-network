@@ -9,6 +9,9 @@ const nextConfig = {
 		],
 		formats: ["image/webp"],
 	},
+	experimental: {
+		missingSuspenseWithCSRBailout: false,
+	},
 };
 
 module.exports = nextConfig;
