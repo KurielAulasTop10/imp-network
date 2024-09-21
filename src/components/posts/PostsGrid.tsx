@@ -2,50 +2,24 @@
 
 import type { PostDocument } from "../../../prismicio-types";
 import PostCard from "@/components/posts/PostCard";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import {
-	RiArrowLeftDoubleLine,
-	RiArrowRightDoubleLine,
-} from "react-icons/ri";
+import { useState } from "react";
+import { RiArrowLeftDoubleLine, RiArrowRightDoubleLine } from "react-icons/ri";
 
 export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
-	const [q, setQ] = useState<string>("");
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [postsPerPage] = useState<number>(12);
-const searchParams = useSearchParams();
+	const [postsPerPage] = useState<number>(21);
 
-	useEffect(() => {
-		const query = searchParams?.get("q");
+	const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
-		if (query !== undefined && query !== null) {
-			setQ(query);
-		}
-	}, [searchParams]);	
-
-	const totalPages = Math.ceil(
-		allPosts.filter((post) =>
-			post.data?.titulo
-				?.toLowerCase()
-				.includes(Array.isArray(q) ? q.join("") : (q || "").toLowerCase()),
-		).length / postsPerPage,
-	);
-
-	const filteredPosts = allPosts
-		.filter((post) =>
-			post.data?.titulo
-				?.toLowerCase()
-				.includes(Array.isArray(q) ? q.join("") : (q || "").toLowerCase()),
-		)
-		.filter((post, index) => {
-			const start = (currentPage - 1) * postsPerPage;
-			const end = start + postsPerPage;
-			return index >= start && index < end;
-		});
+	const filteredPosts = allPosts.filter((post, index) => {
+		const start = (currentPage - 1) * postsPerPage;
+		const end = start + postsPerPage;
+		return index >= start && index < end;
+	});
 
 	return (
 		<section className="flex scroll-mt-12 flex-col items-center space-y-16">
-			{filteredPosts.length ? (
+			{filteredPosts.length >= 1 ? (
 				<ul
 					id="posts-grid"
 					className={`grid w-full grid-cols-1 ${allPosts.length < 3 ? `md:grid-cols-${allPosts.length}` : "md:grid-cols-2 xl:grid-cols-3"} gap-x-4 gap-y-5`}
