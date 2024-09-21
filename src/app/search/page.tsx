@@ -5,6 +5,7 @@ import PostsGrid from "@/components/posts/PostsGrid";
 import type { PostDocument } from "../../../prismicio-types";
 import { filter } from "@prismicio/client";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 export default async function SearchPage() {
 	const client = createClient({
@@ -30,8 +31,10 @@ export default async function SearchPage() {
 	});
 
 	return (
-		<div className="mt-10 px-5">
-			<PostsGrid allPosts={allPosts as PostDocument[]} />
-		</div>
+		<Suspense fallback={<p>Carregando... Aguarde alguns segundos.</p>}>
+			<div className="mt-10 px-5">
+				<PostsGrid allPosts={allPosts as PostDocument[]} />
+			</div>
+		</Suspense>
 	);
 }
