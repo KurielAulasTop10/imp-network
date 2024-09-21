@@ -13,7 +13,7 @@ export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 	const [q, setQ] = useState<string>("");
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [postsPerPage] = useState<number>(12);
-	const searchParams = useSearchParams();
+const searchParams = useSearchParams();
 
 	useEffect(() => {
 		const query = searchParams?.get("q");
@@ -21,7 +21,7 @@ export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 		if (query !== undefined && query !== null) {
 			setQ(query);
 		}
-	}, [searchParams]);
+	}, [searchParams]);	
 
 	const totalPages = Math.ceil(
 		allPosts.filter((post) =>

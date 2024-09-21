@@ -75,7 +75,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 					>
 						{post.tags[0]}
 					</Link>
-					{post.tags.includes("grátis") && (
+					{post.tags.includes("Grátis") && (
 						<Image
 							alt={`${post.data.titulo} Logo`}
 							src={frees[getFreeSource(post.data.titulo as string)]}
