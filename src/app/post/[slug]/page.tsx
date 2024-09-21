@@ -6,7 +6,10 @@ import CategoryList from "@/components/CategoryList";
 import Image from "next/image";
 import AuthorBox from "@/components/posts/AuthorBox";
 import { type JSXMapSerializer, PrismicRichText } from "@prismicio/react";
-import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
+import type {
+	AnuncioDocumentData,
+	PostDocumentDataReviewItem,
+} from "../../../../prismicio-types";
 import Comments from "./_components/Comments";
 import {
 	RiDoubleQuotesR,
@@ -48,10 +51,27 @@ export default async function PostPage({
 		url: string;
 	}
 
+	const ads = await client.getAllByType("anuncio").catch(() => notFound());
+
+	const adsSorted = ads.sort(
+		() => Math.random() - 0.5,
+	) as AnuncioDocumentData[];
+
 	const reviewWithSteamPage = article.data
 		.review[0] as PostDocumentDataReviewItem & {
 		steam_page?: SteamPage;
 	};
+
+	interface AnuncioDocumentData {
+		data: {
+			link: {
+				url: string;
+			};
+			imagem: {
+				url: string;
+			};
+		};
+	}
 
 	const richTextComponents: JSXMapSerializer = {
 		heading1: ({ children }) => (
@@ -66,7 +86,30 @@ export default async function PostPage({
 		heading4: ({ children }) => (
 			<h4 className="my-3 text-lg font-semibold">{children}</h4>
 		),
-		paragraph: ({ children }) => <p className="my-3 text-lg">{children}</p>,
+		paragraph: ({ children }) => (
+			<div>
+				{Math.floor(Math.random() * 15) + 1 === 5 &&
+					adsSorted[0]?.data.link && (
+						<Link
+							href={
+								adsSorted[Math.floor(Math.random() * adsSorted.length)].data
+									.link?.url as string
+							}
+							target="_blank"
+						>
+							<img
+								src={
+									adsSorted[Math.floor(Math.random() * adsSorted.length)].data
+										.imagem.url as string
+								}
+								alt="ANÚNCIO"
+								className="w-full object-center rounded-2xl"
+							/>
+						</Link>
+					)}
+				<p className="my-3 text-lg">{children}</p>
+			</div>
+		),
 		preformatted: ({ children }) => (
 			<div className="relative bg-black px-3 py-1 rounded-md my-3 text-lg overflow-hidden">
 				<RiDoubleQuotesR className="absolute top-0 left-1 w-14 h-auto text-zinc-800" />

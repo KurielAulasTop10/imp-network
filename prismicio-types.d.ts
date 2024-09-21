@@ -5,6 +5,49 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 /**
+ * Content for Anúncio documents
+ */
+interface AnuncioDocumentData {
+  /**
+   * Link field in *Anúncio*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: anuncio.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Imagem field in *Anúncio*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: anuncio.imagem
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  imagem: prismic.ImageField<never>;
+}
+
+/**
+ * Anúncio document from Prismic
+ *
+ * - **API ID**: `anuncio`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AnuncioDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<AnuncioDocumentData>,
+    "anuncio",
+    Lang
+  >;
+
+/**
  * Content for Author documents
  */
 interface AuthorDocumentData {
@@ -184,7 +227,7 @@ interface PostDocumentData {
 export type PostDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
 
-export type AllDocumentTypes = AuthorDocument | PostDocument;
+export type AllDocumentTypes = AnuncioDocument | AuthorDocument | PostDocument;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -196,6 +239,8 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      AnuncioDocument,
+      AnuncioDocumentData,
       AuthorDocument,
       AuthorDocumentData,
       PostDocument,
