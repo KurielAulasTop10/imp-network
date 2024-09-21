@@ -10,7 +10,6 @@ import Script from "next/script";
 
 export const viewport: Viewport = {
 	themeColor: "#dd3333",
-	colorScheme: "dark",
 };
 
 export const metadata: Metadata = {
