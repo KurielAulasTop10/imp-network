@@ -60,66 +60,67 @@ export default function PostCard({ post }: { post: PostDocument }) {
 		<article className="rounded-md bg-stone-900 w-full h-80 animate-pulse p-2 mx-auto" />
 	) : (
 		<Link href={`/post/${post.uid}`}>
-			<article className="rounded-md bg-black w-full h-full hover:opacity-70 transition-all duration-300 p-2 mx-auto flex flex-col">
-				<div className="relative h-60 overflow-hidden mb-2">
-					<Image
-						src={post.data.cover.url || ""}
-						alt={post.data.cover.alt || ""}
-						fill
-						quality={50}
-						className="object-cover aspect-video"
-					/>
-					<Link
-						href={`/categoria/${post.tags[0]}`}
-						className="absolute top-0 left-0 bg-red-600 px-2 py-1 text-white text-sm capitalize font-normal rounded-b-md"
-					>
-						{post.tags[0]}
-					</Link>
-					{post.tags.includes("Grátis") && (
+			<article className="rounded-md bg-black w-full h-full hover:opacity-70 transition-all duration-300 p-2 mx-auto flex flex-col justify-between">
+				<div className="w-full h-full">
+					<div className="relative overflow-hidden mb-2">
 						<Image
-							alt={`${post.data.titulo} Logo`}
-							src={frees[getFreeSource(post.data.titulo as string)]}
-							width={60}
-							height={60}
-							quality={30}
-							className="absolute bottom-2 left-1 w-10"
+							src={post.data.cover.url || ""}
+							alt={post.data.cover.alt || ""}
+							width={640}
+							height={360}
+							quality={70}
+							className="object-cover aspect-video object-center"
 						/>
-					)}
-				</div>
-				<div className="flex flex-col gap-2">
-					<div className="flex gap-1.5 justify-start h-auto w-full">
-						<span className="min-w-1 w-1 min-h-full bg-red-600 rounded-r-md" />
-						<h3 className="text-lg font-normal text-white text-justify line-clamp-2">
-							{post.data.titulo}
-						</h3>
-					</div>
-					<div
-						style={{
-							background: `url(${authorData?.data.banner.url})`,
-						}}
-						className="rounded-md bg-center bg-cover"
-					>
-						<div className="flex gap-3 items-center h-full w-full bg-red-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
+						<Link
+							href={`/categoria/${post.tags[0]}`}
+							className="absolute top-0 left-0 bg-red-600 px-2 py-1 text-white text-sm capitalize font-normal rounded-b-md"
+						>
+							{post.tags[0]}
+						</Link>
+						{post.tags.includes("Grátis") && (
 							<Image
-								src={authorData?.data.avatar.url || ""}
-								className="rounded-md w-12 h-12"
-								quality={50}
-								width={128}
-								height={128}
-								alt={authorData?.data.avatar.alt || ""}
+								alt={`${post.data.titulo} Logo`}
+								src={frees[getFreeSource(post.data.titulo as string)]}
+								width={60}
+								height={60}
+								quality={30}
+								className="absolute bottom-2 left-1 w-10"
 							/>
-							<div className="flex flex-col">
-								<span className="text-gray-200 text-lg font-light capitalize">
-									{authorData?.uid.replaceAll("-", " ")}
-								</span>
-								<p className="text-sm text-gray-400 flex font-thin">
-									{new Date(`${post.data.data}`).toLocaleDateString("pt-BR", {
-										day: "2-digit",
-										month: "long",
-										year: "numeric",
-									})}
-								</p>
-							</div>
+						)}
+					</div>
+				</div>
+				<div className="flex items-start">
+					<span className="w-1 min-h-full bg-red-600 rounded-r-md mr-1.5" />
+					<h3 className="text-lg font-normal text-white text-justify line-clamp-2 md:min-h-14">
+						{post.data.titulo}
+					</h3>
+				</div>
+				<div
+					style={{
+						background: `url(${authorData?.data.banner.url})`,
+					}}
+					className="rounded-md bg-center bg-cover mt-2"
+				>
+					<div className="flex gap-3 items-center h-full w-full bg-red-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
+						<Image
+							src={authorData?.data.avatar.url || ""}
+							className="rounded-md w-12 h-12"
+							quality={50}
+							width={48}
+							height={48}
+							alt={authorData?.data.avatar.alt || ""}
+						/>
+						<div className="flex flex-col">
+							<span className="text-gray-200 text-lg font-light capitalize">
+								{authorData?.uid.replaceAll("-", " ")}
+							</span>
+							<p className="text-sm text-gray-400 flex font-thin">
+								{new Date(`${post.data.data}`).toLocaleDateString("pt-BR", {
+									day: "2-digit",
+									month: "long",
+									year: "numeric",
+								})}
+							</p>
 						</div>
 					</div>
 				</div>
