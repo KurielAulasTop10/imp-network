@@ -75,7 +75,7 @@ export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 				<button
 					type="button"
 					onClick={() => setCurrentPage(currentPage + 1)}
-					disabled={currentPage === totalPages}
+					disabled={currentPage === (totalPages === 0 ? 1 : totalPages)}
 					className="bg-red-600 rounded-md hover:bg-red-500 cursor-pointer disabled:hidden"
 				>
 					<RiArrowRightDoubleLine size={32} />

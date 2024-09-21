@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
 	BsInstagram,
 	BsThreads,
-	BsTiktok,
 	BsTwitch,
 	BsWhatsapp,
 	BsYoutube,
