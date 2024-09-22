@@ -6,11 +6,9 @@ import CategoryList from "@/components/CategoryList";
 import Image from "next/image";
 import AuthorBox from "@/components/posts/AuthorBox";
 import { type JSXMapSerializer, PrismicRichText } from "@prismicio/react";
-import type {
-	AnuncioDocumentData,
-	PostDocumentDataReviewItem,
-} from "../../../../prismicio-types";
+import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
 import Comments from "./_components/Comments";
+import Ad from "./_components/Ad";
 import {
 	RiDoubleQuotesR,
 	RiEmotionHappyFill,
@@ -90,22 +88,10 @@ export default async function PostPage({
 			<div>
 				{Math.floor(Math.random() * 15) + 1 === 5 &&
 					adsSorted[0]?.data.link && (
-						<Link
-							href={
-								adsSorted[Math.floor(Math.random() * adsSorted.length)].data
-									.link?.url as string
-							}
-							target="_blank"
-						>
-							<img
-								src={
-									adsSorted[Math.floor(Math.random() * adsSorted.length)].data
-										.imagem.url as string
-								}
-								alt="ANÚNCIO"
-								className="w-full object-center rounded-2xl"
-							/>
-						</Link>
+						<Ad
+							ad={adsSorted}
+							index={Math.floor(Math.random() * adsSorted.length)}
+						/>
 					)}
 				<p className="my-3 text-lg">{children}</p>
 			</div>
