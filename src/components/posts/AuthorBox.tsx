@@ -1,6 +1,6 @@
-import Image from "next/image";
 import type { AuthorDocument } from "../../../prismicio-types";
 import { PrismicRichText } from "@prismicio/react";
+import { cdn } from "@/utils/cdn";
 
 export default function AuthorBox({ uid, data }: AuthorDocument) {
 	return (
@@ -11,12 +11,9 @@ export default function AuthorBox({ uid, data }: AuthorDocument) {
 			className="rounded-md bg-center bg-cover"
 		>
 			<div className="flex gap-3 items-center h-full w-full bg-red-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
-				<Image
-					src={data.avatar.url || ""}
+				<img
+					src={cdn(data.avatar.url as string, 48, 48)}
 					className="rounded-md"
-					width={48}
-					height={48}
-					quality={30}
 					alt={data.avatar.alt || ""}
 				/>
 				<div className="flex flex-col">

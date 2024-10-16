@@ -1,4 +1,5 @@
 import SearchBar from "@/components/SearchBar";
+import { cdn } from "@/utils/cdn";
 import type { AxiosError } from "axios";
 import type { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
@@ -13,7 +14,6 @@ import { RiBlueskyFill } from "react-icons/ri";
 import { fields, igdb, twitchAccessToken, where } from "ts-igdb-client";
 
 export default async function Sidebar() {
-
 	const accessToken = await twitchAccessToken({
 		client_id: process.env.IGDB_ID as string,
 		client_secret: process.env.IGDB_SECRET as string,
@@ -163,11 +163,11 @@ export default async function Sidebar() {
 						className="rounded-md w-full h-full hover:opacity-80"
 					>
 						<img
-							src={
+							src={cdn(
 								coversData[index]?.url === undefined
 									? `https://ui-avatars.com/api/?name=${game.name?.replaceAll(" ", "+")}&length=5&format=png&size=512&background=000000&color=FFF`
-									: `https:${coversData[index]?.url?.replace("t_thumb", "t_cover_big")}`
-							}
+									: `https:${coversData[index]?.url?.replace("t_thumb", "t_cover_big")}`, 264, 352
+							)}
 							alt={game.name as string}
 							className="h-full rounded-md"
 						/>

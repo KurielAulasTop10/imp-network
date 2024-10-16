@@ -1,3 +1,4 @@
+import { cdn } from "@/utils/cdn";
 import Link from "next/link";
 
 interface AnuncioDocumentData {
@@ -18,7 +19,7 @@ export default async function Ad({
 	return (
 		<Link href={ad[index].data.link?.url as string} target="_blank">
 			<img
-				src={ad[index].data.imagem.url.replace("auto=format,compress&", "") as string}
+				src={cdn(ad[index].data.imagem.url as string, 0, 0)}
 				alt="ANÚNCIO"
 				className="w-full object-center rounded-md"
 			/>

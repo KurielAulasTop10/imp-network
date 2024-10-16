@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 
 import { createClient } from "@/prismicio";
 import CategoryList from "@/components/CategoryList";
-import Image from "next/image";
 import AuthorBox from "@/components/posts/AuthorBox";
 import { type JSXMapSerializer, PrismicRichText } from "@prismicio/react";
 import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
@@ -17,6 +16,7 @@ import {
 } from "react-icons/ri";
 import Link from "next/link";
 import Script from "next/script";
+import { cdn } from "@/utils/cdn";
 
 export default async function PostPage({
 	params: { slug },
@@ -124,7 +124,7 @@ export default async function PostPage({
 		image: ({ node }) => {
 			return (
 				<img
-					src={node.url}
+					src={cdn(node.url, 0, 0)}
 					alt={node.alt as string}
 					width={"100%"}
 					height={"100%"}
@@ -171,11 +171,9 @@ export default async function PostPage({
 						})}
 					</p>
 					<div className="relative aspect-video w-full rounded-md">
-						<Image
-							src={article.data.cover.url || ""}
+						<img
+							src={cdn(article.data.cover.url as string, 0, 0)}
 							alt={article.data.cover.alt || ""}
-							fill
-							quality={70}
 							className="object-cover w-full h-full rounded-md"
 						/>
 					</div>
@@ -200,17 +198,14 @@ export default async function PostPage({
 				{article.data.review[0]?.estado && (
 					<div
 						style={{
-							background: `url(${article.data.cover.url})`,
+							background: `url(${cdn(article.data.cover.url as string, 1120, 200)})`,
 						}}
 						className="rounded-md bg-center bg-cover"
 					>
 						<div className="flex max-md:flex-col gap-3 items-center h-full w-full bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
-							<Image
-								src={article.data.cover.url || ""}
+							<img
+								src={cdn(article.data.cover.url as string, 160, 90)}
 								className="rounded-md aspect-video w-full md:w-40"
-								width={768}
-								height={0}
-								quality={70}
 								alt={article.data.cover.alt || ""}
 							/>
 							<div className="flex flex-col max-md:items-center">

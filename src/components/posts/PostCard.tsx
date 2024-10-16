@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 import type { AuthorDocument, PostDocument } from "../../../prismicio-types";
 import { createClient } from "@/prismicio";
 import { useEffect, useState } from "react";
+import { cdn } from "@/utils/cdn";
 
 export default function PostCard({ post }: { post: PostDocument }) {
 	const client = createClient({
@@ -36,12 +36,12 @@ export default function PostCard({ post }: { post: PostDocument }) {
 	}, [client, post]);
 
 	const frees = {
-		"Epic Games": "https://i.imgur.com/JsAPPOC.png",
-		Steam: "https://i.imgur.com/oEhWYim.png",
-		GOG: "https://i.imgur.com/u8RRwED.png",
-		"Microsoft Store": "https://i.imgur.com/JfegpEx.png",
-		"Xbox Store": "https://i.imgur.com/4xbmz8O.png",
-		"PlayStation Store": "https://i.imgur.com/qMaP7m0.png",
+		"Epic Games": "https://i.ibb.co/Sfz3dsz/JsAPPOC.png",
+		Steam: "https://i.ibb.co/jwYJRbs/oEhWYim.png",
+		GOG: "https://i.ibb.co/t2NxFCz/u8RRwED.png",
+		"Microsoft Store": "https://i.ibb.co/r6jqsyg/JfegpEx.png",
+		"Xbox Store": "https://i.ibb.co/x5XskjC/4xbmz8O.png",
+		"PlayStation Store": "https://i.ibb.co/PC0tdw4/qMaP7m0.png",
 	};
 
 	function getFreeSource(title: string): keyof typeof frees {
@@ -63,12 +63,9 @@ export default function PostCard({ post }: { post: PostDocument }) {
 			<article className="rounded-md bg-black w-full h-full hover:opacity-70 transition-all duration-300 p-2 mx-auto flex flex-col justify-between">
 				<div className="w-full h-full">
 					<div className="relative overflow-hidden mb-2">
-						<Image
-							src={post.data.cover.url || ""}
+						<img
+							src={cdn(post.data.cover.url as string, 640, 360)}
 							alt={post.data.cover.alt || ""}
-							width={640}
-							height={360}
-							quality={70}
 							className="object-cover aspect-video object-center"
 						/>
 						<Link
@@ -78,12 +75,13 @@ export default function PostCard({ post }: { post: PostDocument }) {
 							{post.tags[0]}
 						</Link>
 						{post.tags.includes("Grátis") && (
-							<Image
+							<img
+								src={cdn(
+									frees[getFreeSource(post.data.titulo as string)],
+									0,
+									0,
+								)}
 								alt={`${post.data.titulo} Logo`}
-								src={frees[getFreeSource(post.data.titulo as string)]}
-								width={60}
-								height={60}
-								quality={30}
 								className="absolute bottom-2 left-1 w-10"
 							/>
 						)}
@@ -102,12 +100,9 @@ export default function PostCard({ post }: { post: PostDocument }) {
 					className="rounded-md bg-center bg-cover mt-2"
 				>
 					<div className="flex gap-3 items-center h-full w-full bg-red-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
-						<Image
-							src={authorData?.data.avatar.url || ""}
+						<img
+							src={cdn(authorData?.data.avatar.url as string, 48, 48)}
 							className="rounded-md w-12 h-12"
-							quality={50}
-							width={48}
-							height={48}
 							alt={authorData?.data.avatar.alt || ""}
 						/>
 						<div className="flex flex-col">
