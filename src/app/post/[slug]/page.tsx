@@ -160,7 +160,10 @@ export default async function PostPage({
 				<div className="flex flex-col items-start gap-3">
 					<CategoryList categories={article.tags} />
 					<h1 className="text-2xl font-bold">{article.data.titulo}</h1>
-					<p className="text-base font-thin text-gray-400">
+					<time
+						dateTime={`${article.data?.data}`}
+						className="text-base font-thin text-gray-400"
+					>
 						{new Date(`${article.data?.data}`).toLocaleDateString("pt-BR", {
 							day: "2-digit",
 							month: "long",
@@ -168,8 +171,10 @@ export default async function PostPage({
 							hour: "numeric",
 							minute: "numeric",
 							hourCycle: "h24",
+							timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+							timeZoneName: "short",
 						})}
-					</p>
+					</time>
 					<div className="relative aspect-video w-full rounded-md">
 						<img
 							src={cdn(article.data.cover.url as string, 0, 0)}
