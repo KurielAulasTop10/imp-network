@@ -172,7 +172,6 @@ export default async function PostPage({
 							minute: "numeric",
 							hourCycle: "h24",
 							timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-							timeZoneName: "short",
 						})}
 					</time>
 					<div className="relative aspect-video w-full rounded-md">
