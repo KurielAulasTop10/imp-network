@@ -170,7 +170,7 @@ export default async function PostPage({
 							year: "numeric",
 							hour: "numeric",
 							minute: "numeric",
-							hourCycle: "h24",
+							hourCycle: "h23",
 							timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 						})}
 					</time>
