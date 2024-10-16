@@ -17,15 +17,15 @@
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
-    "@next/third-parties": "^14.2.13",
-    "@prismicio/client": "^7.9.0",
-    "@prismicio/next": "^1.6.0",
-    "@prismicio/react": "^2.8.0",
+    "@next/third-parties": "^14.2.15",
+    "@prismicio/client": "^7.11.0",
+    "@prismicio/next": "^1.7.0",
+    "@prismicio/react": "^2.9.0",
     "@prismicio/richtext": "^2.1.5",
-    "@radix-ui/react-dropdown-menu": "2.1.1",
+    "@radix-ui/react-dropdown-menu": "2.1.2",
     "@types/rss": "^0.0.32",
     "axios": "^1.7.7",
-    "next": "14.2.13",
+    "next": "14.2.15",
     "react": "18.3.1",
     "react-device-detect": "^2.2.3",
     "react-icons": "^5.3.0",
@@ -38,14 +38,14 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@slicemachine/adapter-next": "^0.3.49",
-    "@types/node": "22.5.5",
-    "@types/react": "18.3.8",
-    "@types/react-dom": "18.3.0",
+    "@slicemachine/adapter-next": "^0.3.51",
+    "@types/node": "22.7.5",
+    "@types/react": "18.3.11",
+    "@types/react-dom": "18.3.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
-    "slice-machine-ui": "^2.7.1",
-    "tailwindcss": "3.4.12",
-    "typescript": "5.6.2"
+    "slice-machine-ui": "^2.8.1",
+    "tailwindcss": "3.4.14",
+    "typescript": "5.6.3"
   }
 }
