@@ -124,7 +124,7 @@ export default async function PostPage({
 		image: ({ node }) => {
 			return (
 				<img
-					src={cdn(node.url, 0, 0)}
+					src={cdn(node.url, 1920, 0)}
 					alt={node.alt as string}
 					width={"100%"}
 					height={"100%"}
@@ -176,7 +176,7 @@ export default async function PostPage({
 					</time>
 					<div className="relative aspect-video w-full rounded-md">
 						<img
-							src={cdn(article.data.cover.url as string, 0, 0)}
+							src={cdn(article.data.cover.url as string, 1920, 0)}
 							alt={article.data.cover.alt || ""}
 							className="object-cover w-full h-full rounded-md"
 						/>
