@@ -313,7 +313,7 @@ export async function generateMetadata({
 					],
 					images: [
 						{
-							url: post.data.cover.url as string,
+							url: cdn(post.data.cover.url as string, 1920, 0),
 						},
 					],
 				},
@@ -322,7 +322,7 @@ export async function generateMetadata({
 					description: `Leia "${post.data.titulo}" de ${
 						myAuthorData.uid.charAt(0).toUpperCase() + myAuthorData.uid.slice(1)
 					} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
-					images: [post.data.cover.url as string],
+					images: [cdn(post.data.cover.url as string, 1920, 0)],
 					card: "summary_large_image",
 				},
 			}
