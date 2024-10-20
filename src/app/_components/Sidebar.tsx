@@ -115,7 +115,7 @@ export default async function Sidebar() {
 				</Link>
 				<Link
 					href="https://www.instagram.com/imperionetwork6"
-					className="w-full flex bg-gradient-to-r hover:invert from-[#ee2a7b] to-[#6228d7] p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+					className="w-full flex bg-gradient-to-r hover:text-black from-[#ee2a7b] to-[#6228d7] p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
 					target="_blank"
 				>
 					<BsInstagram />
@@ -143,7 +143,7 @@ export default async function Sidebar() {
 				</Link>
 				<Link
 					href="https://bsky.app/profile/imperionetwork.me"
-					className="w-full flex bg-blue-600 hover:invert p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+					className="w-full flex bg-blue-600 hover:text-black p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
 					target="_blank"
 				>
 					<RiBlueskyFill />
