@@ -208,7 +208,7 @@ export default async function PostPage({
 					>
 						<div className="flex max-md:flex-col gap-3 items-center h-full w-full bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
 							<img
-								src={cdn(article.data.cover.url as string, 160, 90)}
+								src={cdn(article.data.cover.url as string, 400, 0)}
 								className="rounded-md aspect-video w-full md:w-40"
 								alt={article.data.cover.alt || ""}
 							/>
