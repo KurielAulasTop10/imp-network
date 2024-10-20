@@ -97,7 +97,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 						<img
 							src={cdn(post.data.cover.url as string, 640, 360)}
 							alt={post.data.cover.alt || ""}
-							className="object-cover aspect-video object-center"
+							className="w-full"
 						/>
 						<Link
 							href={`/categoria/${post.tags[0]}`}
