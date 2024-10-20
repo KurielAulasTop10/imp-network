@@ -1,16 +1,14 @@
 "use client";
 
 import { BsSearch } from "react-icons/bs";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 export default function SearchBar() {
-	const [searchTerm, setSearchTerm] = useState("");
-	const router = useRouter();
+	const [searchTerm, setSearchTerm] = useState<string>("");
 
 	return (
-		<div className="relative mx-auto md:mx-0 w-full">
-			<BsSearch className="absolute left-4 flex h-full items-center text-xl text-gray-400" />
+		<div className="flex">
 			<input
 				type="text"
 				placeholder="Pesquisar"
@@ -18,16 +16,23 @@ export default function SearchBar() {
 					setSearchTerm(e.target.value);
 				}}
 				onKeyUp={(e) => {
-					console.log(e.key);
-					if (e.key === "Enter") {
-						router.push(`/search?q=${encodeURIComponent(searchTerm)}`);
-					}
+					if (e.key !== "Enter") return;
+					return redirect(`/search?q=${encodeURIComponent(searchTerm)}`);
 				}}
 				value={searchTerm}
 				className={
-					"w-full rounded-md border-[1px] border-black py-2 px-12 text-lg font-normal hover:border-red-600 focus:border-red-600 focus:outline-none bg-black focus:bg-zinc-950"
+					"w-full rounded-l-md border-[1px] border-black p-2 text-lg font-normal hover:border-red-600 focus:border-red-600 focus:outline-none bg-black focus:bg-zinc-950"
 				}
 			/>
+			<button
+				className="bg-red-600 rounded-r-md p-3"
+				type="submit"
+				onClick={() => {
+					return redirect(`/search?q=${encodeURIComponent(searchTerm)}`);
+				}}
+			>
+				<BsSearch className="h-full items-center text-xl text-white" />
+			</button>
 		</div>
 	);
 }
