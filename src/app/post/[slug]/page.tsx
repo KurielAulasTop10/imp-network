@@ -18,12 +18,18 @@ import Link from "next/link";
 import Script from "next/script";
 import { cdn } from "@/utils/cdn";
 
-export default async function PostPage({
-	params: { slug },
-}: {
-	params: { slug: string };
-}) {
-	const client = createClient({
+export default async function PostPage(
+    props: {
+        params: Promise<{ slug: string }>;
+    }
+) {
+    const params = await props.params;
+
+    const {
+        slug
+    } = params;
+
+    const client = createClient({
 		accessToken:
 			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
 		fetchOptions: {
@@ -31,36 +37,36 @@ export default async function PostPage({
 		},
 	});
 
-	const article = await client.getByUID("post", slug).catch(() => notFound());
-	interface MyAuthorData {
+    const article = await client.getByUID("post", slug).catch(() => notFound());
+    interface MyAuthorData {
 		uid?: string;
 	}
 
-	const myAuthorData = article.data.author as unknown as MyAuthorData;
+    const myAuthorData = article.data.author as unknown as MyAuthorData;
 
-	if (!myAuthorData.uid) {
+    if (!myAuthorData.uid) {
 		return console.error("Author UID not found");
 	}
-	const author = await client
+    const author = await client
 		.getByUID("author", myAuthorData.uid)
 		.catch(() => notFound());
 
-	interface SteamPage {
+    interface SteamPage {
 		url: string;
 	}
 
-	const ads = await client.getAllByType("anuncio").catch(() => notFound());
+    const ads = await client.getAllByType("anuncio").catch(() => notFound());
 
-	const adsSorted = ads.sort(
+    const adsSorted = ads.sort(
 		() => Math.random() - 0.5,
 	) as AnuncioDocumentData[];
 
-	const reviewWithSteamPage = article.data
+    const reviewWithSteamPage = article.data
 		.review[0] as PostDocumentDataReviewItem & {
 		steam_page?: SteamPage;
 	};
 
-	interface AnuncioDocumentData {
+    interface AnuncioDocumentData {
 		data: {
 			link: {
 				url: string;
@@ -71,7 +77,7 @@ export default async function PostPage({
 		};
 	}
 
-	const richTextComponents: JSXMapSerializer = {
+    const richTextComponents: JSXMapSerializer = {
 		heading1: ({ children }) => (
 			<h1 className="my-3 text-2xl font-semibold">{children}</h1>
 		),
@@ -151,12 +157,12 @@ export default async function PostPage({
 		),
 	};
 
-	return (
-		<article
+    return (
+        (<article
 			data-revalidated-at={new Date().getTime()}
 			className="flex flex-col max-w-full max-md:p-3 md:max-w-[60vw] mx-auto text-justify my-5"
 		>
-			<div className="mx-auto w-full">
+            <div className="mx-auto w-full">
 				<div className="flex flex-col items-start gap-3">
 					<CategoryList categories={article.tags} />
 					<h1 className="text-2xl font-bold">{article.data.titulo}</h1>
@@ -183,22 +189,22 @@ export default async function PostPage({
 					</div>
 				</div>
 			</div>
-			<div className="max-w-full md:max-w-[60vw] text-lg gap-5">
+            <div className="max-w-full md:max-w-[60vw] text-lg gap-5">
 				<PrismicRichText
 					field={article.data.editor}
 					components={richTextComponents}
 				/>
 				{reviewWithSteamPage?.steam_page?.url && (
 					// biome-ignore lint/style/useSelfClosingElements: <explanation>
-					<iframe
+					(<iframe
 						src={reviewWithSteamPage.steam_page.url as string}
 						title="Steam page"
 						height="190"
 						className="w-full aspect-video rounded-md"
-					></iframe>
+					></iframe>)
 				)}
 			</div>
-			<div className="w-full flex flex-col gap-5 mt-3">
+            <div className="w-full flex flex-col gap-5 mt-3">
 				{article.data.review[0]?.estado && (
 					<div
 						style={{
@@ -262,33 +268,39 @@ export default async function PostPage({
 				<Comments uid={article.uid} />
 				<Script src="https://platform.twitter.com/widgets.js" async />
 			</div>
-		</article>
-	);
+        </article>)
+    );
 }
 
-export async function generateMetadata({
-	params: { slug },
-}: {
-	params: { slug: string };
-}): Promise<Metadata> {
-	const client = createClient({
+export async function generateMetadata(
+    props: {
+        params: Promise<{ slug: string }>;
+    }
+): Promise<Metadata> {
+    const params = await props.params;
+
+    const {
+        slug
+    } = params;
+
+    const client = createClient({
 		accessToken:
 			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
 		fetchOptions: {
 			cache: "no-store",
 		},
 	});
-	const post = await client.getByUID("post", slug);
-	interface MyAuthorData {
+    const post = await client.getByUID("post", slug);
+    interface MyAuthorData {
 		uid?: string;
 	}
 
-	const myAuthorData = post.data.author as unknown as MyAuthorData;
+    const myAuthorData = post.data.author as unknown as MyAuthorData;
 
-	if (!myAuthorData.uid) {
+    if (!myAuthorData.uid) {
 		return {};
 	}
-	return post
+    return post
 		? {
 				title: post.data.titulo,
 				authors: [
