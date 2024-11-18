@@ -1,14 +1,11 @@
 "use client";
 import { cdn } from "@/utils/cdn";
 import Link from "next/link";
-import Script from "next/script";
 
 export default function GOTYPage() {
 	return (
 		<div className="min-h-screen bg-gradient-to-b text-white">
 			<div className="mx-auto px-2 py-16">
-				
-
 				<div className="flex flex-col items-center justify-center md:flex-row gap-12">
 					<div className="relative w-full max-w-lg">
 						<img
@@ -20,22 +17,21 @@ export default function GOTYPage() {
 
 					<div className="flex-col hover:scale-105 transform transition-transform duration-300">
 						<div className="text-center mb-12">
-					<h1 className="text-6xl font-extrabold mb-4 tracking-wide text-white">
-						The Game Awards 2024
-					</h1>
-					<p className="text-2xl font-light text-gray-200 max-w-3xl mx-auto">
-						O maior evento de jogos está de volta! Fique por dentro das
-						novidades e vote no jogo que merece o prêmio mais prestigiado.
+							<h1 className="text-6xl font-extrabold mb-4 tracking-wide text-white">
+								The Game Awards 2024
+							</h1>
+							<p className="text-2xl font-light text-gray-200 max-w-3xl mx-auto">
+								O maior evento de jogos está de volta! Fique por dentro das
+								novidades e vote no jogo que merece o prêmio mais prestigiado.
 							</p>
 							<Link
-							href="https://thegameawards.com/"
-							target="_blank"
-							className="bg-red-600 hover:bg-red-800 p-3 rounded-xl text-xl font-bold text-center text-white block mt-5"
-						>
-							Vote Agora!
-						</Link>
-				</div>
-						
+								href="https://thegameawards.com/"
+								target="_blank"
+								className="bg-red-600 hover:bg-red-800 p-3 rounded-xl text-xl font-bold text-center text-white block mt-5"
+							>
+								Vote Agora!
+							</Link>
+						</div>
 					</div>
 				</div>
 				<div className="flex flex-col mx-auto mt-20 gap-8">
@@ -47,7 +43,7 @@ export default function GOTYPage() {
 						title="YouTube video player"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 						referrerPolicy="strict-origin-when-cross-origin"
-                        className="mx-auto rounded-md w-2/4 aspect-video"
+						className="mx-auto rounded-md w-2/4 aspect-video"
 						allowFullScreen
 					/>
 					<h2 className="text-4xl font-semibold text-center tracking-wide text-white">
