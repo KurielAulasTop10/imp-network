@@ -1,21 +1,13 @@
 "use client";
-import { Calendar } from "@/components/ui/calendar";
 import { cdn } from "@/utils/cdn";
 import Link from "next/link";
+import Script from "next/script";
 
 export default function GOTYPage() {
 	return (
 		<div className="min-h-screen bg-gradient-to-b text-white">
 			<div className="mx-auto px-2 py-16">
-				<div className="text-center mb-12">
-					<h1 className="text-6xl font-extrabold mb-4 tracking-wide text-white">
-						The Game Awards 2024
-					</h1>
-					<p className="text-2xl font-light text-gray-200 max-w-3xl mx-auto">
-						O maior evento de jogos está de volta! Fique por dentro das
-						novidades e vote no jogo que merece o prêmio mais prestigiado.
-					</p>
-				</div>
+				
 
 				<div className="flex flex-col items-center justify-center md:flex-row gap-12">
 					<div className="relative w-full max-w-lg">
@@ -27,22 +19,23 @@ export default function GOTYPage() {
 					</div>
 
 					<div className="flex-col hover:scale-105 transform transition-transform duration-300">
-						<Calendar
-							mode="single"
-							selected={new Date("2024-12-12")}
-							required
-							defaultMonth={new Date(2024, 11)}
-							pagedNavigation={false}
-							className="rounded-md border flex justify-center mb-14"
-							showOutsideDays={false}
-						/>
-						<Link
+						<div className="text-center mb-12">
+					<h1 className="text-6xl font-extrabold mb-4 tracking-wide text-white">
+						The Game Awards 2024
+					</h1>
+					<p className="text-2xl font-light text-gray-200 max-w-3xl mx-auto">
+						O maior evento de jogos está de volta! Fique por dentro das
+						novidades e vote no jogo que merece o prêmio mais prestigiado.
+							</p>
+							<Link
 							href="https://thegameawards.com/"
 							target="_blank"
-							className="bg-red-600 hover:bg-red-800 p-7 rounded-xl text-4xl font-bold text-center text-white"
+							className="bg-red-600 hover:bg-red-800 p-3 rounded-xl text-xl font-bold text-center text-white block mt-5"
 						>
 							Vote Agora!
 						</Link>
+				</div>
+						
 					</div>
 				</div>
 				<div className="flex flex-col mx-auto mt-20 gap-8">
@@ -50,7 +43,7 @@ export default function GOTYPage() {
 						Prepare-se dia 12 de Dezembro.
 					</h2>
 					<iframe
-						src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=kVxz6wUQprzdM0vx"
+						src="https://www.youtube.com/embed/GeqkJ5zswKc?si=kVxz6wUQprzdM0vx"
 						title="YouTube video player"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 						referrerPolicy="strict-origin-when-cross-origin"
@@ -60,7 +53,7 @@ export default function GOTYPage() {
 					<h2 className="text-4xl font-semibold text-center tracking-wide text-white">
 						Nomeados a GOTY
 					</h2>
-					<div className="grid grid-cols-6 gap-2">
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-2">
 						{[
 							{
 								title: "Black Myth: Wukong",
@@ -69,10 +62,10 @@ export default function GOTYPage() {
 								image: "https://i.ibb.co/tPVDTTb/image.png",
 							},
 							{
-								title: "The Legend of Zelda: Echoes of Wisdom",
+								title: "Metaphor: ReFantazio",
 								description:
-									"Os habitantes de Hyrule estão a desvanecer-se pouco a pouco devido a fendas estranhas que surgiram pelo reino e entre os desaparecidos está um certo espadachim. Posto isto, cabe agora à princesa Zelda salvar o seu reino.",
-								image: "https://i.ibb.co/YTPRn0X/image.png",
+									"O trono está abandonado após o assassinato do rei. Sem herdeiros, o desejo do falecido rei decreta que o próximo monarca será eleito pelo povo, dando início à luta pelo trono. ",
+								image: "https://i.ibb.co/FhX7tDv/image.png",
 							},
 							{
 								title: "Astro Bot",
@@ -81,22 +74,22 @@ export default function GOTYPage() {
 								image: "https://i.ibb.co/RCHQxHk/image.png",
 							},
 							{
-								title: "Silent Hill 2",
+								title: "Balatro",
 								description:
-									"Tendo recebido uma carta de sua falecida esposa, James dirige-se ao local onde compartilharam muitas lembranças, na esperança de vê-la mais uma vez: Silent Hill. Lá, à beira do lago, ele encontra uma mulher estranhamente parecida com ela...",
-								image: "https://i.ibb.co/XsKS6Vs/image.png",
+									"O pôquer roguelike. Balatro é um jogo de criação de baralho hipnoticamente satisfatório em que você joga mãos de pôquer ilegais, descobre curingas que mudam o jogo e aciona combos escandalosos e cheios de adrenalina.",
+								image: "https://i.ibb.co/9wPm0bQ/image.png",
 							},
 							{
-								title: "Final Fantasy VII: Rebirth",
+								title: "Final Fantasy VII Rebirth",
 								description:
 									"Os lendários heróis Cloud, Barret, Tifa, Aerith e Red XIII escaparam da cidade distópica de Midgar e estão agora em busca de Sephiroth, o vingativo espadachim do passado de Cloud que todos julgavam morto.",
 								image: "https://i.ibb.co/jrG6Fnv/image.png",
 							},
 							{
-								title: "Like a Dragon: Infinite Wealth",
+								title: "Elden Ring Shadow of the Erdtree",
 								description:
-									"Explore o Japão e tudo que o Havaí tem a oferecer em uma aventura tão expansiva que abrange todo o Oceano Pacífico. Momentos inesquecíveis esperam você a cada passo da jornada, com uma mistura única de missões e atividades para você aproveitar no seu ritmo.",
-								image: "https://i.ibb.co/QYSqXmp/image.png",
+									"Sombrio e intenso, Shadow of the Erdtree leva os jogadores a continuarem sua missão com a liberdade de explorar e vivenciar a aventura no seu próprio ritmo.",
+								image: "https://i.ibb.co/vPxwGcc/image.png",
 							},
 						].map((nominee) => (
 							<div
