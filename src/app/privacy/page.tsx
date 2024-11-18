@@ -1,4 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+	title: "Política de Privacidade",
+	description:
+		"Esta página foca na nossa política de privacidade descrevendo o que todos os sistemas próprios e de parceiros fornecem quanto a dados pessoais.",
+	twitter: {
+		title: "Política de Privacidade",
+		description:
+			"Esta página foca na nossa política de privacidade descrevendo o que todos os sistemas próprios e de parceiros fornecem quanto a dados pessoais.",
+	},
+};
 
 export default function PrivacyPage() {
 	return (

@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 			template: "%s | Império Network",
 		},
 		description:
-			"A Império Network é o seu portal de notícias de tecnologia, gaming ou animes em português! Tornamos a sua leitura simples.",
+			"A Império Network é o seu portal de notícias de tecnologia, gaming e animes em português! Tornamos a sua leitura simples.",
 		images: ["/logo.png"],
 		card: "summary",
 	},
@@ -77,13 +77,11 @@ export default function RootLayout({
 						<Footer />
 					</div>
 					<Script id="clarity-script" strategy="afterInteractive">
-						{`
-            (function(c,l,a,r,i,t,y){
+						{`(function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "mqctv9wnae");
-          `}
+            })(window, document, "clarity", "script", "mqctv9wnae");`}
 					</Script>
 					<Script
 						src="https://cookieinfoscript.com/js/cookieinfo.min.js"

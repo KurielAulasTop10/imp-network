@@ -1,3 +1,16 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Sobre Nós",
+	description:
+		"A Império Network foi fundada originalmente em 2018. E esta é só uma pequena parte da nossa história, nesta página é escrito tudo sobre o nosso portal desde o início.",
+	twitter: {
+		title: "Sobre Nós",
+		description:
+			"A Império Network foi fundada originalmente em 2018. E esta é só uma pequena parte da nossa história, nesta página é escrito tudo sobre o nosso portal desde o início.",
+	},
+};
+
 export default function AboutPage() {
 	return (
 		<div className="flex flex-col gap-5 mt-5 px-10 md:px-20 font-light text-justify">

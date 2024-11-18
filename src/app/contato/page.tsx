@@ -1,4 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+	title: "Contatos",
+	description:
+		"É possível entrar em contato com a Império Network para assuntos de imprensa como também para feedbacks ou problemas.",
+	twitter: {
+		title: "Contatos",
+		description:
+			"É possível entrar em contato com a Império Network para assuntos de imprensa como também para feedbacks ou problemas.",
+	},
+};
 
 export default function PrivacyPage() {
 	return (

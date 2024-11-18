@@ -1,4 +1,20 @@
-import { RiEmotionHappyFill, RiEmotionNormalFill, RiEmotionUnhappyFill } from "react-icons/ri";
+import type { Metadata } from "next";
+import {
+	RiEmotionHappyFill,
+	RiEmotionNormalFill,
+	RiEmotionUnhappyFill,
+} from "react-icons/ri";
+
+export const metadata: Metadata = {
+	title: "Política de Análises",
+	description:
+		"Esta página dedica-se ao conteúdo sobre as nossas análises, caracterizando como a Império Network funciona ao dar avaliações e o que cada parte desse sistema significa.",
+	twitter: {
+		title: "Política de Análises",
+		description:
+			"Esta página dedica-se ao conteúdo sobre as nossas análises, caracterizando como a Império Network funciona ao dar avaliações e o que cada parte desse sistema significa.",
+	},
+};
 
 export default function PrivacyPage() {
 	return (

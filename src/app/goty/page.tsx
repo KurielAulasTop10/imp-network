@@ -1,6 +1,17 @@
-"use client";
 import { cdn } from "@/utils/cdn";
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+	title: "Evento The Game Awards",
+	description:
+		"Página dedicada ao evento The Game Awards possuindo informações como nomeados e datas, como também pequenos resumos do que se trata.",
+	twitter: {
+		title: "Evento The Game Awards",
+		description:
+			"Página dedicada ao evento The Game Awards possuindo informações como nomeados e datas, como também pequenos resumos do que se trata.",
+	},
+};
 
 export default function GOTYPage() {
 	return (
