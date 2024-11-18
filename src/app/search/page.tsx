@@ -7,7 +7,11 @@ import { filter } from "@prismicio/client";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
-export default async function SearchPage() {
+async function SearchResults() {
+	const searchParams = useSearchParams();
+	const q = searchParams.get("q");
+	const query = q || "";
+
 	const client = createClient({
 		accessToken:
 			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
@@ -15,12 +19,6 @@ export default async function SearchPage() {
 			cache: "no-store",
 		},
 	});
-
-	const searchParams = useSearchParams();
-
-	const q = searchParams.get("q");
-
-	const query = q || "";
 
 	const allPosts = await client.getAllByType("post", {
 		orderings: {
@@ -31,10 +29,16 @@ export default async function SearchPage() {
 	});
 
 	return (
+		<div className="mt-10 px-5">
+			<PostsGrid allPosts={allPosts as PostDocument[]} />
+		</div>
+	);
+}
+
+export default function SearchPage() {
+	return (
 		<Suspense fallback={<p>Carregando... Aguarde alguns segundos.</p>}>
-			<div className="mt-10 px-5">
-				<PostsGrid allPosts={allPosts as PostDocument[]} />
-			</div>
+			<SearchResults />
 		</Suspense>
 	);
 }
