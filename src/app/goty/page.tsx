@@ -50,7 +50,7 @@ export default function GOTYPage() {
 						Prepare-se dia 12 de Dezembro.
 					</h2>
 					<iframe
-						src="https://www.youtube.com/embed/GeqkJ5zswKc?si=kVxz6wUQprzdM0vx"
+						src="https://www.youtube.com/embed/LfnUQ-qKsdQ?si=kVxz6wUQprzdM0vx"
 						title="YouTube video player"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 						referrerPolicy="strict-origin-when-cross-origin"
