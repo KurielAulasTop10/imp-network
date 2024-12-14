@@ -3,17 +3,17 @@
 import Link from "next/link";
 import {
 	RiArrowDropDownLine,
-	RiComputerFill,
-	RiFileList3Fill,
+	RiComputerLine,
+	RiCpuLine,
 	RiGameFill,
 	RiGamepadFill,
-	RiLockUnlockFill,
-	RiMacFill,
+	RiGuideFill,
 	RiMenuFill,
 	RiNewspaperFill,
 	RiPlaystationFill,
+	RiProjector2Fill,
 	RiStarSmileFill,
-	RiTv2Fill,
+	RiTimerFlashFill,
 	RiTvFill,
 	RiXboxFill,
 } from "react-icons/ri";
@@ -56,7 +56,7 @@ export default function Header() {
 								</Link>
 								<Link href={"/categoria/cinema"}>
 									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
-										<RiTv2Fill /> Cinema
+										<RiProjector2Fill /> Cinema
 									</DropdownMenu.Item>
 								</Link>
 								<DropdownMenu.Sub>
@@ -72,7 +72,7 @@ export default function Header() {
 										<DropdownMenu.SubContent className="bg-black rounded-md text-white ml-2 font-normal text-md p-2">
 											<Link href={"/categoria/grátis"}>
 												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
-													<RiLockUnlockFill />
+													<RiTimerFlashFill />
 													Grátis
 												</DropdownMenu.Item>
 											</Link>
@@ -83,7 +83,7 @@ export default function Header() {
 											</Link>
 											<Link href={"/categoria/guia"}>
 												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
-													<RiFileList3Fill /> Guias
+													<RiGuideFill /> Guias
 												</DropdownMenu.Item>
 											</Link>
 										</DropdownMenu.SubContent>
@@ -108,7 +108,7 @@ export default function Header() {
 											</Link>
 											<Link href={"/categoria/pc"}>
 												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
-													<RiComputerFill /> PC
+													<RiComputerLine /> PC
 												</DropdownMenu.Item>
 											</Link>
 											<Link href={"/categoria/playstation"}>
@@ -131,7 +131,7 @@ export default function Header() {
 								</Link>
 								<Link href={"/categoria/tech"}>
 									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
-										<RiMacFill /> Tech
+										<RiCpuLine /> Tech
 									</DropdownMenu.Item>
 								</Link>
 							</DropdownMenu.Content>
