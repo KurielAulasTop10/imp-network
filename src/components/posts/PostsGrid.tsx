@@ -18,7 +18,7 @@ export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 	});
 
 	return (
-		<section className="flex scroll-mt-12 flex-col items-center space-y-16">
+		<section className="flex scroll-mt-12 flex-col items-center space-y-6">
 			{filteredPosts.length >= 1 ? (
 				<ul
 					id="posts-grid"

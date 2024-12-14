@@ -117,13 +117,13 @@ export default function PostCard({ post }: { post: PostDocument }) {
 							/>
 						)}
 					</div>
+					<div className="flex justify-start border-l-4 border-red-600 pl-2">
+						<h3 className="text-lg font-normal text-white text-justify line-clamp-2">
+							{post.data.titulo}
+						</h3>
+					</div>
 				</div>
-				<div className="flex items-start">
-					<span className="w-1 min-h-full bg-red-600 rounded-r-md mr-1.5" />
-					<h3 className="text-lg font-normal text-white text-justify line-clamp-2 md:min-h-14">
-						{post.data.titulo}
-					</h3>
-				</div>
+
 				<div
 					style={{
 						background: `url(${authorData?.data.banner.url})`,

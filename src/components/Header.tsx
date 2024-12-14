@@ -19,8 +19,18 @@ import {
 } from "react-icons/ri";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { BsNintendoSwitch } from "react-icons/bs";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+	const pathname = usePathname();
+
+	if (pathname?.endsWith("classic"))
+		return (
+			<Link href="/" className="text-red-500 hover:text-red-600 p-3">
+				Voltar ao Início
+			</Link>
+		);
+
 	return (
 		<nav className="w-full relative">
 			<div className="blur-sm bg-[url(https://i.ibb.co/XSMYhNc/XTAAuLY.webp)] bg-cover bg-center w-full h-60 z-10" />
