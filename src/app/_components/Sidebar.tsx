@@ -155,24 +155,29 @@ export default async function Sidebar() {
 			<div
 				className={`grid ${gamesData.data.length <= 3 ? `grid-cols-${gamesData.data.length}` : "grid-cols-3"} gap-3`}
 			>
-				{gamesData.data.map((game, index) => (
-					<Link
-						target="_blank"
-						href={game.url as Url}
-						key={game.id}
-						className="rounded-md w-full h-full hover:opacity-80"
-					>
-						<img
-							src={cdn(
-								coversData[index]?.url === undefined
-									? `https://ui-avatars.com/api/?name=${game.name?.replaceAll(" ", "+")}&length=5&format=png&size=512&background=000000&color=FFF`
-									: `https:${coversData[index]?.url?.replace("t_thumb", "t_cover_big")}`, 264, 352
-							)}
-							alt={game.name as string}
-							className="h-full rounded-md"
-						/>
-					</Link>
-				))}
+				{gamesData.data.map((game, index) =>
+					coversData[index]?.url === undefined ? (
+						// biome-ignore lint/correctness/useJsxKeyInIterable: <explanation>
+						<></>
+					) : (
+						<Link
+							target="_blank"
+							href={game.url as Url}
+							key={game.id}
+							className="rounded-md w-full h-full hover:opacity-80"
+						>
+							<img
+								src={cdn(
+									`https:${coversData[index]?.url?.replace("t_thumb", "t_cover_big")}`,
+									264,
+									352,
+								)}
+								alt={game.name as string}
+								className="h-full rounded-md"
+							/>
+						</Link>
+					),
+				)}
 			</div>
 		</div>
 	);

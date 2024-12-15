@@ -7,6 +7,7 @@ import { Rubik } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { headers } from "next/headers";
+import { PrismicPreview } from "@prismicio/next";
 
 export const viewport: Viewport = {
 	themeColor: "#dd3333",
@@ -76,6 +77,7 @@ export default async function RootLayout({
 					<div className="mt-10">
 						<Footer />
 					</div>
+					<PrismicPreview repositoryName="imperio-network" />
 				</main>
 			</body>
 		</html>
