@@ -153,7 +153,7 @@ export default async function Sidebar() {
 				QUE JOGOS LANÇAM HOJE?
 			</h3>
 			<div
-				className={`grid ${gamesData.data.length <= 3 ? `grid-cols-${gamesData.data.length}` : "grid-cols-3"} gap-3`}
+				className={`grid ${gamesData.data.length <= 2 ? `grid-cols-${gamesData.data.length}` : "grid-cols-3"} gap-3 w-full`}
 			>
 				{gamesData.data.map((game, index) =>
 					coversData[index]?.url === undefined ? (
@@ -164,7 +164,7 @@ export default async function Sidebar() {
 							target="_blank"
 							href={game.url as Url}
 							key={game.id}
-							className="rounded-md w-full h-full hover:opacity-80"
+							className="hover:opacity-80 h-full w-full"
 						>
 							<img
 								src={cdn(
@@ -173,7 +173,8 @@ export default async function Sidebar() {
 									352,
 								)}
 								alt={game.name as string}
-								className="h-full rounded-md"
+								// Added w-full to make image take full width of container
+								className="rounded-md w-full"
 							/>
 						</Link>
 					),

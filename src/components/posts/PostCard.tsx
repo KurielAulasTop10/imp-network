@@ -101,7 +101,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 						/>
 						<Link
 							href={`/categoria/${post.tags[0]}`}
-							className="absolute top-0 left-0 bg-red-600 px-2 py-1 text-white text-sm capitalize font-normal rounded-b-md"
+							className="absolute top-0 left-0 px-2 py-1 text-white bg-red-600/60 hover:bg-red-600 hover:text-white text-sm capitalize font-normal rounded-b-md"
 						>
 							{post.tags[0]}
 						</Link>
