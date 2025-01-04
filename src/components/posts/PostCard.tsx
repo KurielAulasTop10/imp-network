@@ -124,30 +124,23 @@ export default function PostCard({ post }: { post: PostDocument }) {
 					</div>
 				</div>
 
-				<div
-					style={{
-						background: `url(${authorData?.data.banner.url})`,
-					}}
-					className="rounded-md bg-center bg-cover mt-2"
-				>
-					<div className="flex gap-3 items-center h-full w-full bg-red-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
-						<img
-							src={cdn(authorData?.data.avatar.url as string, 48, 48)}
-							className="rounded-md w-12 h-12"
-							alt={authorData?.data.avatar.alt || ""}
-						/>
-						<div className="flex flex-col">
-							<span className="text-gray-200 text-lg font-light capitalize">
-								{authorData?.uid.replaceAll("-", " ")}
-							</span>
-							<p className="text-sm text-gray-400 flex font-thin">
-								{new Date(`${post.data.data}`).toLocaleDateString("pt-BR", {
-									day: "2-digit",
-									month: "long",
-									year: "numeric",
-								})}
-							</p>
-						</div>
+				<div className="flex gap-3 items-center h-full w-full bg-zinc-950 rounded-md mt-2 p-2">
+					<img
+						src={cdn(authorData?.data.avatar.url as string, 48, 48)}
+						className="rounded-md w-12 h-12"
+						alt={authorData?.data.avatar.alt || ""}
+					/>
+					<div className="flex flex-col">
+						<span className="text-gray-200 text-lg font-light capitalize">
+							{authorData?.uid.replaceAll("-", " ")}
+						</span>
+						<p className="text-sm text-gray-400 flex font-thin">
+							{new Date(`${post.data.data}`).toLocaleDateString("pt-BR", {
+								day: "2-digit",
+								month: "long",
+								year: "numeric",
+							})}
+						</p>
 					</div>
 				</div>
 			</article>

@@ -216,47 +216,40 @@ export default async function PostPage(props: {
 			</div>
 			<div className="w-full flex flex-col gap-5 mt-3">
 				{article.data.review[0]?.estado && (
-					<div
-						style={{
-							background: `url(${cdn(article.data.cover.url as string, 1120, 200)})`,
-						}}
-						className="rounded-md bg-center bg-cover"
-					>
-						<div className="flex max-md:flex-col gap-3 items-center h-full w-full bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-2">
-							<img
-								src={cdn(article.data.cover.url as string, 400, 0)}
-								className="rounded-md aspect-video w-full md:w-40"
-								alt={article.data.cover.alt || ""}
-							/>
-							<div className="flex flex-col max-md:items-center">
-								<h1 className="flex text-white text-lg font-light items-center gap-2 capitalize">
-									{article.data.titulo?.replace("Review - ", "")}
-								</h1>
-								<p className="text-sm text-gray-200 flex font-thin">
-									<PrismicRichText field={article.data.review[0]?.descricao} />
-								</p>
-								<p className="text-xs text-gray-300 font-thin">
-									Descobre como funciona o nosso sistema de notas, lendo a nossa{" "}
-									<Link
-										href={"/review-policy"}
-										className="text-red-600 font-normal"
-									>
-										política de análises
-									</Link>
-									.
-								</p>
-							</div>
-							<div className="flex items-center mx-auto">
-								{reviewWithSteamPage.rating === "Feliz" && (
-									<RiEmotionHappyFill className="w-16 h-16 text-green-400" />
-								)}
-								{reviewWithSteamPage.rating === "Mediano" && (
-									<RiEmotionNormalFill className="w-16 h-16 text-orange-300" />
-								)}
-								{reviewWithSteamPage.rating === "Desiludido" && (
-									<RiEmotionUnhappyFill className="w-16 h-16 text-red-500" />
-								)}
-							</div>
+					<div className="flex max-md:flex-col gap-3 items-center h-full w-full bg-black rounded-md p-2">
+						<img
+							src={cdn(article.data.cover.url as string, 400, 0)}
+							className="rounded-md aspect-video w-full md:w-40"
+							alt={article.data.cover.alt || ""}
+						/>
+						<div className="flex flex-col max-md:items-center">
+							<h1 className="flex text-white text-lg font-light items-center gap-2 capitalize">
+								{article.data.titulo?.replace("Review - ", "")}
+							</h1>
+							<p className="text-sm text-gray-200 flex font-thin">
+								<PrismicRichText field={article.data.review[0]?.descricao} />
+							</p>
+							<p className="text-xs mt-1 text-gray-300 font-thin">
+								Descobre como funciona o nosso sistema de notas, lendo a nossa{" "}
+								<Link
+									href={"/review-policy"}
+									className="text-red-600 font-normal"
+								>
+									política de análises
+								</Link>
+								.
+							</p>
+						</div>
+						<div className="flex items-center mx-auto">
+							{reviewWithSteamPage.rating === "Feliz" && (
+								<RiEmotionHappyFill className="w-16 h-16 text-green-400" />
+							)}
+							{reviewWithSteamPage.rating === "Mediano" && (
+								<RiEmotionNormalFill className="w-16 h-16 text-orange-300" />
+							)}
+							{reviewWithSteamPage.rating === "Desiludido" && (
+								<RiEmotionUnhappyFill className="w-16 h-16 text-red-500" />
+							)}
 						</div>
 					</div>
 				)}
