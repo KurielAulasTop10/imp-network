@@ -103,7 +103,7 @@ export default async function PostPage(props: {
 		preformatted: ({ children }) => (
 			<div className="relative bg-black px-3 py-1 rounded-md my-3 text-lg overflow-hidden">
 				<RiDoubleQuotesR className="absolute top-0 left-1 w-14 h-auto text-zinc-800" />
-				<p className="relative z-10">{children}</p>
+				<blockquote className="relative z-10">{children}</blockquote>
 			</div>
 		),
 		embed: ({ node }) =>

@@ -60,7 +60,9 @@ export default async function PostPage(props: {
 			<h4 className="my-3 text-base font-semibold">{children}</h4>
 		),
 		paragraph: ({ children }) => <p className="my-3 text-base">{children}</p>,
-		preformatted: ({ children }) => <p className="px-3">{children}</p>,
+		preformatted: ({ children }) => (
+			<blockquote className="p-3 pr-3 mb-3">{children}</blockquote>
+		),
 		embed: ({ node }) =>
 			node.oembed.embed_url.includes("youtube.com") ||
 			node.oembed.embed_url.includes("youtu.be") ? (
