@@ -67,7 +67,7 @@ export default async function RootLayout({
 }) {
 	return (
 		<html lang="pt-BR">
-			<body className="bg-[url('https://i.ibb.co/2tSGZgD/subtle-carbon.png')] text-primary relative mx-auto flex w-full flex-col">
+			<body className="bg-[url('/bg.png')] text-primary relative mx-auto flex w-full flex-col">
 				<main className={rubik.className} suppressHydrationWarning>
 					<Header />
 					{children}
