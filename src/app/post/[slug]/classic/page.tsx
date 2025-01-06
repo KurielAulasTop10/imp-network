@@ -229,6 +229,9 @@ export async function generateMetadata(props: {
 					myAuthorData.uid.charAt(0).toUpperCase() + myAuthorData.uid.slice(1),
 				publisher:
 					myAuthorData.uid.charAt(0).toUpperCase() + myAuthorData.uid.slice(1),
+				robots: {
+					index: false,
+				},
 				openGraph: {
 					type: "article",
 					authors: [
