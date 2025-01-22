@@ -33,7 +33,7 @@ export default function Header() {
 
 	return (
 		<nav className="w-full relative">
-			<div className="blur-sm bg-[url(https://i.ibb.co/XSMYhNc/XTAAuLY.webp)] bg-cover bg-center w-full h-60 z-10" />
+			<div className="blur-sm bg-[url(https://i.ibb.co/SxKhpv7/image.webp)] bg-cover bg-center w-full h-60 z-10" />
 			<Link href="/">
 				<img
 					src="/logo.png"

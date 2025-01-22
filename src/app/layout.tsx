@@ -5,8 +5,6 @@ import "@/styles/paginate.css";
 import Footer from "@/components/Footer";
 import { Rubik } from "next/font/google";
 import type { Metadata, Viewport } from "next";
-import Link from "next/link";
-import { headers } from "next/headers";
 import { PrismicPreview } from "@prismicio/next";
 
 export const viewport: Viewport = {
