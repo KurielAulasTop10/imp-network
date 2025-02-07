@@ -17,7 +17,7 @@ interface AnuncioDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField;
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 
   /**
    * Imagem field in *Anúncio*
@@ -141,7 +141,13 @@ export interface PostDocumentDataReviewItem {
    * - **API ID Path**: post.review[].steam_page
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  steam_page: prismic.LinkField;
+  steam_page: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**

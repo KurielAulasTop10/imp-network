@@ -19,6 +19,7 @@ import {
 import Link from "next/link";
 import Script from "next/script";
 import { cdn } from "@/utils/cdn";
+import type { ReactNode } from "react";
 
 export default async function PostPage(props: {
 	params: Promise<{ slug: string }>;
@@ -76,34 +77,44 @@ export default async function PostPage(props: {
 	}
 
 	const richTextComponents: JSXMapSerializer = {
-		heading1: ({ children }) => (
-			<h1 className="my-3 text-2xl font-semibold">{children}</h1>
+		heading1: ({ text }) => (
+			<h1 className="my-3 text-2xl font-semibold">{text}</h1>
 		),
-		heading2: ({ children }) => (
-			<h2 className="my-3 text-xl font-semibold">{children}</h2>
+		heading2: ({ text }) => (
+			<h2 className="my-3 text-xl font-semibold">{text}</h2>
 		),
-		heading3: ({ children }) => (
-			<h3 className="my-3 text-lg font-semibold">{children}</h3>
+		heading3: ({ text }) => (
+			<h3 className="my-3 text-lg font-semibold">{text}</h3>
 		),
-		heading4: ({ children }) => (
-			<h4 className="my-3 text-lg font-semibold">{children}</h4>
+		heading4: ({ text }) => (
+			<h4 className="my-3 text-lg font-semibold">{text}</h4>
 		),
-		paragraph: ({ children }) => (
-			<div>
-				{Math.floor(Math.random() * 15) + 1 === 5 &&
-					adsSorted[0]?.data.link && (
-						<Ad
-							ad={adsSorted}
-							index={Math.floor(Math.random() * adsSorted.length)}
-						/>
-					)}
-				<p className="my-3 text-lg">{children}</p>
-			</div>
-		),
-		preformatted: ({ children }) => (
+		paragraph: ({ children, text }) => {
+			const textString = text as unknown as string;
+			return textString?.startsWith("/vid") ? (
+				// biome-ignore lint/a11y/useMediaCaption: <explanation>
+				<video
+					src={textString.replace("/vid", "")}
+					controls
+					className="rounded-md w-full aspect-video my-3"
+				/>
+			) : (
+				<div>
+					{Math.floor(Math.random() * 15) + 1 === 5 &&
+						adsSorted[0]?.data.link && (
+							<Ad
+								ad={adsSorted}
+								index={Math.floor(Math.random() * adsSorted.length)}
+							/>
+						)}
+					<p className="my-3 text-lg">{children}</p>
+				</div>
+			);
+		},
+		preformatted: ({ text }) => (
 			<div className="relative bg-black px-3 py-1 rounded-md my-3 text-lg overflow-hidden">
 				<RiDoubleQuotesR className="absolute top-0 left-1 w-14 h-auto text-zinc-800" />
-				<blockquote className="relative z-10">{children}</blockquote>
+				<blockquote className="relative z-10">{text}</blockquote>
 			</div>
 		),
 		embed: ({ node }) =>

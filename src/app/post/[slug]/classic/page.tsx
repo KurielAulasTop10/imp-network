@@ -47,21 +47,33 @@ export default async function PostPage(props: {
 	};
 
 	const richTextComponents: JSXMapSerializer = {
-		heading1: ({ children }) => (
-			<h1 className="my-3 text-base font-semibold">{children}</h1>
+		heading1: ({ text }) => (
+			<h1 className="my-3 text-base font-semibold">{text}</h1>
 		),
-		heading2: ({ children }) => (
-			<h2 className="my-3 text-base font-semibold">{children}</h2>
+		heading2: ({ text }) => (
+			<h2 className="my-3 text-base font-semibold">{text}</h2>
 		),
-		heading3: ({ children }) => (
-			<h3 className="my-3 text-base font-semibold">{children}</h3>
+		heading3: ({ text }) => (
+			<h3 className="my-3 text-base font-semibold">{text}</h3>
 		),
-		heading4: ({ children }) => (
-			<h4 className="my-3 text-base font-semibold">{children}</h4>
+		heading4: ({ text }) => (
+			<h4 className="my-3 text-base font-semibold">{text}</h4>
 		),
-		paragraph: ({ children }) => <p className="my-3 text-base">{children}</p>,
-		preformatted: ({ children }) => (
-			<blockquote className="p-3 pr-3 mb-3">{children}</blockquote>
+		paragraph: ({ children, text }) => {
+			const textString = text as unknown as string;
+			return textString?.startsWith("/vid") ? (
+				// biome-ignore lint/a11y/useMediaCaption: <explanation>
+				<video
+					src={textString.replace("/vid", "")}
+					controls
+					className="w-full aspect-video"
+				/>
+			) : (
+				<p className="my-3 text-base">{children}</p>
+			);
+		},
+		preformatted: ({ text }) => (
+			<blockquote className="p-3 pr-3 mb-3">{text}</blockquote>
 		),
 		embed: ({ node }) =>
 			node.oembed.embed_url.includes("youtube.com") ||
