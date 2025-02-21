@@ -28,9 +28,9 @@
     "ts-igdb-client": "^0.4.2"
   },
   "resolutions": {
-    "react": "18.2.0",
-    "@types/react": "18.2.24",
-    "react-dom": "18.2.0"
+    "react": "19.0.0",
+    "@types/react": "19.0.10",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
     "@slicemachine/adapter-next": "^0.3.66",
