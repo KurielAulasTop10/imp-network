@@ -11,7 +11,7 @@ export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 
 	const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
-	const filteredPosts = allPosts.filter((post, index) => {
+	const filteredPosts = allPosts.filter((_, index) => {
 		const start = (currentPage - 1) * postsPerPage;
 		const end = start + postsPerPage;
 		return index >= start && index < end;

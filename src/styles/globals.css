@@ -45,26 +45,6 @@
 }
 
 @layer utilities {
-	.paginate {
-		@apply flex items-center justify-center space-x-2;
-	}
-
-	.paginate li {
-		@apply flex h-8 w-8 select-none items-center justify-center;
-	}
-
-	.paginate li:hover {
-		@apply underline;
-	}
-
-	.paginate .selected {
-		@apply rounded-md bg-red-600 text-white;
-	}
-
-	.paginate .disabled {
-		@apply invisible;
-	}
-
 	html {
 		color-scheme: none !important;
 		scroll-behavior: smooth;

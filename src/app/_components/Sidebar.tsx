@@ -155,30 +155,33 @@ export default async function Sidebar() {
 			<div
 				className={`grid ${gamesData.data.length <= 2 ? `grid-cols-${gamesData.data.length}` : "grid-cols-3"} gap-3 w-full`}
 			>
-				{gamesData.data.map((game, index) =>
-					coversData[index]?.url === undefined ? (
-						// biome-ignore lint/correctness/useJsxKeyInIterable: <explanation>
-						<></>
-					) : (
-						<Link
-							target="_blank"
-							href={game.url as Url}
-							key={game.id}
-							className="hover:opacity-80 h-full w-full"
-						>
-							<img
-								src={cdn(
-									`https:${coversData[index]?.url?.replace("t_thumb", "t_cover_big")}`,
-									264,
-									352,
-								)}
-								alt={game.name as string}
-								// Added w-full to make image take full width of container
-								className="rounded-md w-full"
-							/>
-						</Link>
-					),
-				)}
+				{gamesData.data
+					.filter((game, index) => {
+						return game.url && coversData[index]?.id;
+					})
+					.map((game) => {
+						const coverIndex = gamesData.data.findIndex(
+							(g) => g.id === game.id,
+						);
+						return (
+							<Link
+								target="_blank"
+								href={game.url as Url}
+								key={game.id}
+								className="hover:opacity-80 h-full w-full"
+							>
+								<img
+									src={cdn(
+										`https:${coversData[coverIndex]?.url?.replace("t_thumb", "t_cover_big")}`,
+										264,
+										352,
+									)}
+									alt={game.name as string}
+									className="rounded-md w-full"
+								/>
+							</Link>
+						);
+					})}
 			</div>
 		</div>
 	);
