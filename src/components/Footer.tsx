@@ -32,7 +32,7 @@ export default function Footer() {
 					{links.map(({ title, href }) => (
 						<Link
 							href={href}
-							key={href}
+							key={title + href}
 							className="text-white hover:text-red-600"
 						>
 							{title}

@@ -21,7 +21,7 @@ export default function SearchBar() {
 				}}
 				value={searchTerm}
 				className={
-					"w-full rounded-l-md border-[1px] border-black p-2 text-lg font-normal hover:border-red-600 focus:border-red-600 focus:outline-none bg-black focus:bg-zinc-950"
+					"w-full rounded-l-md border-[1px] border-black p-2 text-lg font-normal hover:border-red-600 focus:border-red-600 focus:outline-hidden bg-black focus:bg-zinc-950"
 				}
 			/>
 			<button

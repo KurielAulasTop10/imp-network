@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import ScrollUpButton from "@/components/ScrollUpButton";
 import "@/styles/globals.css";
-import "@/styles/paginate.css";
 import Footer from "@/components/Footer";
 import { Rubik } from "next/font/google";
 import type { Metadata, Viewport } from "next";

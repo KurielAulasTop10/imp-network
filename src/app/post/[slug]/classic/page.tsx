@@ -135,7 +135,7 @@ export default async function PostPage(props: {
 						{article.tags.map((category) => (
 							<Link
 								href={`/categoria/${category}`}
-								key={category}
+								key={article.data.titulo + category}
 								className="text-red-500 hover:text-red-600 text-base capitalize font-normal"
 							>
 								{category}

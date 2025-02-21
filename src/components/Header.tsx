@@ -33,7 +33,7 @@ export default function Header() {
 
 	return (
 		<nav className="w-full relative">
-			<div className="blur-sm bg-[url(https://i.ibb.co/SxKhpv7/image.webp)] bg-cover bg-center w-full h-60 z-10" />
+			<div className="blur-xs bg-[url(https://i.ibb.co/SxKhpv7/image.webp)] bg-cover bg-center w-full h-60 z-10" />
 			<Link href="/">
 				<img
 					src="/logo.png"
@@ -50,17 +50,17 @@ export default function Header() {
 						<DropdownMenu.Portal>
 							<DropdownMenu.Content className="bg-black rounded-md text-white mt-1.5 font-normal text-md p-2">
 								<Link href={"/categoria/anime"}>
-									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 										<RiTvFill /> Animes
 									</DropdownMenu.Item>
 								</Link>
 								<Link href={"/categoria/cinema"}>
-									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 										<RiProjector2Fill /> Cinema
 									</DropdownMenu.Item>
 								</Link>
 								<DropdownMenu.Sub>
-									<DropdownMenu.SubTrigger className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+									<DropdownMenu.SubTrigger className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 										<div className="flex items-center gap-1">
 											<RiGameFill />
 											Games
@@ -71,18 +71,18 @@ export default function Header() {
 									<DropdownMenu.Portal>
 										<DropdownMenu.SubContent className="bg-black rounded-md text-white ml-2 font-normal text-md p-2">
 											<Link href={"/categoria/grátis"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 													<RiTimerFlashFill />
 													Grátis
 												</DropdownMenu.Item>
 											</Link>
 											<Link href={"/categoria/notícia"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 													<RiNewspaperFill /> Notícias
 												</DropdownMenu.Item>
 											</Link>
 											<Link href={"/categoria/guia"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 													<RiGuideFill /> Guias
 												</DropdownMenu.Item>
 											</Link>
@@ -90,7 +90,7 @@ export default function Header() {
 									</DropdownMenu.Portal>
 								</DropdownMenu.Sub>
 								<DropdownMenu.Sub>
-									<DropdownMenu.SubTrigger className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+									<DropdownMenu.SubTrigger className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 										<div className="flex items-center gap-1">
 											<RiGamepadFill />
 											Plataformas
@@ -101,23 +101,23 @@ export default function Header() {
 									<DropdownMenu.Portal>
 										<DropdownMenu.SubContent className="bg-black rounded-md text-white ml-2 font-normal text-md p-2">
 											<Link href={"/categoria/nintendo"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 													<BsNintendoSwitch />
 													Nintendo
 												</DropdownMenu.Item>
 											</Link>
 											<Link href={"/categoria/pc"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 													<RiComputerLine /> PC
 												</DropdownMenu.Item>
 											</Link>
 											<Link href={"/categoria/playstation"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 													<RiPlaystationFill /> PlayStation
 												</DropdownMenu.Item>
 											</Link>
 											<Link href={"/categoria/xbox"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 													<RiXboxFill /> Xbox
 												</DropdownMenu.Item>
 											</Link>
@@ -125,12 +125,12 @@ export default function Header() {
 									</DropdownMenu.Portal>
 								</DropdownMenu.Sub>
 								<Link href={"/categoria/review"}>
-									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 										<RiStarSmileFill /> Reviews
 									</DropdownMenu.Item>
 								</Link>
 								<Link href={"/categoria/tech"}>
-									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-none px-3 py-1 hover:bg-red-900">
+									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 										<RiCpuLine /> Tech
 									</DropdownMenu.Item>
 								</Link>

@@ -115,7 +115,7 @@ export default async function Sidebar() {
 				</Link>
 				<Link
 					href="https://www.instagram.com/imperionetwork6"
-					className="w-full flex bg-gradient-to-r hover:text-black from-[#ee2a7b] to-[#6228d7] p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+					className="w-full flex bg-linear-to-r hover:text-black from-[#ee2a7b] to-[#6228d7] p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
 					target="_blank"
 				>
 					<BsInstagram />
@@ -136,7 +136,7 @@ export default async function Sidebar() {
 				</Link>
 				<Link
 					href="https://www.twitch.tv/imp3rionetwork"
-					className="w-full flex bg-gradient-to-r hover:text-black from-[#772CE8] to-[#9146FF] p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+					className="w-full flex bg-linear-to-r hover:text-black from-[#772CE8] to-[#9146FF] p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
 					target="_blank"
 				>
 					<BsTwitch />

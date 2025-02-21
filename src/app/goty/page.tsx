@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function GOTYPage() {
 	return (
-		<div className="min-h-screen bg-gradient-to-b text-white">
+		<div className="min-h-screen bg-linear-to-b text-white">
 			<div className="mx-auto px-2 py-16">
 				<div className="flex flex-col items-center justify-center md:flex-row gap-12">
 					<div className="relative w-full max-w-lg">
@@ -100,7 +100,7 @@ export default function GOTYPage() {
 							},
 						].map((nominee) => (
 							<div
-								key={nominee.title}
+								key={nominee.title + nominee.image}
 								className="flex flex-col bg-black rounded-md p-5 gap-3"
 							>
 								<img

@@ -6,7 +6,6 @@ import CategoryList from "@/components/CategoryList";
 import AuthorBox from "@/components/posts/AuthorBox";
 import { type JSXMapSerializer, PrismicRichText } from "@prismicio/react";
 import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
-import Comments from "./_components/Comments";
 import Ad from "./_components/Ad";
 import {
 	RiBookReadFill,
@@ -19,7 +18,6 @@ import {
 import Link from "next/link";
 import Script from "next/script";
 import { cdn } from "@/utils/cdn";
-import type { ReactNode } from "react";
 
 export default async function PostPage(props: {
 	params: Promise<{ slug: string }>;
@@ -279,7 +277,6 @@ export default async function PostPage(props: {
 					lang={author.lang}
 					alternate_languages={author.alternate_languages}
 				/>
-				<Comments uid={article.uid} />
 				<Script src="https://platform.twitter.com/widgets.js" async />
 			</div>
 		</article>

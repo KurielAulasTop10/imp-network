@@ -1,71 +1,115 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer components {
-	.bg-primary {
-		@apply bg-[#151516];
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(class *));
+
+@theme {
+	--color-custom-gray-light: #2e3039;
+	--color-custom-gray-base: #eeeeee;
+	--color-custom-gray-dark: #1f2028;
+
+	--radius-lg: var(--radius);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-sm: calc(var(--radius) - 4px);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentColor);
+	}
+}
+
+@utility bg-primary {
+	@apply bg-[#151516];
+}
+
+@utility bg-secondary {
+	@apply bg-[#2e3039];
+}
+
+@utility text-primary {
+	@apply text-white;
+}
+
+@layer utilities {
+	.paginate {
+		@apply flex items-center justify-center space-x-2;
 	}
 
-	.bg-secondary {
-		@apply bg-customGray-light;
+	.paginate li {
+		@apply flex h-8 w-8 select-none items-center justify-center;
 	}
 
-	.text-primary {
-		@apply text-white;
+	.paginate li:hover {
+		@apply underline;
 	}
 
-	.text-secondary {
-		@apply text-slate-500;
+	.paginate .selected {
+		@apply rounded-md bg-red-600 text-white;
+	}
+
+	.paginate .disabled {
+		@apply invisible;
+	}
+
+	html {
+		color-scheme: none !important;
+		scroll-behavior: smooth;
+		background: #000;
+	}
+
+	*::-webkit-scrollbar {
+		height: 7px;
+		width: 7px;
+	}
+	*::-webkit-scrollbar-track {
+		border-radius: 20px;
+		background-color: #151516;
+	}
+
+	*::-webkit-scrollbar-track:hover {
+		background-color: #151516;
+	}
+
+	*::-webkit-scrollbar-track:active {
+		background-color: #151516;
+	}
+
+	*::-webkit-scrollbar-thumb {
+		border-radius: 20px;
+		background-color: #d95659;
+	}
+
+	*::-webkit-scrollbar-thumb:hover {
+		background-color: #f87171;
+	}
+
+	*::-webkit-scrollbar-thumb:active {
+		background-color: #f87171;
+	}
+
+	a,
+	div,
+	button {
+		-webkit-tap-highlight-color: transparent;
 	}
 }
-
-html {
-	color-scheme: none !important;
-	scroll-behavior: smooth;
-	background: #000;
-}
-
-*::-webkit-scrollbar {
-  height: 7px;
-  width: 7px;
-}
-*::-webkit-scrollbar-track {
-  border-radius: 20px;
-  background-color: #151516;
-}
-
-*::-webkit-scrollbar-track:hover {
-  background-color: #151516;
-}
-
-*::-webkit-scrollbar-track:active {
-  background-color: #151516;
-}
-
-*::-webkit-scrollbar-thumb {
-  border-radius: 20px;
-  background-color: #D95659;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background-color: #F87171;
-}
-
-*::-webkit-scrollbar-thumb:active {
-  background-color: #F87171;
-}
-
-
-a,
-div,
-button {
-	-webkit-tap-highlight-color: transparent;
-}
-
 
 @layer base {
-  :root {
+	:root {
 		--radius: 0.5rem;
 	}
 }
