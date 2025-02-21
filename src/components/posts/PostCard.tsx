@@ -91,7 +91,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 		</div>
 	) : (
 		<Link href={`/post/${post.uid}`}>
-			<article className="rounded-md bg-black w-full h-full hover:opacity-70 transition-all duration-300 p-2 mx-auto flex flex-col justify-between">
+			<article className="rounded-md bg-black w-full h-full hover:outline-1 outline-offset-2 outline-red-600 transition-all duration-300 p-2 mx-auto flex flex-col justify-between">
 				<div className="w-full h-full">
 					<div className="relative overflow-hidden mb-2">
 						<img

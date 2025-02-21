@@ -25,7 +25,7 @@ export default function SearchBar() {
 				}
 			/>
 			<button
-				className="bg-red-600 rounded-r-md p-3"
+				className="bg-red-600 rounded-r-md p-3 cursor-pointer"
 				type="submit"
 				onClick={() => {
 					return redirect(`/search?q=${encodeURIComponent(searchTerm)}`);
