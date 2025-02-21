@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+	RiAppStoreFill,
 	RiArrowDropDownLine,
 	RiComputerLine,
 	RiCpuLine,
@@ -44,7 +45,7 @@ export default function Header() {
 			<div className="w-full flex items-center px-5 rounded-b-md">
 				<div className="w-full text-white font-normal uppercase flex gap-2.5 items-center justify-start text-sm">
 					<DropdownMenu.Root>
-						<DropdownMenu.Trigger className="absolute top-5 left-5 hover:text-red-600">
+						<DropdownMenu.Trigger className="absolute top-5 left-5 hover:text-red-600 cursor-pointer">
 							<RiMenuFill size={28} />
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Portal>
@@ -119,6 +120,11 @@ export default function Header() {
 											<Link href={"/categoria/xbox"}>
 												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
 													<RiXboxFill /> Xbox
+												</DropdownMenu.Item>
+											</Link>
+											<Link href={"/categoria/mobile"}>
+												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
+													<RiAppStoreFill /> Mobile
 												</DropdownMenu.Item>
 											</Link>
 										</DropdownMenu.SubContent>
