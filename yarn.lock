@@ -624,13 +624,13 @@
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
 "@slicemachine/adapter-next@^0.3.66":
-  version "0.3.68"
-  resolved "https://registry.yarnpkg.com/@slicemachine/adapter-next/-/adapter-next-0.3.68.tgz#a204d392d44508367bff64b8283706f8d00a92bb"
-  integrity sha512-2f/kM/Zlx3W4u8O7cLQpzjaij0upBGcv+2NwgX3R/9Q1pZz5QZoiIL3CUrsP4xncDZCeuAsHFHtdhxq2TYxbyg==
+  version "0.3.69"
+  resolved "https://registry.yarnpkg.com/@slicemachine/adapter-next/-/adapter-next-0.3.69.tgz#c9e3d0e33a8cc9b751b09f20ce3a1927b5867578"
+  integrity sha512-JhGJJ0JYIQYEn0538Qw7Ad2D0+OTgSMUc7b3GnoY0n0BQK/tVRSp6W1jpZbySWXZELuqDBjjzikjpuVXEHBcCQ==
   dependencies:
     "@prismicio/simulator" "^0.1.4"
     "@prismicio/types-internal" "3.6.0"
-    "@slicemachine/plugin-kit" "0.4.67"
+    "@slicemachine/plugin-kit" "0.4.68"
     common-tags "^1.8.2"
     fp-ts "^2.13.1"
     io-ts "^2.2.20"
