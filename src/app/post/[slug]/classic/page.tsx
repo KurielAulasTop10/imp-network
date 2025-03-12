@@ -109,7 +109,7 @@ export default async function PostPage(props: {
 			<Link
 				href={node.data.url as string}
 				target={
-					node.data.url?.includes("imperionetwork.me") ? undefined : "_blank"
+					node.data.url?.includes("imperionetwork.fr") ? undefined : "_blank"
 				}
 				className="text-red-500 hover:text-red-600"
 			>

@@ -142,7 +142,7 @@ export default async function Sidebar() {
 					<BsTwitch />
 				</Link>
 				<Link
-					href="https://bsky.app/profile/imperionetwork.me"
+					href="https://bsky.app/profile/imperionetwork.fr"
 					className="w-full flex bg-blue-600 hover:text-black p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
 					target="_blank"
 				>
