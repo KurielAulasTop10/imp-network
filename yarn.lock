@@ -1402,13 +1402,13 @@
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
 "@slicemachine/adapter-next@^0.3.66":
-  version "0.3.69"
-  resolved "https://registry.yarnpkg.com/@slicemachine/adapter-next/-/adapter-next-0.3.69.tgz#c9e3d0e33a8cc9b751b09f20ce3a1927b5867578"
-  integrity sha512-JhGJJ0JYIQYEn0538Qw7Ad2D0+OTgSMUc7b3GnoY0n0BQK/tVRSp6W1jpZbySWXZELuqDBjjzikjpuVXEHBcCQ==
+  version "0.3.70"
+  resolved "https://registry.yarnpkg.com/@slicemachine/adapter-next/-/adapter-next-0.3.70.tgz#6b7fad06cd54842435d842ecdce02c1a4d082f68"
+  integrity sha512-vux0y0zwL58sd4ZSKmUo80Ol3wysuvL/yqrgf7N8t9ZOsjSgUZmuS3RYdDOwaYL+YzRnOhW8oGgN5tydst7hVg==
   dependencies:
     "@prismicio/simulator" "^0.1.4"
     "@prismicio/types-internal" "3.6.0"
-    "@slicemachine/plugin-kit" "0.4.68"
+    "@slicemachine/plugin-kit" "0.4.69"
     common-tags "^1.8.2"
     fp-ts "^2.13.1"
     io-ts "^2.2.20"
@@ -1454,6 +1454,23 @@
   version "0.4.68"
   resolved "https://registry.yarnpkg.com/@slicemachine/plugin-kit/-/plugin-kit-0.4.68.tgz#d6aaa96a620cfd149fe2d12db2f13627f64448ed"
   integrity sha512-mUVzWj5jSHaFVnNIXjMWr5CH8SG0hX785SAw/lTr+LdHjey40GJBqnRLDfNEh1gb4Qo+GyJn6XS3B+jFlSC0Hg==
+  dependencies:
+    "@prismicio/client" "7.16.1"
+    common-tags "^1.8.2"
+    defu "^6.1.2"
+    dotenv "16.3.1"
+    fp-ts "^2.13.1"
+    fs-extra "11.1.1"
+    io-ts "^2.2.20"
+    io-ts-reporters "^2.0.1"
+    p-limit "^4.0.0"
+    prettier "^3.0.3"
+    prismic-ts-codegen "0.1.25"
+
+"@slicemachine/plugin-kit@0.4.69":
+  version "0.4.69"
+  resolved "https://registry.yarnpkg.com/@slicemachine/plugin-kit/-/plugin-kit-0.4.69.tgz#456b8c1bc6806514eaa082499ac2de9e67d56329"
+  integrity sha512-jdc4haz3Leoi9QGTDgtoN5W+75xjpiumgI4Q5MQtPAeJdOVHfWm+tnEEadrbuigOwQ1/96ONBee0vq+pFh3g+A==
   dependencies:
     "@prismicio/client" "7.16.1"
     common-tags "^1.8.2"
