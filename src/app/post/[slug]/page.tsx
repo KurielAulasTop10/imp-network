@@ -213,6 +213,50 @@ export default async function PostPage(props: {
 					field={article.data.editor}
 					components={richTextComponents}
 				/>
+				{article.tags.includes("Grátis") &&
+					article.data.titulo?.includes("Epic Games") && (
+						<>
+							<hr />
+							<h1 className="my-3 text-2xl font-semibold text-center">
+								Perguntas comuns
+							</h1>
+							<h2 className="my-3 text-xl font-semibold">
+								Página com Missing account id
+							</h2>
+							<p className="my-3 text-lg">
+								Logue na Epic Games primeiro no <b>seu navegador habitual</b>.
+								Não use navegadores diferentes no processo.
+							</p>
+							<h2 className="my-3 text-xl font-semibold">
+								O checkout deu erro "Não foi possível completar esta compra"
+							</h2>
+							<p className="my-3 text-lg">
+								Você já tem <b>um ou mais jogos</b> do carrinho na sua
+								biblioteca. Se faltar algum, use a própria página da Epic Games
+								para adicionar.
+							</p>
+							<h2 className="my-3 text-xl font-semibold">
+								Preciso instalar a loja?
+							</h2>
+							<p className="my-3 text-lg">
+								Não, <b>você nunca será obrigado</b> a instalar a Epic Games
+								para resgatar qualquer jogo. A instalação de jogos pode ser
+								exigido o programa, porém é possível instalar jogos no PC com
+								scripts em launchers externos.
+							</p>
+							<h2 className="my-3 text-xl font-semibold">
+								Existe algum padrão na Epic Games?
+							</h2>
+							<p className="my-3 text-lg">
+								Sim, a Epic Games possui um padrão de oferecer jogos gratuitos
+								para PC e Mobile nas quintas-feiras às{" "}
+								<b>15h ou 16h (Lisboa) | 11h ou 12h (Brasília)</b> e podem ser
+								resgatados durante 1 semana. Exceto campanhas de Natal em que
+								é só possível resgatar durante 24 horas e sendo um jogo novo
+								todos os dias.
+							</p>
+						</>
+					)}
 				{reviewWithSteamPage?.steam_page?.url && (
 					// biome-ignore lint/style/useSelfClosingElements: <explanation>
 					<iframe
