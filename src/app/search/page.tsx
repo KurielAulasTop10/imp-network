@@ -10,14 +10,10 @@ import { Suspense } from "react";
 async function SearchResults() {
 	const searchParams = useSearchParams();
 	const q = searchParams.get("q");
-	const query = q || "";
 
 	const client = createClient({
 		accessToken:
 			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
-		fetchOptions: {
-			cache: "no-store",
-		},
 	});
 
 	const allPosts = await client.getAllByType("post", {
@@ -25,7 +21,7 @@ async function SearchResults() {
 			field: "my.post.data",
 			direction: "desc",
 		},
-		filters: [filter.fulltext("my.post.titulo", query)],
+		filters: [filter.fulltext("my.post.titulo", q as string)],
 	});
 
 	return (
@@ -37,7 +33,13 @@ async function SearchResults() {
 
 export default function SearchPage() {
 	return (
-		<Suspense fallback={<p>Carregando... Aguarde alguns segundos.</p>}>
+		<Suspense
+			fallback={
+				<p className="text-center py-[25vh]">
+					Carregando... Aguarde alguns segundos.
+				</p>
+			}
+		>
 			<SearchResults />
 		</Suspense>
 	);

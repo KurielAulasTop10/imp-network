@@ -37,7 +37,7 @@ export async function GET() {
 	});
 
 	if (allPosts) {
-		allPosts.splice(0, 12).map((post) => {
+		allPosts.map((post) => {
 			feed.item({
 				title: post.data.titulo as string,
 				description: post.data.titulo as string,
