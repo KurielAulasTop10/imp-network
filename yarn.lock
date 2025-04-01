@@ -767,11 +767,10 @@
     uuid "^9.0.1"
 
 "@prismicio/next@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@prismicio/next/-/next-2.0.0.tgz#84af58f1270467358642ec3addf041ecb698ecba"
-  integrity sha512-pSobip5Cq6eqNzB7v8OHIU22O/LyJde9NsIwl6CySqm70cpeR4V7UtPKV1MohNiskYFpVV8xv8WdkxsDyhlPtw==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@prismicio/next/-/next-2.0.1.tgz#161c02f51c78d919f07dc51a8ecf3b4393d3b861"
+  integrity sha512-wIC7pNd6nmdK3ZzlF1U+XGPRER7vL1zQdasvU3USdxWO1cxjdaK3LgFrpU28YZYH2RaGHmC5Wa303faILH86HQ==
   dependencies:
-    esm-env "^1.2.1"
     imgix-url-builder "^0.0.5"
 
 "@prismicio/react@^3.0.0":
@@ -2221,7 +2220,7 @@ escape-html@~1.0.3:
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==
 
-esm-env@^1.2.1, esm-env@^1.2.2:
+esm-env@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/esm-env/-/esm-env-1.2.2.tgz#263c9455c55861f41618df31b20cb571fc20b75e"
   integrity sha512-Epxrv+Nr/CaL4ZcFGPJIYLWFom+YeV1DqMLHJoEd9SYRxNbaFruBwfEX/kkHUJf55j2+TUbmDcmuilbP1TmXHA==
