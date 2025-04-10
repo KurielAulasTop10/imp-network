@@ -734,11 +734,11 @@
     imgix-url-builder "^0.0.5"
 
 "@prismicio/client@^7.16.1":
-  version "7.17.0"
-  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-7.17.0.tgz#7b8f12fbc76e02a23fe817a1a0d8410d83fc40f6"
-  integrity sha512-7e1ICYk4IAxKX8zmtCOy9e8rXeeT9A45ZgJY9lNNWqUaL1LW/ilXnh/SsAZG/G5q14JyRJHwBIGIzcKY9hjJhw==
+  version "7.17.2"
+  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-7.17.2.tgz#fdd60beb77166332120a289ccc09ba5d05ea0ea6"
+  integrity sha512-4ijxHuuzwwH4hU+QVrpGwEEBPST1D3fjqW37aXbDVhTnZbedrx/jkblGQpRisLs3m7AANuzpm46UNLWcgUDZKw==
   dependencies:
-    imgix-url-builder "^0.0.5"
+    imgix-url-builder "^0.0.6"
 
 "@prismicio/custom-types-client@2.1.0":
   version "2.1.0"
@@ -2646,6 +2646,11 @@ imgix-url-builder@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/imgix-url-builder/-/imgix-url-builder-0.0.5.tgz#641e4af7fc1443d3f9f30f3c1331e4c1a2ad9832"
   integrity sha512-dCx3UlXghtsjySoqVCcHQHRikqDummwQEfKlxBUK/wrMzd+1ox/XX+zhqVuXKMVuZvCc84pVLEJyntQB0OOi/w==
+
+imgix-url-builder@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/imgix-url-builder/-/imgix-url-builder-0.0.6.tgz#5bed6f1a0969f6f3ad91fa876f1c7c39071a0823"
+  integrity sha512-lFVbvaE9vMck8qz9j+y6o7vsyc1vZhdqzWu+Wp/nlnOCi9zAErc31QMkZKYUGMNLLzxOO4YIBAUPndTPah8HFg==
 
 import-in-the-middle@^1.13.0, import-in-the-middle@^1.8.1:
   version "1.13.1"
