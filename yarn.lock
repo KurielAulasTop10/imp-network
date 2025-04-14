@@ -786,9 +786,9 @@
     imgix-url-builder "^0.0.5"
 
 "@prismicio/react@^3.0.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@prismicio/react/-/react-3.2.0.tgz#6f560e02f98738bac3becd7c78f38ee5d93a5724"
-  integrity sha512-oxn7EfJOhdYe2UNLymPQUNurhcV7zbeEHmG6pQ6IKI5FRqtyJB3xlqqW02Zq01YOYHVihnfNwfPXtAxAn/9E4Q==
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@prismicio/react/-/react-3.2.1.tgz#74b5676dcba05985e88306eeba00684181f8b165"
+  integrity sha512-osNwJ/M53l5ck7ScetYgkrye3NuPxCQOBR9kMSnUjg0C0YaIqeNLOrnMBm8IW319+XsdXO0uI72jg+9N4k7xhg==
   dependencies:
     esm-env "^1.2.2"
 
