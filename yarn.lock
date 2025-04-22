@@ -738,14 +738,7 @@
   dependencies:
     imgix-url-builder "^0.0.5"
 
-"@prismicio/client@^7.1.0":
-  version "7.16.1"
-  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-7.16.1.tgz#413ed3bd6b5ba3166a4ea2de9bfdb41f08d3e095"
-  integrity sha512-mH3JtysZyQv47OYWzuxp8vW3uWllMBJa6HD2j4cfc7vLCoxGxMrvH6Ttw12KMnChg2/exwFdq3K1OvHAtyEVdQ==
-  dependencies:
-    imgix-url-builder "^0.0.5"
-
-"@prismicio/client@^7.17.2":
+"@prismicio/client@^7.1.0", "@prismicio/client@^7.17.2":
   version "7.17.2"
   resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-7.17.2.tgz#fdd60beb77166332120a289ccc09ba5d05ea0ea6"
   integrity sha512-4ijxHuuzwwH4hU+QVrpGwEEBPST1D3fjqW37aXbDVhTnZbedrx/jkblGQpRisLs3m7AANuzpm46UNLWcgUDZKw==
@@ -1403,13 +1396,13 @@
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
 "@slicemachine/adapter-next@^0.3.74":
-  version "0.3.74"
-  resolved "https://registry.yarnpkg.com/@slicemachine/adapter-next/-/adapter-next-0.3.74.tgz#489eecc64bf72a42850abeb1597e629ad7637f33"
-  integrity sha512-cBKlfDMlZnTTLxAX8y5T8a77PXahy3lU4QUgD5kJnPR81HL8Avzbvst27xcXN4uo3SrlY2Satn3v9hLOdLSNuQ==
+  version "0.3.75"
+  resolved "https://registry.yarnpkg.com/@slicemachine/adapter-next/-/adapter-next-0.3.75.tgz#02d6ae4a6f99266def71369cc9fc7aed4f5661c1"
+  integrity sha512-t8obKHVr1bW4SKvpu8TRL97dPhLYrivZBEEaZPy5mTLVRCOl3J4Kf8A10fwfZeuhuJECSWxXrqUCABmU8NcDRQ==
   dependencies:
     "@prismicio/simulator" "^0.1.4"
     "@prismicio/types-internal" "3.8.0"
-    "@slicemachine/plugin-kit" "0.4.73"
+    "@slicemachine/plugin-kit" "0.4.74"
     common-tags "^1.8.2"
     fp-ts "^2.13.1"
     io-ts "^2.2.20"
@@ -1455,6 +1448,23 @@
   version "0.4.73"
   resolved "https://registry.yarnpkg.com/@slicemachine/plugin-kit/-/plugin-kit-0.4.73.tgz#f0df3e25ee46250f2cb0540647357da8b456bf98"
   integrity sha512-MERWFCuiYrvhkIL+hoMxZVKDOXkqVZ7wSoEumc2wMAnyFyngso1/rfM/40X0HWSmlDjDFaImOuA2W5XtZ2X2Wg==
+  dependencies:
+    "@prismicio/client" "7.17.0"
+    common-tags "^1.8.2"
+    defu "^6.1.2"
+    dotenv "16.3.1"
+    fp-ts "^2.13.1"
+    fs-extra "11.1.1"
+    io-ts "^2.2.20"
+    io-ts-reporters "^2.0.1"
+    p-limit "^4.0.0"
+    prettier "^3.0.3"
+    prismic-ts-codegen "0.1.25"
+
+"@slicemachine/plugin-kit@0.4.74":
+  version "0.4.74"
+  resolved "https://registry.yarnpkg.com/@slicemachine/plugin-kit/-/plugin-kit-0.4.74.tgz#10bc12734ac76392dadd45977356038a574add8f"
+  integrity sha512-wdarbRyZVhsm71gr2u0Pmp83qVwTaVSWC2xH7oQ8ATP6ja2ywS1OKoJiRkpF+ITiZk6KmYCGWGE0om8Bl+QXjg==
   dependencies:
     "@prismicio/client" "7.17.0"
     common-tags "^1.8.2"
@@ -2426,10 +2436,15 @@ forwarded@0.2.0:
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.2.0.tgz#2269936428aad4c15c7ebe9779a84bf0b2a81811"
   integrity sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==
 
-fp-ts@^2.11.8, fp-ts@^2.13.1:
+fp-ts@^2.11.8:
   version "2.16.9"
   resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.16.9.tgz#99628fc5e0bb3b432c4a16d8f4455247380bae8a"
   integrity sha512-+I2+FnVB+tVaxcYyQkHUq7ZdKScaBlX53A41mxQtpIccsfyv8PzdzP7fzp2AY832T4aoK6UZ5WRX/ebGd8uZuQ==
+
+fp-ts@^2.13.1:
+  version "2.16.10"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.16.10.tgz#829b82a46571c2dc202bed38a9c2eeec603e38c4"
+  integrity sha512-vuROzbNVfCmUkZSUbnWSltR1sbheyQbTzug7LB/46fEa1c0EucLeBaCEUE0gF3ZGUGBt9lVUiziGOhhj6K1ORA==
 
 fresh@0.5.2:
   version "0.5.2"
@@ -4340,6 +4355,6 @@ yocto-queue@^0.1.0:
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
 yocto-queue@^1.0.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.2.0.tgz#4a29a93e7591328fa31768701e6ea66962401f79"
-  integrity sha512-KHBC7z61OJeaMGnF3wqNZj+GGNXOyypZviiKpQeiHirG5Ib1ImwcLBH70rbMSkKfSmUNBsdf2PwaEJtKvgmkNw==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.2.1.tgz#36d7c4739f775b3cbc28e6136e21aa057adec418"
+  integrity sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==
