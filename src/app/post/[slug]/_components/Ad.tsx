@@ -15,7 +15,10 @@ interface AnuncioDocumentData {
 export default async function Ad({
 	ad,
 	index,
-}: { ad: AnuncioDocumentData[]; index: number }) {
+}: {
+	ad: AnuncioDocumentData[];
+	index: number;
+}) {
 	return (
 		<Link href={ad[index].data.link?.url as string} target="_blank">
 			<img

@@ -1,48 +1,48 @@
 {
-  "format": "custom",
-  "id": "author",
-  "label": "Author",
-  "repeatable": true,
-  "status": true,
-  "json": {
-    "Main": {
-      "uid": {
-        "config": {
-          "label": "UID"
-        },
-        "type": "UID"
-      },
-      "avatar": {
-        "type": "Image",
-        "config": {
-          "label": "Avatar",
-          "constraint": {
-            "width": 512,
-            "height": 512
-          },
-          "thumbnails": []
-        }
-      },
-      "banner": {
-        "type": "Image",
-        "config": {
-          "label": "Banner",
-          "constraint": {
-            "width": 640,
-            "height": 360
-          },
-          "thumbnails": []
-        }
-      },
-      "descricao": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Descrição",
-          "placeholder": "",
-          "allowTargetBlank": false,
-          "multi": "paragraph"
-        }
-      }
-    }
-  }
+	"format": "custom",
+	"id": "author",
+	"label": "Author",
+	"repeatable": true,
+	"status": true,
+	"json": {
+		"Main": {
+			"uid": {
+				"config": {
+					"label": "UID"
+				},
+				"type": "UID"
+			},
+			"avatar": {
+				"type": "Image",
+				"config": {
+					"label": "Avatar",
+					"constraint": {
+						"width": 512,
+						"height": 512
+					},
+					"thumbnails": []
+				}
+			},
+			"banner": {
+				"type": "Image",
+				"config": {
+					"label": "Banner",
+					"constraint": {
+						"width": 640,
+						"height": 360
+					},
+					"thumbnails": []
+				}
+			},
+			"descricao": {
+				"type": "StructuredText",
+				"config": {
+					"label": "Descrição",
+					"placeholder": "",
+					"allowTargetBlank": false,
+					"multi": "paragraph"
+				}
+			}
+		}
+	}
 }

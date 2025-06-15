@@ -40,8 +40,9 @@ export default function PostCard({ post }: { post: PostDocument }) {
 		Steam: "https://i.ibb.co/jwYJRbs/oEhWYim.png",
 		GOG: "https://i.ibb.co/t2NxFCz/u8RRwED.png",
 		"Microsoft Store": "https://i.ibb.co/r6jqsyg/JfegpEx.png",
-		"Xbox Store": "https://i.ibb.co/x5XskjC/4xbmz8O.png",
+		"Xbox Store": "https://i.ibb.co/nq3GNMrK/20228.png",
 		"PlayStation Store": "https://i.ibb.co/PC0tdw4/qMaP7m0.png",
+		Xbox: "https://i.ibb.co/nq3GNMrK/20228.png",
 	};
 
 	function getFreeSource(title: string): keyof typeof frees {

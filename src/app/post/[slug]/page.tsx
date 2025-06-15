@@ -251,9 +251,9 @@ export default async function PostPage(props: {
 								Sim, a Epic Games possui um padrão de oferecer jogos gratuitos
 								para PC e Mobile nas quintas-feiras às{" "}
 								<b>15h ou 16h (Lisboa) | 11h ou 12h (Brasília)</b> e podem ser
-								resgatados durante 1 semana. Exceto campanhas de Natal em que
-								é só possível resgatar durante 24 horas e sendo um jogo novo
-								todos os dias.
+								resgatados durante 1 semana. Exceto campanhas de Natal em que é
+								só possível resgatar durante 24 horas e sendo um jogo novo todos
+								os dias.
 							</p>
 						</>
 					)}
