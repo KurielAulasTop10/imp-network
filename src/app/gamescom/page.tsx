@@ -1,9 +1,6 @@
-import { SchedulerProvider } from "@/providers/schedular-provider";
 import { cdn } from "@/utils/cdn";
 import type { Metadata } from "next";
 import Link from "next/link";
-import SchedulerWrapper from "./_components/wrapper/schedular-wrapper";
-import { Scheduler } from "@bitnoi.se/react-scheduler";
 
 export const metadata: Metadata = {
     title: "Evento Gamescom 2025",
