@@ -8,6 +8,7 @@ import { type JSXMapSerializer, PrismicRichText } from "@prismicio/react";
 import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
 import Ad from "./_components/Ad";
 import {
+	RiAiGenerate2,
 	RiBookReadFill,
 	RiDoubleQuotesR,
 	RiEmotionHappyFill,
@@ -209,6 +210,20 @@ export default async function PostPage(props: {
 				</div>
 			</div>
 			<div className="max-w-full md:max-w-[60vw] text-lg gap-5">
+				{article.data.resume && (
+					<div className="border-red-600 border-2 border-solid rounded-xl my-5">
+						<h1 className="bg-red-600 text-white w-full p-1 py-2 text-xl flex gap-2 items-center mb-5 rounded-t-md">
+							<RiAiGenerate2 className="w-12" />
+							Resumo feito por Inteligência Artificial
+						</h1>
+						<div className="px-2">
+							<PrismicRichText
+								field={article.data.resume}
+								components={richTextComponents}
+							/>
+						</div>
+					</div>
+				)}
 				<PrismicRichText
 					field={article.data.editor}
 					components={richTextComponents}
@@ -361,9 +376,12 @@ export async function generateMetadata(props: {
 							myAuthorData.uid.slice(1),
 					},
 				],
-				description: `Leia "${post.data.titulo}" de ${
-					myAuthorData.uid.charAt(0).toUpperCase() + myAuthorData.uid.slice(1)
-				} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
+				description: post.data.seo_description
+					? post.data.seo_description
+					: `Leia "${post.data.titulo}" de ${
+							myAuthorData.uid.charAt(0).toUpperCase() +
+							myAuthorData.uid.slice(1)
+						} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
 				creator:
 					myAuthorData.uid.charAt(0).toUpperCase() + myAuthorData.uid.slice(1),
 				publisher:
@@ -382,9 +400,12 @@ export async function generateMetadata(props: {
 				},
 				twitter: {
 					title: post.data.titulo as string,
-					description: `Leia "${post.data.titulo}" de ${
-						myAuthorData.uid.charAt(0).toUpperCase() + myAuthorData.uid.slice(1)
-					} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
+					description: post.data.seo_description
+						? post.data.seo_description
+						: `Leia "${post.data.titulo}" de ${
+								myAuthorData.uid.charAt(0).toUpperCase() +
+								myAuthorData.uid.slice(1)
+							} na Império Network agora mesmo. A sua leitura vai valer a pena!`,
 					images: [cdn(post.data.cover.url as string, 1920, 0)],
 					card: "summary_large_image",
 				},

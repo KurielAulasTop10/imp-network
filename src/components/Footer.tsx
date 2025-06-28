@@ -50,14 +50,14 @@ export default function Footer() {
 						>
 							KurielDev
 						</Link>
-						</p>
-						<p className="my-5 font-bold text-xl">Parceiro oficial</p>
-						<Link
-							href="https://opencritic.com/"
-							target="_blank"
-						>
-							<img src={"/opencritic.svg"} className="bg-white p-2 rounded-md w-xs h-auto mx-auto"></img>
-						</Link>
+					</p>
+					<p className="my-5 font-bold text-xl">Parceiro oficial</p>
+					<Link href="https://opencritic.com/" target="_blank">
+						<img
+							src={"/opencritic.svg"}
+							className="bg-white p-2 rounded-md w-xs h-auto mx-auto"
+						></img>
+					</Link>
 				</div>
 			</footer>
 			<Script id="clarity-script" strategy="afterInteractive">
