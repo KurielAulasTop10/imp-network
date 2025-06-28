@@ -22,7 +22,7 @@ export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 			{filteredPosts.length >= 1 ? (
 				<ul
 					id="posts-grid"
-					className={`grid w-full grid-cols-1 ${allPosts.length < 3 ? `md:grid-cols-${allPosts.length}` : "md:grid-cols-2 xl:grid-cols-3"} gap-x-4 gap-y-5`}
+					className={`grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-5`}
 				>
 					{filteredPosts.map(
 						(post) =>
