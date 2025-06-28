@@ -1,102 +1,120 @@
 {
-	"format": "custom",
-	"id": "post",
-	"label": "Post",
-	"repeatable": true,
-	"status": true,
-	"json": {
-		"Main": {
-			"titulo": {
-				"type": "Text",
-				"config": {
-					"label": "Título",
-					"placeholder": ""
-				}
-			},
-			"uid": {
-				"config": {
-					"label": "Slug",
-					"placeholder": ""
-				},
-				"type": "UID"
-			},
-			"cover": {
-				"type": "Image",
-				"config": {
-					"label": "Cover",
-					"constraint": {},
-					"thumbnails": []
-				}
-			},
-			"editor": {
-				"type": "StructuredText",
-				"config": {
-					"label": "Editor",
-					"placeholder": "",
-					"allowTargetBlank": true,
-					"multi": "paragraph,preformatted,heading1,heading2,heading3,strong,em,hyperlink,image,embed,list-item,o-list-item,heading4"
-				}
-			},
-			"data": {
-				"type": "Timestamp",
-				"config": {
-					"label": "Data",
-					"placeholder": ""
-				}
-			},
-			"author": {
-				"type": "Link",
-				"config": {
-					"label": "Author",
-					"select": "document",
-					"customtypes": ["author"]
-				}
-			},
-			"review": {
-				"type": "Group",
-				"config": {
-					"label": "Review",
-					"repeat": false,
-					"fields": {
-						"estado": {
-							"type": "Boolean",
-							"config": {
-								"label": "Estado",
-								"default_value": false,
-								"placeholder_true": "true",
-								"placeholder_false": "false"
-							}
-						},
-						"descricao": {
-							"type": "StructuredText",
-							"config": {
-								"label": "Descrição",
-								"placeholder": "",
-								"allowTargetBlank": false,
-								"single": "paragraph"
-							}
-						},
-						"rating": {
-							"type": "Select",
-							"config": {
-								"label": "Rating",
-								"placeholder": "",
-								"options": ["Feliz", "Mediano", "Desiludido"],
-								"default_value": "Feliz"
-							}
-						},
-						"steam_page": {
-							"type": "Link",
-							"config": {
-								"label": "Steam Page",
-								"placeholder": "",
-								"allowTargetBlank": false,
-								"select": null
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+  "format": "custom",
+  "id": "post",
+  "label": "Post",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "titulo": {
+        "type": "Text",
+        "config": {
+          "label": "Título",
+          "placeholder": ""
+        }
+      },
+      "uid": {
+        "config": {
+          "label": "Slug",
+          "placeholder": ""
+        },
+        "type": "UID"
+      },
+      "cover": {
+        "type": "Image",
+        "config": {
+          "label": "Cover",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "editor": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Editor",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,strong,em,hyperlink,image,embed,list-item,o-list-item,heading4"
+        }
+      },
+      "data": {
+        "type": "Timestamp",
+        "config": {
+          "label": "Data",
+          "placeholder": ""
+        }
+      },
+      "author": {
+        "type": "Link",
+        "config": {
+          "label": "Author",
+          "select": "document",
+          "customtypes": ["author"]
+        }
+      },
+      "review": {
+        "type": "Group",
+        "config": {
+          "label": "Review",
+          "repeat": false,
+          "fields": {
+            "estado": {
+              "type": "Boolean",
+              "config": {
+                "label": "Estado",
+                "default_value": false,
+                "placeholder_true": "true",
+                "placeholder_false": "false"
+              }
+            },
+            "descricao": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Descrição",
+                "placeholder": "",
+                "allowTargetBlank": false,
+                "single": "paragraph"
+              }
+            },
+            "rating": {
+              "type": "Select",
+              "config": {
+                "label": "Rating",
+                "placeholder": "",
+                "options": ["Feliz", "Mediano", "Desiludido"],
+                "default_value": "Feliz"
+              }
+            },
+            "steam_page": {
+              "type": "Link",
+              "config": {
+                "label": "Steam Page",
+                "placeholder": "",
+                "allowTargetBlank": false,
+                "select": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "AI": {
+      "seo_description": {
+        "type": "Text",
+        "config": {
+          "label": "SEO Description",
+          "placeholder": ""
+        }
+      },
+      "resume": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Resume",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,hyperlink,list-item,strong,em"
+        }
+      }
+    }
+  }
 }

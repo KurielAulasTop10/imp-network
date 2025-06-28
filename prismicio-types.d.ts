@@ -4,31 +4,96 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type PickContentRelationshipFieldData<
+  TRelationship extends
+    | prismic.CustomTypeModelFetchCustomTypeLevel1
+    | prismic.CustomTypeModelFetchCustomTypeLevel2
+    | prismic.CustomTypeModelFetchGroupLevel1
+    | prismic.CustomTypeModelFetchGroupLevel2,
+  TData extends Record<
+    string,
+    | prismic.AnyRegularField
+    | prismic.GroupField
+    | prismic.NestedGroupField
+    | prismic.SliceZone
+  >,
+  TLang extends string,
+> =
+  // Content relationship fields
+  {
+    [TSubRelationship in Extract<
+      TRelationship["fields"][number],
+      prismic.CustomTypeModelFetchContentRelationshipLevel1
+    > as TSubRelationship["id"]]: ContentRelationshipFieldWithData<
+      TSubRelationship["customtypes"],
+      TLang
+    >;
+  } & // Group
+  {
+    [TGroup in Extract<
+      TRelationship["fields"][number],
+      | prismic.CustomTypeModelFetchGroupLevel1
+      | prismic.CustomTypeModelFetchGroupLevel2
+    > as TGroup["id"]]: TData[TGroup["id"]] extends prismic.GroupField<
+      infer TGroupData
+    >
+      ? prismic.GroupField<
+          PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
+        >
+      : never;
+  } & // Other fields
+  {
+    [TFieldKey in Extract<
+      TRelationship["fields"][number],
+      string
+    >]: TFieldKey extends keyof TData ? TData[TFieldKey] : never;
+  };
+
+type ContentRelationshipFieldWithData<
+  TCustomType extends
+    | readonly (prismic.CustomTypeModelFetchCustomTypeLevel1 | string)[]
+    | readonly (prismic.CustomTypeModelFetchCustomTypeLevel2 | string)[],
+  TLang extends string = string,
+> = {
+  [ID in Exclude<
+    TCustomType[number],
+    string
+  >["id"]]: prismic.ContentRelationshipField<
+    ID,
+    TLang,
+    PickContentRelationshipFieldData<
+      Extract<TCustomType[number], { id: ID }>,
+      Extract<prismic.Content.AllDocumentTypes, { type: ID }>["data"],
+      TLang
+    >
+  >;
+}[Exclude<TCustomType[number], string>["id"]];
+
 /**
  * Content for Anúncio documents
  */
 interface AnuncioDocumentData {
-	/**
-	 * Link field in *Anúncio*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: anuncio.link
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-	 */
-	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+  /**
+   * Link field in *Anúncio*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: anuncio.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 
-	/**
-	 * Imagem field in *Anúncio*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: anuncio.imagem
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	imagem: prismic.ImageField<never>;
+  /**
+   * Imagem field in *Anúncio*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: anuncio.imagem
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  imagem: prismic.ImageField<never>;
 }
 
 /**
@@ -36,53 +101,53 @@ interface AnuncioDocumentData {
  *
  * - **API ID**: `anuncio`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
+ * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
 export type AnuncioDocument<Lang extends string = string> =
-	prismic.PrismicDocumentWithUID<
-		Simplify<AnuncioDocumentData>,
-		"anuncio",
-		Lang
-	>;
+  prismic.PrismicDocumentWithUID<
+    Simplify<AnuncioDocumentData>,
+    "anuncio",
+    Lang
+  >;
 
 /**
  * Content for Author documents
  */
 interface AuthorDocumentData {
-	/**
-	 * Avatar field in *Author*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: author.avatar
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	avatar: prismic.ImageField<never>;
+  /**
+   * Avatar field in *Author*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.avatar
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  avatar: prismic.ImageField<never>;
 
-	/**
-	 * Banner field in *Author*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: author.banner
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	banner: prismic.ImageField<never>;
+  /**
+   * Banner field in *Author*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.banner
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  banner: prismic.ImageField<never>;
 
-	/**
-	 * Descrição field in *Author*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: author.descricao
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	descricao: prismic.RichTextField;
+  /**
+   * Descrição field in *Author*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.descricao
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  descricao: prismic.RichTextField;
 }
 
 /**
@@ -90,135 +155,155 @@ interface AuthorDocumentData {
  *
  * - **API ID**: `author`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
+ * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
 export type AuthorDocument<Lang extends string = string> =
-	prismic.PrismicDocumentWithUID<Simplify<AuthorDocumentData>, "author", Lang>;
+  prismic.PrismicDocumentWithUID<Simplify<AuthorDocumentData>, "author", Lang>;
 
 /**
  * Item in *Post → Review*
  */
 export interface PostDocumentDataReviewItem {
-	/**
-	 * Estado field in *Post → Review*
-	 *
-	 * - **Field Type**: Boolean
-	 * - **Placeholder**: *None*
-	 * - **Default Value**: false
-	 * - **API ID Path**: post.review[].estado
-	 * - **Documentation**: https://prismic.io/docs/field#boolean
-	 */
-	estado: prismic.BooleanField;
+  /**
+   * Estado field in *Post → Review*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: post.review[].estado
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  estado: prismic.BooleanField;
 
-	/**
-	 * Descrição field in *Post → Review*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: post.review[].descricao
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	descricao: prismic.RichTextField;
+  /**
+   * Descrição field in *Post → Review*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.review[].descricao
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  descricao: prismic.RichTextField;
 
-	/**
-	 * Rating field in *Post → Review*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **Default Value**: Feliz
-	 * - **API ID Path**: post.review[].rating
-	 * - **Documentation**: https://prismic.io/docs/field#select
-	 */
-	rating: prismic.SelectField<"Feliz" | "Mediano" | "Desiludido", "filled">;
+  /**
+   * Rating field in *Post → Review*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Feliz
+   * - **API ID Path**: post.review[].rating
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  rating: prismic.SelectField<"Feliz" | "Mediano" | "Desiludido", "filled">;
 
-	/**
-	 * Steam Page field in *Post → Review*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: post.review[].steam_page
-	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-	 */
-	steam_page: prismic.LinkField<
-		string,
-		string,
-		unknown,
-		prismic.FieldState,
-		never
-	>;
+  /**
+   * Steam Page field in *Post → Review*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.review[].steam_page
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  steam_page: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
  * Content for Post documents
  */
 interface PostDocumentData {
-	/**
-	 * Título field in *Post*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: post.titulo
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	titulo: prismic.KeyTextField;
+  /**
+   * Título field in *Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.titulo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  titulo: prismic.KeyTextField;
 
-	/**
-	 * Cover field in *Post*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: post.cover
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	cover: prismic.ImageField<never>;
+  /**
+   * Cover field in *Post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.cover
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  cover: prismic.ImageField<never>;
 
-	/**
-	 * Editor field in *Post*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: post.editor
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	editor: prismic.RichTextField;
+  /**
+   * Editor field in *Post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.editor
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  editor: prismic.RichTextField;
 
-	/**
-	 * Data field in *Post*
-	 *
-	 * - **Field Type**: Timestamp
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: post.data
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#timestamp
-	 */
-	data: prismic.TimestampField;
+  /**
+   * Data field in *Post*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.data
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/timestamp
+   */
+  data: prismic.TimestampField;
 
-	/**
-	 * Author field in *Post*
-	 *
-	 * - **Field Type**: Content Relationship
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: post.author
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-	 */
-	author: prismic.ContentRelationshipField<"author">;
+  /**
+   * Author field in *Post*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.author
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  author: prismic.ContentRelationshipField<"author">;
 
-	/**
-	 * Review field in *Post*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: post.review[]
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#group
-	 */
-	review: prismic.GroupField<Simplify<PostDocumentDataReviewItem>>;
+  /**
+   * Review field in *Post*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.review[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  review: prismic.GroupField<Simplify<PostDocumentDataReviewItem>> /**
+   * SEO Description field in *Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.seo_description
+   * - **Tab**: AI
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  seo_description: prismic.KeyTextField;
+
+  /**
+   * Resume field in *Post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.resume
+   * - **Tab**: AI
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  resume: prismic.RichTextField;
 }
 
 /**
@@ -226,44 +311,44 @@ interface PostDocumentData {
  *
  * - **API ID**: `post`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
+ * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
 export type PostDocument<Lang extends string = string> =
-	prismic.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
+  prismic.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
 
 export type AllDocumentTypes = AnuncioDocument | AuthorDocument | PostDocument;
 
 declare module "@prismicio/client" {
-	interface CreateClient {
-		(
-			repositoryNameOrEndpoint: string,
-			options?: prismic.ClientConfig,
-		): prismic.Client<AllDocumentTypes>;
-	}
+  interface CreateClient {
+    (
+      repositoryNameOrEndpoint: string,
+      options?: prismic.ClientConfig,
+    ): prismic.Client<AllDocumentTypes>;
+  }
 
-	interface CreateWriteClient {
-		(
-			repositoryNameOrEndpoint: string,
-			options: prismic.WriteClientConfig,
-		): prismic.WriteClient<AllDocumentTypes>;
-	}
+  interface CreateWriteClient {
+    (
+      repositoryNameOrEndpoint: string,
+      options: prismic.WriteClientConfig,
+    ): prismic.WriteClient<AllDocumentTypes>;
+  }
 
-	interface CreateMigration {
-		(): prismic.Migration<AllDocumentTypes>;
-	}
+  interface CreateMigration {
+    (): prismic.Migration<AllDocumentTypes>;
+  }
 
-	namespace Content {
-		export type {
-			AnuncioDocument,
-			AnuncioDocumentData,
-			AuthorDocument,
-			AuthorDocumentData,
-			PostDocument,
-			PostDocumentData,
-			PostDocumentDataReviewItem,
-			AllDocumentTypes,
-		};
-	}
+  namespace Content {
+    export type {
+      AnuncioDocument,
+      AnuncioDocumentData,
+      AuthorDocument,
+      AuthorDocumentData,
+      PostDocument,
+      PostDocumentData,
+      PostDocumentDataReviewItem,
+      AllDocumentTypes,
+    };
+  }
 }
