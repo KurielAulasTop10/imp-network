@@ -1,10 +1,10 @@
 import Header from "@/components/Header";
 import ScrollUpButton from "@/components/ScrollUpButton";
 import "@/styles/globals.css";
-import Footer from "@/components/Footer";
-import { Rubik } from "next/font/google";
-import type { Metadata, Viewport } from "next";
 import { PrismicPreview } from "@prismicio/next";
+import type { Metadata, Viewport } from "next";
+import { Rubik } from "next/font/google";
+import Footer from "@/components/Footer";
 
 export const viewport: Viewport = {
 	themeColor: "#dd3333",

@@ -1,8 +1,8 @@
 "use client";
 
-import { BsSearch } from "react-icons/bs";
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import { BsSearch } from "react-icons/bs";
 
 export default function SearchBar() {
 	const [searchTerm, setSearchTerm] = useState<string>("");

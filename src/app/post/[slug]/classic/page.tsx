@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-
-import { createClient } from "@/prismicio";
+/** biome-ignore-all lint/performance/noImgElement: false */
 import { type JSXMapSerializer, PrismicRichText } from "@prismicio/react";
-import type { PostDocumentDataReviewItem } from "../../../../../prismicio-types";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import Script from "next/script";
+import { createClient } from "@/prismicio";
 import { cdn } from "@/utils/cdn";
+import type { PostDocumentDataReviewItem } from "../../../../../prismicio-types";
 
 export default async function PostPage(props: {
 	params: Promise<{ slug: string }>;
@@ -15,13 +15,7 @@ export default async function PostPage(props: {
 
 	const { slug } = params;
 
-	const client = createClient({
-		accessToken:
-			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
-		fetchOptions: {
-			cache: "no-store",
-		},
-	});
+	const client = createClient();
 
 	const article = await client.getByUID("post", slug).catch(() => notFound());
 	interface MyAuthorData {
@@ -62,7 +56,7 @@ export default async function PostPage(props: {
 		paragraph: ({ children, text }) => {
 			const textString = text as unknown as string;
 			return textString?.startsWith("/vid") ? (
-				// biome-ignore lint/a11y/useMediaCaption: <explanation>
+				// biome-ignore lint/a11y/useMediaCaption: false
 				<video
 					src={textString.replace("/vid", "")}
 					controls
@@ -89,7 +83,7 @@ export default async function PostPage(props: {
 				/>
 			) : (
 				<div
-					// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: false
 					dangerouslySetInnerHTML={{ __html: node.oembed.html as TrustedHTML }}
 					className="w-full flex items-center justify-center"
 				/>
@@ -126,7 +120,7 @@ export default async function PostPage(props: {
 
 	return (
 		<article
-			data-revalidated-at={new Date().getTime()}
+			data-revalidated-at={Date.now()}
 			className="flex flex-col mx-auto text-justify my-5 p-3"
 		>
 			<div className="mx-auto w-full">
@@ -172,7 +166,6 @@ export default async function PostPage(props: {
 					components={richTextComponents}
 				/>
 				{reviewWithSteamPage?.steam_page?.url && (
-					// biome-ignore lint/style/useSelfClosingElements: <explanation>
 					<iframe
 						src={reviewWithSteamPage.steam_page.url as string}
 						title="Steam page"
@@ -207,13 +200,7 @@ export async function generateMetadata(props: {
 
 	const { slug } = params;
 
-	const client = createClient({
-		accessToken:
-			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
-		fetchOptions: {
-			cache: "no-store",
-		},
-	});
+	const client = createClient();
 	const post = await client.getByUID("post", slug);
 	interface MyAuthorData {
 		uid?: string;

@@ -15,7 +15,7 @@ export default function useScroll() {
 		});
 	};
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <>
 	useEffect(() => {
 		const button = buttonRef.current;
 		if (!button) return;

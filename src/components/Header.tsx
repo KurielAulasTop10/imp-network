@@ -1,6 +1,9 @@
 "use client";
 
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { BsNintendoSwitch } from "react-icons/bs";
 import {
 	RiAppStoreFill,
 	RiArrowDropDownLine,
@@ -18,9 +21,6 @@ import {
 	RiTvFill,
 	RiXboxFill,
 } from "react-icons/ri";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { BsNintendoSwitch } from "react-icons/bs";
-import { usePathname } from "next/navigation";
 
 export default function Header() {
 	const pathname = usePathname();

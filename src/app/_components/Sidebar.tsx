@@ -1,5 +1,4 @@
-import SearchBar from "@/components/SearchBar";
-import { cdn } from "@/utils/cdn";
+/** biome-ignore-all lint/performance/noImgElement: false */
 import type { AxiosError } from "axios";
 import type { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
@@ -12,6 +11,8 @@ import {
 } from "react-icons/bs";
 import { RiBlueskyFill } from "react-icons/ri";
 import { fields, igdb, twitchAccessToken, where } from "ts-igdb-client";
+import SearchBar from "@/components/SearchBar";
+import { cdn } from "@/utils/cdn";
 
 export default async function Sidebar() {
 	const accessToken = await twitchAccessToken({

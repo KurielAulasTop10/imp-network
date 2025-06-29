@@ -1,6 +1,7 @@
-import { cdn } from "@/utils/cdn";
+/** biome-ignore-all lint/performance/noImgElement: false */
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cdn } from "@/utils/cdn";
 
 export const metadata: Metadata = {
 	title: "Evento The Game Awards",

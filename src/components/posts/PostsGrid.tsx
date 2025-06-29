@@ -1,9 +1,9 @@
 "use client";
 
-import type { PostDocument } from "../../../prismicio-types";
-import PostCard from "@/components/posts/PostCard";
 import { useState } from "react";
 import { RiArrowLeftDoubleLine, RiArrowRightDoubleLine } from "react-icons/ri";
+import PostCard from "@/components/posts/PostCard";
+import type { PostDocument } from "../../../prismicio-types";
 
 export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 	const [currentPage, setCurrentPage] = useState<number>(1);

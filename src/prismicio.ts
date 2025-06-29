@@ -37,8 +37,10 @@ export const createClient = (config: prismic.ClientConfig = {}) => {
 		routes,
 		fetchOptions:
 			process.env.NODE_ENV === "production"
-				? { next: { tags: ["prismic"] }, cache: "force-cache" }
-				: { next: { revalidate: 5 } },
+				? { next: { tags: ["prismic"] }, cache: "no-store" }
+				: { next: { revalidate: 5 }, cache: "no-store" },
+		accessToken:
+			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
 		...config,
 	});
 

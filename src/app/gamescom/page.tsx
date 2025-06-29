@@ -1,6 +1,7 @@
-import { cdn } from "@/utils/cdn";
+/** biome-ignore-all lint/performance/noImgElement: false */
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cdn } from "@/utils/cdn";
 
 export const metadata: Metadata = {
 	title: "Evento Gamescom 2025",
@@ -73,6 +74,7 @@ export default async function GamescomPage() {
 					<iframe
 						src="https://calendar.google.com/calendar/embed?wkst=2&ctz=America%2FSao_Paulo&showPrint=0&mode=WEEK&showTabs=0&showNav=0&hl=pt_BR&showCalendars=0&showDate=0&showTitle=0&src=ZW4uY2hyaXN0aWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23a79b8e"
 						className="border-0 w-full md:w-2/4 mx-auto h-[500px] md:h-[800px] rounded-md"
+						title="Calendário Google"
 					></iframe>
 				</div>
 			</div>

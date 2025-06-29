@@ -1,10 +1,11 @@
-import type { AuthorDocument } from "../../../prismicio-types";
 import { PrismicRichText } from "@prismicio/react";
 import { cdn } from "@/utils/cdn";
+import type { AuthorDocument } from "../../../prismicio-types";
 
 export default function AuthorBox({ uid, data }: AuthorDocument) {
 	return (
 		<div className="flex gap-3 items-center h-full w-full rounded-md bg-black p-2">
+			{/** biome-ignore lint/performance/noImgElement: false */}
 			<img
 				src={cdn(data.avatar.url as string, 48, 48)}
 				className="rounded-md"

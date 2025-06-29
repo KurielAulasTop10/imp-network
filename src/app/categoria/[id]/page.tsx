@@ -1,7 +1,7 @@
+import type { Metadata } from "next";
+import PostsGrid from "@/components/posts/PostsGrid";
 import { createClient } from "@/prismicio";
 import type { PostDocument } from "../../../../prismicio-types";
-import PostsGrid from "@/components/posts/PostsGrid";
-import type { Metadata } from "next";
 
 export default async function CategoryPage(props: {
 	params: Promise<{ id: string }>;
@@ -10,13 +10,7 @@ export default async function CategoryPage(props: {
 
 	const { id } = params;
 
-	const client = createClient({
-		accessToken:
-			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
-		fetchOptions: {
-			cache: "no-store",
-		},
-	});
+	const client = createClient();
 
 	function capitalizeFirstLetter(string: string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
