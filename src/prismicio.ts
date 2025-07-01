@@ -36,9 +36,7 @@ export const createClient = (config: prismic.ClientConfig = {}) => {
 	const client = prismic.createClient("imperio-network", {
 		routes,
 		fetchOptions:
-			process.env.NODE_ENV === "production"
-				? { cache: "no-store" }
-				: { next: { revalidate: 5 } },
+			{ cache: "no-store" },
 		accessToken:
 			process.env.PRISMIC_ACCESS_TOKEN,
 		...config,
