@@ -132,14 +132,14 @@ export default async function PostPage(props: {
 							<PrismicRichText
 								field={article.data.resume}
 								components={{
-									paragraph: ({ children }) => {
+									paragraph: ({ children }) => (
 										<p className="my-3 text-lg">
 											{children
 												.toString()
 												.replace("```", "")
 												.replace("html", "")}
-										</p>;
-									},
+										</p>
+									),
 									hyperlink: ({ node, children }) => (
 										<Link
 											href={node.data.url as string}
