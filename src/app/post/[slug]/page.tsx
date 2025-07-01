@@ -1,6 +1,8 @@
 /** biome-ignore-all lint/performance/noImgElement: false */
 
+import { asText } from "@prismicio/client";
 import { type JSXMapSerializer, PrismicRichText } from "@prismicio/react";
+import axios from "axios";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -40,6 +42,18 @@ export default async function PostPage(props: {
 	if (!myAuthorData.uid) {
 		return console.error("Author UID not found");
 	}
+
+	if (
+		asText(article.data.resume).length === 0 &&
+		(article.tags.includes("Notícia") || article.tags.includes("Guia"))
+	) {
+		axios.post("https://imperionetwork.fr/api/generate-ai", {
+			slug,
+			title: article.data.titulo,
+			article: asText(article.data.editor),
+		});
+	}
+
 	const author = await client
 		.getByUID("author", myAuthorData.uid)
 		.catch(() => notFound());
@@ -204,10 +218,10 @@ export default async function PostPage(props: {
 				</div>
 			</div>
 			<div className="max-w-full md:max-w-[60vw] text-lg gap-5">
-				{article.data.resume && (
+				{asText(article.data.resume).length >= 1 && (
 					<div className="border-red-600 border-2 border-solid rounded-xl my-5">
 						<h1 className="bg-red-600 text-white w-full p-1 py-2 text-xl flex gap-2 items-center mb-5 rounded-t-md">
-							<RiAiGenerate2 className="w-12" />
+							<RiAiGenerate2 size={"48px"} />
 							Resumo feito por Inteligência Artificial
 						</h1>
 						<div className="px-2">

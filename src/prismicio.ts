@@ -33,14 +33,14 @@ const routes: prismic.ClientConfig["routes"] = [
  * @param config - Configuration for the Prismic client.
  */
 export const createClient = (config: prismic.ClientConfig = {}) => {
-	const client = prismic.createClient(repositoryName, {
+	const client = prismic.createClient("imperio-network", {
 		routes,
 		fetchOptions:
 			process.env.NODE_ENV === "production"
 				? { next: { tags: ["prismic"] }, cache: "no-store" }
-				: { next: { revalidate: 5 }, cache: "no-store" },
+				: { next: { revalidate: 5 } },
 		accessToken:
-			"MC5abnctRUJBQUFDSUFjNTB0.77-9D--_ve-_vTXvv70iGO-_vXvvv70VT--_ve-_vSrvv73vv71hDu-_ve-_ve-_ve-_vWom77-9HDvvv71dGg",
+			process.env.PRISMIC_ACCESS_TOKEN,
 		...config,
 	});
 
