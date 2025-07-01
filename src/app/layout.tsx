@@ -63,9 +63,9 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="pt-BR">
+		<html lang="pt-BR" suppressHydrationWarning>
 			<body className="bg-[url('/bg.png')] text-primary relative mx-auto flex w-full flex-col">
-				<main className={rubik.className} suppressHydrationWarning>
+				<main className={rubik.className}>
 					<Header />
 					{children}
 					<div className="fixed bottom-12 right-10">

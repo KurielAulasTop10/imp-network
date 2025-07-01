@@ -1,12 +1,5 @@
 import * as prismic from "@prismicio/client";
 import * as prismicNext from "@prismicio/next";
-import config from "../slicemachine.config.json";
-
-/**
- * The project's Prismic repository name.
- */
-export const repositoryName =
-	process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || config.repositoryName;
 
 /**
  * A list of Route Resolver objects that define how a document's `url` field is resolved.
@@ -35,10 +28,9 @@ const routes: prismic.ClientConfig["routes"] = [
 export const createClient = (config: prismic.ClientConfig = {}) => {
 	const client = prismic.createClient("imperio-network", {
 		routes,
-		fetchOptions:
-			{ cache: "no-store" },
 		accessToken:
 			process.env.PRISMIC_ACCESS_TOKEN,
+		fetchOptions: { cache: "reload" },
 		...config,
 	});
 

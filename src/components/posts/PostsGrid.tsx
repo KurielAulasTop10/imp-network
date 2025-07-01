@@ -20,19 +20,13 @@ export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 	return (
 		<section className="flex scroll-mt-12 flex-col items-center space-y-6">
 			{filteredPosts.length >= 1 ? (
-				<ul
-					id="posts-grid"
+				<div
 					className={`grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-5`}
 				>
 					{filteredPosts.map(
-						(post) =>
-							post && (
-								<li key={post.uid}>
-									<PostCard post={post} />
-								</li>
-							),
+						(post) => post && <PostCard post={post} key={post.uid} />,
 					)}
-				</ul>
+				</div>
 			) : (
 				<p className="text-center text-lg">Sem resultados</p>
 			)}

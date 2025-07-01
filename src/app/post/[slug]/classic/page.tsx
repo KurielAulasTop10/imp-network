@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/performance/noImgElement: false */
-import { type JSXMapSerializer, PrismicRichText } from "@prismicio/react";
+import { PrismicRichText } from "@prismicio/react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -15,7 +15,7 @@ export default async function PostPage(props: {
 
 	const { slug } = params;
 
-	const client = createClient();
+	const client = createClient({ fetchOptions: { cache: "no-cache" } });
 
 	const article = await client.getByUID("post", slug).catch(() => notFound());
 	interface MyAuthorData {
@@ -38,84 +38,6 @@ export default async function PostPage(props: {
 	const reviewWithSteamPage = article.data
 		.review[0] as PostDocumentDataReviewItem & {
 		steam_page?: SteamPage;
-	};
-
-	const richTextComponents: JSXMapSerializer = {
-		heading1: ({ text }) => (
-			<h1 className="my-3 text-base font-semibold">{text}</h1>
-		),
-		heading2: ({ text }) => (
-			<h2 className="my-3 text-base font-semibold">{text}</h2>
-		),
-		heading3: ({ text }) => (
-			<h3 className="my-3 text-base font-semibold">{text}</h3>
-		),
-		heading4: ({ text }) => (
-			<h4 className="my-3 text-base font-semibold">{text}</h4>
-		),
-		paragraph: ({ children, text }) => {
-			const textString = text as unknown as string;
-			return textString?.startsWith("/vid") ? (
-				// biome-ignore lint/a11y/useMediaCaption: false
-				<video
-					src={textString.replace("/vid", "")}
-					controls
-					className="w-full aspect-video"
-				/>
-			) : (
-				<p className="my-3 text-base">{children}</p>
-			);
-		},
-		preformatted: ({ text }) => (
-			<blockquote className="p-3 pr-3 mb-3">{text}</blockquote>
-		),
-		embed: ({ node }) =>
-			node.oembed.embed_url.includes("youtube.com") ||
-			node.oembed.embed_url.includes("youtu.be") ? (
-				<iframe
-					src={node.oembed.embed_url
-						.replace("watch?v=", "embed/")
-						.replace("youtu.be", "youtube.com/embed")}
-					width="100%"
-					height="100%"
-					title={node.oembed.title as string}
-					className="aspect-video"
-				/>
-			) : (
-				<div
-					// biome-ignore lint/security/noDangerouslySetInnerHtml: false
-					dangerouslySetInnerHTML={{ __html: node.oembed.html as TrustedHTML }}
-					className="w-full flex items-center justify-center"
-				/>
-			),
-		image: ({ node }) => {
-			return (
-				<img
-					src={cdn(node.url, 0, 0)}
-					alt={node.alt as string}
-					width={"100%"}
-					height={"100%"}
-					className="w-full"
-				/>
-			);
-		},
-		hyperlink: ({ node, children }) => (
-			<Link
-				href={node.data.url as string}
-				target={
-					node.data.url?.includes("imperionetwork.fr") ? undefined : "_blank"
-				}
-				className="text-red-500 hover:text-red-600"
-			>
-				{children}
-			</Link>
-		),
-		list: ({ children }) => (
-			<ul className="my-3 text-base list-disc ml-5">{children}</ul>
-		),
-		oList: ({ children }) => (
-			<ol className="my-3 text-base list-decimal ml-5">{children}</ol>
-		),
 	};
 
 	return (
@@ -163,7 +85,87 @@ export default async function PostPage(props: {
 			<div className="text-base gap-5">
 				<PrismicRichText
 					field={article.data.editor}
-					components={richTextComponents}
+					components={{
+						heading1: ({ text }) => (
+							<h1 className="my-3 text-base font-semibold">{text}</h1>
+						),
+						heading2: ({ text }) => (
+							<h2 className="my-3 text-base font-semibold">{text}</h2>
+						),
+						heading3: ({ text }) => (
+							<h3 className="my-3 text-base font-semibold">{text}</h3>
+						),
+						heading4: ({ text }) => (
+							<h4 className="my-3 text-base font-semibold">{text}</h4>
+						),
+						paragraph: ({ children, text }) => {
+							const textString = text as unknown as string;
+							return textString?.startsWith("/vid") ? (
+								// biome-ignore lint/a11y/useMediaCaption: false
+								<video
+									src={textString.replace("/vid", "")}
+									controls
+									className="w-full aspect-video"
+								/>
+							) : (
+								<p className="my-3 text-base">{children}</p>
+							);
+						},
+						preformatted: ({ text }) => (
+							<blockquote className="p-3 pr-3 mb-3">{text}</blockquote>
+						),
+						embed: ({ node }) =>
+							node.oembed.embed_url.includes("youtube.com") ||
+							node.oembed.embed_url.includes("youtu.be") ? (
+								<iframe
+									src={node.oembed.embed_url
+										.replace("watch?v=", "embed/")
+										.replace("youtu.be", "youtube.com/embed")}
+									width="100%"
+									height="100%"
+									title={node.oembed.title as string}
+									className="aspect-video"
+								/>
+							) : (
+								<div
+									// biome-ignore lint/security/noDangerouslySetInnerHtml: false
+									dangerouslySetInnerHTML={{
+										__html: node.oembed.html as TrustedHTML,
+									}}
+									className="w-full flex items-center justify-center"
+								/>
+							),
+						image: ({ node }) => {
+							return (
+								<img
+									src={cdn(node.url, 0, 0)}
+									alt={node.alt as string}
+									width={"100%"}
+									height={"100%"}
+									className="w-full"
+								/>
+							);
+						},
+						hyperlink: ({ node, children }) => (
+							<Link
+								href={node.data.url as string}
+								target={
+									node.data.url?.includes("imperionetwork.fr")
+										? undefined
+										: "_blank"
+								}
+								className="text-red-500 hover:text-red-600"
+							>
+								{children}
+							</Link>
+						),
+						list: ({ children }) => (
+							<ul className="my-3 text-base list-disc ml-5">{children}</ul>
+						),
+						oList: ({ children }) => (
+							<ol className="my-3 text-base list-decimal ml-5">{children}</ol>
+						),
+					}}
 				/>
 				{reviewWithSteamPage?.steam_page?.url && (
 					<iframe

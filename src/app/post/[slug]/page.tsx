@@ -1,7 +1,7 @@
 /** biome-ignore-all lint/performance/noImgElement: false */
 
 import { asText } from "@prismicio/client";
-import { type JSXMapSerializer, PrismicRichText } from "@prismicio/react";
+import { PrismicRichText } from "@prismicio/react";
 import axios from "axios";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -30,7 +30,7 @@ export default async function PostPage(props: {
 
 	const { slug } = params;
 
-	const client = createClient();
+	const client = createClient({ fetchOptions: { cache: "no-cache" } });
 
 	const article = await client.getByUID("post", slug).catch(() => notFound());
 	interface MyAuthorData {
@@ -84,102 +84,6 @@ export default async function PostPage(props: {
 		};
 	}
 
-	const richTextComponents: JSXMapSerializer = {
-		heading1: ({ text }) => (
-			<h1 className="my-3 text-2xl font-semibold">{text}</h1>
-		),
-		heading2: ({ text }) => (
-			<h2 className="my-3 text-xl font-semibold">{text}</h2>
-		),
-		heading3: ({ text }) => (
-			<h3 className="my-3 text-lg font-semibold">{text}</h3>
-		),
-		heading4: ({ text }) => (
-			<h4 className="my-3 text-lg font-semibold">{text}</h4>
-		),
-		paragraph: ({ children, text }) => {
-			const textString = text as unknown as string;
-			return textString?.startsWith("/vid") ? (
-				// biome-ignore lint/a11y/useMediaCaption: false
-				<video
-					src={textString.replace("/vid", "")}
-					controls
-					className="rounded-md w-full aspect-video my-3"
-				/>
-			) : (
-				<div>
-					{Math.floor(Math.random() * 15) + 1 === 5 &&
-						adsSorted[0]?.data.link && (
-							<Ad
-								ad={adsSorted}
-								index={Math.floor(Math.random() * adsSorted.length)}
-							/>
-						)}
-					<p className="my-3 text-lg">{children}</p>
-				</div>
-			);
-		},
-		preformatted: ({ text }) => (
-			<div className="relative bg-black px-3 py-1 rounded-md my-3 text-lg overflow-hidden">
-				<RiDoubleQuotesR className="absolute top-0 left-1 w-14 h-auto text-zinc-800" />
-				<blockquote className="relative z-10">{text}</blockquote>
-			</div>
-		),
-		embed: ({ node }) =>
-			node.oembed.embed_url.includes("youtube.com") ||
-			node.oembed.embed_url.includes("youtu.be") ? (
-				<iframe
-					src={node.oembed.embed_url
-						.replace("watch?v=", "embed/")
-						.replace("youtu.be", "youtube.com/embed")}
-					width="100%"
-					height="100%"
-					title={node.oembed.title as string}
-					className="rounded-md aspect-video"
-				/>
-			) : (
-				<div
-					// biome-ignore lint/security/noDangerouslySetInnerHtml: false positive
-					dangerouslySetInnerHTML={{
-						__html: node.oembed.html as TrustedHTML,
-					}}
-					className="w-full flex items-center justify-center"
-				/>
-			),
-		image: ({ node }) => {
-			return (
-				<img
-					src={cdn(node.url, 1920, 0)}
-					alt={node.alt as string}
-					width={"100%"}
-					height={"100%"}
-					className="w-full rounded-md"
-				/>
-			);
-		},
-		hyperlink: ({ node, children }) => (
-			<Link
-				href={node.data.url as string}
-				target={
-					node.data.url?.includes("imperionetwork.fr") ? undefined : "_blank"
-				}
-				className={
-					article.tags.includes("Grátis")
-						? "bg-red-500 hover:bg-red-600 text-white p-3 rounded-md flex w-max gap-2 items-center mx-auto"
-						: "text-red-500 hover:text-red-600"
-				}
-			>
-				{article.tags.includes("Grátis") && <RiExternalLinkLine />} {children}
-			</Link>
-		),
-		list: ({ children }) => (
-			<ul className="my-3 text-lg list-disc ml-5">{children}</ul>
-		),
-		oList: ({ children }) => (
-			<ol className="my-3 text-lg list-decimal ml-5">{children}</ol>
-		),
-	};
-
 	return (
 		<article
 			data-revalidated-at={Date.now()}
@@ -221,20 +125,147 @@ export default async function PostPage(props: {
 				{asText(article.data.resume).length >= 1 && (
 					<div className="border-red-600 border-2 border-solid rounded-xl my-5">
 						<h1 className="bg-red-600 text-white w-full p-1 py-2 text-xl flex gap-2 items-center mb-5 rounded-t-md">
-							<RiAiGenerate2 size={"48px"} />
+							<RiAiGenerate2 size={"36px"} />
 							Resumo feito por Inteligência Artificial
 						</h1>
 						<div className="px-2">
 							<PrismicRichText
 								field={article.data.resume}
-								components={richTextComponents}
+								components={{
+									paragraph: ({ children }) => {
+										<p className="my-3 text-lg">
+											{children
+												.toString()
+												.replace("```", "")
+												.replace("html", "")}
+										</p>;
+									},
+									hyperlink: ({ node, children }) => (
+										<Link
+											href={node.data.url as string}
+											target={
+												node.data.url?.includes("imperionetwork.fr")
+													? undefined
+													: "_blank"
+											}
+											className="text-red-500 hover:text-red-600"
+										>
+											{children}
+										</Link>
+									),
+									list: ({ children }) => (
+										<ul className="my-3 text-lg list-disc ml-5">{children}</ul>
+									),
+									oList: ({ children }) => (
+										<ol className="my-3 text-lg list-decimal ml-5">
+											{children}
+										</ol>
+									),
+								}}
 							/>
 						</div>
 					</div>
 				)}
 				<PrismicRichText
 					field={article.data.editor}
-					components={richTextComponents}
+					components={{
+						heading1: ({ text }) => (
+							<h1 className="my-3 text-2xl font-semibold">{text}</h1>
+						),
+						heading2: ({ text }) => (
+							<h2 className="my-3 text-xl font-semibold">{text}</h2>
+						),
+						heading3: ({ text }) => (
+							<h3 className="my-3 text-lg font-semibold">{text}</h3>
+						),
+						heading4: ({ text }) => (
+							<h4 className="my-3 text-lg font-semibold">{text}</h4>
+						),
+						paragraph: ({ children, text }) => {
+							const textString = text as unknown as string;
+							return textString?.startsWith("/vid") ? (
+								// biome-ignore lint/a11y/useMediaCaption: false
+								<video
+									src={textString.replace("/vid", "")}
+									controls
+									className="rounded-md w-full aspect-video my-3"
+								/>
+							) : (
+								<div>
+									{Math.floor(Math.random() * 15) + 1 === 5 &&
+										adsSorted[0]?.data.link && (
+											<Ad
+												ad={adsSorted}
+												index={Math.floor(Math.random() * adsSorted.length)}
+											/>
+										)}
+									<p className="my-3 text-lg">{children}</p>
+								</div>
+							);
+						},
+						preformatted: ({ text }) => (
+							<div className="relative bg-black px-3 py-1 rounded-md my-3 text-lg overflow-hidden">
+								<RiDoubleQuotesR className="absolute top-0 left-1 w-14 h-auto text-zinc-800" />
+								<blockquote className="relative z-10">{text}</blockquote>
+							</div>
+						),
+						embed: ({ node }) =>
+							node.oembed.embed_url.includes("youtube.com") ||
+							node.oembed.embed_url.includes("youtu.be") ? (
+								<iframe
+									src={node.oembed.embed_url
+										.replace("watch?v=", "embed/")
+										.replace("youtu.be", "youtube.com/embed")}
+									width="100%"
+									height="100%"
+									title={node.oembed.title as string}
+									className="rounded-md aspect-video"
+								/>
+							) : (
+								<div
+									// biome-ignore lint/security/noDangerouslySetInnerHtml: false positive
+									dangerouslySetInnerHTML={{
+										__html: node.oembed.html as TrustedHTML,
+									}}
+									className="w-full flex items-center justify-center"
+								/>
+							),
+						image: ({ node }) => {
+							return (
+								<img
+									src={cdn(node.url, 1920, 0)}
+									alt={node.alt as string}
+									width={"100%"}
+									height={"100%"}
+									className="w-full rounded-md"
+								/>
+							);
+						},
+						hyperlink: ({ node, children }) => (
+							<Link
+								href={node.data.url as string}
+								target={
+									node.data.url?.includes("imperionetwork.fr")
+										? undefined
+										: "_blank"
+								}
+								className={
+									article.tags.includes("Grátis")
+										? "bg-red-500 hover:bg-red-600 text-white p-3 rounded-md flex w-max gap-2 items-center mx-auto"
+										: "text-red-500 hover:text-red-600"
+								}
+							>
+								{article.tags.includes("Grátis") && <RiExternalLinkLine />}{" "}
+								{children}
+							</Link>
+						),
+						list: ({ children }) => (
+							<ul className="my-3 text-lg list-disc ml-5">{children}</ul>
+						),
+						oList: ({ children }) => (
+							<ol className="my-3 text-lg list-decimal ml-5">{children}</ol>
+						),
+					}}
 				/>
 				{article.tags.includes("Grátis") &&
 					article.data.titulo?.includes("Epic Games") && (
