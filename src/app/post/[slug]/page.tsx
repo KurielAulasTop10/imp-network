@@ -132,10 +132,9 @@ export default async function PostPage(props: {
 							<PrismicRichText
 								field={article.data.resume}
 								components={{
-									paragraph: ({ children }) => (
+									paragraph: ({ text }) => (
 										<p className="my-3 text-lg">
-											{children
-												.toString()
+											{(text as unknown as string)
 												.replace("```", "")
 												.replace("html", "")}
 										</p>
@@ -156,9 +155,9 @@ export default async function PostPage(props: {
 									list: ({ children }) => (
 										<ul className="my-3 text-lg list-disc ml-5">{children}</ul>
 									),
-									oList: ({ children }) => (
+									oList: ({ text }) => (
 										<ol className="my-3 text-lg list-decimal ml-5">
-											{children}
+											{(text as unknown as string).replace("```", "")}
 										</ol>
 									),
 								}}
