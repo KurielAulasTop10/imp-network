@@ -6,7 +6,7 @@ import Sidebar from "./_components/Sidebar";
 import { BsTrophyFill } from "react-icons/bs"; */
 
 export default async function BlogPage() {
-	const clientPrismic = createClient();
+	const clientPrismic = createClient({ fetchOptions: { cache: "no-cache" } });
 	const allPosts = await clientPrismic.getAllByType("post", {
 		orderings: {
 			field: "my.post.data",
