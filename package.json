@@ -36,7 +36,7 @@
 		"react-dom": "19.1.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.0.6",
+		"@biomejs/biome": "2.1.1",
 		"@slicemachine/adapter-next": "^0.3.80",
 		"@types/node": "24.0.7",
 		"@types/react": "19.1.8",
