@@ -93,3 +93,17 @@
 		--radius: 0.5rem;
 	}
 }
+
+audio::-webkit-media-controls-panel {
+	background: black;
+	border-radius: 0px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider {
+	filter: brightness(0) invert(1);
+}

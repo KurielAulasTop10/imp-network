@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 import {
 	RiAiGenerate2,
+	RiAlertLine,
 	RiBookReadFill,
 	RiDoubleQuotesR,
 	RiEmotionHappyFill,
@@ -187,13 +188,35 @@ export default async function PostPage(props: {
 						),
 						paragraph: ({ children, text }) => {
 							const textString = text as unknown as string;
-							return textString?.startsWith("/vid") ? (
+							return textString?.startsWith("!vid") ? (
 								// biome-ignore lint/a11y/useMediaCaption: false
 								<video
-									src={textString.replace("/vid", "")}
+									src={textString.replace("!vid", "")}
 									controls
 									className="rounded-md w-full aspect-video my-3"
 								/>
+							) : textString?.startsWith("!aud") ? (
+								// biome-ignore lint/a11y/useMediaCaption: <false>
+								<audio
+									controls
+									autoPlay
+									loop
+									className="w-full shadow-lg rounded-sm my-3"
+									controlsList="noplaybackrate nodownload"
+								>
+									<source src={textString.replace("!aud", "")} />
+								</audio>
+							) : textString?.startsWith("!warn") ? (
+								<div className="relative w-full flex flex-wrap items-center justify-center py-1 p-3 my-3 rounded-lg text-lg border-solid border border-yellow-600 text-yellow-600 group bg-[linear-gradient(#ca8a041a,#ca8a041a)]">
+									<p className="flex flex-row items-center mr-auto gap-x-2">
+										<RiAlertLine size={24} />
+										{textString.replace("!warn ", "")}
+									</p>
+								</div>
+							) : textString?.startsWith("!spoiler") ? (
+								<p className="filter blur-sm hover:blur-none transition-all duration-300 my-3 text-lg">
+									{textString.replace("!spoiler ", "")}
+								</p>
 							) : (
 								<div>
 									{Math.floor(Math.random() * 15) + 1 === 5 &&
