@@ -3,9 +3,12 @@ import type { AxiosError } from "axios";
 import type { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
 import {
+	BsFacebook,
 	BsInstagram,
+	BsSteam,
 	BsThreads,
 	BsTwitch,
+	BsTwitterX,
 	BsWhatsapp,
 	BsYoutube,
 } from "react-icons/bs";
@@ -129,6 +132,34 @@ export default async function Sidebar() {
 					<BsWhatsapp />
 				</Link>
 				<Link
+					href="https://bsky.app/profile/imperionetwork.fr"
+					className="w-full flex bg-blue-600 hover:text-black p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+					target="_blank"
+				>
+					<RiBlueskyFill />
+				</Link>
+				<Link
+					href="https://x.com/imperionetwork6"
+					className="w-full flex bg-blue-500 hover:text-black p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+					target="_blank"
+				>
+					<BsTwitterX />
+				</Link>
+				<Link
+					href="https://www.facebook.com/profile.php?id=61560538208689"
+					className="w-full flex bg-blue-700 hover:text-black p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+					target="_blank"
+				>
+					<BsFacebook />
+				</Link>
+				<Link
+					href="https://steamcommunity.com/groups/imperionetwork"
+					className="w-full flex bg-black text-white hover:invert p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
+					target="_blank"
+				>
+					<BsSteam />
+				</Link>
+				<Link
 					href="https://www.youtube.com/@imperionetwork"
 					className="w-full flex bg-[#FF0000] hover:text-black p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
 					target="_blank"
@@ -141,13 +172,6 @@ export default async function Sidebar() {
 					target="_blank"
 				>
 					<BsTwitch />
-				</Link>
-				<Link
-					href="https://bsky.app/profile/imperionetwork.fr"
-					className="w-full flex bg-blue-600 hover:text-black p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"
-					target="_blank"
-				>
-					<RiBlueskyFill />
 				</Link>
 			</div>
 			<h3 className="w-full p-2 uppercase bg-black text-white font-normal rounded-md">
