@@ -17,9 +17,14 @@ export default function AuthorBox({ uid, data }: AuthorDocument) {
 						Autor
 					</span>
 				</span>
-				<p className="text-sm text-gray-200 flex font-thin">
-					<PrismicRichText field={data.descricao} />
-				</p>
+				<PrismicRichText
+					field={data.descricao}
+					components={{
+						paragraph: ({ text }) => (
+							<p className="text-sm text-gray-200 flex font-thin">{text}</p>
+						),
+					}}
+				/>
 			</div>
 		</div>
 	);

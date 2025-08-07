@@ -87,16 +87,16 @@ export default async function PostPage(props: {
 					field={article.data.editor}
 					components={{
 						heading1: ({ text }) => (
-							<h1 className="my-3 text-base font-semibold">{text}</h1>
+							<h1 className="my-3 text-3xl font-semibold">{text}</h1>
 						),
 						heading2: ({ text }) => (
-							<h2 className="my-3 text-base font-semibold">{text}</h2>
+							<h2 className="my-3 text-2xl font-semibold">{text}</h2>
 						),
 						heading3: ({ text }) => (
-							<h3 className="my-3 text-base font-semibold">{text}</h3>
+							<h3 className="my-3 text-xl font-semibold">{text}</h3>
 						),
 						heading4: ({ text }) => (
-							<h4 className="my-3 text-base font-semibold">{text}</h4>
+							<h4 className="my-3 text-lg font-semibold">{text}</h4>
 						),
 						paragraph: ({ children, text }) => {
 							const textString = text as unknown as string;

@@ -175,16 +175,16 @@ export default async function PostPage(props: {
 					field={article.data.editor}
 					components={{
 						heading1: ({ text }) => (
-							<h1 className="my-3 text-2xl font-semibold">{text}</h1>
+							<h1 className="my-3 text-4xl font-semibold">{text}</h1>
 						),
 						heading2: ({ text }) => (
-							<h2 className="my-3 text-xl font-semibold">{text}</h2>
+							<h2 className="my-3 text-3xl font-semibold">{text}</h2>
 						),
 						heading3: ({ text }) => (
-							<h3 className="my-3 text-lg font-semibold">{text}</h3>
+							<h3 className="my-3 text-2xl font-semibold">{text}</h3>
 						),
 						heading4: ({ text }) => (
-							<h4 className="my-3 text-lg font-semibold">{text}</h4>
+							<h4 className="my-3 text-xl font-semibold">{text}</h4>
 						),
 						paragraph: ({ children, text }) => {
 							const textString = text as unknown as string;
@@ -359,9 +359,16 @@ export default async function PostPage(props: {
 							<h1 className="flex text-white text-lg font-light items-center gap-2 capitalize">
 								{article.data.titulo?.replace("Review - ", "")}
 							</h1>
-							<p className="text-sm text-gray-200 flex font-thin">
-								<PrismicRichText field={article.data.review[0]?.descricao} />
-							</p>
+							<PrismicRichText
+								field={article.data.review[0]?.descricao}
+								components={{
+									paragraph: ({ text }) => (
+										<p className="text-sm text-gray-200 flex font-thin">
+											{text}
+										</p>
+									),
+								}}
+							/>
 							<p className="text-xs mt-1 text-gray-300 font-thin">
 								Descobre como funciona o nosso sistema de notas, lendo a nossa{" "}
 								<Link
