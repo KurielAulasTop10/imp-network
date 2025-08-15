@@ -3,7 +3,6 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
-import React from "react";
 
 export default function Footer() {
 	const links = [
@@ -51,13 +50,13 @@ export default function Footer() {
 							KurielDev
 						</Link>
 					</p>
-					<p className="my-5 font-bold text-xl">Parceiro oficial</p>
+					{/*<p className="my-5 font-bold text-xl">Parceiro oficial</p>
 					<Link href="https://opencritic.com/" target="_blank">
 						<img
 							src={"/opencritic.svg"}
 							className="bg-white p-2 rounded-md w-xs h-auto mx-auto"
 						></img>
-					</Link>
+					</Link>*/}
 				</div>
 			</footer>
 			<Script id="clarity-script" strategy="afterInteractive">
