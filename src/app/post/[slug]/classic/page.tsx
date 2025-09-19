@@ -9,11 +9,9 @@ import { cdn } from "@/utils/cdn";
 import type { PostDocumentDataReviewItem } from "../../../../../prismicio-types";
 
 export default async function PostPage(props: {
-	params: Promise<{ slug: string }>;
+	params: { slug: string };
 }) {
-	const params = await props.params;
-
-	const { slug } = params;
+	const { slug } = props.params;
 
 	const client = createClient({ fetchOptions: { cache: "no-cache" } });
 
@@ -25,7 +23,7 @@ export default async function PostPage(props: {
 	const myAuthorData = article.data.author as unknown as MyAuthorData;
 
 	if (!myAuthorData.uid) {
-		return console.error("Author UID not found");
+		return notFound();
 	}
 	const author = await client
 		.getByUID("author", myAuthorData.uid)
@@ -217,11 +215,9 @@ export default async function PostPage(props: {
 }
 
 export async function generateMetadata(props: {
-	params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-	const params = await props.params;
-
-	const { slug } = params;
+	params: { slug: string };
+}): Metadata {
+	const { slug } = props.params;
 
 	const client = createClient();
 	const post = await client.getByUID("post", slug);
