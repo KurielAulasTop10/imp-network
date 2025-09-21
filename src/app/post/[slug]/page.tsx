@@ -24,10 +24,12 @@ import { cdn } from "@/utils/cdn";
 import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
 import Ad from "./_components/Ad";
 
-export default async function PostPage(props: {
-	params: { slug: string };
+export default async function PostPage({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
 }) {
-	const { slug } = props.params;
+	const { slug } = await params;
 
 	const client = createClient({ fetchOptions: { cache: "no-cache" } });
 
@@ -412,10 +414,12 @@ export default async function PostPage(props: {
 	);
 }
 
-export async function generateMetadata(props: {
-	params: { slug: string };
-}): Metadata {
-	const { slug } = props.params;
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+	const { slug } = await params;
 
 	const client = createClient();
 	const post = await client.getByUID("post", slug);
