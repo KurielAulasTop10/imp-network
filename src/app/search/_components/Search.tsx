@@ -9,6 +9,7 @@ import type { PostDocument } from "../../../../prismicio-types";
 
 export default function Search() {
 	const searchParams = useSearchParams();
+	const [currentPage, setCurrentPage] = useState<number>(1);
 	const q = searchParams.get("q");
 
 	const [posts, setPosts] = useState<PostDocument[] | null>(null);
@@ -42,7 +43,11 @@ export default function Search() {
 		</p>
 	) : (
 		<div className="mt-10 px-5">
-			<PostsGrid allPosts={posts ?? []} />
+			<PostsGrid
+				allPosts={posts ?? []}
+				currentPage={currentPage}
+				onPageChange={setCurrentPage}
+			/>
 		</div>
 	);
 }

@@ -1,8 +1,8 @@
 // import Link from "next/link";
 import { Suspense } from "react";
-// import { BsTrophyFill } from "react-icons/bs";
-import PostsGrid from "@/components/posts/PostsGrid";
 import { createClient } from "@/prismicio";
+// import { BsTrophyFill } from "react-icons/bs";
+import HomePageContent from "./_components/HomePageContent";
 import Sidebar from "./_components/Sidebar";
 
 export default async function BlogPage() {
@@ -15,8 +15,8 @@ export default async function BlogPage() {
 	});
 
 	return (
-		<div className="flex flex-col xl:flex-row justify-between items-start md:items-center xl:items-start mt-5 md:mt-10 mx-auto px-2 md:px-5 w-full gap-10">
-			<div className="w-full">
+		<div className="grid grid-cols-1 md:grid-cols-5 w-full items-start mt-5 md:mt-10 px-2 md:px-5 gap-10">
+			<div className="w-full col-span-4">
 				{/* <Link
 						href="/goty"
 						className="flex flex-row w-full bg-black text-white rounded-md mb-5 gap-3 items-center"
@@ -37,7 +37,7 @@ export default async function BlogPage() {
 					</p>
 				</Link>*/}
 				<Suspense fallback={<p>Carregando... Aguarde alguns segundos.</p>}>
-					<PostsGrid allPosts={allPosts} />
+					<HomePageContent allPosts={allPosts} />
 				</Suspense>
 			</div>
 			<Sidebar />

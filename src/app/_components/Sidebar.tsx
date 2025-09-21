@@ -91,7 +91,7 @@ export default async function Sidebar() {
 	const coversData = await fetchCoverDataWithBackoff(gameIds as number[]);
 
 	return (
-		<div className="w-full xl:w-1/4 flex gap-4 flex-col xl:sticky xl:top-10">
+		<div className="w-full flex gap-4 flex-col xl:sticky xl:top-10">
 			<SearchBar />
 			<h3 className="w-full p-2 uppercase bg-black text-white font-normal rounded-md">
 				Entre no nosso Discord
@@ -109,7 +109,7 @@ export default async function Sidebar() {
 			<h3 className="w-full p-2 uppercase bg-black text-white font-normal rounded-md">
 				SIGA-NOS NAS REDES SOCIAIS
 			</h3>
-			<div className="grid grid-cols-3 gap-3">
+			<div className="grid grid-cols-3 gap-3 text-white">
 				<Link
 					href="https://www.threads.net/@imperionetwork6"
 					className="w-full flex bg-black hover:invert p-2 items-center justify-center font-semibold text-lg gap-2 rounded-md"

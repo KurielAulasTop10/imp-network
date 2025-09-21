@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PostsGrid from "@/components/posts/PostsGrid";
+import CategoryPageContent from "./_components/CategoryPageContent";
 import { createClient } from "@/prismicio";
 import type { PostDocument } from "../../../../prismicio-types";
 
@@ -30,7 +30,7 @@ export default async function CategoryPage(props: {
 
 	return (
 		<div className="mt-10 px-5">
-			<PostsGrid allPosts={allPosts as PostDocument[]} />
+			<CategoryPageContent allPosts={allPosts as PostDocument[]} />
 		</div>
 	);
 }

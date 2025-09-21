@@ -5,8 +5,15 @@ import { RiArrowLeftDoubleLine, RiArrowRightDoubleLine } from "react-icons/ri";
 import PostCard from "@/components/posts/PostCard";
 import type { PostDocument } from "../../../prismicio-types";
 
-export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
-	const [currentPage, setCurrentPage] = useState<number>(1);
+export default function PostsGrid({ 
+	allPosts, 
+	currentPage, 
+	onPageChange 
+}: { 
+	allPosts: PostDocument[]; 
+	currentPage: number; 
+	onPageChange: (page: number) => void;
+}) {
 	const [postsPerPage] = useState<number>(21);
 
 	const totalPages = Math.ceil(allPosts.length / postsPerPage);
@@ -28,12 +35,12 @@ export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 					)}
 				</div>
 			) : (
-				<p className="text-center text-lg">Sem resultados</p>
+				<p className="text-center text-lg text-white">Sem resultados</p>
 			)}
-			<div className="gap-3 flex items-center">
+			<div className="gap-3 flex items-center text-white">
 				<button
 					type="button"
-					onClick={() => setCurrentPage(currentPage - 1)}
+					onClick={() => onPageChange(currentPage - 1)}
 					disabled={currentPage === 1}
 					className="bg-red-600 rounded-md hover:bg-red-500 cursor-pointer disabled:hidden"
 				>
@@ -42,7 +49,7 @@ export default function PostsGrid({ allPosts }: { allPosts: PostDocument[] }) {
 				<span className="text-lg">{currentPage}</span>
 				<button
 					type="button"
-					onClick={() => setCurrentPage(currentPage + 1)}
+					onClick={() => onPageChange(currentPage + 1)}
 					disabled={currentPage === (totalPages === 0 ? 1 : totalPages)}
 					className="bg-red-600 rounded-md hover:bg-red-500 cursor-pointer disabled:hidden"
 				>
