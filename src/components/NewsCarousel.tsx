@@ -59,7 +59,7 @@ export default function NewsCarousel({ posts }: NewsCarouselProps) {
 												<span className="inline-block px-3 py-1 mb-4 text-sm font-semibold bg-red-500 text-white rounded-full">
 													DESTAQUE
 												</span>
-												<h1 className="mb-4 text-2xl md:text-4xl lg:text-5xl font-bold leading-tight hover:text-red-400">
+												<h1 className="mb-4 text-lg md:text-4xl lg:text-5xl font-bold leading-tight hover:text-red-400">
 													{post.data.titulo}
 												</h1>
 												<Button className="px-6 py-3 font-semibold text-white bg-red-500 hover:bg-red-400 rounded-lg">
@@ -90,7 +90,7 @@ export default function NewsCarousel({ posts }: NewsCarouselProps) {
 							>
 								<div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
 								<div className="absolute bottom-1 left-1 right-1">
-									<p className="text-xs text-white font-medium truncate">
+									<p className="text-sm text-white font-medium truncate">
 										{post.data.titulo}
 									</p>
 								</div>
