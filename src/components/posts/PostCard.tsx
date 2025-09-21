@@ -96,6 +96,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 							src={cdn(post.data.cover.url as string, 640, 360)}
 							alt={post.data.cover.alt || ""}
 							className="w-full"
+							loading="lazy"
 						/>
 						<Link
 							href={`/categoria/${post.tags[0]}`}
@@ -112,6 +113,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 								)}
 								alt={`${post.data.titulo} Logo`}
 								className="absolute bottom-2 left-1 w-10"
+								loading="lazy"
 							/>
 						)}
 					</div>
@@ -127,6 +129,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 						src={cdn(authorData?.data.avatar.url as string, 48, 48)}
 						className="rounded-md w-12 h-12"
 						alt={authorData?.data.avatar.alt || ""}
+						loading="lazy"
 					/>
 					<div className="flex flex-col">
 						<span className="text-gray-200 text-lg font-light capitalize">

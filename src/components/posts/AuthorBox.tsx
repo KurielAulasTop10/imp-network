@@ -9,6 +9,7 @@ export default function AuthorBox({ uid, data }: AuthorDocument) {
 				src={cdn(data.avatar.url as string, 48, 48)}
 				className="rounded-md"
 				alt={data.avatar.alt || ""}
+				loading="lazy"
 			/>
 			<div className="flex flex-col">
 				<span className="flex text-white text-lg font-light items-center gap-2 capitalize">

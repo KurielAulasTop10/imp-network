@@ -123,6 +123,7 @@ export default async function PostPage({
 							src={cdn(article.data.cover.url as string, 1920, 0)}
 							alt={article.data.cover.alt || ""}
 							className="object-cover w-full h-full rounded-md"
+							loading="lazy"
 						/>
 					</div>
 				</div>
@@ -265,6 +266,7 @@ export default async function PostPage({
 									width={"100%"}
 									height={"100%"}
 									className="w-full rounded-md"
+									loading="lazy"
 								/>
 							);
 						},

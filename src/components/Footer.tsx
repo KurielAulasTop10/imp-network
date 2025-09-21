@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/correctness/useUniqueElementIds: <explanation> */
 "use client";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Link from "next/link";

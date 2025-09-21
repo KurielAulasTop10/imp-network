@@ -203,6 +203,7 @@ export default async function Sidebar() {
 									)}
 									alt={game.name as string}
 									className="rounded-md w-full"
+									loading="lazy"
 								/>
 							</Link>
 						);

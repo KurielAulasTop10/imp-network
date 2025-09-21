@@ -108,6 +108,7 @@ export default function GOTYPage() {
 									src={cdn(nominee.image, 512, 512)}
 									alt={nominee.title}
 									className="rounded-md"
+									loading="lazy"
 								/>
 								<h3 className="text-xl font-semibold text-center">
 									{nominee.title}

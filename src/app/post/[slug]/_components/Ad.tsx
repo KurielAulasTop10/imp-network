@@ -26,6 +26,7 @@ export default async function Ad({
 				src={cdn(ad[index].data.imagem.url as string, 0, 0)}
 				alt="ANÚNCIO"
 				className="w-full object-center rounded-md"
+				loading="lazy"
 			/>
 		</Link>
 	);
