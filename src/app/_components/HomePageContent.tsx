@@ -17,7 +17,7 @@ export default function HomePageContent({ allPosts }: HomePageContentProps) {
 			{currentPage === 1 && <NewsCarousel posts={allPosts} />}
 
 			<PostsGrid
-				allPosts={allPosts.slice(4)}
+				allPosts={allPosts.slice(1)}
 				currentPage={currentPage}
 				onPageChange={setCurrentPage}
 			/>

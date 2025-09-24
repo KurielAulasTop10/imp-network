@@ -28,7 +28,7 @@ export default function PostsGrid({
 		<section className="flex scroll-mt-12 flex-col items-center space-y-6">
 			{filteredPosts.length >= 1 ? (
 				<div
-					className={`grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-5`}
+					className={`grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-10`}
 				>
 					{filteredPosts.map(
 						(post) => post && <PostCard post={post} key={post.uid} />,
@@ -42,7 +42,7 @@ export default function PostsGrid({
 					type="button"
 					onClick={() => onPageChange(currentPage - 1)}
 					disabled={currentPage === 1}
-					className="bg-red-600 rounded-md hover:bg-red-500 cursor-pointer disabled:hidden"
+					className="bg-red-600 rounded-full hover:bg-red-500 cursor-pointer disabled:hidden"
 				>
 					<RiArrowLeftDoubleLine size={32} />
 				</button>
@@ -51,7 +51,7 @@ export default function PostsGrid({
 					type="button"
 					onClick={() => onPageChange(currentPage + 1)}
 					disabled={currentPage === (totalPages === 0 ? 1 : totalPages)}
-					className="bg-red-600 rounded-md hover:bg-red-500 cursor-pointer disabled:hidden"
+					className="bg-red-600 rounded-full hover:bg-red-500 cursor-pointer disabled:hidden"
 				>
 					<RiArrowRightDoubleLine size={32} />
 				</button>

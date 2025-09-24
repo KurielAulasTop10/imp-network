@@ -89,59 +89,44 @@ export default function PostCard({ post }: { post: PostDocument }) {
 		</div>
 	) : (
 		<Link href={`/post/${post.uid}`}>
-			<article className="rounded-md bg-black w-full h-full hover:outline-1 outline-offset-2 outline-red-600 transition-all duration-300 p-2 mx-auto flex flex-col justify-between">
-				<div className="w-full h-full">
-					<div className="relative overflow-hidden mb-2">
-						<img
-							src={cdn(post.data.cover.url as string, 640, 360)}
-							alt={post.data.cover.alt || ""}
-							className="w-full"
-							loading="lazy"
-						/>
-						<Link
-							href={`/categoria/${post.tags[0]}`}
-							className="absolute top-0 left-0 px-2 py-1 text-white bg-red-600/60 hover:bg-red-600 hover:text-white text-sm capitalize font-normal rounded-b-md"
-						>
-							{post.tags[0]}
-						</Link>
-						{post.tags.includes("Grátis") && (
-							<img
-								src={cdn(
-									frees[getFreeSource(post.data.titulo as string)],
-									0,
-									0,
-								)}
-								alt={`${post.data.titulo} Logo`}
-								className="absolute bottom-2 left-1 w-10"
-								loading="lazy"
-							/>
-						)}
-					</div>
-					<div className="flex justify-start border-l-4 border-red-600 pl-2">
-						<h3 className="text-lg font-normal text-white text-justify line-clamp-2">
-							{post.data.titulo}
-						</h3>
-					</div>
-				</div>
-
-				<div className="flex gap-3 items-center h-full w-full bg-zinc-950 rounded-md mt-2 p-2">
+			<article
+				className="relative rounded-lg overflow-hidden cursor-pointer transition-all transform hover:scale-105 bg-center bg-no-repeat bg-cover aspect-video"
+				style={{
+					backgroundImage: `url(${cdn(post.data.cover.url as string, 640, 360)})`,
+				}}
+			>
+				{post.tags.includes("Grátis") && (
 					<img
-						src={cdn(authorData?.data.avatar.url as string, 48, 48)}
-						className="rounded-md w-12 h-12"
-						alt={authorData?.data.avatar.alt || ""}
+						src={cdn(frees[getFreeSource(post.data.titulo as string)], 0, 0)}
+						alt={`${post.data.titulo} Logo`}
+						className="absolute top-2 left-1 w-10"
 						loading="lazy"
 					/>
-					<div className="flex flex-col">
-						<span className="text-gray-200 text-lg font-light capitalize">
-							{authorData?.uid.replaceAll("-", " ")}
-						</span>
-						<p className="text-sm text-gray-400 flex font-thin">
-							{new Date(`${post.data.data}`).toLocaleDateString("pt-BR", {
-								day: "2-digit",
-								month: "long",
-								year: "numeric",
-							})}
-						</p>
+				)}
+				<div className="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+				<div className="absolute bottom-1 left-2 right-1 mb-0.5">
+					<h3 className="text-lg text-white font-medium hover:text-red-400">
+						{post.data.titulo}
+					</h3>
+					<div className="flex gap-3 items-center h-full w-full mt-0.5">
+						<img
+							src={cdn(authorData?.data.avatar.url as string, 28, 28)}
+							className="rounded-full w-7 h-7"
+							alt={authorData?.data.avatar.alt || ""}
+							loading="lazy"
+						/>
+						<div className="flex flex-col">
+							<span className="text-gray-200 text-sm font-light capitalize">
+								{authorData?.uid.replaceAll("-", " ")}
+							</span>
+							<p className="text-xs text-gray-400 flex font-extralight">
+								{new Date(`${post.data.data}`).toLocaleDateString("pt-BR", {
+									day: "2-digit",
+									month: "long",
+									year: "numeric",
+								})}
+							</p>
+						</div>
 					</div>
 				</div>
 			</article>
