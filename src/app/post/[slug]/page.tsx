@@ -10,7 +10,6 @@ import Script from "next/script";
 import {
 	RiAiGenerate2,
 	RiAlertLine,
-	RiBookReadFill,
 	RiDoubleQuotesR,
 	RiEmotionHappyFill,
 	RiEmotionNormalFill,
@@ -151,7 +150,7 @@ export default async function PostPage({
 													? undefined
 													: "_blank"
 											}
-											className="text-red-500 hover:text-red-600"
+											className="text-red-500 hover:text-red-600 border-b-1 border-dotted border-red-500 hover:border-red-600"
 										>
 											{children}
 										</Link>
@@ -278,7 +277,7 @@ export default async function PostPage({
 								className={
 									article.tags.includes("Grátis")
 										? "bg-red-500 hover:bg-red-600 text-white p-3 rounded-md flex w-max gap-2 items-center mx-auto"
-										: "text-red-500 hover:text-red-600"
+										: "text-red-500 hover:text-red-600 border-b-1 border-dotted border-red-500 hover:border-red-600"
 								}
 							>
 								{article.tags.includes("Grátis") && <RiExternalLinkLine />}{" "}
