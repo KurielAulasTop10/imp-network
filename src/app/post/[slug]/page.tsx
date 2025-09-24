@@ -99,9 +99,6 @@ export default async function PostPage({
 				<div className="flex flex-col items-start gap-3">
 					<CategoryList categories={article.tags} />
 					<h1 className="flex gap-2 items-center xl:text-4xl text-2xl font-bold">
-						<Link href={`/post/${article.uid}/classic`}>
-							<RiBookReadFill />
-						</Link>{" "}
 						{article.data.titulo}
 					</h1>
 					<time
