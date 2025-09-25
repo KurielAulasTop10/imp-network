@@ -89,46 +89,62 @@ export default function PostCard({ post }: { post: PostDocument }) {
 		</div>
 	) : (
 		<Link href={`/post/${post.uid}`}>
-			<article
-				className="relative rounded-lg overflow-hidden cursor-pointer transition-all transform hover:scale-105 bg-center bg-no-repeat bg-cover aspect-video"
-				style={{
-					backgroundImage: `url(${cdn(post.data.cover.url as string, 640, 360)})`,
-				}}
-			>
+			<article className="relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 transform hover:scale-105 bg-center bg-no-repeat bg-cover aspect-video shadow-2xl hover:shadow-2xl group">
+				{/* Imagem de fundo */}
+				<div
+					className="absolute inset-0 bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+					style={{
+						backgroundImage: `url(${cdn(post.data.cover.url as string, 640, 360)})`,
+					}}
+				/>
+
+				{/* Overlay gradient melhorado */}
+				<div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
+
+				{/* Logo Grátis */}
 				{post.tags.includes("Grátis") && (
-					<img
-						src={cdn(frees[getFreeSource(post.data.titulo as string)], 0, 0)}
-						alt={`${post.data.titulo} Logo`}
-						className="absolute top-2 left-1 w-10"
-						loading="lazy"
-					/>
+					<div className="absolute top-3 left-3 z-10">
+						<img
+							src={cdn(frees[getFreeSource(post.data.titulo as string)], 0, 0)}
+							alt={`${post.data.titulo} Logo`}
+							className="w-12 h-12 rounded-lg shadow-lg"
+							loading="lazy"
+						/>
+					</div>
 				)}
-				<div className="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
-				<div className="absolute bottom-1 left-2 right-1 mb-0.5">
-					<h3 className="text-lg text-white font-medium hover:text-red-400">
+
+				{/* Conteúdo */}
+				<div className="absolute bottom-0 left-0 right-0 p-4 z-10 transform transition-transform duration-300 group-hover:translate-y-1">
+					{/* Título */}
+					<h3 className="text-xl text-white font-bold mb-3 leading-tight group-hover:text-red-400 transition-colors duration-300 line-clamp-2">
 						{post.data.titulo}
 					</h3>
-					<div className="flex gap-3 items-center h-full w-full mt-0.5">
+
+					{/* Autor e Data */}
+					<div className="flex items-center gap-3">
 						<img
-							src={cdn(authorData?.data.avatar.url as string, 28, 28)}
-							className="rounded-full w-7 h-7"
+							src={cdn(authorData?.data.avatar.url as string, 32, 32)}
+							className="rounded-full w-8 h-8 border-2 border-white/20 shadow-md"
 							alt={authorData?.data.avatar.alt || ""}
 							loading="lazy"
 						/>
-						<div className="flex flex-col">
-							<span className="text-gray-200 text-sm font-light capitalize">
+						<div className="flex-1 min-w-0">
+							<span className="text-gray-200 text-sm font-medium capitalize block truncate">
 								{authorData?.uid.replaceAll("-", " ")}
 							</span>
-							<p className="text-xs text-gray-400 flex font-extralight">
+							<p className="text-xs text-gray-300 font-light">
 								{new Date(`${post.data.data}`).toLocaleDateString("pt-BR", {
 									day: "2-digit",
-									month: "long",
+									month: "short",
 									year: "numeric",
 								})}
 							</p>
 						</div>
 					</div>
 				</div>
+
+				{/* Efeito hover adicional */}
+				<div className="absolute inset-0 bg-red-500/0 group-hover:bg-red-500/5 transition-all duration-500"></div>
 			</article>
 		</Link>
 	);
