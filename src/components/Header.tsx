@@ -34,116 +34,155 @@ export default function Header() {
 
 	return (
 		<nav className="w-full relative">
-			<div className="blur-xs bg-[url(https://i.ibb.co/SxKhpv7/image.webp)] bg-cover bg-center w-full h-60 z-10" />
-			<Link href="/">
-				<img
-					src="/logo.png"
-					alt="Império Network Logo"
-					className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-52 p-3 object-contain"
-				/>
-			</Link>
-			<div className="w-full flex items-center px-5 rounded-b-md">
-				<div className="w-full text-white font-normal uppercase flex gap-2.5 items-center justify-start text-sm">
-					<DropdownMenu.Root>
-						<DropdownMenu.Trigger className="absolute top-5 left-5 hover:text-red-600 cursor-pointer">
-							<RiMenuFill size={28} />
-						</DropdownMenu.Trigger>
-						<DropdownMenu.Portal>
-							<DropdownMenu.Content className="bg-black rounded-md text-white mt-1.5 font-normal text-md p-2">
-								<Link href={"/categoria/anime"}>
-									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-										<RiTvFill /> Animes
-									</DropdownMenu.Item>
-								</Link>
-								<Link href={"/categoria/cinema"}>
-									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-										<RiProjector2Fill /> Cinema
-									</DropdownMenu.Item>
-								</Link>
-								<DropdownMenu.Sub>
-									<DropdownMenu.SubTrigger className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-										<div className="flex items-center gap-1">
-											<RiGameFill />
-											Games
-											<RiArrowDropDownLine size={28} />
-										</div>
-									</DropdownMenu.SubTrigger>
+			{/* Header simplificado com gradiente escuro */}
+			<div className="bg-gradient-to-b from-gray-950 to-gray-900 w-full h-48 rounded-b-3xl shadow-2xl border-b border-gray-800 relative overflow-hidden">
+				{/* Efeito sutil de brilho no centro */}
+				<div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-900 to-transparent opacity-50" />
 
-									<DropdownMenu.Portal>
-										<DropdownMenu.SubContent className="bg-black rounded-md text-white ml-2 font-normal text-md p-2">
-											<Link href={"/categoria/grátis"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-													<RiTimerFlashFill />
-													Grátis
-												</DropdownMenu.Item>
-											</Link>
-											<Link href={"/categoria/notícia"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-													<RiNewspaperFill /> Notícias
-												</DropdownMenu.Item>
-											</Link>
-											<Link href={"/categoria/guia"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-													<RiGuideFill /> Guias
-												</DropdownMenu.Item>
-											</Link>
-										</DropdownMenu.SubContent>
-									</DropdownMenu.Portal>
-								</DropdownMenu.Sub>
-								<DropdownMenu.Sub>
-									<DropdownMenu.SubTrigger className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-										<div className="flex items-center gap-1">
-											<RiGamepadFill />
-											Plataformas
-											<RiArrowDropDownLine size={28} />
-										</div>
-									</DropdownMenu.SubTrigger>
+				{/* Logo centralizado */}
+				<Link
+					href="/"
+					className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+				>
+					<img
+						src="/logo.png"
+						alt="Império Network Logo"
+						className="h-36 object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105 filter brightness-110"
+					/>
+				</Link>
+			</div>
 
-									<DropdownMenu.Portal>
-										<DropdownMenu.SubContent className="bg-black rounded-md text-white ml-2 font-normal text-md p-2">
-											<Link href={"/categoria/nintendo"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-													<BsNintendoSwitch />
-													Nintendo
-												</DropdownMenu.Item>
-											</Link>
-											<Link href={"/categoria/pc"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-													<RiComputerLine /> PC
-												</DropdownMenu.Item>
-											</Link>
-											<Link href={"/categoria/playstation"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-													<RiPlaystationFill /> PlayStation
-												</DropdownMenu.Item>
-											</Link>
-											<Link href={"/categoria/xbox"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-													<RiXboxFill /> Xbox
-												</DropdownMenu.Item>
-											</Link>
-											<Link href={"/categoria/mobile"}>
-												<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-													<RiAppStoreFill /> Mobile
-												</DropdownMenu.Item>
-											</Link>
-										</DropdownMenu.SubContent>
-									</DropdownMenu.Portal>
-								</DropdownMenu.Sub>
-								<Link href={"/categoria/review"}>
-									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-										<RiStarSmileFill /> Reviews
-									</DropdownMenu.Item>
-								</Link>
-								<Link href={"/categoria/tech"}>
-									<DropdownMenu.Item className="flex items-center gap-1 rounded-md outline-hidden px-3 py-1 hover:bg-red-900">
-										<RiCpuLine /> Tech
-									</DropdownMenu.Item>
-								</Link>
-							</DropdownMenu.Content>
-						</DropdownMenu.Portal>
-					</DropdownMenu.Root>
-				</div>
+			{/* Menu Button */}
+			<div className="absolute top-6 left-6 z-20">
+				<DropdownMenu.Root>
+					<DropdownMenu.Trigger className="p-3 bg-gray-900 hover:bg-gray-800 rounded-2xl cursor-pointer border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 group backdrop-blur-sm">
+						<RiMenuFill
+							size={24}
+							className="text-white group-hover:text-red-400 transition-colors"
+						/>
+					</DropdownMenu.Trigger>
+
+					<DropdownMenu.Portal>
+						<DropdownMenu.Content className="bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl p-3 min-w-[200px] backdrop-blur-lg">
+							{/* Itens do menu (mantive o mesmo conteúdo que já tinhas) */}
+							<Link href={"/categoria/anime"}>
+								<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-gray-800 text-white transition-all duration-200 group">
+									<RiTvFill className="text-red-400 group-hover:scale-110 transition-transform" />
+									<span className="font-medium">Animes</span>
+								</DropdownMenu.Item>
+							</Link>
+
+							{/* Categoria Cinema */}
+							<Link href={"/categoria/cinema"}>
+								<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-gray-800 text-white transition-all duration-200 group">
+									<RiProjector2Fill className="text-red-400 group-hover:scale-110 transition-transform" />
+									<span className="font-medium">Cinema</span>
+								</DropdownMenu.Item>
+							</Link>
+
+							{/* Submenu Games */}
+							<DropdownMenu.Sub>
+								<DropdownMenu.SubTrigger className="flex items-center justify-between rounded-xl px-4 py-3 hover:bg-gray-800 text-white transition-all duration-200 group">
+									<div className="flex items-center gap-3">
+										<RiGameFill className="text-red-400 group-hover:scale-110 transition-transform" />
+										<span className="font-medium">Games</span>
+									</div>
+									<RiArrowDropDownLine
+										size={20}
+										className="group-hover:text-red-400 transition-colors"
+									/>
+								</DropdownMenu.SubTrigger>
+
+								<DropdownMenu.Portal>
+									<DropdownMenu.SubContent className="bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl p-3 ml-2 backdrop-blur-lg">
+										<Link href={"/categoria/grátis"}>
+											<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-2 hover:bg-gray-800 text-white transition-all duration-200 group">
+												<RiTimerFlashFill className="text-yellow-400 text-sm" />
+												<span>Grátis</span>
+											</DropdownMenu.Item>
+										</Link>
+										<Link href={"/categoria/notícia"}>
+											<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-2 hover:bg-gray-800 text-white transition-all duration-200 group">
+												<RiNewspaperFill className="text-blue-400 text-sm" />
+												<span>Notícias</span>
+											</DropdownMenu.Item>
+										</Link>
+										<Link href={"/categoria/guia"}>
+											<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-2 hover:bg-gray-800 text-white transition-all duration-200 group">
+												<RiGuideFill className="text-green-400 text-sm" />
+												<span>Guias</span>
+											</DropdownMenu.Item>
+										</Link>
+									</DropdownMenu.SubContent>
+								</DropdownMenu.Portal>
+							</DropdownMenu.Sub>
+
+							{/* Submenu Plataformas */}
+							<DropdownMenu.Sub>
+								<DropdownMenu.SubTrigger className="flex items-center justify-between rounded-xl px-4 py-3 hover:bg-gray-800 text-white transition-all duration-200 group">
+									<div className="flex items-center gap-3">
+										<RiGamepadFill className="text-red-400 group-hover:scale-110 transition-transform" />
+										<span className="font-medium">Plataformas</span>
+									</div>
+									<RiArrowDropDownLine
+										size={20}
+										className="group-hover:text-red-400 transition-colors"
+									/>
+								</DropdownMenu.SubTrigger>
+
+								<DropdownMenu.Portal>
+									<DropdownMenu.SubContent className="bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl p-3 ml-2 backdrop-blur-lg">
+										{/* ... plataformas com ícones coloridos ... */}
+										<Link href={"/categoria/nintendo"}>
+											<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-2 hover:bg-gray-800 text-white transition-all duration-200 group">
+												<BsNintendoSwitch className="text-red-500 text-sm" />
+												<span>Nintendo</span>
+											</DropdownMenu.Item>
+										</Link>
+										<Link href={"/categoria/pc"}>
+											<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-2 hover:bg-gray-800 text-white transition-all duration-200 group">
+												<RiComputerLine className="text-blue-400 text-sm" />
+												<span>PC</span>
+											</DropdownMenu.Item>
+										</Link>
+										<Link href={"/categoria/playstation"}>
+											<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-2 hover:bg-gray-800 text-white transition-all duration-200 group">
+												<RiPlaystationFill className="text-blue-600 text-sm" />{" "}
+												PlayStation
+											</DropdownMenu.Item>
+										</Link>
+										<Link href={"/categoria/xbox"}>
+											<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-2 hover:bg-gray-800 text-white transition-all duration-200 group">
+												<RiXboxFill className="text-green-500 text-sm" /> Xbox
+											</DropdownMenu.Item>
+										</Link>
+										<Link href={"/categoria/mobile"}>
+											<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-2 hover:bg-gray-800 text-white transition-all duration-200 group">
+												<RiAppStoreFill className="text-white text-sm" /> Mobile
+											</DropdownMenu.Item>
+										</Link>
+									</DropdownMenu.SubContent>
+								</DropdownMenu.Portal>
+							</DropdownMenu.Sub>
+
+							{/* Categoria Reviews */}
+							<Link href={"/categoria/review"}>
+								<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-gray-800 text-white transition-all duration-200 group">
+									<RiStarSmileFill className="text-yellow-400 group-hover:scale-110 transition-transform" />
+									<span className="font-medium">Reviews</span>
+								</DropdownMenu.Item>
+							</Link>
+
+							{/* Categoria Tech */}
+							<Link href={"/categoria/tech"}>
+								<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-gray-800 text-white transition-all duration-200 group">
+									<RiCpuLine className="text-purple-400 group-hover:scale-110 transition-transform" />
+									<span className="font-medium">Tech</span>
+								</DropdownMenu.Item>
+							</Link>
+						</DropdownMenu.Content>
+					</DropdownMenu.Portal>
+				</DropdownMenu.Root>
 			</div>
 		</nav>
 	);
