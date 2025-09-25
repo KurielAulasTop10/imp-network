@@ -4,6 +4,7 @@ import { asText } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 import axios from "axios";
 import type { Metadata } from "next";
+import { Roboto_Slab } from "next/font/google";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
@@ -18,10 +19,17 @@ import {
 } from "react-icons/ri";
 import CategoryList from "@/components/CategoryList";
 import AuthorBox from "@/components/posts/AuthorBox";
+import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { cdn } from "@/utils/cdn";
+import { calculateReadingTime } from "@/utils/reading-time";
 import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
 import Ad from "./_components/Ad";
+
+const domine = Roboto_Slab({
+	subsets: ["latin"],
+	weight: ["400", "100", "200", "300", "500", "600", "700", "800", "900"],
+});
 
 export default async function PostPage({
 	params,
@@ -42,6 +50,8 @@ export default async function PostPage({
 	if (!myAuthorData.uid) {
 		return notFound();
 	}
+
+	let isFirstParagraph = true;
 
 	if (
 		asText(article.data.resume).length === 0 &&
@@ -78,6 +88,8 @@ export default async function PostPage({
 		steam_page?: SteamPage;
 	};
 
+	const readingTime = calculateReadingTime(article.data.editor);
+
 	interface AnuncioDocumentData {
 		data: {
 			link: {
@@ -92,51 +104,62 @@ export default async function PostPage({
 	return (
 		<article
 			data-revalidated-at={Date.now()}
-			className="flex flex-col max-w-full max-md:p-3 md:max-w-[60vw] mx-auto text-justify my-5"
+			className={cn(
+				domine.className,
+				"flex flex-col w-full max-w-full md:w-[75vw] mx-auto my-8 px-4 lg:px-0",
+			)}
 		>
-			<div className="mx-auto w-full">
-				<div className="flex flex-col items-start gap-3">
+			<div>
+				<div className="flex flex-col items-center gap-6 mb-8">
 					<CategoryList categories={article.tags} />
-					<h1 className="flex gap-2 items-center xl:text-4xl text-2xl font-bold">
+					<h1 className="text-3xl lg:text-5xl font-bold text-center leading-tight text-white">
 						{article.data.titulo}
 					</h1>
-					<time
-						dateTime={`${article.data?.data}`}
-						className="text-base font-thin text-gray-400"
-					>
-						{new Date(`${article.data?.data}`).toLocaleDateString("pt-BR", {
-							day: "2-digit",
-							month: "long",
-							year: "numeric",
-							hour: "numeric",
-							minute: "numeric",
-							hourCycle: "h23",
-							timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-						})}
-					</time>
-					<div className="relative aspect-video w-full rounded-md">
+					<div className="flex items-center gap-3 text-sm text-gray-400">
+						<time
+							dateTime={`${article.data?.data}`}
+							className="flex items-center gap-1"
+						>
+							{new Date(`${article.data?.data}`).toLocaleDateString("pt-BR", {
+								day: "2-digit",
+								month: "long",
+								year: "numeric",
+								hour: "numeric",
+								minute: "numeric",
+								hourCycle: "h23",
+								timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+							})}
+						</time>
+						<div className="w-1 h-1 bg-gray-600 rounded-full" />
+						<span>{readingTime} min de leitura</span>
+					</div>
+					<div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-xl">
 						<img
 							src={cdn(article.data.cover.url as string, 1920, 0)}
 							alt={article.data.cover.alt || ""}
-							className="object-cover w-full h-full rounded-md"
+							className="object-cover w-full h-full transition-transform duration-700 hover:scale-105"
 							loading="lazy"
 						/>
 					</div>
 				</div>
 			</div>
-			<div className="max-w-full md:max-w-[60vw] text-lg gap-5">
+			<div className="prose prose-lg max-w-none prose-headings:font-bold prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-p:leading-relaxed prose-p:text-justify prose-a:text-red-500 hover:prose-a:text-red-400 prose-a:no-underline prose-blockquote:border-l-4 prose-blockquote:border-red-500 prose-blockquote:pl-4 prose-blockquote:italic prose-ul:list-disc prose-ol:list-decimal prose-img:rounded-xl prose-video:rounded-xl prose-invert">
 				{asText(article.data.resume).length >= 1 && (
-					<div className="border-red-600 border-2 border-solid rounded-xl my-5">
-						<h1 className="bg-red-600 text-white w-full p-1 py-2 text-xl flex gap-2 items-center mb-5 rounded-t-md">
-							<RiAiGenerate2 size={"36px"} />
-							Resumo feito por Inteligência Artificial
-						</h1>
-						<div className="px-2">
+					<div className="bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-red-500 rounded-r-xl p-6 mb-8 shadow-lg">
+						<div className="flex items-center gap-3 mb-4">
+							<div className="bg-red-500 p-2 rounded-lg">
+								<RiAiGenerate2 className="text-white text-2xl" />
+							</div>
+							<h3 className="text-xl font-semibold text-white">
+								Resumo por IA
+							</h3>
+						</div>
+						<div className="text-gray-300 leading-relaxed">
 							<PrismicRichText
 								field={article.data.resume}
 								components={{
 									paragraph: ({ text }) => (
-										<p className="my-3 text-lg">
+										<p className="mb-4">
 											{(text as unknown as string)
 												.replace("```", "")
 												.replace("html", "")}
@@ -150,16 +173,16 @@ export default async function PostPage({
 													? undefined
 													: "_blank"
 											}
-											className="text-red-500 hover:text-red-600 border-b-1 border-dotted border-red-500 hover:border-red-600"
+											className="text-red-500 hover:text-red-400 font-medium transition-colors"
 										>
 											{children}
 										</Link>
 									),
 									list: ({ children }) => (
-										<ul className="my-3 text-lg list-disc ml-5">{children}</ul>
+										<ul className="list-disc ml-6 space-y-2">{children}</ul>
 									),
 									oList: ({ text }) => (
-										<ol className="my-3 text-lg list-decimal ml-5">
+										<ol className="list-decimal ml-6 space-y-2">
 											{(text as unknown as string).replace("```", "")}
 										</ol>
 									),
@@ -172,25 +195,36 @@ export default async function PostPage({
 					field={article.data.editor}
 					components={{
 						heading1: ({ text }) => (
-							<h1 className="my-3 text-4xl font-semibold">{text}</h1>
+							<h1 className="text-4xl font-bold mt-8 mb-4 text-white border-b-2 border-red-500 pb-2">
+								{text}
+							</h1>
 						),
 						heading2: ({ text }) => (
-							<h2 className="my-3 text-3xl font-semibold">{text}</h2>
+							<h2 className="text-3xl font-bold mt-6 mb-3 text-white">
+								{text}
+							</h2>
 						),
 						heading3: ({ text }) => (
-							<h3 className="my-3 text-2xl font-semibold">{text}</h3>
+							<h3 className="text-2xl font-bold mt-5 mb-3 text-white">
+								{text}
+							</h3>
 						),
 						heading4: ({ text }) => (
-							<h4 className="my-3 text-xl font-semibold">{text}</h4>
+							<h4 className="text-xl font-bold mt-4 mb-2 text-white">{text}</h4>
 						),
 						paragraph: ({ children, text }) => {
 							const textString = text as unknown as string;
+							const wasFirstParagraph = isFirstParagraph;
+							if (wasFirstParagraph) {
+								isFirstParagraph = false;
+							}
+
 							return textString?.startsWith("!vid") ? (
 								// biome-ignore lint/a11y/useMediaCaption: false
 								<video
 									src={textString.replace("!vid", "")}
 									controls
-									className="rounded-md w-full aspect-video my-3"
+									className="rounded-xl w-full aspect-video shadow-lg my-6"
 								/>
 							) : textString?.startsWith("!aud") ? (
 								// biome-ignore lint/a11y/useMediaCaption: <false>
@@ -198,24 +232,24 @@ export default async function PostPage({
 									controls
 									autoPlay
 									loop
-									className="w-full shadow-lg rounded-sm my-3"
+									className="w-full shadow-lg rounded-lg my-4"
 									controlsList="noplaybackrate nodownload"
 								>
 									<source src={textString.replace("!aud", "")} />
 								</audio>
 							) : textString?.startsWith("!warn") ? (
-								<div className="relative w-full flex flex-wrap items-center justify-center py-1 p-3 my-3 rounded-lg text-lg border-solid border border-yellow-600 text-yellow-600 group bg-[linear-gradient(#ca8a041a,#ca8a041a)]">
-									<p className="flex flex-row items-center mr-auto gap-x-2">
-										<RiAlertLine size={24} />
+								<div className="flex items-start gap-3 p-4 my-4 bg-yellow-900/30 border-l-4 border-yellow-500 rounded-r-lg">
+									<RiAlertLine className="text-yellow-400 text-xl mt-0.5 flex-shrink-0" />
+									<p className="text-yellow-200">
 										{textString.replace("!warn ", "")}
 									</p>
 								</div>
 							) : textString?.startsWith("!spoiler") ? (
-								<p className="filter blur-sm hover:blur-none transition-all duration-300 my-3 text-lg">
+								<span className="bg-gray-700 text-gray-700 hover:text-white px-2 py-1 rounded-md transition-all duration-300 cursor-pointer">
 									{textString.replace("!spoiler ", "")}
-								</p>
+								</span>
 							) : (
-								<div>
+								<div className="my-4">
 									{Math.floor(Math.random() * 15) + 1 === 5 &&
 										adsSorted[0]?.data.link && (
 											<Ad
@@ -223,47 +257,58 @@ export default async function PostPage({
 												index={Math.floor(Math.random() * adsSorted.length)}
 											/>
 										)}
-									<p className="my-3 text-lg">{children}</p>
+									{wasFirstParagraph ? (
+										<p className="text-lg leading-relaxed text-justify first-letter:text-7xl first-letter:font-bold first-letter:float-left first-letter:mr-4 first-letter:mt-2 first-letter:text-red-500 first-letter:drop-shadow-sm">
+											{children}
+										</p>
+									) : (
+										<p className="leading-relaxed text-justify">{children}</p>
+									)}
 								</div>
 							);
 						},
 						preformatted: ({ text }) => (
-							<div className="relative bg-black px-3 py-1 rounded-md my-3 text-lg overflow-hidden">
-								<RiDoubleQuotesR className="absolute top-0 left-1 w-14 h-auto text-zinc-800" />
-								<blockquote className="relative z-10">{text}</blockquote>
+							<div className="relative bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl my-6 overflow-hidden">
+								<RiDoubleQuotesR className="absolute top-2 left-2 w-12 h-12 text-gray-800 opacity-50" />
+								<blockquote className="relative z-10 text-white font-mono text-sm leading-relaxed">
+									{text}
+								</blockquote>
 							</div>
 						),
 						embed: ({ node }) =>
 							node.oembed.embed_url.includes("youtube.com") ||
 							node.oembed.embed_url.includes("youtu.be") ? (
-								<iframe
-									src={node.oembed.embed_url
-										.replace("watch?v=", "embed/")
-										.replace("youtu.be", "youtube.com/embed")}
-									width="100%"
-									height="100%"
-									title={node.oembed.title as string}
-									className="rounded-md aspect-video"
-								/>
+								<div className="my-6 rounded-xl overflow-hidden shadow-xl">
+									<iframe
+										src={node.oembed.embed_url
+											.replace("watch?v=", "embed/")
+											.replace("youtu.be", "youtube.com/embed")}
+										width="100%"
+										height="100%"
+										title={node.oembed.title as string}
+										className="aspect-video"
+										loading="lazy"
+									/>
+								</div>
 							) : (
 								<div
 									// biome-ignore lint/security/noDangerouslySetInnerHtml: false positive
 									dangerouslySetInnerHTML={{
 										__html: node.oembed.html as TrustedHTML,
 									}}
-									className="w-full flex items-center justify-center"
+									className="w-full flex items-center justify-center my-6"
 								/>
 							),
 						image: ({ node }) => {
 							return (
-								<img
-									src={cdn(node.url, 1920, 0)}
-									alt={node.alt as string}
-									width={"100%"}
-									height={"100%"}
-									className="w-full rounded-md"
-									loading="lazy"
-								/>
+								<div className="my-6 rounded-xl overflow-hidden shadow-lg">
+									<img
+										src={cdn(node.url, 1920, 0)}
+										alt={node.alt as string}
+										className="w-full h-auto transition-transform duration-500 hover:scale-105"
+										loading="lazy"
+									/>
+								</div>
 							);
 						},
 						hyperlink: ({ node, children }) => (
@@ -276,120 +321,140 @@ export default async function PostPage({
 								}
 								className={
 									article.tags.includes("Grátis")
-										? "bg-red-500 hover:bg-red-600 text-white p-3 rounded-md flex w-max gap-2 items-center mx-auto"
-										: "text-red-500 hover:text-red-600 border-b-1 border-dotted border-red-500 hover:border-red-600"
+										? "inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+										: "text-red-500 hover:text-red-400 font-medium border-b-2 border-red-600 hover:border-red-400 transition-all duration-200"
 								}
 							>
-								{article.tags.includes("Grátis") && <RiExternalLinkLine />}{" "}
+								{article.tags.includes("Grátis") && <RiExternalLinkLine />}
 								{children}
 							</Link>
 						),
 						list: ({ children }) => (
-							<ul className="my-3 text-lg list-disc ml-5">{children}</ul>
+							<ul className="list-disc ml-6 space-y-2 my-4 text-gray-300">
+								{children}
+							</ul>
 						),
 						oList: ({ children }) => (
-							<ol className="my-3 text-lg list-decimal ml-5">{children}</ol>
+							<ol className="list-decimal ml-6 space-y-2 my-4 text-gray-300">
+								{children}
+							</ol>
 						),
 					}}
 				/>
 				{article.tags.includes("Grátis") &&
 					article.data.titulo?.includes("Epic Games") && (
-						<>
-							<hr />
-							<h1 className="my-3 text-2xl font-semibold text-center">
-								Perguntas comuns
+						<div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 my-8 shadow-lg">
+							<h1 className="text-3xl font-bold text-center mb-6 text-white">
+								Perguntas Frequentes
 							</h1>
-							<h2 className="my-3 text-xl font-semibold">
-								Página com Missing account id
-							</h2>
-							<p className="my-3 text-lg">
-								Logue na Epic Games primeiro no <b>seu navegador habitual</b>.
-								Não use navegadores diferentes no processo.
-							</p>
-							<h2 className="my-3 text-xl font-semibold">
-								O checkout deu erro "Não foi possível completar esta compra"
-							</h2>
-							<p className="my-3 text-lg">
-								Você já tem <b>um ou mais jogos</b> do carrinho na sua
-								biblioteca. Se faltar algum, use a própria página da Epic Games
-								para adicionar.
-							</p>
-							<h2 className="my-3 text-xl font-semibold">
-								Preciso instalar a loja?
-							</h2>
-							<p className="my-3 text-lg">
-								Não, <b>você nunca será obrigado</b> a instalar a Epic Games
-								para resgatar qualquer jogo. A instalação de jogos pode ser
-								exigido o programa, porém é possível instalar jogos no PC com
-								scripts em launchers externos.
-							</p>
-							<h2 className="my-3 text-xl font-semibold">
-								Existe algum padrão na Epic Games?
-							</h2>
-							<p className="my-3 text-lg">
-								Sim, a Epic Games possui um padrão de oferecer jogos gratuitos
-								para PC e Mobile nas quintas-feiras às{" "}
-								<b>15h ou 16h (Lisboa) | 11h ou 12h (Brasília)</b> e podem ser
-								resgatados durante 1 semana. Exceto campanhas de Natal em que é
-								só possível resgatar durante 24 horas e sendo um jogo novo todos
-								os dias.
-							</p>
-						</>
+							<div className="space-y-6">
+								<div>
+									<h2 className="text-xl font-semibold mb-2 text-gray-200">
+										Página com Missing account id
+									</h2>
+									<p className="text-gray-300">
+										Logue na Epic Games primeiro no{" "}
+										<b>seu navegador habitual</b>. Não use navegadores
+										diferentes no processo.
+									</p>
+								</div>
+								<div>
+									<h2 className="text-xl font-semibold mb-2 text-gray-200">
+										O checkout deu erro "Não foi possível completar esta compra"
+									</h2>
+									<p className="text-gray-300">
+										Você já tem <b>um ou mais jogos</b> do carrinho na sua
+										biblioteca. Se faltar algum, use a própria página da Epic
+										Games para adicionar.
+									</p>
+								</div>
+								<div>
+									<h2 className="text-xl font-semibold mb-2 text-gray-200">
+										Preciso instalar a loja?
+									</h2>
+									<p className="text-gray-300">
+										Não, <b>você nunca será obrigado</b> a instalar a Epic Games
+										para resgatar qualquer jogo. A instalação de jogos pode ser
+										exigido o programa, porém é possível instalar jogos no PC
+										com scripts em launchers externos.
+									</p>
+								</div>
+								<div>
+									<h2 className="text-xl font-semibold mb-2 text-gray-200">
+										Existe algum padrão na Epic Games?
+									</h2>
+									<p className="text-gray-300">
+										Sim, a Epic Games possui um padrão de oferecer jogos
+										gratuitos para PC e Mobile nas quintas-feiras às{" "}
+										<b>15h ou 16h (Lisboa) | 11h ou 12h (Brasília)</b> e podem
+										ser resgatados durante 1 semana. Exceto campanhas de Natal
+										em que é só possível resgatar durante 24 horas e sendo um
+										jogo novo todos os dias.
+									</p>
+								</div>
+							</div>
+						</div>
 					)}
 				{reviewWithSteamPage?.steam_page?.url && (
-					<iframe
-						src={reviewWithSteamPage.steam_page.url as string}
-						title="Steam page"
-						height="190"
-						className="w-full aspect-video rounded-md"
-					></iframe>
+					<div className="my-8 rounded-xl overflow-hidden shadow-xl">
+						<iframe
+							src={reviewWithSteamPage.steam_page.url as string}
+							title="Steam page"
+							height="190"
+							className="w-full aspect-video"
+						/>
+					</div>
 				)}
 			</div>
-			<div className="w-full flex flex-col gap-5 mt-3">
+			<div className="w-full space-y-8 mt-2">
 				{article.data.review[0]?.estado && (
-					<div className="flex max-md:flex-col gap-3 items-center h-full w-full bg-black rounded-md p-2">
-						<img
-							src={cdn(article.data.cover.url as string, 400, 0)}
-							className="rounded-md aspect-video w-full md:w-40"
-							alt={article.data.cover.alt || ""}
-						/>
-						<div className="flex flex-col max-md:items-center">
-							<h1 className="flex text-white text-lg font-light items-center gap-2 capitalize">
-								{article.data.titulo?.replace("Review - ", "")}
-							</h1>
-							<PrismicRichText
-								field={article.data.review[0]?.descricao}
-								components={{
-									paragraph: ({ text }) => (
-										<p className="text-sm text-gray-200 flex font-thin">
-											{text}
-										</p>
-									),
-								}}
-							/>
-							<p className="text-xs mt-1 text-gray-300 font-thin">
-								Descobre como funciona o nosso sistema de notas, lendo a nossa{" "}
-								<Link
-									href={"/review-policy"}
-									className="text-red-600 font-normal"
-								>
-									política de análises
-								</Link>
-								.
-							</p>
+					<>
+						<hr className="border-t-2 border-gray-700" />
+						<div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 shadow-lg">
+							<div className="flex max-md:flex-col gap-6 items-center">
+								<img
+									src={cdn(article.data.cover.url as string, 400, 0)}
+									className="rounded-xl aspect-video w-full md:w-48 object-cover shadow-md"
+									alt={article.data.cover.alt || ""}
+								/>
+								<div className="flex-1 flex flex-col max-md:items-center max-md:text-center">
+									<h1 className="text-2xl font-bold text-white mb-2">
+										{article.data.titulo?.replace("Review - ", "")}
+									</h1>
+									<PrismicRichText
+										field={article.data.review[0]?.descricao}
+										components={{
+											paragraph: ({ text }) => (
+												<p className="text-gray-300 leading-relaxed">{text}</p>
+											),
+										}}
+									/>
+									<p className="text-sm mt-3 text-gray-400">
+										Descobre como funciona o nosso sistema de notas, lendo a
+										nossa{" "}
+										<Link
+											href={"/review-policy"}
+											className="text-red-500 hover:text-red-400 font-medium"
+										>
+											política de análises
+										</Link>
+										.
+									</p>
+								</div>
+								<div className="flex items-center justify-center p-4">
+									{reviewWithSteamPage.rating === "Feliz" && (
+										<RiEmotionHappyFill className="w-20 h-20 text-green-500 drop-shadow-lg" />
+									)}
+									{reviewWithSteamPage.rating === "Mediano" && (
+										<RiEmotionNormalFill className="w-20 h-20 text-yellow-500 drop-shadow-lg" />
+									)}
+									{reviewWithSteamPage.rating === "Desiludido" && (
+										<RiEmotionUnhappyFill className="w-20 h-20 text-red-500 drop-shadow-lg" />
+									)}
+								</div>
+							</div>
 						</div>
-						<div className="flex items-center mx-auto">
-							{reviewWithSteamPage.rating === "Feliz" && (
-								<RiEmotionHappyFill className="w-16 h-16 text-green-400" />
-							)}
-							{reviewWithSteamPage.rating === "Mediano" && (
-								<RiEmotionNormalFill className="w-16 h-16 text-orange-300" />
-							)}
-							{reviewWithSteamPage.rating === "Desiludido" && (
-								<RiEmotionUnhappyFill className="w-16 h-16 text-red-500" />
-							)}
-						</div>
-					</div>
+					</>
 				)}
 				<AuthorBox
 					uid={author.uid}

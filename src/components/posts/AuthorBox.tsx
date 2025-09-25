@@ -4,28 +4,30 @@ import type { AuthorDocument } from "../../../prismicio-types";
 
 export default function AuthorBox({ uid, data }: AuthorDocument) {
 	return (
-		<div className="flex gap-3 items-center h-full w-full rounded-md bg-black p-2">
-			<img
-				src={cdn(data.avatar.url as string, 48, 48)}
-				className="rounded-md"
-				alt={data.avatar.alt || ""}
-				loading="lazy"
-			/>
-			<div className="flex flex-col">
-				<span className="flex text-white text-lg font-light items-center gap-2 capitalize">
-					{uid.replaceAll("-", " ")}
-					<span className="text-xs text-gray-300 bg-red-600 w-fit px-1 rounded-sm font-thin">
-						Autor
-					</span>
-				</span>
-				<PrismicRichText
-					field={data.descricao}
-					components={{
-						paragraph: ({ text }) => (
-							<p className="text-sm text-gray-200 flex font-thin">{text}</p>
-						),
-					}}
+		<div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 shadow-lg border-l-4 border-red-500">
+			<h3 className="text-white text-xl font-bold mb-4">Redigido por</h3>
+			<div className="flex gap-4 items-start">
+				<img
+					src={cdn(data.avatar.url as string, 64, 64)}
+					className="rounded-full w-16 h-16 object-cover shadow-md border-2 border-red-500"
+					alt={data.avatar.alt || ""}
+					loading="lazy"
 				/>
+				<div className="flex-1">
+					<span className="text-red-400 text-xl font-bold capitalize block mb-2">
+						{uid.replaceAll("-", " ")}
+					</span>
+					<div className="text-gray-300 leading-relaxed">
+						<PrismicRichText
+							field={data.descricao}
+							components={{
+								paragraph: ({ text }) => (
+									<p className="mb-2 last:mb-0">{text}</p>
+								),
+							}}
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

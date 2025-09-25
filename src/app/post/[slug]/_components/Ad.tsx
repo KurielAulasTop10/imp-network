@@ -20,8 +20,7 @@ export default async function Ad({
 	index: number;
 }) {
 	return (
-		<Link href={ad[index].data.link?.url as string} target="_blank">
-			{/** biome-ignore lint/performance/noImgElement: false */}
+		<Link href={ad[index].data.link?.url as string} target="_blank" className="mb-3">
 			<img
 				src={cdn(ad[index].data.imagem.url as string, 0, 0)}
 				alt="ANÚNCIO"
