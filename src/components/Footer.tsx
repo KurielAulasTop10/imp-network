@@ -1,8 +1,5 @@
-/** biome-ignore-all lint/correctness/useUniqueElementIds: <explanation> */
-"use client";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import Script from "next/script";
 
 export default function Footer() {
@@ -21,43 +18,53 @@ export default function Footer() {
 		},
 	];
 
-	const pathname = usePathname();
-
-	return pathname.endsWith("classic") ? (
-		<></>
-	) : (
+	return (
 		<>
-			<footer className="bg-black flex flex-col gap-3 w-full p-5 justify-center text-center rounded-t-md">
-				<div className="uppercase font-normal flex flex-row gap-7 w-full text-center justify-center">
+			<footer className="bg-gradient-to-t from-gray-900 to-gray-950 border-t border-gray-800 flex flex-col gap-6 w-full p-8 justify-center items-center rounded-t-3xl shadow-2xl">
+				<div className="flex flex-wrap gap-6 justify-center items-center">
 					{links.map(({ title, href }) => (
 						<Link
 							href={href}
 							key={title + href}
-							className="text-white hover:text-red-600"
+							className="text-gray-300 hover:text-red-400 font-medium transition-all duration-300 hover:scale-105 px-3 py-1 rounded-lg hover:bg-gray-800"
 						>
 							{title}
 						</Link>
 					))}
 				</div>
-				<div className="text-gray-300 w-full font-thin text-sm text-center">
-					<p>©️ {new Date().getFullYear()} Império Network.</p>
-					<p className="flex gap-1 w-full justify-center">
-						Desenvolvido com ❤️ e ☕ por
+
+				<div className="text-gray-400 text-center space-y-3">
+					<p className="text-lg font-light">
+						©️ {new Date().getFullYear()} Império Network
+					</p>
+
+					<div className="flex items-center justify-center gap-2 text-sm">
+						<span>Desenvolvido com</span>
+						<span className="text-red-500 animate-pulse">❤️</span>
+						<span>e</span>
+						<span className="text-yellow-500">☕</span>
+						<span>por</span>
 						<Link
 							href="https://kurieldev.vercel.app"
 							target="_blank"
-							className="text-gray-200 hover:text-red-600"
+							className="text-gray-300 hover:text-red-400 font-medium transition-colors duration-300 border-b border-dotted border-gray-600 hover:border-red-400"
 						>
 							KurielDev
 						</Link>
-					</p>
-					{/*<p className="my-5 font-bold text-xl">Parceiro oficial</p>
-					<Link href="https://opencritic.com/" target="_blank">
-						<img
-							src={"/opencritic.svg"}
-							className="bg-white p-2 rounded-md w-xs h-auto mx-auto"
-						></img>
-					</Link>*/}
+					</div>
+
+					{/* Se quiseres ativar o parceiro oficial depois:
+		<div className="mt-4 pt-4 border-t border-gray-700">
+			<p className="font-bold text-lg mb-3 text-gray-200">Parceiro oficial</p>
+			<Link href="https://opencritic.com/" target="_blank" className="inline-block">
+				<img
+					src={"/opencritic.svg"}
+					className="bg-white p-3 rounded-xl w-48 h-auto shadow-lg hover:shadow-xl transition-shadow duration-300"
+					alt="OpenCritic"
+				/>
+			</Link>
+		</div>
+		*/}
 				</div>
 			</footer>
 			<Script id="clarity-script" strategy="afterInteractive">

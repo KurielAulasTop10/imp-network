@@ -37,23 +37,33 @@ export default function PostsGrid({
 			) : (
 				<p className="text-center text-lg text-white">Sem resultados</p>
 			)}
-			<div className="gap-3 flex items-center text-white">
+			<div className="flex items-center gap-4 p-4 bg-gray-900 rounded-2xl shadow-lg border border-gray-700 w-fit mx-auto">
 				<button
 					type="button"
 					onClick={() => onPageChange(currentPage - 1)}
 					disabled={currentPage === 1}
-					className="bg-red-600 rounded-full hover:bg-red-500 cursor-pointer disabled:hidden"
+					className="p-3 bg-gradient-to-r from-red-600 to-red-500 rounded-full hover:from-red-500 hover:to-red-400 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60 disabled:pointer-events-none transform hover:scale-105"
 				>
-					<RiArrowLeftDoubleLine size={32} />
+					<RiArrowLeftDoubleLine size={24} className="text-white" />
 				</button>
-				<span className="text-lg">{currentPage}</span>
+
+				<div className="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg border border-gray-600">
+					<span className="text-white font-semibold text-lg min-w-[40px] text-center">
+						{currentPage}
+					</span>
+					<span className="text-gray-400">de</span>
+					<span className="text-gray-400 font-medium">
+						{totalPages === 0 ? 1 : totalPages}
+					</span>
+				</div>
+
 				<button
 					type="button"
 					onClick={() => onPageChange(currentPage + 1)}
 					disabled={currentPage === (totalPages === 0 ? 1 : totalPages)}
-					className="bg-red-600 rounded-full hover:bg-red-500 cursor-pointer disabled:hidden"
+					className="p-3 bg-gradient-to-r from-red-600 to-red-500 rounded-full hover:from-red-500 hover:to-red-400 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60 disabled:pointer-events-none transform hover:scale-105"
 				>
-					<RiArrowRightDoubleLine size={32} />
+					<RiArrowRightDoubleLine size={24} className="text-white" />
 				</button>
 			</div>
 		</section>
