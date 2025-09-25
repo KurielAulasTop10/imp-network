@@ -258,7 +258,7 @@ export default async function PostPage({
 											/>
 										)}
 									{wasFirstParagraph ? (
-										<p className="text-lg leading-relaxed text-justify first-letter:text-7xl first-letter:font-bold first-letter:float-left first-letter:mr-4 first-letter:mt-2 first-letter:text-red-500 first-letter:drop-shadow-sm">
+										<p className="text-lg leading-relaxed justify-center flex text-justify first-letter:text-7xl first-letter:font-bold first-letter:float-left first-letter:mr-4 first-letter:mt-2 first-letter:text-red-500 first-letter:drop-shadow-sm">
 											{children}
 										</p>
 									) : (
@@ -321,7 +321,7 @@ export default async function PostPage({
 								}
 								className={
 									article.tags.includes("Grátis")
-										? "inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+										? "inline-flex items-center gap-2 bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
 										: "text-red-500 hover:text-red-400 font-medium border-b-2 border-red-600 hover:border-red-400 transition-all duration-200"
 								}
 							>

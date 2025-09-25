@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import CategoryPageContent from "./_components/CategoryPageContent";
 import { createClient } from "@/prismicio";
 import type { PostDocument } from "../../../../prismicio-types";
+import CategoryPageContent from "./_components/CategoryPageContent";
 
 export default async function CategoryPage(props: {
 	params: Promise<{ id: string }>;
