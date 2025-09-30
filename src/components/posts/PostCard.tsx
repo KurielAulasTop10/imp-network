@@ -107,7 +107,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 						<img
 							src={cdn(frees[getFreeSource(post.data.titulo as string)], 0, 0)}
 							alt={`Logo`}
-							className="h-12 shadow-lg"
+							className="h-12"
 							loading="lazy"
 						/>
 					</div>
