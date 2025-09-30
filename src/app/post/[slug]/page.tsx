@@ -51,8 +51,6 @@ export default async function PostPage({
 		return notFound();
 	}
 
-	let isFirstParagraph = true;
-
 	if (
 		asText(article.data.resume).length === 0 &&
 		!article.tags.includes("Grátis")
@@ -214,10 +212,6 @@ export default async function PostPage({
 						),
 						paragraph: ({ children, text }) => {
 							const textString = text as unknown as string;
-							const wasFirstParagraph = isFirstParagraph;
-							if (wasFirstParagraph) {
-								isFirstParagraph = false;
-							}
 
 							return textString?.startsWith("!vid") ? (
 								// biome-ignore lint/a11y/useMediaCaption: false
@@ -257,13 +251,7 @@ export default async function PostPage({
 												index={Math.floor(Math.random() * adsSorted.length)}
 											/>
 										)}
-									{wasFirstParagraph ? (
-										<p className="text-lg leading-relaxed justify-center flex text-justify first-letter:text-7xl first-letter:font-bold first-letter:float-left first-letter:mr-4 first-letter:mt-2 first-letter:text-red-500 first-letter:drop-shadow-sm">
-											{children}
-										</p>
-									) : (
-										<p className="leading-relaxed text-justify">{children}</p>
-									)}
+									<p className="leading-relaxed text-justify">{children}</p>
 								</div>
 							);
 						},
