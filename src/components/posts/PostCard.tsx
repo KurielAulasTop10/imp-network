@@ -106,8 +106,8 @@ export default function PostCard({ post }: { post: PostDocument }) {
 					<div className="absolute top-3 left-3 z-10">
 						<img
 							src={cdn(frees[getFreeSource(post.data.titulo as string)], 0, 0)}
-							alt={`${post.data.titulo} Logo`}
-							className="w-12 h-12 rounded-lg shadow-lg"
+							alt={`Logo`}
+							className="h-12 shadow-lg"
 							loading="lazy"
 						/>
 					</div>
