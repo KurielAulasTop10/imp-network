@@ -25,6 +25,7 @@ import { cdn } from "@/utils/cdn";
 import { calculateReadingTime } from "@/utils/reading-time";
 import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
 import Ad from "./_components/Ad";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const domine = Roboto_Slab({
 	subsets: ["latin"],
@@ -289,14 +290,27 @@ export default async function PostPage({
 							),
 						image: ({ node }) => {
 							return (
-								<div className="my-6 rounded-xl overflow-hidden shadow-lg">
-									<img
-										src={cdn(node.url, 1920, 0)}
-										alt={node.alt as string}
-										className="w-full h-auto transition-transform duration-500 hover:scale-105"
-										loading="lazy"
-									/>
-								</div>
+								<Dialog>
+									<DialogTrigger asChild>
+										<div className="my-6 rounded-xl overflow-hidden shadow-lg">
+											<img
+												src={cdn(node.url, 1920, 0)}
+												alt={node.alt as string}
+												className="w-full h-auto transition-transform duration-500 hover:scale-105 cursor-pointer"
+												loading="lazy"
+											/>
+										</div>
+									</DialogTrigger>
+									<DialogContent className="border-0 bg-transparent p-0 shadow-none sm:max-w-full max-h-[90vh]">
+										<div className="h-[calc(100vh-150px)] w-full overflow-clip rounded-md bg-transparent shadow-none">
+											<img
+												src={cdn(node.url, 1920, 0)}
+												alt={node.alt as string}
+												className="h-full w-full object-contain"
+											/>
+										</div>
+									</DialogContent>
+								</Dialog>
 							);
 						},
 						hyperlink: ({ node, children }) => (
