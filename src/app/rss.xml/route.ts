@@ -20,7 +20,7 @@ export async function GET() {
 		ttl: 60,
 	});
 
-	const client = createClient();
+	const client = createClient({ fetchOptions: { next: { revalidate: 1750 } } });
 
 	const allPosts = await client.getAllByType("post", {
 		limit: 12,
