@@ -5,13 +5,13 @@ import { RiArrowLeftDoubleLine, RiArrowRightDoubleLine } from "react-icons/ri";
 import PostCard from "@/components/posts/PostCard";
 import type { PostDocument } from "../../../prismicio-types";
 
-export default function PostsGrid({ 
-	allPosts, 
-	currentPage, 
-	onPageChange 
-}: { 
-	allPosts: PostDocument[]; 
-	currentPage: number; 
+export default function PostsGrid({
+	allPosts,
+	currentPage,
+	onPageChange,
+}: {
+	allPosts: PostDocument[];
+	currentPage: number;
 	onPageChange: (page: number) => void;
 }) {
 	const [postsPerPage] = useState<number>(21);
@@ -42,7 +42,7 @@ export default function PostsGrid({
 					type="button"
 					onClick={() => onPageChange(currentPage - 1)}
 					disabled={currentPage === 1}
-					className="p-3 bg-gradient-to-r from-red-600 to-red-500 rounded-full hover:from-red-500 hover:to-red-400 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60 disabled:pointer-events-none transform hover:scale-105"
+					className="p-3 bg-gradient-to-r from-red-600 to-red-500 rounded-full hover:from-red-500 hover:to-red-400 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60 disabled:pointer-events-none transform hover:scale-105 cursor-pointer"
 				>
 					<RiArrowLeftDoubleLine size={24} className="text-white" />
 				</button>
@@ -61,7 +61,7 @@ export default function PostsGrid({
 					type="button"
 					onClick={() => onPageChange(currentPage + 1)}
 					disabled={currentPage === (totalPages === 0 ? 1 : totalPages)}
-					className="p-3 bg-gradient-to-r from-red-600 to-red-500 rounded-full hover:from-red-500 hover:to-red-400 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60 disabled:pointer-events-none transform hover:scale-105"
+					className="p-3 bg-gradient-to-r from-red-600 to-red-500 rounded-full hover:from-red-500 hover:to-red-400 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60 disabled:pointer-events-none transform hover:scale-105 cursor-pointer"
 				>
 					<RiArrowRightDoubleLine size={24} className="text-white" />
 				</button>

@@ -16,7 +16,7 @@ export default async function BlogPage() {
 
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-5 w-full items-start mt-5 md:mt-10 px-2 md:px-5 gap-10">
-			<div className="w-full col-span-4">
+			<div className="w-full md:col-span-4">
 				{/* <Link
 						href="/goty"
 						className="flex flex-row w-full bg-black text-white rounded-md mb-5 gap-3 items-center"
