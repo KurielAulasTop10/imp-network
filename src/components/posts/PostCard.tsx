@@ -36,10 +36,10 @@ export default function PostCard({ post }: { post: PostDocument }) {
 		"Epic Games": "https://i.ibb.co/Sfz3dsz/JsAPPOC.png",
 		Steam: "https://i.ibb.co/jwYJRbs/oEhWYim.png",
 		GOG: "https://i.ibb.co/t2NxFCz/u8RRwED.png",
+		Ubisoft: "https://i.ibb.co/FLkM0Qc5/image.png",
 		"Microsoft Store": "https://i.ibb.co/r6jqsyg/JfegpEx.png",
-		"Xbox Store": "https://i.ibb.co/nq3GNMrK/20228.png",
-		"PlayStation Store": "https://i.ibb.co/PC0tdw4/qMaP7m0.png",
 		Xbox: "https://i.ibb.co/nq3GNMrK/20228.png",
+		"PlayStation Store": "https://i.ibb.co/PC0tdw4/qMaP7m0.png",
 	};
 
 	function getFreeSource(title: string): keyof typeof frees {
