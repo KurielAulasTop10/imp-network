@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function GOTYPage() {
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white">
+		<div className="min-h-screen bg-linear-to-br from-gray-950 via-gray-900 to-gray-950 text-white">
 			<div className="mx-auto px-4 py-16 max-w-7xl">
 				{/* Hero Section */}
 				<div className="flex flex-col items-center justify-center lg:flex-row gap-12 mb-20">
@@ -33,11 +33,11 @@ export default function GOTYPage() {
 
 					<div className="flex flex-col items-center text-center lg:text-left lg:items-start">
 						<div className="mb-2">
-							<span className="bg-gradient-to-r from-red-600 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-2">
+							<span className="bg-linear-to-r from-red-600 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-2">
 								EVENTO ANUAL
 							</span>
 						</div>
-						<h1 className="text-5xl lg:text-7xl font-black mb-6 tracking-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+						<h1 className="text-5xl lg:text-7xl font-black mb-6 tracking-tight bg-linear-to-r from-white to-gray-300 bg-clip-text text-transparent">
 							The Game Awards {new Date().getFullYear()}
 						</h1>
 						<p className="text-xl lg:text-2xl text-gray-300 max-w-2xl leading-relaxed mb-8">
@@ -47,7 +47,7 @@ export default function GOTYPage() {
 						<Link
 							href="https://thegameawards.com/"
 							target="_blank"
-							className="group bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl inline-flex items-center gap-3"
+							className="group bg-linear-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl inline-flex items-center gap-3"
 						>
 							<RiAwardFill className="text-xl" />
 							Vote Agora!
@@ -59,8 +59,8 @@ export default function GOTYPage() {
 				{/* Video Section */}
 				<div className="flex flex-col items-center gap-12 mb-20">
 					<div className="text-center">
-						<h2 className="text-4xl lg:text-5xl font-black mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-							Prepare-se para 12 de Dezembro
+						<h2 className="text-4xl lg:text-5xl font-black mb-4 bg-linear-to-r from-white to-gray-300 bg-clip-text text-transparent">
+							Prepare-se para 11 de Dezembro
 						</h2>
 						<p className="text-xl text-gray-400 max-w-3xl">
 							Não perca o maior evento da indústria de games com anúncios
@@ -78,14 +78,14 @@ export default function GOTYPage() {
 							allowFullScreen
 							loading="lazy"
 						/>
-						<div className="absolute inset-0 bg-gradient-to-t from-black/20 group-hover:scale-[1.02] transition-transform duration-500 to-transparent rounded-3xl pointer-events-none" />
+						<div className="absolute inset-0 bg-linear-to-t from-black/20 group-hover:scale-[1.02] transition-transform duration-500 to-transparent rounded-3xl pointer-events-none" />
 					</div>
 				</div>
 
 				{/* Nominees Section */}
 				<div className="flex flex-col gap-12">
 					<div className="text-center">
-						<h2 className="text-4xl lg:text-5xl font-black mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+						<h2 className="text-4xl lg:text-5xl font-black mb-4 bg-linear-to-r from-white to-gray-300 bg-clip-text text-transparent">
 							Nomeados ao GOTY {new Date().getFullYear()}
 						</h2>
 						<p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -96,49 +96,49 @@ export default function GOTYPage() {
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
 						{[
 							{
-								title: "Black Myth: Wukong",
+								title: "Clair's Obscur: Expedition 33",
 								description:
-									"Black Myth: Wukong é um RPG de ação inspirado na mitologia chinesa. Você assume o papel do Predestinado e tem a responsabilidade de encarar os desafios e as maravilhas do mundo para desvendar a verdade obscura por trás de uma lenda gloriosa do passado.",
-								image: "https://i.ibb.co/tPVDTTb/image.png",
+									"Conduza os membros da Expedição 33 em uma missão para destruir a Artífice para que ela nunca mais possa pintar a morte. Explore um mundo inspirado na Belle Époque da França e enfrente inimigos únicos neste RPG em turnos com mecânicas em tempo real.",
+								image: "https://i.ibb.co/4nbVbfCr/image.png",
 							},
 							{
-								title: "Metaphor: ReFantazio",
+								title: "Death Stranding 2: On the Beach",
 								description:
-									"O trono está abandonado após o assassinato do rei. Sem herdeiros, o desejo do falecido rei decreta que o próximo monarca será eleito pelo povo, dando início à luta pelo trono.",
-								image: "https://i.ibb.co/FhX7tDv/image.png",
+									"Uma fascinante expansão do universo criado por Hideo Kojima. Explora paisagens deslumbrantes, transporta cargas valiosas e enfrenta missões desafiantes num mundo pós-apocalíptico cheio de mistério.",
+								image: "https://i.ibb.co/MDYWHDvF/image.png",
 							},
 							{
-								title: "Astro Bot",
+								title: "Donkey Kong Bananza",
 								description:
-									"A nave mãe PS5® foi destruída e deixou a tripulação de Bots do ASTRO espalhada por diversas galáxias. Está na hora de percorreres mais de 50 planetas no teu fiel Dual Speeder.",
-								image: "https://i.ibb.co/RCHQxHk/image.png",
+									"Junta-te ao peculiar duo Donkey Kong e Pauline para juntos destruírem tudo no vosso caminho ao longo de um vasto mundo subterrâneo.",
+								image: "https://i.ibb.co/5XPFkTcg/image.png",
 							},
 							{
-								title: "Balatro",
+								title: "Hades II",
 								description:
-									"O pôquer roguelike. Balatro é um jogo de criação de baralho hipnoticamente satisfatório em que você joga mãos de pôquer ilegais, descobre curingas que mudam o jogo e aciona combos escandalosos e cheios de adrenalina.",
-								image: "https://i.ibb.co/9wPm0bQ/image.png",
+									"Transcenda o Submundo com feitiços das trevas para enfrentar o titã do tempo nesta sequência mágica do premiado roguelike de exploração de masmorras.",
+								image: "https://i.ibb.co/vxNt2xPx/image.png",
 							},
 							{
-								title: "Final Fantasy VII Rebirth",
+								title: "Hollow Knight: Silksong",
 								description:
-									"Os lendários heróis Cloud, Barret, Tifa, Aerith e Red XIII escaparam da cidade distópica de Midgar e estão agora em busca de Sephiroth, o vingativo espadachim do passado de Cloud que todos julgavam morto.",
-								image: "https://i.ibb.co/jrG6Fnv/image.png",
+									"Descubra um reino vasto e amaldiçoado! Explore, lute e sobreviva enquanto você ascende ao pico de uma terra governada pela seda e por canções.",
+								image: "https://i.ibb.co/20CYXsyF/image.png",
 							},
 							{
-								title: "Elden Ring Shadow of the Erdtree",
+								title: "Kingdom Come: Deliverance II",
 								description:
-									"Sombrio e intenso, Shadow of the Erdtree leva os jogadores a continuarem sua missão com a liberdade de explorar e vivenciar a aventura no seu próprio ritmo.",
-								image: "https://i.ibb.co/vPxwGcc/image.png",
+									"Um RPG de ação com uma história eletrizante e um vasto mundo aberto, ambientado na Europa Medieval do século XV. Vivencie a aventura medieval definitiva pela perspectiva do jovem Henry ao embarcar em uma jornada de proporções épicas.",
+								image: "https://i.ibb.co/ZRjZkxZt/image.png",
 							},
 						].map((nominee, index) => (
 							<div
 								key={nominee.title}
-								className="group bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 border border-gray-700 hover:border-red-500/50"
+								className="group bg-linear-to-br from-gray-900 to-gray-800 rounded-3xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 border border-gray-700 hover:border-red-500/50"
 							>
 								<div className="relative overflow-hidden rounded-2xl mb-4">
 									<img
-										src={cdn(nominee.image, 0, 192)}
+										src={cdn(nominee.image, 0, 360)}
 										alt={nominee.title}
 										className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
 										loading="lazy"
@@ -148,7 +148,7 @@ export default function GOTYPage() {
 											#{index + 1}
 										</span>
 									</div>
-									<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+									<div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 								</div>
 
 								<h3 className="text-xl font-bold text-white mb-3 text-center group-hover:text-red-400 transition-colors duration-300">
@@ -169,8 +169,8 @@ export default function GOTYPage() {
 				</div>
 
 				{/* Final CTA */}
-				<div className="text-center mt-16 p-8 bg-gradient-to-r from-red-600/10 to-red-500/10 rounded-3xl border border-red-500/20">
-					<h2 className="text-3xl font-black mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+				<div className="text-center mt-16 p-8 bg-linear-to-r from-red-600/10 to-red-500/10 rounded-3xl border border-red-500/20">
+					<h2 className="text-3xl font-black mb-4 bg-linear-to-r from-white to-gray-300 bg-clip-text text-transparent">
 						🎮 Sua Voz Importa!
 					</h2>
 					<p className="text-xl text-gray-300 mb-6 max-w-2xl mx-auto">
@@ -180,7 +180,7 @@ export default function GOTYPage() {
 					<Link
 						href="https://thegameawards.com/"
 						target="_blank"
-						className="inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
+						className="inline-flex items-center gap-3 bg-linear-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
 					>
 						<RiAwardFill />
 						Votar nos Nomeados
