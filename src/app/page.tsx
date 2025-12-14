@@ -1,6 +1,6 @@
-import Link from "next/link";
+/* import Link from "next/link"; */
 import { Suspense } from "react";
-import { BsTrophyFill } from "react-icons/bs";
+/* import { BsTrophyFill } from "react-icons/bs"; */
 import { createClient } from "@/prismicio";
 import HomePageContent from "./_components/HomePageContent";
 import Sidebar from "./_components/Sidebar";
@@ -17,7 +17,7 @@ export default async function BlogPage() {
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-5 w-full items-start mt-5 md:mt-10 px-2 md:px-5 gap-10">
 			<div className="w-full md:col-span-4">
-				<Link
+				{/* <Link
 					href="/goty"
 					className="flex flex-row w-full bg-red-600 text-white rounded-md mb-5 gap-3 items-center"
 				>
@@ -26,7 +26,7 @@ export default async function BlogPage() {
 						A TGA já abriu as votações! Vote no seu jogo favorito do ano e em
 						muitos outros.
 					</p>
-				</Link>
+				</Link> */}
 				{/*<Link
 					href="/gamescom"
 					className="flex flex-row w-full bg-black text-white rounded-md mb-5 gap-3 items-center"
