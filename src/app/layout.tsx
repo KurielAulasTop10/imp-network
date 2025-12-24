@@ -5,6 +5,8 @@ import { PrismicPreview } from "@prismicio/next";
 import type { Metadata, Viewport } from "next";
 import { Rubik } from "next/font/google";
 import Footer from "@/components/Footer";
+import Head from "next/head";
+import Script from "next/script";
 
 export const viewport: Viewport = {
 	themeColor: "#dd3333",
@@ -64,6 +66,13 @@ export default async function RootLayout({
 }) {
 	return (
 		<html lang="pt-BR" suppressHydrationWarning>
+			<Head>
+				<Script
+					async
+					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7472145759524820"
+					crossOrigin="anonymous"
+				/>
+			</Head>
 			<body className="bg-gray-950 text-primary relative mx-auto flex w-full flex-col">
 				<main className={rubik.className}>
 					<Header />
