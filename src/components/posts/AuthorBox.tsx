@@ -4,7 +4,7 @@ import type { AuthorDocument } from "../../../prismicio-types";
 
 export default function AuthorBox({ uid, data }: AuthorDocument) {
 	return (
-		<div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 shadow-lg border-l-4 border-red-500">
+		<div className="bg-linear-to-br from-gray-800 to-gray-900 rounded-2xl p-6 shadow-lg border-l-4 border-red-500">
 			<h3 className="text-white text-xl font-bold mb-4">Redigido por</h3>
 			<div className="flex gap-4 items-start">
 				<img
@@ -21,7 +21,7 @@ export default function AuthorBox({ uid, data }: AuthorDocument) {
 						<PrismicRichText
 							field={data.descricao}
 							components={{
-								paragraph: ({ text }) => (
+								paragraph: ({ text }: { text: string }) => (
 									<p className="mb-2 last:mb-0">{text}</p>
 								),
 							}}
