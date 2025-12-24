@@ -8,6 +8,7 @@ import { Roboto_Slab } from "next/font/google";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
+import type { ReactNode } from "react";
 import {
 	RiAiGenerate2,
 	RiAlertLine,
@@ -19,13 +20,13 @@ import {
 } from "react-icons/ri";
 import CategoryList from "@/components/CategoryList";
 import AuthorBox from "@/components/posts/AuthorBox";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { cdn } from "@/utils/cdn";
 import { calculateReadingTime } from "@/utils/reading-time";
 import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
 import Ad from "./_components/Ad";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const domine = Roboto_Slab({
 	subsets: ["latin"],
@@ -144,7 +145,7 @@ export default async function PostPage({
 			</div>
 			<div className="prose prose-lg max-w-none prose-headings:font-bold prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-p:leading-relaxed prose-p:text-justify prose-a:text-red-500 hover:prose-a:text-red-400 prose-a:no-underline prose-blockquote:border-l-4 prose-blockquote:border-red-500 prose-blockquote:pl-4 prose-blockquote:italic prose-ul:list-disc prose-ol:list-decimal prose-img:rounded-xl prose-video:rounded-xl prose-invert">
 				{asText(article.data.resume).length >= 1 && (
-					<div className="bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-red-500 rounded-r-xl p-6 mb-8 shadow-lg">
+					<div className="bg-linear-to-r from-gray-900 to-gray-800 border-l-4 border-red-500 rounded-r-xl p-6 mb-8 shadow-lg">
 						<div className="flex items-center gap-3 mb-4">
 							<div className="bg-red-500 p-2 rounded-lg">
 								<RiAiGenerate2 className="text-white text-2xl" />
@@ -157,14 +158,20 @@ export default async function PostPage({
 							<PrismicRichText
 								field={article.data.resume}
 								components={{
-									paragraph: ({ text }) => (
+									paragraph: ({ text }: { text: unknown }) => (
 										<p className="mb-4">
 											{(text as unknown as string)
 												.replace("```", "")
 												.replace("html", "")}
 										</p>
 									),
-									hyperlink: ({ node, children }) => (
+									hyperlink: ({
+										node,
+										children,
+									}: {
+										node: any;
+										children: ReactNode;
+									}) => (
 										<Link
 											href={node.data.url as string}
 											target={
@@ -177,10 +184,10 @@ export default async function PostPage({
 											{children}
 										</Link>
 									),
-									list: ({ children }) => (
+									list: ({ children }: { children: ReactNode }) => (
 										<ul className="list-disc ml-6 space-y-2">{children}</ul>
 									),
-									oList: ({ text }) => (
+									oList: ({ text }: { text: unknown }) => (
 										<ol className="list-decimal ml-6 space-y-2">
 											{(text as unknown as string).replace("```", "")}
 										</ol>
@@ -193,26 +200,32 @@ export default async function PostPage({
 				<PrismicRichText
 					field={article.data.editor}
 					components={{
-						heading1: ({ text }) => (
+						heading1: ({ text }: { text: ReactNode }) => (
 							<h1 className="text-4xl font-bold mt-8 mb-4 text-white border-b-2 border-red-500 pb-2">
 								{text}
 							</h1>
 						),
-						heading2: ({ text }) => (
+						heading2: ({ text }: { text: ReactNode }) => (
 							<h2 className="text-3xl font-bold mt-6 mb-3 text-white">
 								{text}
 							</h2>
 						),
-						heading3: ({ text }) => (
+						heading3: ({ text }: { text: ReactNode }) => (
 							<h3 className="text-2xl font-bold mt-5 mb-3 text-white">
 								{text}
 							</h3>
 						),
-						heading4: ({ text }) => (
+						heading4: ({ text }: { text: ReactNode }) => (
 							<h4 className="text-xl font-bold mt-4 mb-2 text-white">{text}</h4>
 						),
-						paragraph: ({ children, text }) => {
-							const textString = text as unknown as string;
+						paragraph: ({
+							children,
+							text,
+						}: {
+							children: ReactNode;
+							text: string;
+						}) => {
+							const textString = text;
 
 							return textString?.startsWith("!vid") ? (
 								// biome-ignore lint/a11y/useMediaCaption: false
@@ -234,7 +247,7 @@ export default async function PostPage({
 								</audio>
 							) : textString?.startsWith("!warn") ? (
 								<div className="flex items-start gap-3 p-4 my-4 bg-yellow-900/30 border-l-4 border-yellow-500 rounded-r-lg">
-									<RiAlertLine className="text-yellow-400 text-xl mt-0.5 flex-shrink-0" />
+									<RiAlertLine className="text-yellow-400 text-xl mt-0.5 shrink-0" />
 									<p className="text-yellow-200">
 										{textString.replace("!warn ", "")}
 									</p>
@@ -256,15 +269,15 @@ export default async function PostPage({
 								</div>
 							);
 						},
-						preformatted: ({ text }) => (
-							<div className="relative bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl my-6 overflow-hidden">
+						preformatted: ({ text }: { text: ReactNode }) => (
+							<div className="relative bg-linear-to-br from-gray-900 to-black p-6 rounded-xl my-6 overflow-hidden">
 								<RiDoubleQuotesR className="absolute top-2 left-2 w-12 h-12 text-gray-800 opacity-50" />
 								<blockquote className="relative z-10 text-white font-mono text-sm leading-relaxed">
 									{text}
 								</blockquote>
 							</div>
 						),
-						embed: ({ node }) =>
+						embed: ({ node }: { node: any }) =>
 							node.oembed.embed_url.includes("youtube.com") ||
 							node.oembed.embed_url.includes("youtu.be") ? (
 								<div className="my-6 rounded-xl overflow-hidden shadow-xl">
@@ -288,7 +301,7 @@ export default async function PostPage({
 									className="w-full flex items-center justify-center my-6"
 								/>
 							),
-						image: ({ node }) => {
+						image: ({ node }: { node: any }) => {
 							return (
 								<Dialog>
 									<DialogTrigger asChild>
@@ -313,7 +326,13 @@ export default async function PostPage({
 								</Dialog>
 							);
 						},
-						hyperlink: ({ node, children }) => (
+						hyperlink: ({
+							node,
+							children,
+						}: {
+							children: ReactNode;
+							node: any;
+						}) => (
 							<Link
 								href={node.data.url as string}
 								target={
@@ -331,12 +350,12 @@ export default async function PostPage({
 								{children}
 							</Link>
 						),
-						list: ({ children }) => (
+						list: ({ children }: { children: ReactNode }) => (
 							<ul className="list-disc ml-6 space-y-2 my-4 text-gray-300">
 								{children}
 							</ul>
 						),
-						oList: ({ children }) => (
+						oList: ({ children }: { children: ReactNode }) => (
 							<ol className="list-decimal ml-6 space-y-2 my-4 text-gray-300">
 								{children}
 							</ol>
@@ -345,7 +364,7 @@ export default async function PostPage({
 				/>
 				{article.tags.includes("Grátis") &&
 					article.data.titulo?.includes("Epic Games") && (
-						<div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 my-8 shadow-lg">
+						<div className="bg-linear-to-br from-gray-900 to-gray-800 rounded-2xl p-8 my-8 shadow-lg">
 							<h1 className="text-3xl font-bold text-center mb-6 text-white">
 								Perguntas Frequentes
 							</h1>
@@ -412,7 +431,7 @@ export default async function PostPage({
 				{article.data.review[0]?.estado && (
 					<>
 						<hr className="border-t-2 border-gray-700" />
-						<div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 shadow-lg">
+						<div className="bg-linear-to-br from-gray-800 to-gray-900 rounded-2xl p-6 shadow-lg">
 							<div className="flex max-md:flex-col gap-6 items-center">
 								<img
 									src={cdn(article.data.cover.url as string, 400, 0)}
@@ -426,7 +445,7 @@ export default async function PostPage({
 									<PrismicRichText
 										field={article.data.review[0]?.descricao}
 										components={{
-											paragraph: ({ text }) => (
+											paragraph: ({ text }: { text: ReactNode }) => (
 												<p className="text-gray-300 leading-relaxed">{text}</p>
 											),
 										}}
