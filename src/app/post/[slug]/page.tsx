@@ -234,7 +234,7 @@ export default async function PostPage({
 									controls
 									className="rounded-xl w-full aspect-video shadow-lg my-6"
 								/>
-							) : textString?.startsWith("!aud") ? (
+							) : textString?.startsWith("!gif") ? (
 								<Dialog>
 									<DialogTrigger asChild>
 										<div className="my-6 rounded-xl overflow-hidden shadow-lg">
@@ -256,7 +256,7 @@ export default async function PostPage({
 										</div>
 									</DialogContent>
 								</Dialog>
-							) : textString?.startsWith("!gif") ? (
+							) : textString?.startsWith("!aud") ? (
 								// biome-ignore lint/a11y/useMediaCaption: <false>
 								<audio
 									controls
