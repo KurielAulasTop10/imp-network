@@ -235,6 +235,28 @@ export default async function PostPage({
 									className="rounded-xl w-full aspect-video shadow-lg my-6"
 								/>
 							) : textString?.startsWith("!aud") ? (
+								<Dialog>
+									<DialogTrigger asChild>
+										<div className="my-6 rounded-xl overflow-hidden shadow-lg">
+											<img
+												src={textString.replace("!gif", "")}
+												alt="GIF"
+												className="w-full h-auto transition-transform duration-500 hover:scale-105 cursor-pointer"
+												loading="lazy"
+											/>
+										</div>
+									</DialogTrigger>
+									<DialogContent className="border-0 bg-transparent p-0 shadow-none sm:max-w-full max-h-[90vh]">
+										<div className="h-[calc(100vh-150px)] w-full overflow-clip rounded-md bg-transparent shadow-none">
+											<img
+												src={textString.replace("!gif", "")}
+												alt="GIF"
+												className="h-full w-full object-contain"
+											/>
+										</div>
+									</DialogContent>
+								</Dialog>
+							) : textString?.startsWith("!gif") ? (
 								// biome-ignore lint/a11y/useMediaCaption: <false>
 								<audio
 									controls
