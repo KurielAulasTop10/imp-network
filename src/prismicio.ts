@@ -1,5 +1,6 @@
 import * as prismic from "@prismicio/client";
-import * as prismicNext from "@prismicio/next";
+
+// import * as prismicNext from "@prismicio/next";
 
 /**
  * A list of Route Resolver objects that define how a document's `url` field is resolved.
@@ -28,15 +29,14 @@ const routes: prismic.ClientConfig["routes"] = [
 export const createClient = (config: prismic.ClientConfig = {}) => {
 	const client = prismic.createClient("imperio-network", {
 		routes,
-		accessToken:
-			process.env.PRISMIC_ACCESS_TOKEN,
+		accessToken: process.env.PRISMIC_ACCESS_TOKEN,
 		fetchOptions: { cache: "reload" },
 		...config,
 	});
 
-	prismicNext.enableAutoPreviews({
+	/* prismicNext.enableAutoPreviews({
 		client,
-	});
+	}); */
 
 	return client;
 };
