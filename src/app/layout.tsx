@@ -4,8 +4,8 @@ import "@/styles/globals.css";
 import { PrismicPreview } from "@prismicio/next";
 import type { Metadata, Viewport } from "next";
 import { Rubik } from "next/font/google";
+import { AdUnit, GoogleAdSense } from "next-google-adsense";
 import Footer from "@/components/Footer";
-import { GoogleAdSense } from "next-google-adsense";
 
 export const viewport: Viewport = {
 	themeColor: "#dd3333",
@@ -68,17 +68,24 @@ export default async function RootLayout({
 			<body className="bg-gray-950 text-primary relative mx-auto flex w-full flex-col">
 				<main className={rubik.className}>
 					<Header />
+					<AdUnit
+						publisherId="pub-7472145759524820"
+						slotId="9961253445"
+						layout="display"
+					/>
 					{children}
+					<AdUnit
+						publisherId="pub-7472145759524820"
+						slotId="9331548118"
+						layout="display"
+					/>
 					<div className="fixed bottom-12 right-10">
 						<ScrollUpButton />
 					</div>
 					<div className="mt-10">
 						<Footer />
 					</div>
-					<GoogleAdSense
-         				publisherId="pub-7472145759524820"
-         				isAutoAd={true} 
-       				/>
+					<GoogleAdSense publisherId="pub-7472145759524820" isAutoAd={false} />
 					<PrismicPreview repositoryName="imperio-network" />
 				</main>
 			</body>

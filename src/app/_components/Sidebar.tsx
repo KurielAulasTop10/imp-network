@@ -2,6 +2,7 @@
 import type { AxiosError } from "axios";
 import type { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
+import { AdUnit } from "next-google-adsense";
 import {
 	BsFacebook,
 	BsInstagram,
@@ -96,7 +97,7 @@ export default async function Sidebar() {
 
 			{/* Discord Section */}
 			<div className="w-full">
-				<h3 className="w-full p-2 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold rounded-md text-center mb-3">
+				<h3 className="w-full p-2 bg-linear-to-r from-red-600 to-red-500 text-white font-bold rounded-md text-center mb-3">
 					Entre no nosso Discord
 				</h3>
 				<Link
@@ -113,7 +114,7 @@ export default async function Sidebar() {
 
 			{/* Social Media Section */}
 			<div className="w-full">
-				<h3 className="w-full p-2 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold rounded-md text-center mb-3">
+				<h3 className="w-full p-2 bg-linear-to-r from-red-600 to-red-500 text-white font-bold rounded-md text-center mb-3">
 					Siga-nos nas Redes Sociais
 				</h3>
 				<div className="grid grid-cols-3 gap-2">
@@ -180,7 +181,7 @@ export default async function Sidebar() {
 
 			{/* Games Section */}
 			<div className="w-full">
-				<h3 className="w-full p-2 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold rounded-md text-center mb-3">
+				<h3 className="w-full p-2 bg-linear-to-r from-red-600 to-red-500 text-white font-bold rounded-md text-center mb-3">
 					Que Jogos Lançam Hoje?
 				</h3>
 				<div
@@ -209,7 +210,7 @@ export default async function Sidebar() {
 										className="w-full h-auto rounded-md transition-transform duration-300 group-hover:scale-105"
 										loading="lazy"
 									/>
-									<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+									<div className="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 									<div className="absolute bottom-0 left-0 right-0 p-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
 										<p className="text-white font-semibold text-sm text-center drop-shadow-lg">
 											{game.name}
@@ -220,6 +221,11 @@ export default async function Sidebar() {
 						})}
 				</div>
 			</div>
+			<AdUnit
+				publisherId="pub-7472145759524820"
+				slotId="8702838637"
+				layout="in-article"
+			/>
 		</div>
 	);
 }
