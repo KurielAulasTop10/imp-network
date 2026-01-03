@@ -53,19 +53,12 @@ export default async function PostPage({
 		return notFound();
 	}
 
-	if (
-		asText(article.data.resume).length === 0 &&
-		!article.tags.includes("Grátis")
-	) {
+	if (article.data.seo_description?.length === 0 || asText(article.data.resume).length === 0) {
 		axios.post("https://imperionetwork.fr/api/generate-ai", {
 			slug,
 			title: article.data.titulo,
 			article: asText(article.data.editor),
-		});
-	} else if (article.data.seo_description?.length === 0) {
-		axios.post("https://imperionetwork.fr/api/generate-seo-ai", {
-			slug,
-			title: article.data.titulo,
+			SEOOnly: !!article.tags.includes("Grátis"),
 		});
 	}
 
