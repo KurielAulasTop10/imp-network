@@ -68,7 +68,7 @@ export default async function RootLayout({
 			<body className="bg-gray-950 text-primary relative mx-auto flex w-full flex-col">
 				<main className={rubik.className}>
 					<Header />
-					<div className="mx-auto mt-2 w-full">
+					<div className="mx-auto mt-2 w-fit">
 						<AdUnit
 							publisherId="pub-7472145759524820"
 							slotId="9961253445"
@@ -76,7 +76,7 @@ export default async function RootLayout({
 						/>
 					</div>
 					{children}
-					<div className="mx-auto mt-2 w-full">
+					<div className="mx-auto mt-2 w-fit">
 						<AdUnit
 							publisherId="pub-7472145759524820"
 							slotId="9331548118"
