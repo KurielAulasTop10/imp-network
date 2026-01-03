@@ -290,11 +290,13 @@ export default async function PostPage({
 											/>
 										)*/}{" "}
 									{Math.floor(Math.random() * 15) + 1 === 5 && (
-										<AdUnit
-											publisherId="pub-7472145759524820"
-											slotId="4248588309"
-											layout="in-article"
-										/>
+										<div className="mb-2">
+											<AdUnit
+												publisherId="pub-7472145759524820"
+												slotId="4248588309"
+												layout="in-article"
+											/>
+										</div>
 									)}
 									<p className="leading-relaxed text-justify">{children}</p>
 								</div>

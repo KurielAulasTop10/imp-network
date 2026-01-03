@@ -68,17 +68,21 @@ export default async function RootLayout({
 			<body className="bg-gray-950 text-primary relative mx-auto flex w-full flex-col">
 				<main className={rubik.className}>
 					<Header />
-					<AdUnit
-						publisherId="pub-7472145759524820"
-						slotId="9961253445"
-						layout="display"
-					/>
+					<div className="mx-auto mt-2 w-full">
+						<AdUnit
+							publisherId="pub-7472145759524820"
+							slotId="9961253445"
+							layout="display"
+						/>
+					</div>
 					{children}
-					<AdUnit
-						publisherId="pub-7472145759524820"
-						slotId="9331548118"
-						layout="display"
-					/>
+					<div className="mx-auto mt-2 w-full">
+						<AdUnit
+							publisherId="pub-7472145759524820"
+							slotId="9331548118"
+							layout="display"
+						/>
+					</div>
 					<div className="fixed bottom-12 right-10">
 						<ScrollUpButton />
 					</div>
