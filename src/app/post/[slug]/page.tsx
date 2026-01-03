@@ -8,7 +8,6 @@ import { Roboto_Slab } from "next/font/google";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
-import { AdUnit } from "next-google-adsense";
 import type { ReactNode } from "react";
 import {
 	RiAiGenerate2,
@@ -27,8 +26,7 @@ import { createClient } from "@/prismicio";
 import { cdn } from "@/utils/cdn";
 import { calculateReadingTime } from "@/utils/reading-time";
 import type { PostDocumentDataReviewItem } from "../../../../prismicio-types";
-
-// import Ad from "./_components/Ad";
+import Ad from "./_components/Ad";
 
 const domine = Roboto_Slab({
 	subsets: ["latin"],
@@ -79,11 +77,11 @@ export default async function PostPage({
 		url: string;
 	}
 
-	/* const ads = await client.getAllByType("anuncio").catch(() => notFound());
+	const ads = await client.getAllByType("anuncio").catch(() => notFound());
 
 	const adsSorted = ads.sort(
 		() => Math.random() - 0.5,
-	) as AnuncioDocumentData[]; */
+	) as AnuncioDocumentData[];
 
 	const reviewWithSteamPage = article.data
 		.review[0] as PostDocumentDataReviewItem & {
@@ -92,7 +90,7 @@ export default async function PostPage({
 
 	const readingTime = calculateReadingTime(article.data.editor);
 
-	/* interface AnuncioDocumentData {
+	interface AnuncioDocumentData {
 		data: {
 			link: {
 				url: string;
@@ -101,7 +99,7 @@ export default async function PostPage({
 				url: string;
 			};
 		};
-	} */
+	}
 
 	return (
 		<article
@@ -282,22 +280,13 @@ export default async function PostPage({
 								</span>
 							) : (
 								<div className="my-4">
-									{/* Math.floor(Math.random() * 15) + 1 === 5 &&
+									{Math.floor(Math.random() * 15) + 1 === 5 &&
 										adsSorted[0]?.data.link && (
 											<Ad
 												ad={adsSorted}
 												index={Math.floor(Math.random() * adsSorted.length)}
 											/>
-										)*/}{" "}
-									{Math.floor(Math.random() * 15) + 1 === 5 && (
-										<div className="mb-2">
-											<AdUnit
-												publisherId="pub-7472145759524820"
-												slotId="4248588309"
-												layout="in-article"
-											/>
-										</div>
-									)}
+										)}
 									<p className="leading-relaxed text-justify">{children}</p>
 								</div>
 							);
