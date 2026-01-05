@@ -40,7 +40,7 @@ export default function PostsGrid({
 					uid?: string;
 				}
 				const authorData = post.data.author as unknown as MyAuthorData;
-				if (authorData?.uid) {
+				if (authorData?.uid && !authorUIDs.has(authorData.uid)) {
 					authorUIDs.add(authorData.uid);
 				}
 			});
