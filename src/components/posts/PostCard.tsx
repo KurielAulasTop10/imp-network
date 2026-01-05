@@ -2,35 +2,16 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { createClient } from "@/prismicio";
 import { cdn } from "@/utils/cdn";
 import type { AuthorDocument, PostDocument } from "../../../prismicio-types";
 
-export default function PostCard({ post }: { post: PostDocument }) {
-	const client = createClient();
-	const [authorData, setAuthorData] = useState<AuthorDocument | null>(null);
-	const [loading, setLoading] = useState(true);
-
-	useEffect(() => {
-		const fetchAuthorData = async () => {
-			interface MyAuthorData {
-				uid?: string;
-			}
-
-			const myAuthorData = post.data.author as unknown as MyAuthorData;
-			if (!myAuthorData?.uid) {
-				console.error("Author UID not found");
-				return;
-			}
-
-			const data = await client.getByUID("author", myAuthorData.uid);
-			setAuthorData(data as AuthorDocument);
-			setLoading(false);
-		};
-
-		fetchAuthorData();
-	}, [client, post]);
+export default function PostCard({ 
+	post, 
+	authorData 
+}: { 
+	post: PostDocument; 
+	authorData: AuthorDocument | null;
+}) {
 
 	const frees = {
 		"Epic Games": "https://i.ibb.co/Sfz3dsz/JsAPPOC.png",
@@ -54,7 +35,7 @@ export default function PostCard({ post }: { post: PostDocument }) {
 		return "GOG";
 	}
 
-	return loading ? (
+	return !authorData ? (
 		<div className="p-4 rounded-md shadow-sm animate-pulse bg-black">
 			<div className="flex items-center justify-center h-48 mb-4 bg-gray-700">
 				<svg

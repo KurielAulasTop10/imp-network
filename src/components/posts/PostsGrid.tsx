@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiArrowLeftDoubleLine, RiArrowRightDoubleLine } from "react-icons/ri";
 import PostCard from "@/components/posts/PostCard";
-import type { PostDocument } from "../../../prismicio-types";
+import { createClient } from "@/prismicio";
+import type { AuthorDocument, PostDocument } from "../../../prismicio-types";
 
 export default function PostsGrid({
 	allPosts,
@@ -15,6 +16,9 @@ export default function PostsGrid({
 	onPageChange: (page: number) => void;
 }) {
 	const [postsPerPage] = useState<number>(21);
+	const [authorsData, setAuthorsData] = useState<Map<string, AuthorDocument>>(
+		new Map(),
+	);
 
 	const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
@@ -24,6 +28,49 @@ export default function PostsGrid({
 		return index >= start && index < end;
 	});
 
+	useEffect(() => {
+		const fetchAuthors = async () => {
+			const client = createClient();
+			const authorsMap = new Map<string, AuthorDocument>();
+
+			// Get unique author UIDs from filtered posts
+			const authorUIDs = new Set<string>();
+			filteredPosts.forEach((post) => {
+				interface MyAuthorData {
+					uid?: string;
+				}
+				const authorData = post.data.author as unknown as MyAuthorData;
+				if (authorData?.uid) {
+					authorUIDs.add(authorData.uid);
+				}
+			});
+
+			// Fetch all authors at once
+			for (const uid of authorUIDs) {
+				try {
+					const author = await client.getByUID("author", uid);
+					authorsMap.set(uid, author as AuthorDocument);
+				} catch (error) {
+					console.error(`Failed to fetch author ${uid}:`, error);
+				}
+			}
+
+			setAuthorsData(authorsMap);
+		};
+
+		if (filteredPosts.length > 0) {
+			fetchAuthors();
+		}
+	}, [filteredPosts]);
+
+	const getAuthorData = (post: PostDocument): AuthorDocument | null => {
+		interface MyAuthorData {
+			uid?: string;
+		}
+		const authorData = post.data.author as unknown as MyAuthorData;
+		return authorData?.uid ? authorsData.get(authorData.uid) || null : null;
+	};
+
 	return (
 		<section className="flex scroll-mt-12 flex-col items-center space-y-6">
 			{filteredPosts.length >= 1 ? (
@@ -31,7 +78,14 @@ export default function PostsGrid({
 					className={`grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-10`}
 				>
 					{filteredPosts.map(
-						(post) => post && <PostCard post={post} key={post.uid} />,
+						(post) =>
+							post && (
+								<PostCard
+									post={post}
+									key={post.uid}
+									authorData={getAuthorData(post)}
+								/>
+							),
 					)}
 				</div>
 			) : (
