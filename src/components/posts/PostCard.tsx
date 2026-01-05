@@ -80,7 +80,7 @@ export default function PostCard({
 				/>
 
 				{/* Overlay gradient melhorado */}
-				<div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
+				<div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent"></div>
 
 				{/* Logo Grátis */}
 				{post.tags.includes("Grátis") && (
