@@ -53,7 +53,7 @@ export default async function PostPage({
 		return notFound();
 	}
 
-	if (article.data.seo_description?.length === 0 || asText(article.data.resume).length === 0) {
+	if (article.data.seo_description?.length === 0) {
 		axios.post("https://imperionetwork.fr/api/generate-ai", {
 			slug,
 			title: article.data.titulo,
