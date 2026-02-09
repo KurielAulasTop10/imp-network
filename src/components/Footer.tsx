@@ -81,7 +81,7 @@ export default function Footer() {
 			/>
 			<GoogleAnalytics gaId="G-FWY182VERW" />
 			<Script
-				src="https://website-widgets.pages.dev/dist/sienna.min.js"
+				src="https://cdn.jsdelivr.net/npm/sienna-accessibility@latest/dist/sienna-accessibility.umd.js"
 				defer
 			/>
 		</>
