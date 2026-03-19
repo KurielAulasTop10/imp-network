@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import { PrismicPreview } from "@prismicio/next";
 import type { Metadata, Viewport } from "next";
 import { Rubik } from "next/font/google";
+import Script from "next/script";
 import { AdUnit, GoogleAdSense } from "next-google-adsense";
 import Footer from "@/components/Footer";
 
@@ -91,6 +92,11 @@ export default async function RootLayout({
 					</div>
 					<GoogleAdSense publisherId="pub-7472145759524820" isAutoAd={false} />
 					<PrismicPreview repositoryName="imperio-network" />
+					<Script
+						src="https://dataxamas.izakdvlpr.com/dataxamas.js"
+						data-website-id="400c0712-1ca8-4fb7-8956-2976bbe64ddc"
+						data-allow-localhost="true"
+					/>
 				</main>
 			</body>
 		</html>
