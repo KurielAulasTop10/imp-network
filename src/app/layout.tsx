@@ -94,7 +94,7 @@ export default async function RootLayout({
 					<PrismicPreview repositoryName="imperio-network" />
 					<Script
 						src="https://dataxamas.izakdvlpr.com/dataxamas.js"
-						data-website-id="400c0712-1ca8-4fb7-8956-2976bbe64ddc"
+						data-website-id="fa206071-95a2-43af-b0fe-7b7dd0a99a2c"
 						data-allow-localhost="true"
 					/>
 				</main>
