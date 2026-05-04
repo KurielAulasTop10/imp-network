@@ -21,6 +21,7 @@
 		"@astrojs/react": "^5.0.4",
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.2",
+		"@astrojs/vercel": "^10.0.6",
 		"@prismicio/client": "^7.21.0",
 		"@prismicio/migrate": "^0.0.2",
 		"@prismicio/react": "^3.2.2",
