@@ -1,0 +1,33 @@
+---
+import CategoryPageContent from "@/components/CategoryPageContent";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { createClient } from "@/prismicio";
+
+const { id } = Astro.params;
+
+function capitalizeFirstLetter(string: string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const tagName = capitalizeFirstLetter(decodeURI(id || ""))
+	.replace("Pc", "PC")
+	.replace("Playstation", "PlayStation");
+
+const client = createClient();
+const allPosts = await client.getAllByTag(tagName, {
+	orderings: {
+		field: "my.post.data",
+		direction: "desc",
+	},
+	fetchLinks: ["author.avatar", "author.banner", "author.descricao"],
+});
+
+const allAuthors = await client.getAllByType("author");
+const authorsMap = new Map(allAuthors.map((a) => [a.uid, a]));
+---
+
+<BaseLayout title={`Categoria de ${id} - Império Network`}>
+	<div class="mt-10 px-5">
+		<CategoryPageContent client:idle allPosts={allPosts} authorsMap={authorsMap} />
+	</div>
+</BaseLayout>

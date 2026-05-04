@@ -1,0 +1,97 @@
+---
+import {
+	RiCheckLine,
+	RiCustomerService2Line,
+	RiDiscordFill,
+	RiDiscordLine,
+	RiInformationLine,
+	RiMailFill,
+	RiMailLine,
+	RiTimeLine,
+} from "react-icons/ri";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contatos">
+	<div class="flex flex-col gap-8 mt-8 max-w-4xl mx-auto px-6 lg:px-0">
+		<div class="text-center mb-4">
+			<h1 class="text-4xl md:text-5xl font-bold text-white mb-6 flex items-center justify-center gap-4">
+				<div class="w-2 h-12 bg-gradient-to-b from-red-600 to-red-500 rounded-full"></div>
+				Contato
+				<div class="w-2 h-12 bg-gradient-to-b from-red-600 to-red-500 rounded-full"></div>
+			</h1>
+			<div class="w-24 h-1 bg-gradient-to-r from-red-600 to-red-500 rounded-full mx-auto"></div>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			<div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700 hover:border-red-500/50 transition-all duration-300">
+				<div class="text-center mb-6">
+					<div class="w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+						<RiMailFill class="text-2xl text-white" />
+					</div>
+					<h2 class="text-2xl font-bold text-white">Email</h2>
+					<p class="text-gray-400 mt-2">Para assuntos de imprensa</p>
+				</div>
+				<a href="mailto:imperiogames2019@gmail.com" target="_blank" class="inline-flex items-center gap-2 bg-gray-800 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 w-full justify-center">
+					<RiMailLine class="text-lg" />
+					imperiogames2019@gmail.com
+				</a>
+			</div>
+
+			<div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700 hover:border-purple-500/50 transition-all duration-300">
+				<div class="text-center mb-6">
+					<div class="w-16 h-16 bg-[#5865F2] rounded-2xl flex items-center justify-center mx-auto mb-4">
+						<RiDiscordFill class="text-2xl text-white" />
+					</div>
+					<h2 class="text-2xl font-bold text-white">Discord</h2>
+					<p class="text-gray-400 mt-2">Resposta rápida e direta</p>
+				</div>
+				<a href="https://dsc.gg/fybr" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#5865F2] hover:bg-[#4752C4] text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 w-full justify-center">
+					<RiDiscordLine class="text-lg" />
+					Entrar no Discord
+				</a>
+			</div>
+		</div>
+
+		<div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700">
+			<h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+				<RiInformationLine class="text-red-500" />
+				Como Funciona o Atendimento
+			</h2>
+			<div class="space-y-6">
+				<div class="flex items-start gap-4">
+					<div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+						<RiCheckLine class="text-white text-lg" />
+					</div>
+					<div>
+						<h3 class="text-lg font-semibold text-white mb-2">Assuntos de Imprensa</h3>
+						<p class="text-gray-300 leading-relaxed">Utilize o email para questoes profissionais, parcerias e assuntos relacionados a imprensa.</p>
+					</div>
+				</div>
+				<div class="flex items-start gap-4">
+					<div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+						<RiCustomerService2Line class="text-white text-lg" />
+					</div>
+					<div>
+						<h3 class="text-lg font-semibold text-white mb-2">Suporte Geral</h3>
+						<p class="text-gray-300 leading-relaxed">Para sugestoes, duvidas, problemas com o site ou bugs, o Discord e o canal mais rapido.</p>
+					</div>
+				</div>
+				<div class="flex items-start gap-4">
+					<div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+						<RiTimeLine class="text-white text-lg" />
+					</div>
+					<div>
+						<h3 class="text-lg font-semibold text-white mb-2">Tempo de Resposta</h3>
+						<p class="text-gray-300 leading-relaxed">Geralmente respondemos rapidamente no Discord. No email, o tempo pode variar conforme a demanda.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center mt-2 p-8 bg-gradient-to-r from-red-600/10 to-red-500/10 rounded-2xl border border-red-500/20">
+			<h2 class="text-2xl font-bold text-white mb-4">Estamos Aqui para Ajudar!</h2>
+			<p class="text-gray-300 text-lg">A Imperio Network valoriza cada contato e esta sempre disposta a ouvir comentarios e sugestoes dos nossos leitores.</p>
+		</div>
+	</div>
+</BaseLayout>

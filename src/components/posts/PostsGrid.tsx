@@ -1,24 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RiArrowLeftDoubleLine, RiArrowRightDoubleLine } from "react-icons/ri";
 import PostCard from "@/components/posts/PostCard";
-import { createClient } from "@/prismicio";
-import type { AuthorDocument, PostDocument } from "../../../prismicio-types";
+import type { AuthorDocument, PostDocument } from "@/prismicio-types";
+
+interface PostsGridProps {
+	allPosts: PostDocument[];
+	currentPage: number;
+	onPageChange: (page: number) => void;
+	authorsMap: Map<string, AuthorDocument>;
+}
 
 export default function PostsGrid({
 	allPosts,
 	currentPage,
 	onPageChange,
-}: {
-	allPosts: PostDocument[];
-	currentPage: number;
-	onPageChange: (page: number) => void;
-}) {
+	authorsMap,
+}: PostsGridProps) {
 	const [postsPerPage] = useState<number>(21);
-	const [authorsData, setAuthorsData] = useState<Map<string, AuthorDocument>>(
-		new Map(),
-	);
 
 	const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
@@ -28,55 +28,18 @@ export default function PostsGrid({
 		return index >= start && index < end;
 	});
 
-	useEffect(() => {
-		const fetchAuthors = async () => {
-			const client = createClient();
-			const authorsMap = new Map<string, AuthorDocument>();
-
-			// Get unique author UIDs from filtered posts
-			const authorUIDs = new Set<string>();
-			filteredPosts.forEach((post) => {
-				interface MyAuthorData {
-					uid?: string;
-				}
-				const authorData = post.data.author as unknown as MyAuthorData;
-				if (authorData?.uid && !authorUIDs.has(authorData.uid)) {
-					authorUIDs.add(authorData.uid);
-				}
-			});
-
-			// Fetch all authors at once
-			for (const uid of authorUIDs) {
-				try {
-					const author = await client.getByUID("author", uid);
-					authorsMap.set(uid, author as AuthorDocument);
-				} catch (error) {
-					console.error(`Failed to fetch author ${uid}:`, error);
-				}
-			}
-
-			setAuthorsData(authorsMap);
-		};
-
-		if (filteredPosts.length > 0) {
-			fetchAuthors();
-		}
-	}, [filteredPosts]);
-
 	const getAuthorData = (post: PostDocument): AuthorDocument | null => {
 		interface MyAuthorData {
 			uid?: string;
 		}
 		const authorData = post.data.author as unknown as MyAuthorData;
-		return authorData?.uid ? authorsData.get(authorData.uid) || null : null;
+		return authorData?.uid ? authorsMap.get(authorData.uid) || null : null;
 	};
 
 	return (
 		<section className="flex scroll-mt-12 flex-col items-center space-y-6">
 			{filteredPosts.length >= 1 ? (
-				<div
-					className={`grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-10`}
-				>
+				<div className="grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-10">
 					{filteredPosts.map(
 						(post) =>
 							post && (
@@ -100,7 +63,6 @@ export default function PostsGrid({
 				>
 					<RiArrowLeftDoubleLine size={24} className="text-white" />
 				</button>
-
 				<div className="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg border border-gray-600">
 					<span className="text-white font-semibold text-lg min-w-[40px] text-center">
 						{currentPage}
@@ -110,7 +72,6 @@ export default function PostsGrid({
 						{totalPages === 0 ? 1 : totalPages}
 					</span>
 				</div>
-
 				<button
 					type="button"
 					onClick={() => onPageChange(currentPage + 1)}

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const SCROLL_THROTTLE = 100;
 const BUTTON_DURATION = 1500;
@@ -8,29 +8,26 @@ export default function useScroll() {
 	const [show, setShow] = useState(false);
 	const buttonRef = useRef<HTMLButtonElement>(null);
 
-	const handleButtonClick = () => {
+	const handleButtonClick = useCallback(() => {
 		window.scroll({
 			top: 0,
 			behavior: "smooth",
 		});
-	};
+	}, []);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <>
 	useEffect(() => {
 		const button = buttonRef.current;
 		if (!button) return;
 
 		button.addEventListener("mousedown", handleButtonClick);
 
-		let timeId: NodeJS.Timeout | null;
-		let durationId: NodeJS.Timeout | null;
+		let timeId: ReturnType<typeof setTimeout> | null;
+		let durationId: ReturnType<typeof setTimeout> | null;
 
 		const handleScroll = () => {
 			if (timeId) return;
-
 			timeId = setTimeout(() => {
 				timeId = null;
-
 				const scrollTop =
 					document.documentElement.scrollTop || document.body.scrollTop;
 				if (scrollTop > SCROLL_THRESHOLD) {
@@ -65,7 +62,7 @@ export default function useScroll() {
 			button.removeEventListener("mouseover", handleMouseOver);
 			button.removeEventListener("mouseleave", handleMouseLeave);
 		};
-	}, [buttonRef]);
+	}, [handleButtonClick]);
 
 	return { show, buttonRef };
 }

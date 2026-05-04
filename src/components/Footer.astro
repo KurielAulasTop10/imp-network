@@ -1,0 +1,56 @@
+---
+const links = [
+	{ title: "Sobre Nós", href: "/sobre" },
+	{ title: "Privacy Policy", href: "/privacy" },
+	{ title: "Contato", href: "/contato" },
+];
+---
+
+<footer class="mt-10 bg-linear-to-t from-gray-900 to-gray-950 border-t border-gray-800 flex flex-col gap-6 w-full p-8 justify-center items-center rounded-t-3xl shadow-2xl">
+	<div class="flex flex-wrap gap-6 justify-center items-center">
+		{links.map(({ title, href }) => (
+			<a
+				href={href}
+				class="text-gray-300 hover:text-red-400 font-medium transition-all duration-300 hover:scale-105 px-3 py-1 rounded-lg hover:bg-gray-800"
+			>
+				{title}
+			</a>
+		))}
+	</div>
+	<div class="text-gray-400 text-center space-y-3">
+		<p class="text-lg font-light">
+			©️ {new Date().getFullYear()} Império Network
+		</p>
+		<div class="flex items-center justify-center gap-2 text-sm">
+			<span>Desenvolvido com</span>
+			<span class="text-red-500 animate-pulse">❤️</span>
+			<span>e</span>
+			<span class="text-yellow-500">☕</span>
+			<span>por</span>
+			<a
+				href="https://kurieldev.vercel.app"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-gray-300 hover:text-red-400 font-medium transition-colors duration-300 border-b border-dotted border-gray-600 hover:border-red-400"
+			>
+				KurielDev
+			</a>
+		</div>
+	</div>
+</footer>
+<script
+	is:inline
+	src="https://cookieinfoscript.com/js/cookieinfo.min.js"
+	type="text/javascript"
+	id="cookieinfo"
+	data-linkmsg="Mais informação"
+	data-message="Nós usamos cookies para aprimorar sua experiência. Ao continuar visitando nosso site você concorda com o uso de cookies."
+	data-bg="#000"
+	data-fg="#fff"
+	data-divlink="#fff"
+	data-divlinkbg="#dd3333"
+	data-link="#dd3333"
+></script>
+<script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-FWY182VERW" async></script>
+<script is:inline>{`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-FWY182VERW');`}</script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/sienna-accessibility@latest/dist/sienna-accessibility.umd.js" defer></script>

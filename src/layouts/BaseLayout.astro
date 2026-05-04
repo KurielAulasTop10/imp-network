@@ -1,0 +1,82 @@
+---
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header";
+import ScrollUpButton from "@/components/ScrollUpButton";
+import TanStackProvider from "@/components/TanStackProvider";
+import "@/styles/globals.css";
+
+interface Props {
+	title: string;
+	description?: string;
+	children: React.ReactNode;
+}
+
+const defaultTitle = "Império Network";
+const defaultDescription =
+	"A Império Network é o seu portal de notícias de tecnologia, gaming ou animes em português! Tornamos a sua leitura simples.";
+
+const { title = defaultTitle, description = defaultDescription } = Astro.props;
+
+const pageTitle = title === defaultTitle ? title : `${title} | ${defaultTitle}`;
+---
+
+<!doctype html>
+<html lang="pt-BR" class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<meta name="theme-color" content="#dd3333" />
+		<meta name="description" content={description} />
+		<meta name="keywords" content="império, network, gaming, animes, notícias, tecnologia, tech" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:site_name" content={pageTitle} />
+		<meta property="og:image" content="/logo.png" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="/logo.png" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+		<title>{pageTitle}</title>
+		<script
+			is:inline
+			src="https://dataxamas.izakdvlpr.com/dataxamas.js"
+			data-website-id="fa206071-95a2-43af-b0fe-7b7dd0a99a2c"
+			data-allow-localhost="true"
+		></script>
+	</head>
+	<body class="bg-gray-950 text-primary relative mx-auto flex w-full flex-col" style="font-family: 'Rubik', sans-serif">
+		<Header client:idle />
+		<div class="mx-auto mt-2 w-fit">
+			<ins class="adsbygoogle"
+				style="display:block"
+				data-ad-client="ca-pub-7472145759524820"
+				data-ad-slot="9961253445"
+				data-ad-format="auto"
+				data-full-width-responsive="true"
+			></ins>
+			<script is:inline src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7472145759524820" async></script>
+		</div>
+		<TanStackProvider client:idle>
+			<slot />
+		</TanStackProvider>
+		<div class="mx-auto mt-2 w-fit">
+			<ins class="adsbygoogle"
+				style="display:block"
+				data-ad-client="ca-pub-7472145759524820"
+				data-ad-slot="9331548118"
+				data-ad-format="auto"
+				data-full-width-responsive="true"
+			></ins>
+		</div>
+		<div class="fixed bottom-12 right-10">
+			<ScrollUpButton client:idle />
+		</div>
+		<Footer />
+	</body>
+</html>
