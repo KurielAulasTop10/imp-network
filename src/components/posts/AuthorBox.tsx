@@ -1,8 +1,13 @@
 import { PrismicRichText } from "@prismicio/react";
+import type { AuthorDocument } from "@/prismicio-types";
 import { cdn } from "@/utils/cdn";
-import type { AuthorDocument } from "../../../prismicio-types";
 
-export default function AuthorBox({ uid, data }: AuthorDocument) {
+interface AuthorBoxProps {
+	uid: string;
+	data: AuthorDocument["data"];
+}
+
+export default function AuthorBox({ uid, data }: AuthorBoxProps) {
 	return (
 		<div className="bg-linear-to-br from-gray-800 to-gray-900 rounded-2xl p-6 shadow-lg border-l-4 border-red-500">
 			<h3 className="text-white text-xl font-bold mb-4">Redigido por</h3>

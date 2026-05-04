@@ -1,0 +1,48 @@
+---
+import PostPageContent from "@/components/PostPageContent";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { createClient } from "@/prismicio";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+	return Astro.redirect("/404");
+}
+
+const client = createClient({ fetchOptions: { cache: "no-cache" } });
+const article = await client.getByUID("post", slug).catch(() => null);
+
+if (!article) {
+	return Astro.redirect("/404");
+}
+
+interface MyAuthorData {
+	uid?: string;
+}
+
+const myAuthorData = article.data.author as unknown as MyAuthorData;
+
+if (!myAuthorData?.uid) {
+	return Astro.redirect("/404");
+}
+
+const author = await client
+	.getByUID("author", myAuthorData.uid)
+	.catch(() => null);
+
+if (!author) {
+	return Astro.redirect("/404");
+}
+
+const ads = await client.getAllByType("anuncio").catch(() => []);
+const adsSorted = ads.sort(() => Math.random() - 0.5);
+---
+
+<BaseLayout title={article.data.titulo} description={article?.data?.seo_description}>
+	<PostPageContent
+		client:idle
+		article={article}
+		author={author}
+		adsSorted={adsSorted}
+	/>
+</BaseLayout>

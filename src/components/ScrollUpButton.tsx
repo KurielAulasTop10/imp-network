@@ -1,7 +1,6 @@
 "use client";
 
 import { IoMdArrowRoundUp } from "react-icons/io";
-
 import useScroll from "@/hooks/use-scroll";
 import { isTouchDevice } from "@/utils/is-touch-device";
 

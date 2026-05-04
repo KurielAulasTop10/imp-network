@@ -1,0 +1,37 @@
+---
+import HomePageContent from "@/components/HomePageContent";
+import Sidebar from "@/components/Sidebar";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { fetchTodayGames } from "@/lib/igdb";
+import { createClient } from "@/prismicio";
+
+const clientPrismic = createClient({ fetchOptions: { cache: "no-cache" } });
+const allPosts = await clientPrismic.getAllByType("post", {
+	orderings: {
+		field: "my.post.data",
+		direction: "desc",
+	},
+	fetchLinks: ["author.avatar", "author.banner", "author.descricao"],
+});
+
+const allAuthors = await clientPrismic.getAllByType("author");
+const authorsMap = new Map(allAuthors.map((a) => [a.uid, a]));
+
+const { gamesData, coversData } = await fetchTodayGames();
+
+const serializedGamesData = gamesData
+	? { data: gamesData.data.map((g) => ({ id: g.id, url: g.url, name: g.name })) }
+	: undefined;
+const serializedCoversData = coversData
+	? coversData.map((c) => ({ id: c.id, url: c.url }))
+	: undefined;
+---
+
+<BaseLayout title="Império Network">
+	<div class="grid grid-cols-1 md:grid-cols-5 w-full items-start mt-5 md:mt-10 px-2 md:px-5 gap-10">
+		<div class="w-full md:col-span-4">
+			<HomePageContent client:idle allPosts={allPosts} authorsMap={authorsMap} />
+		</div>
+		<Sidebar client:idle gamesData={serializedGamesData} coversData={serializedCoversData} />
+	</div>
+</BaseLayout>
