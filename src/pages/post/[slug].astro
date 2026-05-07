@@ -38,7 +38,7 @@ const ads = await client.getAllByType("anuncio").catch(() => []);
 const adsSorted = ads.sort(() => Math.random() - 0.5);
 ---
 
-<BaseLayout title={article.data.titulo} description={article?.data?.seo_description}>
+<BaseLayout title={article.data.titulo} description={article?.data?.seo_description} image={article.data.cover.url}>
 	<PostPageContent
 		client:idle
 		article={article}

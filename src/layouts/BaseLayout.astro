@@ -8,16 +8,20 @@ import "@/styles/globals.css";
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
 	children: React.ReactNode;
 }
 
 const defaultTitle = "Império Network";
 const defaultDescription =
 	"A Império Network é o seu portal de notícias de tecnologia, gaming ou animes em português! Tornamos a sua leitura simples.";
+const defaultImage = "/logo.png";
 
-const { title = defaultTitle, description = defaultDescription } = Astro.props;
+const { title = defaultTitle, description = defaultDescription, image = defaultImage } = Astro.props;
 
 const pageTitle = title === defaultTitle ? title : `${title} | ${defaultTitle}`;
+const isCustomImage = image !== defaultImage;
+const twitterCard = isCustomImage ? "summary_large_image" : "summary";
 ---
 
 <!doctype html>
@@ -33,11 +37,11 @@ const pageTitle = title === defaultTitle ? title : `${title} | ${defaultTitle}`;
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:site_name" content={pageTitle} />
-		<meta property="og:image" content="/logo.png" />
-		<meta name="twitter:card" content="summary" />
+		<meta property="og:image" content={isCustomImage ? image : "/logo.png"} />
+		<meta name="twitter:card" content={twitterCard} />
 		<meta name="twitter:title" content={pageTitle} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content="/logo.png" />
+		<meta name="twitter:image" content={isCustomImage ? image : "/logo.png"} />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
 			rel="stylesheet"
