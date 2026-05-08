@@ -34,6 +34,28 @@ if (!author) {
 	return Astro.redirect("/404");
 }
 
+if (!article?.data?.seo_description) {
+	const editorContent = article.data.editor
+		? JSON.stringify(article.data.editor)
+		: "";
+	const isFreeCategory = article.tags.includes("Grátis");
+
+	await fetch(
+		`${new URL(Astro.request.url).origin}/api/generate-ai`,
+		{
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				title: article.data.titulo,
+				article: editorContent,
+				slug: slug,
+				SEOOnly: isFreeCategory,
+			}),
+		},
+	).catch(() => null);
+
+}
+
 const ads = await client.getAllByType("anuncio").catch(() => []);
 const adsSorted = ads.sort(() => Math.random() - 0.5);
 ---
