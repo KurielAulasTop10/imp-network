@@ -23,8 +23,8 @@ import {
 export default function Header() {
 	return (
 		<nav className="w-full relative">
-			<div className="bg-gradient-to-b from-gray-950 to-gray-900 w-full h-48 rounded-b-3xl shadow-2xl border-b border-gray-800 relative overflow-hidden">
-				<div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-900 to-transparent opacity-50" />
+			<div className="bg-linear-to-b from-gray-950 to-gray-900 w-full h-48 rounded-b-3xl shadow-2xl border-b border-gray-800 relative overflow-hidden">
+				<div className="absolute inset-0 bg-linear-to-r from-transparent via-gray-900 to-transparent opacity-50" />
 				<a
 					href="/"
 					className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
@@ -36,7 +36,7 @@ export default function Header() {
 					/>
 				</a>
 			</div>
-			<div className="absolute top-6 left-6 z-20">
+			<div className="absolute top-6 left-6">
 				<DropdownMenu.Root>
 					<DropdownMenu.Trigger asChild>
 						<button
@@ -50,7 +50,7 @@ export default function Header() {
 						</button>
 					</DropdownMenu.Trigger>
 					<DropdownMenu.Portal>
-						<DropdownMenu.Content className="bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl p-3 min-w-[200px] backdrop-blur-lg">
+						<DropdownMenu.Content className="bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl p-3 min-w-50 backdrop-blur-lg z-20">
 							<a href={"/categoria/anime"}>
 								<DropdownMenu.Item className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-gray-800 text-white transition-all duration-200 group">
 									<RiTvFill className="text-red-400 group-hover:scale-110 transition-transform" />

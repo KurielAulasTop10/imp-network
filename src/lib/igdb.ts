@@ -77,7 +77,7 @@ export async function fetchTodayGames(): Promise<{
 			}
 		}
 
-		const coversData = await fetchCoversWithBackoff(gameIds);
+		const coversData = (await fetchCoversWithBackoff(gameIds)).filter(Boolean);
 
 		return { gamesData, coversData };
 	} catch {

@@ -32,7 +32,7 @@ export default function PostCard({ post, authorData }: PostCardProps) {
 			<div className="p-4 rounded-md shadow-sm animate-pulse bg-black">
 				<div className="flex items-center justify-center h-48 mb-4 bg-gray-700">
 					<svg
-						className="w-10 h-10 text-gray-600"
+						className="size-10 text-gray-600"
 						aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="currentColor"
@@ -46,7 +46,7 @@ export default function PostCard({ post, authorData }: PostCardProps) {
 				<div className="h-2.5 rounded-full bg-gray-700" />
 				<div className="flex items-center mt-4 bg-gray-700 w-full rounded-md p-2">
 					<svg
-						className="w-10 h-10 me-3 text-gray-500"
+						className="size-10 me-3 text-gray-500"
 						aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="currentColor"
