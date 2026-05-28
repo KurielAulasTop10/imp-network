@@ -6,16 +6,19 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { fetchTodayGames } from "@/lib/igdb";
 import { createClient } from "@/prismicio";
 
-const clientPrismic = createClient({ fetchOptions: { cache: "no-cache" } });
-const allPosts = await clientPrismic.getAllByType("post", {
-	orderings: {
-		field: "my.post.data",
-		direction: "desc",
-	},
-	fetchLinks: ["author.avatar", "author.banner", "author.descricao"],
-});
+const clientPrismic = createClient();
+const [postsResult, allAuthors] = await Promise.all([
+	clientPrismic.getByType("post", {
+		page: 1,
+		pageSize: 21,
+		orderings: { field: "my.post.data", direction: "desc" },
+		fetchLinks: ["author.avatar", "author.banner", "author.descricao"],
+	}),
+	clientPrismic.getAllByType("author"),
+]);
 
-const allAuthors = await clientPrismic.getAllByType("author");
+const initialPosts = postsResult.results;
+const totalPages = postsResult.total_pages;
 const authorsMap = new Map(allAuthors.map((a) => [a.uid, a]));
 
 const { gamesData, coversData } = await fetchTodayGames();
@@ -59,7 +62,7 @@ const showSgfBanner = daysUntilSgf >= 0 && daysUntilSgf <= 30;
 					</a>
 				)
 			}
-			<HomePageContent client:idle allPosts={allPosts} authorsMap={authorsMap} />
+			<HomePageContent client:idle initialPosts={initialPosts} totalPages={totalPages} authorsMap={authorsMap} />
 		</div>
 		<Sidebar client:idle gamesData={serializedGamesData} coversData={serializedCoversData} />
 	</div>

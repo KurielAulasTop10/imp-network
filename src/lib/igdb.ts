@@ -1,7 +1,28 @@
-import { fields, igdb, twitchAccessToken, where } from "ts-igdb-client";
+import {
+	fields,
+	igdb,
+	limit,
+	twitchAccessToken,
+	where,
+	whereIn,
+} from "ts-igdb-client";
 
 interface GameData {
 	data: { id: number; url?: string; name?: string }[];
+}
+
+const MAX_RETRIES = 3;
+
+async function fetchWithRetry<T>(fn: () => Promise<T>, attempt = 0): Promise<T> {
+	try {
+		return await fn();
+	} catch (error: any) {
+		if (error?.response?.status === 429 && attempt < MAX_RETRIES) {
+			await new Promise((resolve) => setTimeout(resolve, 2 ** attempt * 1000));
+			return fetchWithRetry(fn, attempt + 1);
+		}
+		throw error;
+	}
 }
 
 export async function fetchTodayGames(): Promise<{
@@ -23,61 +44,46 @@ export async function fetchTodayGames(): Promise<{
 
 		const client = igdb(clientId, accessToken);
 
-		let failedAttempts = 0;
+		const todayTimestamp =
+			new Date(new Date().toISOString().split("T")[0]).getTime() / 1000;
 
-		async function fetchGamesWithBackoff(): Promise<GameData> {
-			try {
-				return await client
-					.request("games")
-					.pipe(
-						fields(["id", "url", "name"]),
-						where("category", "=", 0),
-						where(
-							"first_release_date",
-							"=",
-							new Date(new Date().toISOString().split("T")[0]).getTime() / 1000,
-						),
-					)
-					.execute();
-			} catch (error: any) {
-				if (error?.response?.status === 429) {
-					const waitTime = 2 ** failedAttempts * 1000;
-					await new Promise((resolve) => setTimeout(resolve, waitTime));
-					failedAttempts++;
-					return fetchGamesWithBackoff();
-				}
-				throw error;
-			}
+		const gamesData = (await fetchWithRetry(() =>
+			client
+				.request("games")
+				.pipe(
+					fields(["id", "url", "name"]),
+					where("category", "=", 0),
+					where("first_release_date", "=", todayTimestamp),
+				)
+				.execute(),
+		)) as unknown as GameData;
+
+		const gameIds = gamesData.data.map((game) => game.id).filter(Boolean) as number[];
+
+		if (gameIds.length === 0) {
+			return { gamesData, coversData: [] };
 		}
 
-		const gamesData = await fetchGamesWithBackoff();
+		const coversResponse = (await fetchWithRetry(() =>
+			client
+				.request("covers")
+				.pipe(
+					fields(["url", "game"]),
+					whereIn("game", gameIds),
+					limit(Math.min(gameIds.length + 10, 500)),
+				)
+				.execute(),
+		)) as unknown as { data: { game?: number; url?: string }[] };
 
-		const gameIds = gamesData.data.map((game: any) => game.id);
-
-		async function fetchCoversWithBackoff(ids: number[]) {
-			let attempts = 0;
-			try {
-				return await Promise.all(
-					ids.map(async (id) => {
-						const coverResponse = await client
-							.request("covers")
-							.pipe(fields(["url"]), where("game", "=", id))
-							.execute();
-						return coverResponse.data[0];
-					}),
-				);
-			} catch (error: any) {
-				if (error?.response?.status === 429) {
-					const waitTime = 2 ** attempts * 1000;
-					await new Promise((resolve) => setTimeout(resolve, waitTime));
-					attempts++;
-					return fetchCoversWithBackoff(ids);
-				}
-				throw error;
-			}
-		}
-
-		const coversData = (await fetchCoversWithBackoff(gameIds)).filter(Boolean);
+		const coversMap = new Map(
+			coversResponse.data.map((c) => [c.game, c]),
+		);
+		const coversData: { id?: number; url?: string }[] = gameIds
+			.map((id) => {
+				const c = coversMap.get(id);
+				return c ? { id, url: c.url } : null;
+			})
+			.filter((c) => c !== null);
 
 		return { gamesData, coversData };
 	} catch {

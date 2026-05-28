@@ -1,46 +1,51 @@
 "use client";
 
-import { useState } from "react";
 import { RiArrowLeftDoubleLine, RiArrowRightDoubleLine } from "react-icons/ri";
 import PostCard from "@/components/posts/PostCard";
 import type { AuthorDocument, PostDocument } from "@/prismicio-types";
 
 interface PostsGridProps {
-	allPosts: PostDocument[];
+	posts: PostDocument[];
 	currentPage: number;
+	totalPages: number;
 	onPageChange: (page: number) => void;
 	authorsMap: Map<string, AuthorDocument>;
+	isLoading?: boolean;
 }
 
 export default function PostsGrid({
-	allPosts,
+	posts,
 	currentPage,
+	totalPages,
 	onPageChange,
 	authorsMap,
+	isLoading,
 }: PostsGridProps) {
-	const [postsPerPage] = useState<number>(21);
-
-	const totalPages = Math.ceil(allPosts.length / postsPerPage);
-
-	const filteredPosts = allPosts.filter((_, index) => {
-		const start = (currentPage - 1) * postsPerPage;
-		const end = start + postsPerPage;
-		return index >= start && index < end;
-	});
-
 	const getAuthorData = (post: PostDocument): AuthorDocument | null => {
-		interface MyAuthorData {
-			uid?: string;
-		}
-		const authorData = post.data.author as unknown as MyAuthorData;
-		return authorData?.uid ? authorsMap.get(authorData.uid) || null : null;
+		const linked = post.data.author as unknown as AuthorDocument | null;
+		if (!linked?.uid) return null;
+		return authorsMap.get(linked.uid) ?? linked;
 	};
+
+	const clampedTotal = totalPages === 0 ? 1 : totalPages;
 
 	return (
 		<section className="flex scroll-mt-12 flex-col items-center space-y-6">
-			{filteredPosts.length >= 1 ? (
+			{isLoading ? (
 				<div className="grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-10">
-					{filteredPosts.map(
+					{Array.from({ length: 21 }).map((_, i) => (
+						<div
+							key={i}
+							className="p-4 rounded-2xl shadow-sm animate-pulse bg-gray-700 min-h-48 w-full flex flex-col justify-end"
+						>
+							<div className="h-2.5 rounded-full bg-gray-900 mb-4 w-3/4" />
+							<div className="h-2.5 rounded-full bg-gray-900 w-1/2" />
+						</div>
+					))}
+				</div>
+			) : posts.length >= 1 ? (
+				<div className="grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-10">
+					{posts.map(
 						(post) =>
 							post && (
 								<PostCard
@@ -68,14 +73,12 @@ export default function PostsGrid({
 						{currentPage}
 					</span>
 					<span className="text-gray-400">de</span>
-					<span className="text-gray-400 font-medium">
-						{totalPages === 0 ? 1 : totalPages}
-					</span>
+					<span className="text-gray-400 font-medium">{clampedTotal}</span>
 				</div>
 				<button
 					type="button"
 					onClick={() => onPageChange(currentPage + 1)}
-					disabled={currentPage === (totalPages === 0 ? 1 : totalPages)}
+					disabled={currentPage === clampedTotal}
 					className="p-3 bg-linear-to-r from-red-600 to-red-500 rounded-full hover:from-red-500 hover:to-red-400 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60 disabled:pointer-events-none transform hover:scale-105 cursor-pointer"
 				>
 					<RiArrowRightDoubleLine size={24} className="text-white" />

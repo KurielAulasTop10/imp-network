@@ -6,9 +6,11 @@ import PostsGrid from "@/components/posts/PostsGrid";
 import { createClient } from "@/prismicio";
 import type { AuthorDocument, PostDocument } from "@/prismicio-types";
 
+const PAGE_SIZE = 21;
+
 export default function SearchContent() {
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [posts, setPosts] = useState<PostDocument[] | null>(null);
+	const [allPosts, setAllPosts] = useState<PostDocument[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [authorsMap, setAuthorsMap] = useState<Map<string, AuthorDocument>>(
 		new Map(),
@@ -22,29 +24,36 @@ export default function SearchContent() {
 	useEffect(() => {
 		const fetchPosts = async () => {
 			const client = createClient();
-			const [allPosts, allAuthors] = await Promise.all([
+			const [results, authors] = await Promise.all([
 				client.getAllByType("post", {
-					orderings: {
-						field: "my.post.data",
-						direction: "desc",
-					},
+					orderings: { field: "my.post.data", direction: "desc" },
 					filters: [filter.fulltext("my.post.titulo", q ?? "")],
 					fetchLinks: ["author.avatar", "author.banner", "author.descricao"],
 				}),
 				client.getAllByType("author"),
 			]);
-			setPosts(allPosts as PostDocument[]);
-			setAuthorsMap(new Map(allAuthors.map((a) => [a.uid, a])));
+			setAllPosts(results as PostDocument[]);
+			setAuthorsMap(
+				new Map(
+					authors
+						.filter((a): a is typeof a & { uid: string } => a.uid !== null)
+						.map((a) => [a.uid, a as unknown as AuthorDocument]),
+				),
+			);
 			setLoading(false);
 		};
 
 		if (q) {
 			fetchPosts();
 		} else {
-			setPosts([]);
+			setAllPosts([]);
 			setLoading(false);
 		}
 	}, [q]);
+
+	const totalPages = Math.max(1, Math.ceil(allPosts.length / PAGE_SIZE));
+	const start = (currentPage - 1) * PAGE_SIZE;
+	const posts = allPosts.slice(start, start + PAGE_SIZE);
 
 	return loading ? (
 		<p className="text-center py-[25vh]">
@@ -53,8 +62,9 @@ export default function SearchContent() {
 	) : (
 		<div className="mt-10 px-5">
 			<PostsGrid
-				allPosts={posts ?? []}
+				posts={posts}
 				currentPage={currentPage}
+				totalPages={totalPages}
 				onPageChange={setCurrentPage}
 				authorsMap={authorsMap}
 			/>
