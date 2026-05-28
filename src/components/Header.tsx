@@ -23,7 +23,7 @@ import {
 export default function Header() {
 	return (
 		<nav className="w-full relative">
-			<div className="bg-linear-to-b from-gray-950 to-gray-900 w-full h-48 rounded-b-3xl shadow-2xl border-b border-gray-800 relative overflow-hidden">
+			<div className="bg-linear-to-b from-gray-950 to-gray-900 w-full h-24 sm:h-48 rounded-b-3xl shadow-2xl border-b border-gray-800 relative overflow-hidden">
 				<div className="absolute inset-0 bg-linear-to-r from-transparent via-gray-900 to-transparent opacity-50" />
 				<a
 					href="/"
@@ -32,7 +32,7 @@ export default function Header() {
 					<img
 						src="/logo.png"
 						alt="Império Network Logo"
-						className="h-36 object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105 filter brightness-110"
+						className="h-12 md:h-36 object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105 filter brightness-110"
 					/>
 				</a>
 			</div>
