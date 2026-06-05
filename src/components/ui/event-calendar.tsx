@@ -77,6 +77,22 @@ export default function EventCalendar() {
       endTime: "2026-06-07T12:00:00-07:00",
       icon: "https://logodix.com/logo/20228.png",
       color: "#107c10",
+    },
+    {
+      id: "7",
+      name: "PC Gaming Show",
+      startTime: "2026-06-07T12:00:00-07:00",
+      endTime: "2026-06-07T13:30:00-07:00",
+      icon: "https://www.pcgamingshow.com/wp-content/uploads/2024/09/pcgs_2026_logo_site_080426-384x229.png",
+      color: "#ad1f24"
+    },
+    {
+      id: "8",
+      name: "Future Games Show",
+      startTime: "2026-06-06T12:00:00-07:00",
+      endTime: "2026-06-06T13:00:00-07:00",
+      icon: "https://cdn.prod.website-files.com/655cdae3ab58ca82983ab58c/6596954578fcb3c67ffd9b87_summerwhite.png",
+      color: "#1e88a9"
     }
   ]);
   const [currentMonth, setCurrentMonth] = React.useState(
