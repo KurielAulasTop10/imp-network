@@ -1,5 +1,6 @@
 // @ts-check
 
+import { fileURLToPath } from "node:url";
 import cloudflare from "@astrojs/cloudflare";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
@@ -22,7 +23,7 @@ export default defineConfig({
 		plugins: [tailwindcss()],
 		resolve: {
 			alias: {
-				"@": "./src",
+				"@": fileURLToPath(new URL("./src", import.meta.url)),
 			},
 		},
 	},

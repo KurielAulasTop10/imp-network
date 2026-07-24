@@ -14,15 +14,16 @@ const tagName = capitalizeFirstLetter(decodeURI(id || ""))
 	.replace("Playstation", "PlayStation");
 
 const client = createClient();
-const allPosts = await client.getAllByTag(tagName, {
-	orderings: {
-		field: "my.post.data",
-		direction: "desc",
-	},
-	fetchLinks: ["author.avatar", "author.banner", "author.descricao"],
-});
-
-const allAuthors = await client.getAllByType("author");
+const [allPosts, allAuthors] = await Promise.all([
+	client.getAllByTag(tagName, {
+		orderings: {
+			field: "my.post.data",
+			direction: "desc",
+		},
+		fetchLinks: ["author.avatar", "author.banner", "author.descricao"],
+	}),
+	client.getAllByType("author"),
+]);
 const authorsMap = new Map(allAuthors.map((a) => [a.uid, a]));
 ---
 

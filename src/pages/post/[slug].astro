@@ -9,8 +9,10 @@ if (!slug) {
 	return Astro.redirect("/404");
 }
 
-const client = createClient({ fetchOptions: { cache: "no-cache" } });
-const article = await client.getByUID("post", slug).catch(() => null);
+const client = createClient();
+const article = await client
+	.getByUID("post", slug, { fetchOptions: { cache: "no-cache" } })
+	.catch(() => null);
 
 if (!article) {
 	return Astro.redirect("/404");
@@ -26,21 +28,22 @@ if (!myAuthorData?.uid) {
 	return Astro.redirect("/404");
 }
 
-const author = await client
-	.getByUID("author", myAuthorData.uid)
-	.catch(() => null);
+const [author, ads] = await Promise.all([
+	client.getByUID("author", myAuthorData.uid).catch(() => null),
+	client.getAllByType("anuncio").catch(() => []),
+]);
 
 if (!author) {
 	return Astro.redirect("/404");
 }
 
-if (!article?.data?.seo_description) {
+/* if (!article?.data?.seo_description) {
 	const editorContent = article.data.editor
 		? JSON.stringify(article.data.editor)
 		: "";
 	const isFreeCategory = article.tags.includes("Grátis");
 
-	await fetch(
+	/* await fetch(
 		`${new URL(Astro.request.url).origin}/api/generate-ai`,
 		{
 			method: "POST",
@@ -54,9 +57,8 @@ if (!article?.data?.seo_description) {
 		},
 	).catch(() => null);
 
-}
+} */
 
-const ads = await client.getAllByType("anuncio").catch(() => []);
 const adsSorted = ads.sort(() => Math.random() - 0.5);
 ---
 
