@@ -9,6 +9,7 @@ interface Props {
 	title: string;
 	description?: string;
 	image?: string;
+	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 	children: React.ReactNode;
 }
 
@@ -17,11 +18,44 @@ const defaultDescription =
 	"A Império Network é o seu portal de notícias de tecnologia, gaming ou animes em português! Tornamos a sua leitura simples.";
 const defaultImage = "/logo.png";
 
-const { title = defaultTitle, description = defaultDescription, image = defaultImage } = Astro.props;
+const { title = defaultTitle, description = defaultDescription, image = defaultImage, jsonLd } = Astro.props;
 
 const pageTitle = title === defaultTitle ? title : `${title} | ${defaultTitle}`;
 const isCustomImage = image !== defaultImage;
 const twitterCard = isCustomImage ? "summary_large_image" : "summary";
+
+const siteUrl = (Astro.site?.origin ?? "https://imperionetwork.fr").replace(/\/$/, "");
+const canonicalUrl = new URL(Astro.url.pathname, `${siteUrl}/`).href;
+
+const baseJsonLd = [
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"@id": `${siteUrl}/#organization`,
+		name: "Império Network",
+		url: siteUrl,
+		logo: `${siteUrl}/logo.png`,
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"@id": `${siteUrl}/#website`,
+		name: "Império Network",
+		url: siteUrl,
+		inLanguage: "pt-BR",
+		publisher: { "@id": `${siteUrl}/#organization` },
+		potentialAction: {
+			"@type": "SearchAction",
+			target: {
+				"@type": "EntryPoint",
+				urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+			},
+			"query-input": "required name=search_term_string",
+		},
+	},
+];
+
+const jsonLdBlocks = jsonLd ? [...baseJsonLd, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])] : baseJsonLd;
 ---
 
 <!doctype html>
@@ -31,6 +65,7 @@ const twitterCard = isCustomImage ? "summary_large_image" : "summary";
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="canonical" href={canonicalUrl} />
 		<meta name="theme-color" content="#dd3333" />
 		<meta name="description" content={description} />
 		<meta name="keywords" content="império, network, gaming, animes, notícias, tecnologia, tech" />
@@ -53,6 +88,11 @@ const twitterCard = isCustomImage ? "summary_large_image" : "summary";
 			data-website-id="fa206071-95a2-43af-b0fe-7b7dd0a99a2c"
 			data-allow-localhost="true"
 		></script>
+		{
+			jsonLdBlocks.map((block) => (
+				<script type="application/ld+json" set:html={JSON.stringify(block)} />
+			))
+		}
 	</head>
 	<body class="bg-gray-950 text-primary relative mx-auto flex w-full flex-col" style="font-family: 'Rubik', sans-serif">
 		<Header client:idle />

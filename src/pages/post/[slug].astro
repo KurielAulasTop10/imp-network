@@ -60,9 +60,33 @@ if (!author) {
 } */
 
 const adsSorted = ads.sort(() => Math.random() - 0.5);
+
+const siteUrl = (Astro.site?.origin ?? "https://imperionetwork.fr").replace(/\/$/, "");
+const articleUrl = `${siteUrl}/post/${slug}`;
+const authorName = author.uid?.replaceAll("-", " ") ?? "Império Network";
+
+const articleJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "NewsArticle",
+	"@id": `${articleUrl}#article`,
+	headline: article.data.titulo,
+	description: article.data.seo_description ?? undefined,
+	image: article.data.cover.url ? [article.data.cover.url] : undefined,
+	datePublished: article.first_publication_date,
+	dateModified: article.last_publication_date,
+	inLanguage: "pt-BR",
+	mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+	url: articleUrl,
+	author: {
+		"@type": "Person",
+		name: authorName,
+	},
+	publisher: { "@id": `${siteUrl}/#organization` },
+	keywords: article.tags?.length ? article.tags.join(", ") : undefined,
+};
 ---
 
-<BaseLayout title={article.data.titulo} description={article?.data?.seo_description} image={article.data.cover.url}>
+<BaseLayout title={article.data.titulo} description={article?.data?.seo_description} image={article.data.cover.url} jsonLd={articleJsonLd}>
 	<PostPageContent
 		client:idle
 		article={article}
