@@ -9,6 +9,18 @@
 	--color-custom-gray-light: #2e3039;
 	--color-custom-gray-base: #eeeeee;
 	--color-custom-gray-dark: #1f2028;
+	--color-brand: oklch(0.576 0.186 27.5);
+	--color-brand-soft: oklch(0.7 0.16 27.5);
+	--color-brand-deep: oklch(0.5 0.175 27.5);
+	--color-surface: oklch(0.145 0.023 264.4);
+	--color-surface-2: oklch(0.205 0.03 264.6);
+	--color-rule: oklch(0.29 0.03 264);
+	--color-rule-soft: oklch(0.24 0.028 264);
+	--color-scrim: oklch(0.145 0.023 264.4 / 0.85);
+	--color-ink: oklch(0.97 0.003 264);
+	--color-ink-2: oklch(0.71 0.018 264);
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--shadow-panel: 0 18px 40px -24px oklch(0 0 0 / 0.9);
 	--radius-lg: var(--radius);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-sm: calc(var(--radius) - 4px);

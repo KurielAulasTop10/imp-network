@@ -1,43 +1,117 @@
 ---
-const links = [
-	{ title: "Sobre Nós", href: "/sobre" },
-	{ title: "Privacy Policy", href: "/privacy" },
-	{ title: "Contato", href: "/contato" },
+import SocialRow from "@/components/SocialRow";
+
+const sections = [
+	{ title: "Games", href: "/categoria/notícia" },
+	{ title: "Guias", href: "/categoria/guia" },
+	{ title: "Grátis", href: "/categoria/grátis" },
+	{ title: "PlayStation", href: "/categoria/playstation" },
+	{ title: "Xbox", href: "/categoria/xbox" },
+	{ title: "Nintendo", href: "/categoria/nintendo" },
+	{ title: "PC", href: "/categoria/pc" },
+	{ title: "Mobile", href: "/categoria/mobile" },
+	{ title: "Reviews", href: "/categoria/review" },
+	{ title: "Animes", href: "/categoria/anime" },
+	{ title: "Cinema", href: "/categoria/cinema" },
+	{ title: "Tech", href: "/categoria/tech" },
 ];
+
+const institutional = [
+	{ title: "Sobre Nós", href: "/sobre" },
+	{ title: "Contato", href: "/contato" },
+	{ title: "Política de Reviews", href: "/review-policy" },
+	{ title: "Privacidade", href: "/privacy" },
+];
+
+const year = new Date().getFullYear();
 ---
 
-<footer class="mt-10 bg-linear-to-t from-gray-900 to-gray-950 border-t border-gray-800 flex flex-col gap-6 w-full p-8 justify-center items-center rounded-t-3xl shadow-2xl">
-	<div class="flex flex-wrap gap-6 justify-center items-center">
-		{links.map(({ title, href }) => (
-			<a
-				href={href}
-				class="text-gray-300 hover:text-red-400 font-medium transition-all duration-300 hover:scale-105 px-3 py-1 rounded-lg hover:bg-gray-800"
-			>
-				{title}
-			</a>
-		))}
+<footer class="mt-16 w-full bg-surface">
+	<div aria-hidden="true" class="h-0.5 w-full bg-brand"></div>
+
+	<div class="mx-auto w-full max-w-350 px-4 py-10 md:px-6">
+		<div class="grid gap-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
+			<div>
+				<img
+					src="/logo.png"
+					alt="Império Network"
+					width="1026"
+					height="443"
+					loading="lazy"
+					class="h-14 w-auto object-contain"
+				/>
+				<p class="mt-4 max-w-[46ch] text-ink-2 leading-relaxed">
+					Notícias de games, animes, cinema e tecnologia — em português, sem
+					enrolação.
+				</p>
+			</div>
+
+			<div class="flex flex-col gap-7">
+				<div>
+					<p class="mb-3 border-rule border-b pb-2 uppercase tracking-[0.14em] text-[0.7rem] text-brand-soft">
+						Seções
+					</p>
+					<ul class="flex flex-wrap gap-x-6 gap-y-1">
+						{sections.map(({ title, href }) => (
+							<li>
+								<a
+									href={href}
+									class="flex min-h-11 items-center whitespace-nowrap text-ink-2 text-sm md:min-h-9 transition-colors duration-200 ease-out hover:text-ink focus-visible:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft motion-reduce:transition-none"
+								>
+									{title}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div>
+					<p class="mb-3 border-rule border-b pb-2 uppercase tracking-[0.14em] text-[0.7rem] text-brand-soft">
+						Institucional
+					</p>
+					<ul class="flex flex-wrap gap-x-6 gap-y-1">
+						{institutional.map(({ title, href }) => (
+							<li>
+								<a
+									href={href}
+									class="flex min-h-11 items-center whitespace-nowrap text-ink-2 text-sm md:min-h-9 transition-colors duration-200 ease-out hover:text-ink focus-visible:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft motion-reduce:transition-none"
+								>
+									{title}
+								</a>
+							</li>
+						))}
+						<li>
+							<a
+								href="/rss.xml"
+								class="flex min-h-11 items-center whitespace-nowrap text-ink-2 text-sm md:min-h-9 transition-colors duration-200 ease-out hover:text-brand-soft focus-visible:text-brand-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft motion-reduce:transition-none"
+							>
+								Feed RSS
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="text-gray-400 text-center space-y-3">
-		<p class="text-lg font-light">
-			©️ {new Date().getFullYear()} Império Network
-		</p>
-		<div class="flex items-center justify-center gap-2 text-sm">
-			<span>Desenvolvido com</span>
-			<span class="text-red-500 animate-pulse">❤️</span>
-			<span>e</span>
-			<span class="text-yellow-500">☕</span>
-			<span>por</span>
-			<a
-				href="https://kurieldev.vercel.app"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="text-gray-300 hover:text-red-400 font-medium transition-colors duration-300 border-b border-dotted border-gray-600 hover:border-red-400"
-			>
-				KurielDev
-			</a>
+
+	<div class="border-rule border-t">
+		<div class="mx-auto flex w-full max-w-350 flex-col-reverse items-start gap-4 px-4 py-4 md:flex-row md:items-center md:justify-between md:px-6">
+			<p class="text-ink-2 text-xs tabular-nums">
+				© {year} Império Network · Desenvolvido por
+				<a
+					href="https://kurieldev.vercel.app"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="whitespace-nowrap text-ink underline decoration-rule underline-offset-4 transition-colors duration-200 ease-out hover:decoration-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft motion-reduce:transition-none"
+				>
+					KurielDev
+				</a>
+			</p>
+			<SocialRow />
 		</div>
 	</div>
 </footer>
+
 <script
 	is:inline
 	src="https://cookieinfoscript.com/js/cookieinfo.min.js"

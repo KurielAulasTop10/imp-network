@@ -1,34 +1,29 @@
-import { useState } from "react";
-import { BsSearch } from "react-icons/bs";
+import { RiSearchLine } from "react-icons/ri";
 
 export default function SearchBar() {
-	const [searchTerm, setSearchTerm] = useState("");
-
-	const doSearch = () => {
-		const q = searchTerm.trim();
-		if (!q) return;
-		return window.location.assign(`/search?q=${encodeURIComponent(q)}`);
-	};
-
 	return (
-		<div className="flex max-w-md mx-auto">
+		<form
+			action="/search"
+			method="get"
+			role="search"
+			className="flex w-full items-stretch border border-rule bg-surface-2 transition-colors duration-200 ease-out focus-within:border-brand motion-reduce:transition-none"
+		>
+			<span className="flex items-center pl-3 text-ink-2">
+				<RiSearchLine aria-hidden="true" className="size-4" />
+			</span>
 			<input
-				type="text"
-				placeholder="Pesquisar..."
-				onChange={(e) => setSearchTerm(e.target.value)}
-				onKeyUp={(e) => {
-					if (e.key === "Enter") doSearch();
-				}}
-				value={searchTerm}
-				className="w-full rounded-l-2xl border-2 border-gray-700 p-4 text-lg font-medium bg-gray-900 text-white placeholder-gray-400 hover:border-gray-600 focus:border-red-500 focus:outline-none focus:bg-gray-800 transition-all duration-300 shadow-lg"
+				type="search"
+				name="q"
+				placeholder="Pesquisar no site"
+				aria-label="Pesquisar no site"
+				className="h-11 min-w-0 flex-1 bg-transparent px-3 text-ink text-sm placeholder:text-ink-2 focus:outline-none"
 			/>
 			<button
-				className="bg-linear-to-r from-red-600 to-red-500 rounded-r-2xl px-6 cursor-pointer hover:from-red-500 hover:to-red-400 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-l-0 border-gray-700 hover:border-red-400"
-				type="button"
-				onClick={doSearch}
+				type="submit"
+				className="h-11 shrink-0 cursor-pointer whitespace-nowrap bg-brand-deep px-4 font-semibold text-[0.72rem] text-ink uppercase tracking-[0.12em] transition-colors duration-200 ease-out hover:bg-brand focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink motion-reduce:transition-none"
 			>
-				<BsSearch className="text-2xl text-white" />
+				Buscar
 			</button>
-		</div>
+		</form>
 	);
 }
