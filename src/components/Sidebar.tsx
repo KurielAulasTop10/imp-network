@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
 import { RiArrowRightUpLine } from "react-icons/ri";
-import SearchBar from "@/components/SearchBar";
-import SocialRow from "@/components/SocialRow";
 import { cdn } from "@/utils/cdn";
 
 const COVER_COLUMNS: Record<number, string> = {
@@ -45,8 +43,6 @@ export default function Sidebar({ gamesData, coversData }: SidebarProps) {
 
 	return (
 		<aside className="flex w-full flex-col gap-8 xl:sticky xl:top-28">
-			<SearchBar />
-
 			{releases.length > 0 && (
 				<RailModule title="Lançamentos de hoje">
 					<ul
@@ -107,10 +103,6 @@ export default function Sidebar({ gamesData, coversData }: SidebarProps) {
 						loading="lazy"
 					/>
 				</a>
-			</RailModule>
-
-			<RailModule title="Redes">
-				<SocialRow />
 			</RailModule>
 
 			<ins

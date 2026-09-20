@@ -21,6 +21,7 @@ const institutional = [
 	{ title: "Contato", href: "/contato" },
 	{ title: "Política de Reviews", href: "/review-policy" },
 	{ title: "Privacidade", href: "/privacy" },
+	{ title: "Feed RSS", href: "/rss.xml" },
 ];
 
 const year = new Date().getFullYear();
@@ -80,14 +81,6 @@ const year = new Date().getFullYear();
 								</a>
 							</li>
 						))}
-						<li>
-							<a
-								href="/rss.xml"
-								class="flex min-h-11 items-center whitespace-nowrap text-ink-2 text-sm md:min-h-9 transition-colors duration-200 ease-out hover:text-brand-soft focus-visible:text-brand-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft motion-reduce:transition-none"
-							>
-								Feed RSS
-							</a>
-						</li>
 					</ul>
 				</div>
 			</div>
@@ -96,7 +89,7 @@ const year = new Date().getFullYear();
 
 	<div class="border-rule border-t">
 		<div class="mx-auto flex w-full max-w-350 flex-col-reverse items-start gap-4 px-4 py-4 md:flex-row md:items-center md:justify-between md:px-6">
-			<p class="text-ink-2 text-xs tabular-nums">
+			<p class="text-ink-2 text-xs tabular-nums flex gap-1">
 				© {year} Império Network · Desenvolvido por
 				<a
 					href="https://kurieldev.vercel.app"
